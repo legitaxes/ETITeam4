@@ -24,7 +24,7 @@
 2.6 Quit the program  
 
 #### *3. Combat Functions*    
-3.0 Display the map, combat menu and monster stats
+3.0 Display the map, combat menu and monster stats  
 3.1 Attacking monster. Deals random dmg ranging from damage range  
 3.2 Run away from the monster - leads to function 4.0  
 3.3 Killing a monster shows "The Rat is dead! You are victorious!" and go to function 4.0  
