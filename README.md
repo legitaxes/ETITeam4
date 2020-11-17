@@ -2,9 +2,9 @@
 *This is Assignment Repository.*  
 
 ## To Do: 
-+ **Create Project Board: Automated Kanban** [x]         
++ **Create Project Board: Automated Kanban**        
 
-+ **Different Requirements of the Assignment: Features (Create User Stories)** []        
++ **Different Requirements of the Assignment: Features (Create User Stories)**        
 #### *1. Before the game starts*      
 1.0. Display the main menu - should accept only one input    
 1.1. Initialize the map and stats of the player of the game  
@@ -27,4 +27,4 @@
 
 
 
-+ **Test Cases** []  
++ **Test Cases**   
