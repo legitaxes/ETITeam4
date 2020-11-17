@@ -23,8 +23,18 @@
 2.5 Save the game - save current state   
 2.6 Quit the program  
 
-#### *3. Combat Functions*      
+#### *3. Combat Functions*    
+3.0 Display the map, combat menu and monster stats
+3.1 Attacking monster. Deals random dmg ranging from damage range  
+3.2 Run away from the monster - leads to function 4.0  
+3.3 Killing a monster shows "The Rat is dead! You are victorious!" and go to function 4.0  
 
+#### *4. Post combat functions  
+4.0 Display the post combat menu  
+4.1 View character stats function  
+4.2 View the map of the game  
+4.3 Move a tile  
+4.4 Exit game  
 
 
 + **Test Cases**   
