@@ -29,7 +29,7 @@
 3.2 Run away from the monster - leads to function 4.0  
 3.3 Killing a monster shows "The Rat is dead! You are victorious!" and go to function 4.0  
 
-#### *4. Post combat functions  
+#### *4. Post combat functions*    
 4.0 Display the post combat menu  
 4.1 View character stats function  
 4.2 View the map of the game  
