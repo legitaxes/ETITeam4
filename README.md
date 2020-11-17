@@ -14,7 +14,7 @@
 1.3. Exit game function  
 1.3.1. Closes the entire program  
 
-### *2. In game functions*        
+#### *2. In game functions*        
 2.0 Display game menu    
 2.1 Displaying character stats. Name, Damage, Defence, HP   
 2.2 Display map - show current hero position and town position   
@@ -23,7 +23,7 @@
 2.5 Save the game - save current state   
 2.6 Quit the program  
 
-## *3. Combat Functions*      
+#### *3. Combat Functions*      
 
 
 
