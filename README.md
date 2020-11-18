@@ -7,33 +7,42 @@ Team Roles:
   3. Technical Lead: 
 ---
 
-# Project Background
+## Project Background
 > You are The Hero. The world is being invaded by the Rat King and his endless rat minions. The only way to defeat the Rat King is to find the Orb of Power located in the faraway land of Katalina. In this computer role-playing game, you will travel around a grid map searching for the Orb of Power and fighting rat minions. On the map are various towns where you can rest and save your game. Once you find the Orb of Power, the Rat King loses.
 
 --- 
 
+## Our Team's Approach
+The Ratventure project will be split into [2 sprints](https://cdn.discordapp.com/attachments/767992821206220810/778537798746505226/sprint_plannning.png). Each sprint will be done over a **period of 1-2 weeks**
++ In the first sprint, we will be handling the basic functions of the game such as the menus, movement and the world map
++ In the second sprint, we will be handling the combat features of the game such as attacking, running and **completion of the game** 
+
+We will be considering the following Software Development Methodologies: 
+1. Agile Software Development Methodology 
+2. Scrum Software Development Methodology 
+3. Extreme Programming Software Development Methodology
+4. Feature Drive Software Development Methodology 
+---
+
 ## Automated Kanban Board:
 
-+ **Project Board used: Automated Kanban**
-> The project backlog will contain all of the future features that will be added
+**Project Board used: Automated Kanban**
++ The [project backlog](https://cdn.discordapp.com/attachments/767992821206220810/778520257441562644/unknown.png) will contain all of the future features that will be added
 
- ![alt text](https://cdn.discordapp.com/attachments/767992821206220810/778520257441562644/unknown.png "Project Backlog")
-
-> The user stories that are derived based on the tasks will appear here 
-
-![alt text](https://cdn.discordapp.com/attachments/767992821206220810/778520623282257960/unknown.png "Project User Stories")
++ The [user stories](https://cdn.discordapp.com/attachments/767992821206220810/778520623282257960/unknown.png "Project User Stories") that are derived based on the tasks will appear here 
 
 ---
+
 ## Task List: 
 In each user story in the kanban board, there will be an explanation of what needs to be done and expected in the comment
 
 <b>An example can be seen below:</b>
 
-![alt text](https://cdn.discordapp.com/attachments/767992821206220810/778529800049786890/unknown.png "Example of Written User Story")
+![alt text](https://cdn.discordapp.com/attachments/767992821206220810/778532767566397480/unknown.png "Example of Written User Story")
 
 
 ---
-+ **Different Requirements of the Assignment: Features (rough outline of the features, details in kanban board)**        
+**Different Requirements of the Assignment: Features (rough outline of the features, details in kanban board)**        
 #### *1. Before the game starts*      
 1.0. Display the main menu - should accept only one input    
 1.1. Initialize the map and stats of the player of the game  
@@ -65,6 +74,7 @@ In each user story in the kanban board, there will be an explanation of what nee
 4.3 Move a tile  
 4.4 Exit game  
 
+
 ---
 + **Test Cases**  
 > The aim of a test case is to evaluate if various features work as intended within a system and to ensure that all related standards, guidelines and customer requirements are fulfilled by the system. The method of writing a test case will also allow the system to discover flaws or faults.  
@@ -80,4 +90,4 @@ In each user story in the kanban board, there will be an explanation of what nee
 --- 
 + **Software Development Methodologies**
 
-
+--- 
