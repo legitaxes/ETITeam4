@@ -2,9 +2,11 @@
  **Team Member Name: Jia Qi, Kwangwei, Cheska, Perle, Chwe**  
  
 Team Roles:
-  1. Developers: 
-  2. QA(s): 
-  3. Technical Lead: 
+  1. Scrum Master: Perle Chen 
+  2. Project Manager: Poh Jia Qi
+  2. Developers: Lau Kwang Wei, Poh Jia Qi, Perle Chen 
+  2. QA(s): Ma Chwe, Francheska Lazo 
+  3. Technical Lead: Lau Kwang Wei, Poh Jia Qi 
 ---
 
 ## Project Background
@@ -88,6 +90,9 @@ In each user story in the kanban board, there will be an explanation of what nee
 | Test Case 5   |                           |             |                   | 
 
 --- 
-+ **Software Development Methodologies**
-
++ **Software Development Methodologies**  
+The four Software Development Methodologies chosen are: 
++ Describe the methodology (Pros & Cons)
++ Explain how we will practice it   
++ Reason why we consider this   
 --- 
