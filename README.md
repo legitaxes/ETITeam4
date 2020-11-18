@@ -2,7 +2,7 @@
  **Team Member Name: Jia Qi, Kwangwei, Cheska, Perle, Chwe**  
  
 Team Roles:
-  1. Scrum Master: Perle Chen 
+  1. Scrum Master: Perle Chen (rotation for every Sprint) 
   2. Project Manager: Poh Jia Qi
   2. Developers: Lau Kwang Wei, Poh Jia Qi, Perle Chen 
   2. QA(s): Ma Chwe, Francheska Lazo 
