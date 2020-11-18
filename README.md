@@ -32,7 +32,7 @@ In each user story in the kanban board, there will be an explanation of what nee
 ![alt text](https://cdn.discordapp.com/attachments/767992821206220810/778529800049786890/unknown.png "Example of Written User Story")
 
 
-
+---
 + **Different Requirements of the Assignment: Features (rough outline of the features, details in kanban board)**        
 #### *1. Before the game starts*      
 1.0. Display the main menu - should accept only one input    
@@ -65,5 +65,17 @@ In each user story in the kanban board, there will be an explanation of what nee
 4.3 Move a tile  
 4.4 Exit game  
 
+---
++ **Test Cases**  
 
-+ **Test Cases**   
+| Test Scenario | Test Scenario Description | Test Values | Expected Outcomes |  
+| ------------- |:-------------------------:|:-----------:| -----------------:|  
+| Test Case 1   |                           |             |                   |  
+| Test Case 2   |                           |             |                   |  
+| Test Case 3   |                           |             |                   |  
+| Test Case 4   |                           |             |                   |  
+| Test Case 5   |                           |             |                   | 
+
+
+
+
