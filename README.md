@@ -4,11 +4,13 @@
 # Project Background
 > You are The Hero. The world is being invaded by the Rat King and his endless rat minions. The only way to defeat the Rat King is to find the Orb of Power located in the faraway land of Katalina. In this computer role-playing game, you will travel around a grid map searching for the Orb of Power and fighting rat minions. On the map are various towns where you can rest and save your game. Once you find the Orb of Power, the Rat King loses.
 
+
+
 ---
 ## To Do: 
-+ **Create Project Board: Automated Kanban**        
++ **Type of Project Board used: Automated Kanban**        
 
-+ **Different Requirements of the Assignment: Features (Create User Stories)**        
++ **Different Requirements of the Assignment: Features (rough outline of the features, details in kanban board)**        
 #### *1. Before the game starts*      
 1.0. Display the main menu - should accept only one input    
 1.1. Initialize the map and stats of the player of the game  
