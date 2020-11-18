@@ -13,7 +13,7 @@ Team Roles:
 --- 
 
 ## Our Team's Approach
-The Ratventure project will be split into [2 sprints](https://cdn.discordapp.com/attachments/767992821206220810/778537798746505226/sprint_plannning.png). Each sprint will be done in a **period of 1-2 weeks**
+The Ratventure project will be split into [2 sprints](https://cdn.discordapp.com/attachments/767992821206220810/778537798746505226/sprint_plannning.png). Each sprint will be done over a **period of 1-2 weeks**
 + In the first sprint, we will be handling the basic functions of the game such as the menus, movement and the world map
 + In the second sprint, we will be handling the combat features of the game such as attacking, running and **completion of the game** 
 
@@ -27,9 +27,9 @@ We will be considering the following Software Development Methodologies:
 ## Automated Kanban Board:
 
 **Project Board used: Automated Kanban**
-> The [project backlog](https://cdn.discordapp.com/attachments/767992821206220810/778520257441562644/unknown.png) will contain all of the future features that will be added
++ The [project backlog](https://cdn.discordapp.com/attachments/767992821206220810/778520257441562644/unknown.png) will contain all of the future features that will be added
 
-> The [user stories](https://cdn.discordapp.com/attachments/767992821206220810/778520623282257960/unknown.png "Project User Stories") that are derived based on the tasks will appear here 
++ The [user stories](https://cdn.discordapp.com/attachments/767992821206220810/778520623282257960/unknown.png "Project User Stories") that are derived based on the tasks will appear here 
 
 ---
 
