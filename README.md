@@ -41,7 +41,7 @@ In each user story in the kanban board, there will be an explanation of what nee
 ![alt text](https://cdn.discordapp.com/attachments/767992821206220810/778532767566397480/unknown.png "Example of Written User Story")
 
 
-
+---
 **Different Requirements of the Assignment: Features (rough outline of the features, details in kanban board)**        
 #### *1. Before the game starts*      
 1.0. Display the main menu - should accept only one input    
@@ -74,6 +74,20 @@ In each user story in the kanban board, there will be an explanation of what nee
 4.3 Move a tile  
 4.4 Exit game  
 
---- 
 
-## **Test Cases**   
+---
++ **Test Cases**  
+> The aim of a test case is to evaluate if various features work as intended within a system and to ensure that all related standards, guidelines and customer requirements are fulfilled by the system. The method of writing a test case will also allow the system to discover flaws or faults.  
+
+| Test Scenario | Test Scenario Description | Test Values | Expected Outcomes |  
+| ------------- |:-------------------------:|:-----------:| -----------------:|  
+| Test Case 1   |                           |             |                   |  
+| Test Case 2   |                           |             |                   |  
+| Test Case 3   |                           |             |                   |  
+| Test Case 4   |                           |             |                   |  
+| Test Case 5   |                           |             |                   | 
+
+--- 
++ **Software Development Methodologies**
+
+--- 
