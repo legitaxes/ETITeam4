@@ -1,14 +1,37 @@
-# **ETITeam4**
-+ **Name: Jia Qi, Kwangwei, Cheska, Perle, Chwe**        
+# **ETI Team4**
+ **Team Member Name: Jia Qi, Kwangwei, Cheska, Perle, Chwe**  
+ 
+Team Roles:
+  1. Developers: 
+  2. QA(s): 
+  3. Technical Lead: 
 ---
+
 # Project Background
 > You are The Hero. The world is being invaded by the Rat King and his endless rat minions. The only way to defeat the Rat King is to find the Orb of Power located in the faraway land of Katalina. In this computer role-playing game, you will travel around a grid map searching for the Orb of Power and fighting rat minions. On the map are various towns where you can rest and save your game. Once you find the Orb of Power, the Rat King loses.
 
+--- 
 
+## Automated Kanban Board:
+
++ **Project Board used: Automated Kanban**
+> The project backlog will contain all of the future features that will be added
+
+ ![alt text](https://cdn.discordapp.com/attachments/767992821206220810/778520257441562644/unknown.png "Project Backlog")
+
+> The user stories that are derived based on the tasks will appear here 
+
+![alt text](https://cdn.discordapp.com/attachments/767992821206220810/778520623282257960/unknown.png "Project User Stories")
 
 ---
-## To Do: 
-+ **Type of Project Board used: Automated Kanban**        
+## Task List: 
+In each user story in the kanban board, there will be an explanation of what needs to be done and expected in the comment
+
+<b>An example can be seen below:</b>
+
+![alt text](https://cdn.discordapp.com/attachments/767992821206220810/778529800049786890/unknown.png "Example of Written User Story")
+
+
 
 + **Different Requirements of the Assignment: Features (rough outline of the features, details in kanban board)**        
 #### *1. Before the game starts*      
