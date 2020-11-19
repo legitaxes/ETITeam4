@@ -95,9 +95,63 @@ In each user story in the kanban board, there will be an explanation of what nee
 | Test Case 4   | Check player runs and hides when player is in the outdoor| 1. Enter choice | Choice = 2 | Combat ends and outdoor menu should be displayed |  
 
 --- 
-+ **Software Development Methodologies**  
+## Software Development Methodologies 
 The four Software Development Methodologies chosen are: 
-+ Describe the methodology (Pros & Cons)
-+ Explain how we will practice it   
-+ Reason why we consider this   
+
+### Agile Software Development Methodology
++ Agile software development methodology is based on the idea of iterative development, where specifications and solutions evolve through collaboration between cross-functional teams that are self-organized. In Agile development, the ultimate advantage is that it helps teams to produce value quicker, with better efficiency and predictability, and greater aptitude to adapt to change. It also minimizes peril by producing software, known as iterations, in short time boxes, which last from one week to one month.
+ 
++ Furthermore, like all methodologies, it has both pros and cons in using it. Some of the advantages in using it are its adaptive strategy that responds to modifications favorably, its transparency by providing opportunity for clients to be involved throughout the project, and it improves quality by easily identifying and correcting flaws and early detection of expectation mismatches. The disadvantages are it lacks documentation efficiency as it will be too focused on developing with the software and teams get easily sidetracked due to lack of processes and the outcome not being clear.
+ 
++ As Agile has sprints, a predetermined timeline during which a given mission should be accomplished by the team, we plan to divide our tasks into different sprints. The tasks would include all the features we have agreed on and fulfilling the user stories. After each sprint, the team will review each other’s performance and discuss new ways to produce better results and improve the work. Aside from the review at the end of each sprint, we would also conduct daily stand-up-meetings that will last only for five minutes to state the progress and what needs to be done in a clear and precise manner. 
+
++ We are considering Agile as it
+1. Encourages open communication among team members
+2. Allows making changes throughout the development process as it is a long term project and all features are not finalised yet (additional features might be added)
+3. Enables us to manage shifting priorities more effectively by assigning more time and effort on features that are more important and difficult 
+4. Increase productivity as this process is fast and flexible
+
+ 
+### Scrum Software Development Methodology
+
++ The scrum software development methodology is based on the idea of having a model that initiates with an ephemeral plan, conference and completes with a concluding review. In contrast to the Agile methodology as mentioned above, this Scrum methodology focuses on the business value in the shortest time which delivers the software after each sprint. This methodology has advantages as follow: decision making lies in the hands of the team; business requirement document is considered insignificant; lightly controlled method empathising with constant updating; as well as having a cross-functional development team. While it brings advantages to the project, it does have disadvantages such as wavering costs, not suitable for big sized projects, and requires a highly expert team. 
+
++ **As a team, we will practice this methodology by using the following:**
+1. KANBAN board on Github: helps to collaborate and work effectively. It will keep track of the progress of the sprint backlog items in each sprint. 
+2. Scrum events such as the Sprint, Sprint Planning, Daily Stand-up, Sprint Review, Sprint Retrospective. 
+3. Cross-Functional development team: team members will have overlapping roles. For example, Jia Qi can be both part of the technical lead as well as the development team. 
+
++ After considering that Agile is the right methodology for the project, we proceeded with determining whether using the Scrum software development methodology is the best Agile methodology. 
+
++ For consideration, we looked at the type of our project and whether Scrum will meet our needs as well as the nature of our team. As mentioned  in the Assessment Criteria, this project should allow changes to the requirements to handle other features suggested by our tutor. This means that this project does not have clear requirements and is most likely to experience change. This  inlines with one of the advantages of Scrum as mentioned above, which utilises a lightly controlled method emphathizing with constant updating. 
++ In addition, one of the constraints in our team is the lack of developers who are well-versed in programming. By adopting the scrum methodology, it fosters a cross-functional development team where the developers do the design, code as well as testing. By having more members with overlapping roles, it enables us to have strength in numbers to tackle the requirements together. 
+While it is beneficial for us to adopt this methodology, we do acknowledge that it may be difficult to implement it due to its complexity which requires a highly expert team.
+
+
+### Extreme Programming Software Development Methodology
+
++ Extreme Programming is an agile software development methodology that aims to produce higher quality software. It is usually used to reduce the cost of changes in requirements by having multiple short development cycles, rather than a long one. Advantages of using Extreme Programming would also include establishing rational plans and schedules, being equipped with modernistic methods for quality software, the developers being exceptionally committed to the project and it lays out focus on customer involvement. While some of the cons of Extreme Programming would include the effectiveness would depend on the people involved, requiring frequent meetings for development which raises the total costs, exact possibilities and future outcomes are unknown and there is demand for excessive development changes. Practices of Extreme Programming would include Test-Driven Development, Pair Programming, Continuous Integration, Coding Standards and 40-Hour Week work conditions. 
+
++ We will practice Extreme programming through one of the practices, Continuous Integration. It is a practice where code changes are immediately tested when they are added to a larger code base. The benefit of this practice is you can catch and fix integration issues sooner. The reasoning behind that approach is that if we experience problems every time we integrate code, it takes a while to find where the problems are and they are much easier to find because there are fewer changes incorporated into the build.
+
++ The reason why we would consider this is because in Extreme Programming, developers are allowed to focus on coding. We might also experience constantly changing requirements or work with customers who are not sure what they want the system to do as there might be additional requirements midway through the work. As such, we considered Extreme Programming as we wanted to mitigate project risk.
+
+
+### Spiral Lifecycle Model
+
++ The Spiral lifecycle model is a combination of iterative development process model and sequential linear development model, which has a capability to handle risks. It makes use of iterative development along with the systematic, controlled aspects of the waterfall model. In contrast to the models mentioned earlier, the developer does incremental releases of the product through each iteration around the spiral. Through each iteration, bugs are identified and ratified.
+
++ Spiral lifecycle model is accommodating to the ever changing requirements in the project since Ratventure is a project where there can be additional requirements given by the client. If the requirements are not clear, spiral modelling helps to capture the requirements more accurately 
+
++ However, there are several disadvantages to using the spiral model.
+One of them is, the spiral process can go on indefinitely which means the project could potentially not have a finished product.
+It is also not recommended to use for small projects as it could be costly to maintain a spiral lifecycle model.
+
++ We will be planning the layout of the menu interfaces for each of the stages of the spiral.
+During the building phase of the product, we will be producing a working product at each spiral. And through each spiral we will improve on the product with higher clarity on the requirements with a working model of the software build number. These builds are sent to the QA team and Operations team to test for feedback.
+
++ The QA and Operations team will evaluate the product and provide feedback to the developer to improve on the product through the usage of test cases
+
++ The reason why we consider using the Spiral Lifecycle model is because the project will be a long-term project as there can be potential change to the product. The client is also unsure of what other features that should be added to the game. There could be significant changes in the requirements and it is expected in the product during the development cycle.
+
 --- 
