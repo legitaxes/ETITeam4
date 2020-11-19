@@ -83,8 +83,8 @@ In each user story in the kanban board, there will be an explanation of what nee
 
 | Test Scenario | Test Scenario Description                      | Test Steps              | Test Values          | Expected Outcomes |  
 | ------------- |:----------------------------------------------:|:-----------------------:|:--------------------:|:------------------:|  
-| Test Case 1   | Check new game loaded with valid choice entered | 1. Run the program<br/> 2. Enter choice| Choice = 1| New game should be successfully loaded with player's statistics, default map and game menu will be displayed on screen |  
-| Test Case 2   |  Check movement of the player with valid choice entered when player is in a town |  1. Enter choice<br/> 2. Enter move | Choice = 3<br/> Move = S | Player position should be moved down by one tile |  
+| Test Case 1   | Check new game loaded with valid choice entered | 1. Run the program <br/> 2. Enter choice| Choice = 1 | New game should be successfully loaded with player's statistics, default map and game menu will be displayed on screen |  
+| Test Case 2   | Check movement of the player with valid choice entered when player is in a town |  1. Enter choice <br/> 2. Enter move | Choice = 3 <br/> Move = S | Player position should be moved down by one tile |  
 | Test Case 3   | Check hitpoints with valid choice entered when player is resting in a town | 1. Enter choice | Choice = 4 | Player's hitpoint should be reset to 20 and successful message will be displayed |  
 | Test Case 4   | Check player runs and hides when player is in the outdoor| 1. Enter choice | Choice = 2 | Combat ends and outdoor menu should be displayed |  
 
