@@ -27,7 +27,7 @@ We will be considering the following Software Development Methodologies:
 1. Agile Software Development Methodology 
 2. Scrum Software Development Methodology 
 3. Extreme Programming Software Development Methodology
-4. Feature Drive Software Development Methodology 
+4. Spiral Lifecycle Modelling Development Methodology 
 
 
 ---
