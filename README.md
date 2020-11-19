@@ -19,11 +19,17 @@ The Ratventure project will be split into [2 sprints](https://cdn.discordapp.com
 + In the first sprint, we will be handling the basic functions of the game such as the menus, movement and the world map
 + In the second sprint, we will be handling the combat features of the game such as attacking, running and **completion of the game** 
 
+The movement of the hero will be through the usage of labelling the grid with hidden numbers
++ Refer to this [image](https://cdn.discordapp.com/attachments/767992821206220810/778903105881767976/movement_eti.png) for the rough layout of the map with numbers
++ **Town numbers and winning tile will be kept as global variables along with the stats of the hero, monsters and all other game menu**
+
 We will be considering the following Software Development Methodologies: 
 1. Agile Software Development Methodology 
 2. Scrum Software Development Methodology 
 3. Extreme Programming Software Development Methodology
 4. Feature Drive Software Development Methodology 
+
+
 ---
 
 ## Automated Kanban Board:
