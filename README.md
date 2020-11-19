@@ -71,9 +71,9 @@ In each user story in the kanban board, there will be an explanation of what nee
 
 #### *3. Combat Functions*    
 3.0 Display the map, combat menu and monster stats  
-3.1 Attacking monster. Deals random dmg ranging from damage range (Function 1)  
-3.2 Run away from the monster - leads to function 4.0 (Function 2)  
-3.3 Killing a monster shows "The Rat is dead! You are victorious!" and go to function 4.0 (Function 3)  
+3.1 Attacking monster. Deals random dmg ranging from damage range
+3.2 Run away from the monster - leads to Function 4.0 
+3.3 Killing a monster shows "The Rat is dead! You are victorious!" and go to Function 4.0
 
 #### *4. Post combat functions*    
 4.0 Display the post combat menu  
