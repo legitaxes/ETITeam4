@@ -81,13 +81,13 @@ In each user story in the kanban board, there will be an explanation of what nee
 + **Test Cases**  
 *The aim of a test case is to evaluate if various features work as intended within a system and to ensure that all related standards, guidelines and customer requirements are fulfilled by the system. The method of writing a test case will also allow the system to discover flaws or faults.*  
 
-| Test Scenario | Test Scenario Description | Test Values | Expected Outcomes |  
-| ------------- |:-------------------------:|:-----------:| -----------------:|  
-| Test Case 1   |                           |             |                   |  
-| Test Case 2   |                           |             |                   |  
-| Test Case 3   |                           |             |                   |  
-| Test Case 4   |                           |             |                   |  
-| Test Case 5   |                           |             |                   | 
+| Test Scenario | Test Scenario Description                      | Test Steps | Test Values | Expected Outcomes |  
+| ------------- |:----------------------------------------------:|:----------:|:-----------:| -----------------:|  
+| Test Case 1   | Check new game loaded with valid choice entered | 1. Run the program\ 2. Enter choice| Choice = 1| New game should be successfully loaded with player's statistics, default map and game menu will be displayed on screen |  
+| Test Case 2   |                           |            |             |                   |  
+| Test Case 3   |                           |            |             |                   |  
+| Test Case 4   |                           |            |             |                   |  
+| Test Case 5   |                           |            |             |                   | 
 
 --- 
 + **Software Development Methodologies**  
