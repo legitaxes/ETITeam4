@@ -81,8 +81,8 @@ In each user story in the kanban board, there will be an explanation of what nee
 + **Test Cases**  
 *The aim of a test case is to evaluate if various features work as intended within a system and to ensure that all related standards, guidelines and customer requirements are fulfilled by the system. The method of writing a test case will also allow the system to discover flaws or faults.*  
 
-| Test Scenario | Test Scenario Description                      | Test Steps              | Test Values          | Expected Outcomes |  
-| ------------- |:----------------------------------------------:|:-----------------------:|:--------------------:|:------------------:|  
+| Test Scenario | Test Scenario Description                      | Test Steps                 | Test Values             | Expected Outcomes |  
+| ------------- |:----------------------------------------------:|---------------------------:|------------------------:|:------------------:|  
 | Test Case 1   | Check new game loaded with valid choice entered | 1. Run the program <br/> 2. Enter choice| Choice = 1 | New game should be successfully loaded with player's statistics, default map and game menu will be displayed on screen |  
 | Test Case 2   | Check movement of the player with valid choice entered when player is in a town |  1. Enter choice <br/> 2. Enter move | Choice = 3 <br/> Move = S | Player position should be moved down by one tile |  
 | Test Case 3   | Check hitpoints with valid choice entered when player is resting in a town | 1. Enter choice | Choice = 4 | Player's hitpoint should be reset to 20 and successful message will be displayed |  
