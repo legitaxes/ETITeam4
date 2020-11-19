@@ -106,10 +106,10 @@ The four Software Development Methodologies chosen are:
 + As Agile has sprints, a predetermined timeline during which a given mission should be accomplished by the team, we plan to divide our tasks into different sprints. The tasks would include all the features we have agreed on and fulfilling the user stories. After each sprint, the team will review each other’s performance and discuss new ways to produce better results and improve the work. Aside from the review at the end of each sprint, we would also conduct daily stand-up-meetings that will last only for five minutes to state the progress and what needs to be done in a clear and precise manner. 
 
 + We are considering Agile as it
-1. Encourages open communication among team members
-2. Allows making changes throughout the development process as it is a long term project and all features are not finalised yet (additional features might be added)
-3. Enables us to manage shifting priorities more effectively by assigning more time and effort on features that are more important and difficult 
-4. Increase productivity as this process is fast and flexible
+  1. Encourages open communication among team members
+  2. Allows making changes throughout the development process as it is a long term project and all features are not finalised yet (additional features might be added)
+  3. Enables us to manage shifting priorities more effectively by assigning more time and effort on features that are more important and difficult 
+  4. Increase productivity as this process is fast and flexible
 
  
 ### Scrum Software Development Methodology
@@ -117,9 +117,9 @@ The four Software Development Methodologies chosen are:
 + The scrum software development methodology is based on the idea of having a model that initiates with an ephemeral plan, conference and completes with a concluding review. In contrast to the Agile methodology as mentioned above, this Scrum methodology focuses on the business value in the shortest time which delivers the software after each sprint. This methodology has advantages as follow: decision making lies in the hands of the team; business requirement document is considered insignificant; lightly controlled method empathising with constant updating; as well as having a cross-functional development team. While it brings advantages to the project, it does have disadvantages such as wavering costs, not suitable for big sized projects, and requires a highly expert team. 
 
 + **As a team, we will practice this methodology by using the following:**
-1. KANBAN board on Github: helps to collaborate and work effectively. It will keep track of the progress of the sprint backlog items in each sprint. 
-2. Scrum events such as the Sprint, Sprint Planning, Daily Stand-up, Sprint Review, Sprint Retrospective. 
-3. Cross-Functional development team: team members will have overlapping roles. For example, Jia Qi can be both part of the technical lead as well as the development team. 
+  1. KANBAN board on Github: helps to collaborate and work effectively. It will keep track of the progress of the sprint backlog items in each sprint. 
+  2. Scrum events such as the Sprint, Sprint Planning, Daily Stand-up, Sprint Review, Sprint Retrospective. 
+  3. Cross-Functional development team: team members will have overlapping roles. For example, Jia Qi can be both part of the technical lead as well as the development team. 
 
 + After considering that Agile is the right methodology for the project, we proceeded with determining whether using the Scrum software development methodology is the best Agile methodology. 
 
