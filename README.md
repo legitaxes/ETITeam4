@@ -87,15 +87,14 @@ In each user story in the kanban board, there will be an explanation of what nee
 + **Test Cases**  
 *The aim of a test case is to evaluate if various features work as intended within a system and to ensure that all related standards, guidelines and customer requirements are fulfilled by the system. The method of writing a test case will also allow the system to discover flaws or faults.*  
 
-User Story|Test Scenario|Test Scenario Description|Pre-Requisite|Test Steps|Test Values|Expected Outcomes|Actual Outcomes|Test Result
-  
-----------|-------------|:-----------------------:|:-----------:|:--------:|:---------:|:---------------:|:-------------:|:---------:
-1.0|Test Case 1|View the main menu|1. Program has to be started|1. Run the program|NA|Main menu will be displayed which includes 3 choices that player can choose from,<br/>1) New Game<br/>2) Resume Game<br/>3) Exit Game
-1.1|Test Case 2|Start new game|1. Program has to be started|1. Run the program<br/>2. Enter choice|Choice = 1|New game will be successfully loaded with player's statistics, default map and game menu will be displayed on screen
-1.2|Test Case 3|Resume from the previously saved progress when there is saved game|1. Program has to be started<br/>There is saved game|1. Run the program<br/>2. Enter choice|Choice = 2|No. of days and town menu will be displayed which includes 6 choices that player can choose from,<br/>1) View Character<br/>2) View Map<br/>3) Move<br/>4) Rest<br/>5) Save Game<br/>6) Exit Game
-1.2.1|Test Case 4|Resume from the previously saved progress when there is no saved game|1. Program has to be started<br/>2. There is no saved game|1. Run the program<br/>2. Enter choice|Choice = 2|Warning message will be displayed,"There is no existing saved game!"
-1.3|Test Case 5|End the current game|1. Program has to be started|1. Run the program<br/>2. Enter choice|Choice = 3|The program should close
-1.3.1|Test Case 6|Invalid choice input|1. Program has to be started|1. Run the program<br/>2. Enter choice|Choice != 1-3(any value that is not between 1-3)|Warning message will be displayed, "The choice is not valid! Please choose a valid choice!"
+| User Story 	| Test Scenario 	| Test Scenario Description 	| Pre-Requisite 	| Test Steps 	| Test Values 	| Expected Outcomes 	| Actual Outcomes 	| Test Result 	|
+|-	|-	|-	|-	|-	|-	|-	|-	|-	|
+| 1.0 	| Test Case 1 	| View the main menu 	| 1. Program has to be started 	| 1. Run the program 	| NA 	| Main menu will be displayed which includes 3 choices that player can choose from,<br>1) New Game<br>2) Resume Game<br>3) Exit Game 	|  	|  	|
+| 1.1 	| Test Case 2 	| Start new game 	| 1. Program has to be started 	| 1. Run the program<br>2. Enter choice 	| Choice = 1 	| New game will be successfully loaded with player's statistics, default map and game menu will be displayed on screen 	|  	|  	|
+| 1.2 	| Test Case 3 	| Resume from the previously saved progress when there is saved game 	| 1. Program has to be started<br>2. There is saved game 	| 1. Run the program<br>2. Enter choice 	| Choice = 2 	| No. of days and town menu will be displayed which includes 6 choices that player can choose from,<br>1) View Character<br>2) View Map<br>3) Move<br>4) Rest<br>5) Save Game<br>6) Exit Game 	|  	|  	|
+| 1.2.1 	| Test Case 4 	| Resume from the previously saved progress when there is no saved game 	| 1. Program has to be started<br>2.There is no saved game 	| 1. Run the program<br>2. Enter choice 	| Choice = 2 	| A warning message will be displayed,<br>"There is no existing saved game!" 	|  	|  	|
+| 1.3 	| Test Case 5 	| End the current game 	| 1. Program has to be started 	| 1. Run the program<br>2. Enter choice 	| Choice = 3 	| The program should close 	|  	|  	|
+| 1.3.1 	| Test Case 6 	| Invalid choice input 	| 1. Program has to be started 	| 1. Run the program<br>2. Enter choice 	| Choice != 1-3<br>(any value that is not between 1-3) 	| A warning message will be displayed,<br>"The choice is not valid! Please choose a valid choice" 	|  	|  	|
 
 --- 
 ## Software Development Methodologies 
