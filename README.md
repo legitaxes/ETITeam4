@@ -45,7 +45,7 @@ We will be considering the following Software Development Methodologies:
 
 + The [Changes needed](https://cdn.discordapp.com/attachments/767992821206220810/782150296188747786/unknown.png) column will contain all the tasks checked by QA that has issues. Tasks will be flagged with 2 [labels](https://media.discordapp.net/attachments/767992821206220810/782150945375125534/unknown.png) called `checked-by-QA` and `bug`. Issues have to be moved manually by the QA to this column or the `done` column
 
-+ Lastly, the [Done](https://media.discordapp.net/attachments/767992821206220810/782151050328801300/unknown.png) column will contains all the tasks that are **fully checked and completed**
++ Lastly, the [Done](https://media.discordapp.net/attachments/767992821206220810/782151050328801300/unknown.png) column will contain all the tasks that are **fully checked and completed**
 ---
 
 ## Task List: 
