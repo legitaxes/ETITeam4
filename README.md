@@ -39,6 +39,13 @@ We will be considering the following Software Development Methodologies:
 
 + The [user stories](https://cdn.discordapp.com/attachments/767992821206220810/778520623282257960/unknown.png "Project User Stories") that are derived based on the tasks will appear here 
 
++ The [In Progress](https://cdn.discordapp.com/attachments/767992821206220810/782149980617310208/unknown.png) states the tasks that is being developed
+
++ The [To be checked by QA](https://cdn.discordapp.com/attachments/767992821206220810/782150211518464000/unknown.png) column will contain all the tasks completed by the developer but yet to be checked by the QA. Tasks will be flagged with a [label](https://media.discordapp.net/attachments/767992821206220810/782150640469409792/unknown.png) called `to-check-QA`. This column will have the automation of `done` keywords. 
+
++ The [Changes needed](https://cdn.discordapp.com/attachments/767992821206220810/782150296188747786/unknown.png) column will contain all the tasks checked by QA that has issues. Tasks will be flagged with 2 [labels](https://media.discordapp.net/attachments/767992821206220810/782150945375125534/unknown.png) called `checked-by-QA` and `bug`
+
++ Lastly, the [Done](https://media.discordapp.net/attachments/767992821206220810/782151050328801300/unknown.png) column will contains all the tasks that are **fully checked and completed**
 ---
 
 ## Task List: 
