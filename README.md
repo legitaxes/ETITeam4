@@ -27,7 +27,8 @@ We will be considering the following Software Development Methodologies:
 1. Agile Software Development Methodology 
 2. Scrum Software Development Methodology 
 3. Extreme Programming Software Development Methodology
-4. Spiral Lifecycle Modelling Development Methodology 
+4. Spiral Lifecycle Modelling Development Methodology   
+5. Software Development Life Cycle 
 
 
 ---
@@ -161,6 +162,18 @@ During the building phase of the product, we will be producing a working product
 
 + The QA and Operations team will evaluate the product and provide feedback to the developer to improve on the product through the usage of test cases
 
-+ The reason why we consider using the Spiral Lifecycle model is because the project will be a long-term project as there can be potential change to the product. The client is also unsure of what other features that should be added to the game. There could be significant changes in the requirements and it is expected in the product during the development cycle.
++ The reason why we consider using the Spiral Lifecycle model is because the project will be a long-term project as there can be potential change to the product. The client is also unsure of what other features that should be added to the game. There could be significant changes in the requirements and it is expected in the product during the development cycle.  
+
+### Software Development Life Cycle  
+
++ Software Development Life Cycle (SDLC) is the implementation of standard business practices to building software applications. Typically, it is divided into six to eight steps: Planning, Requirements, Design, Build, Document, Test, Deploy and Maintain. Depending on the complexity of the project, some project managers may merge, split, or omit steps. SDLC is a means for the development process to be measured and enhanced. It facilitates a fine-grain analysis of each step of the process. This helps the team to maximise efficiency at each stage.  
+
++ SDLC has countless advantages when being used as the chosen methodology for any project. Some common benefits are that the goals and problems are clearly defined, creates considerable system documentation, and a proper testing will be conducted before being installed. However, there are disadvantages with this method. What may be seen as a major problem for some, the end-user does not see the solution until the system is almost complete. Also, it encourages stiff implementation instead of creativity as there are requirements that must be met.  
+
++ As mentioned above, it consists of six to eight steps to follow. To start off, the team will do the planning by discussing the brief overview of the project and assigning the roles for effectiveness and efficiency. As soon as everyone is clear with what the goals are, we will move on to gathering the requirements by identifying and consolidating the features of the Ratventure. Subsequently, we will be preparing system and software design documents stated in the requirement specification document. Once the system design phase is complete, developers start to build the entire system by writing code using the chosen programming language. The testing team will start testing the functionality of the entire system after the software is completed and deployed in the testing environment. Until the software is bug-free, stable, and working accordingly, the QA and testing team will have to communicate to developers to fix any bugs that may be found. After all the errors are fixed, we will start to do the final deployment.  
+
++ It is the best way to maintain optimum control, reduce problems, and allow the project manager to run production without having to micromanage the members of the project. SDLC shows what’s happening, and exactly where the development process can be improved. SDLC also aims to analyze and improve the process of creating software as it creates a scalable view of the project, from day-to-day coding to managing production dates.  
+
+
 
 --- 
