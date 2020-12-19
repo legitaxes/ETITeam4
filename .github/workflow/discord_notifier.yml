@@ -1,0 +1,29 @@
+name: Build and Test
+on: 
+  push:
+    branches: [ cheskalazo-patch1 ]
+  
+jobs:
+  build:
+    name: Build the Code
+    # build job
+  test:
+    name: Test the Code
+    # test job
+  notify:
+    name: Discord Notification
+    runs-on: ubuntu-latest
+    needs: # make sure the notification is sent AFTER the jobs you want included have completed
+      - build
+      - test
+    if: ${{ always() }} # You always want to be notified: success, failure, or cancelled
+    
+    steps:
+      - name: Notify
+        uses: nobrayner/discord-webhook@v1
+        with:
+          github-token: ${{ secrets.github_token }}
+          discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          username: 'QA UPDATE'
+          avatar-url: 'https://media-exp1.licdn.com/dms/image/C4E0BAQHdT7WU3uKGgA/company-logo_200_200/0/1519878893739?e=2159024400&v=beta&t=4S_xQekU7pBE8BKd_MWgcfIlEDD8chTabeGOjriHx_4'
+          description: '${{ github.event_name }} trigged this {{STATUS}}!'
