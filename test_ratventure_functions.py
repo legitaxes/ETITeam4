@@ -103,6 +103,8 @@ def test_exit_game_prompt():
     
     value = open (exit_game)
     assert value == "You have unsaved changes. Do you want to continue?" 
+
+# need to know how to link one function to another and then have the yes or no input
     
 
 
