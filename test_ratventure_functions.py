@@ -1,5 +1,5 @@
 import pytest 
-# from RatVenture_Function import * # update once developer starts 
+from RatVenture_Function import * # update once developer starts 
 
 '''''
 Sprint 1
@@ -12,7 +12,7 @@ def test_main_menu():
     
     Input
     -----------------
-    Open the RatVenture application.
+    None
     
     Output
     -----------------
@@ -24,8 +24,8 @@ def test_main_menu():
     Enter choice:
     
     """
-    value = open(main_menu)
-    assert value == "Welcome to Ratventure \n 1) New Game \n 2) Resume Game \n 3) Exit Game \n Enter choice: "
+    value = main_menu()
+    assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game\nEnter choice: "
                      
                 
 def test_new_game(): 
