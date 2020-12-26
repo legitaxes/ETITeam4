@@ -1,14 +1,3 @@
-import pytest 
-# from RatVenture_Function import * # update once developer starts 
 
-'''''
-Sprint 1
-'''''
-
-def test_main_menu(): 
-    value = open(RatVenture application)
-    assert value == Ratventure application 
-    
-def tes_new_game(): 
     
   
