@@ -33,13 +33,7 @@ jobs:
       #- test
     if: ${{ always() }} # You always want to be notified: success, failure, or cancelled
 
-    steps:
-      - name: Notify
-        uses: nobrayner/discord-webhook@v1
-        with:
-          github-token: ${{ secrets.github_token }}
-          discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}  
-
+    steps: 
       - name: Notify
         uses: nobrayner/discord-webhook@v1
         with:
