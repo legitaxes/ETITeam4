@@ -25,15 +25,9 @@ def test_main_menu():
     
     """
     value = open(main_menu)
-    assert value == "Welcome to Ratventure!\n"
-                     "----------------------"
-                     "1) New Game /n"
-                     "2) Resume Game /n"
-                     "3) Exit Game /n"
-                     "Enter choice: "
-                
+    assert value == "Welcome to Ratventure \n 1) New Game \n 2) Resume Game \n 3) Exit Game \n Enter choice: "
                      
-    
+                
 def test_new_game(): 
     """ User Story 1.1: Create New Game
     
@@ -56,15 +50,7 @@ def test_new_game():
     """
     
     value = open(new_game)
-    assert value = "Enter choice: 1 /n"
-                   "Day 1: You are in a town. /n" 
-                   "1) View Character /n"
-                   "2) View Map /n"
-                   "3) Move /n"
-                   "4) Rest /n"
-                   "5) Save Game /n"
-                   "6) Exit Game /n"
-                   "Enter choice: /n"
+    assert value == "Enter choice: 1 \n Day 1: You are in a town. \n 1) View Character \n 2) View Map \n 3) Move \n 4) Rest \n 5) Save Game \n 6) Exit Game \n Enter choice:"
                     
 def test_resume_game(): 
     """User Story: 1.2: Resume the previous game
@@ -81,8 +67,7 @@ def test_resume_game():
     """
     
     value = open(resume_game)
-    assert value = "Enter choice: 2 /n" 
-                   "The game has been resumed to the previous state."
+    assert value == "Enter choice: 2 \n The game has been resumed to the previous state."
        
     
 def test_exit_game(): 
@@ -100,11 +85,9 @@ def test_exit_game():
     
     """
     value = open (exit_game)
-    assert value = "Enter choice: 3" 
-                  "The program will close since there are no unsaved changes." 
-    assert value = close(RatVenture) 
+    assert value == "Enter choice: 3 \n The program will close since there are no unsaved changes." 
+    assert value == exit 
  
-
 def test_exit_game_prompt():
     """User Story 1.3.1: Warning Message
     
@@ -114,12 +97,12 @@ def test_exit_game_prompt():
     
     Output
     -----------------
-    You have unsaved changes. Continue or Cancel? 
+    You have unsaved changes. Do you want to continue? 
     
     """
     
     value = open (exit_game)
-    assert value = "You have unsaved changes. Continue or Cancel?" 
+    assert value == "You have unsaved changes. Do you want to continue?" 
     
 
 
