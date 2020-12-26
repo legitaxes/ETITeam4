@@ -1,7 +1,7 @@
 name: Build and Test
 on: 
   push:
-    branches: [ cheskalazo-branch ]
+    branches: [cheskalazo-branch]
     
 jobs:
   build:
