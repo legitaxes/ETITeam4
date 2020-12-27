@@ -24,7 +24,7 @@ jobs:
     # test job
       id: TestWithPytest
       run: | 
-        pytest -v --junitxml=report.xml
+        pytest .\test_ratventure_unit_test.py -v --junitxml=report.xml
     
   notify:
     name: Discord Notification
