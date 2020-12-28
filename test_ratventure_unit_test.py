@@ -70,6 +70,35 @@ def test_print_map():
     #  > Displaying the "legends"
     # labels: tasks, unit-test
     # assignees: legitaxes
+    position, x_coor, y_coor, legend, list_map = print_map()
+    theHero = print_hero_stats()
+    w_map = world_map()
+    pos = theHero["position"]
+    assert position == pos
+    assert x_coor == pos[0]
+    assert y_coor == pos[1]
+    list_print_map = []
+    for x in range(8):
+        list_print_map.append("+---"*8 + "+")
+        for y in range(8):
+            legend = "   "
+            if w_map[x][y] == "T":
+                if x == x_coor and y == y_coor:
+                    assert legend == "H/T"
+                else:
+                    assert legend == " T "
+            elif w_map[x][y] == "K":
+                if x == x_coor and y == y_coor:
+                    assert legend == "H/K"
+                else: 
+                    assert legend == " K "
+            else:
+                if x == x_coor and y == y_coor:
+                    assert legend == " H "
+            list_print_map.append("|{}".format(legend), end="")
+        list_print_map.append("|")
+    list_print_map.append("+---"*8 + "+")
+    
 
 def test_print_day():
     """
