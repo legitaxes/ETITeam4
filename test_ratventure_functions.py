@@ -144,7 +144,7 @@ def test_view_character():
     
     """
     set_keyboard_input([1]) 
-    view_map() 
+    view_character() 
     output = get_display_output()
     assert output == "Enter choice: 1\nThe hero\nDamage: 2-4\nDefence: 1\nHP: 20"
 
@@ -179,9 +179,11 @@ def test_rest():
     You are fully healed. 
     
     """
-    value = open (rest)
-    assert value == "Enter choice: 4 \n You are fully healed." 
-    
+    set_keyboard_input([4]) 
+    rest() 
+    output = get_display_output()
+    assert output == "Enter choice: 4\nYou are fully healed."
+
 def test_save_game():
     """User Story 2.5: Save the game
     
