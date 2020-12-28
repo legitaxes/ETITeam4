@@ -51,10 +51,10 @@ def test_new_game():
     Enter choice:
     
     """
-
+    set_keyboard_input("1")
     new_game()
     output = get_display_output()
-    assert output == "Enter choice: 1 \n Day 1: You are in a town. \n 1) View Character \n 2) View Map \n 3) Move \n 4) Rest \n 5) Save Game \n 6) Exit Game \n Enter choice:"
+    assert output == ["Enter choice: 1\n Day 1: You are in a town.\n 1) View Character\n 2) View Map\n 3) Move\n 4) Rest\n 5) Save Game\n 6) Exit Game\n Enter choice:"]
                     
 def test_resume_game(): 
     """User Story: 1.2: Resume the previous game
