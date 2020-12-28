@@ -1,9 +1,7 @@
 name: "To Do: Create Issues"
 on:   
   push:
-    branches: [ jiaqibranch, laukwangweibranch ]
-  pull_request:
-    branches: [ main ]   
+    branches: [ jiaqibranch, laukwangweibranch ]  
     #will trigger on pull request to the main branch, this will update all the todo issues if it has been cleared
   
 jobs:
@@ -21,4 +19,4 @@ jobs:
       #adds due date to issues if it detects --- YYYY/MM/DD --- in the issues
         uses: alexleventer/github-issue-due-dates-action@1.1.0
         with:
-          GH_TOKEN: "${{ secrets.GH_TOKEN }}"
+          GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
