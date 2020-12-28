@@ -3,13 +3,16 @@ name: Move completed features by Dev for QA
 on:
   push:
     types: [assigned]
+    tags: 
+      - 'tocheckQA*'
 
-jobs:
-  automate-project-columns:
+jobs: 
+  auto-label:
+    name: Auto 'to-check-QA'Label
     runs-on: ubuntu-latest
     steps:
-      - uses: alex-page/github-project-automation-plus@v0.3.0
-        with:
-          project: Backlog
-          column: To be checked by QA
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v2
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        with: 
+          default-labels: '["to-check-QA "]'
