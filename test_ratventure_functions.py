@@ -1,5 +1,6 @@
 import pytest 
 from RatVenture_Function import * # update once developer starts 
+from project.test.tud_test_base import set_keyboard_input, get_display_output
 
 '''''
 Sprint 1
@@ -24,8 +25,10 @@ def test_main_menu():
     Enter choice:
     
     """
-    value = main_menu()
-    assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game\nEnter choice: "
+
+    main_menu()
+    output = get_display_output()
+    assert output == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game\nEnter choice: "
                      
                 
 def test_new_game(): 
