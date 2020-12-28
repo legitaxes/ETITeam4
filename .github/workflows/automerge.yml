@@ -9,7 +9,7 @@ jobs:
   automerge:
     runs-on: ubuntu-latest
     steps:
-      - name: "AUTOMERGE to auto merge"    
+      - name: automerge    
         uses: "pascalgn/automerge-action@v0.13.0"
         id: "automerge"
         env:
