@@ -1,9 +1,7 @@
 name: "To Do: Create Issues"
 on:   
   push:
-    branches: [ jiaqibranch, laukwangweibranch ]
-  pull_request:
-    branches: [ main ]   
+    branches: [ jiaqibranch, laukwangweibranch ]  
     #will trigger on pull request to the main branch, this will update all the todo issues if it has been cleared
   
 jobs:
