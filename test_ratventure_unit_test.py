@@ -125,11 +125,6 @@ def test_get_hero_position():
         This function mainly serves as a way for the program to get the position of the hero
         It should return the tile where the hero is on the map
     """
-    # TODO Create a test case that gets the hero's position
-    # Test case should assert the following values:
-    #   > The position of the hero
-    # labels: tasks, unit-test
-    # assignees: legitaxes
     theHero = print_hero_stats()
     position = theHero["position"]
     assert position == theHero["position"]
