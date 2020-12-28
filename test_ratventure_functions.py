@@ -198,7 +198,7 @@ def test_save_game():
     
     """
     set_keyboard_input("5")  
-    rest() 
+    save_game() 
     output = get_display_output()
     assert output == "Enter choice: 5\nGame saved."
 
@@ -217,7 +217,7 @@ def test_exit_game():
     
     """
     set_keyboard_input("6") 
-    rest() 
+    exit_game() 
     output = get_display_output()
     assert output == "Enter choice: 6\nThe program will close since there are no unsaved changes."
 
