@@ -72,7 +72,6 @@ def test_print_day():
     """
 
 
-
 def test_print_hero_stats():
     """
     Test function of print_hero_stats Function:
