@@ -92,7 +92,8 @@ def test_print_map():
             list_print_map.append("|{}".format(legend), end="")
         list_print_map.append("|")
     list_print_map.append("+---"*8 + "+")
-    
+    # assert both lists
+    assert all([a == b for a, b in zip(list_print_map, list_map)]) #this checks python list against the expected value
 
 def test_print_day():
     """
@@ -125,14 +126,12 @@ def test_get_hero_position():
         This function mainly serves as a way for the program to get the position of the hero
         It should return the tile where the hero is on the map
     """
-    theHero = print_hero_stats()
-    position = theHero["position"]
-    assert position == theHero["position"]
+    tile, hero, world_map = get_hero_position()   
+    position = hero["position"]
+    assert position == hero["position"]
     x_coor = position[0]
     y_coor = position[1]
-    w_map = world_map()
-    tile = w_map[x_coor][y_coor]
-    assert tile == w_map[x_coor][y_coor]
+    assert tile == world_map[x_coor][y_coor]
     
 
     
