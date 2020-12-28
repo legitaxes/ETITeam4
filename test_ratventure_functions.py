@@ -197,8 +197,10 @@ def test_save_game():
     Game saved. 
     
     """
-    value = open (save_game)
-    assert value == "Enter choice: 5 \n Game saved." 
+    set_keyboard_input([5]) 
+    rest() 
+    output = get_display_output()
+    assert output == "Enter choice: 5\nGame saved."
     
 def test_exit_game(): 
     """User Story 2.6: Exit the game
