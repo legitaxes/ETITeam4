@@ -4,8 +4,7 @@ name: auto merge
 
 on: 
   pull_request:
-    types: 
-      -opened
+    types: [labelled]
     
 jobs:       
   automerge:
