@@ -3,7 +3,9 @@
 name: auto merge
 
 on: 
-  push: 
+  pull_request:
+    types: 
+      -labeled
     
 jobs:       
   automerge:
