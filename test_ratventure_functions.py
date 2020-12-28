@@ -52,10 +52,10 @@ def test_new_game():
     
     """
     set_keyboard_input("1")
-    
+
     new_game()
     output = get_display_output()
-    assert output == ["Enter choice: 1\n Day 1: You are in a town.\n 1) View Character\n 2) View Map\n 3) Move\n 4) Rest\n 5) Save Game\n 6) Exit Game\n Enter choice:"]
+    assert output == "Enter choice: 1\nDay 1: You are in a town.\n1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game\nEnter choice:"
                     
 def test_resume_game(): 
     """User Story: 1.2: Resume the previous game
@@ -70,9 +70,11 @@ def test_resume_game():
     The game has been resumed to the previous state.
     
     """
+    set_keyboard_input("2")
     
-    value = resume_game()
-    assert value == "Enter choice: 2 \n The game has been resumed to the previous state."
+    resume_game()
+    output = get_display_output()
+    assert output == "Enter choice: 2\nThe game has been resumed to the previous state."
        
     
 def test_exit_game(): 
@@ -89,9 +91,12 @@ def test_exit_game():
     /closeRatVenture 
     
     """
-    value = exit_game()
-    assert value == "Enter choice: 3 \n The program will close since there are no unsaved changes." 
-    assert value == exit 
+    set_keyboard_input("3")
+    
+    exit_game()
+    output = get_display_output()
+    assert output == "Enter choice: 3\nThe program will close since there are no unsaved changes."
+    
  
 def test_exit_game_prompt():
     """User Story 1.3.1: Warning Message
@@ -105,9 +110,17 @@ def test_exit_game_prompt():
     You have unsaved changes. Do you want to continue? 
     
     """
-    
-    value = exit_game()
-    assert value == "You have unsaved changes. Do you want to continue?" 
+    set_keyboard_input("3")
+    choice = unsaved_changes()
+    if(choice == "Yes"):
+        exit_game_prompt()
+        output = get_display_output()
+        assert output == ["You have unsaved changes. Do you want to continue?"]
+    else:
+        exit_game()
+        output = get_display_output()
+        assert output == "Enter choice: 3\nThe program will close since there are no unsaved changes."
+
 
 def test_town_menu():
     """User Story 2.0: Display town menu
