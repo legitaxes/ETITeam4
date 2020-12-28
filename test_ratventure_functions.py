@@ -1,6 +1,6 @@
 import pytest 
 from RatVenture_Function import * # update once developer starts 
-from project.test.tud_test_base import set_keyboard_input, get_display_output
+from tud_test_base import set_keyboard_input, get_display_output
 
 '''''
 Sprint 1
@@ -51,9 +51,10 @@ def test_new_game():
     Enter choice:
     
     """
-    
-    value = new_game()
-    assert value == "Enter choice: 1 \n Day 1: You are in a town. \n 1) View Character \n 2) View Map \n 3) Move \n 4) Rest \n 5) Save Game \n 6) Exit Game \n Enter choice:"
+
+    new_game()
+    output = get_display_output()
+    assert output == "Enter choice: 1 \n Day 1: You are in a town. \n 1) View Character \n 2) View Map \n 3) Move \n 4) Rest \n 5) Save Game \n 6) Exit Game \n Enter choice:"
                     
 def test_resume_game(): 
     """User Story: 1.2: Resume the previous game
