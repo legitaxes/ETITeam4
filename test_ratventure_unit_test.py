@@ -94,7 +94,7 @@ def test_print_map():
     list_print_map.append("+---"*8 + "+")
     
 
-def test_print_day(current_day):
+def test_print_day():
     """
     Test function of print_day Function:
         Display the tile the hero is at and display whether the hero is in town or out in open
@@ -125,11 +125,14 @@ def test_get_hero_position():
         This function mainly serves as a way for the program to get the position of the hero
         It should return the tile where the hero is on the map
     """
-    # TODO Create a test case that gets the hero's position
-    # Test case should assert the following values:
-    #   > The position of the hero
-    # labels: tasks, unit-test
-    # assignees: legitaxes
+    theHero = print_hero_stats()
+    position = theHero["position"]
+    assert position == theHero["position"]
+    x_coor = position[0]
+    y_coor = position[1]
+    w_map = world_map()
+    tile = w_map[x_coor][y_coor]
+    assert tile == w_map[x_coor][y_coor]
     
 
     
