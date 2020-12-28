@@ -1,18 +1,1 @@
-# This workflow move the completed features by Dev into the 'To be checked by QA' column
-name: Move completed features by Dev for QA
-on:
-  push:
-    types: [assigned]
-    tags: 
-      - 'tocheckQA*'
 
-jobs: 
-  auto-label:
-    name: Auto 'to-check-QA'Label
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-        with: 
-          default-labels: '["to-check-QA "]'
