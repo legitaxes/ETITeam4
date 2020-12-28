@@ -65,9 +65,9 @@ def test_print_map():
     """
     # TODO Create a test case that prints the map of the game 
     # Test case should assert the following:
-    #  > The map 
-    #  > Formatting of the "borders" 
-    #  > Displaying the "legends"
+    # 1.The map 
+    # 2.Formatting of the "borders" 
+    # 3.Displaying the "legends"
     # labels: tasks, unit-test
     # assignees: legitaxes
 
@@ -79,8 +79,8 @@ def test_print_day():
     """
     # TODO Create a test case that prints the day of the game
     # Test case should  assert the following values:
-    #  > Location of the hero 
-    #  > Displaying the day
+    # 1.Location of the hero 
+    # 2.Displaying the day
     # labels: tasks, unit-test
     # assignees: laukwangwei
 
