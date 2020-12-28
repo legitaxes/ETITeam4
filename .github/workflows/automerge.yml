@@ -4,7 +4,7 @@ name: auto merge
 
 on: 
   push:
-    types: [opened]
+    branches: [ main ] 
     
 jobs:       
   automerge:
