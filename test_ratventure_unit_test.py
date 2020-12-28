@@ -63,13 +63,6 @@ def test_print_map():
         Displays the Map of the game when called
         This function should print the full layout of the map
     """
-    # TODO Create a test case that prints the map of the game 
-    # Test case should assert the following:
-    # 1.The map 
-    # 2.Formatting of the "borders" 
-    # 3.Displaying the "legends"
-    # labels: tasks, unit-test
-    # assignees: legitaxes
 
 
 def test_print_day():
@@ -77,12 +70,6 @@ def test_print_day():
     Test function of print_day Function:
         Display the tile the hero is at and display whether the hero is in town or out in open
     """
-    # TODO Create a test case that prints the day of the game
-    # Test case should  assert the following values:
-    # 1.Location of the hero 
-    # 2.Displaying the day
-    # labels: tasks, unit-test
-    # assignees: laukwangwei
 
 
 def test_print_hero_stats():
