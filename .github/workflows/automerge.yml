@@ -4,7 +4,7 @@ name: auto merge
 
 on: 
   push: 
-      
+    branches: [main]
 jobs:       
   automerge:
     runs-on: ubuntu-latest
@@ -14,7 +14,7 @@ jobs:
         id: "automerge"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          MERGE_LABELS: "automerge,!work in progress"
+          MERGE_LABEL_NAME: "automerge"
           MERGE_REMOVE_LABELS: "automerge"
           MERGE_METHOD: "squash"
           MERGE_COMMIT_MESSAGE: "pull-request-description"
