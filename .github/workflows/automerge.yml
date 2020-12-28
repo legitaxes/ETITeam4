@@ -3,8 +3,8 @@
 name: auto merge
 
 on: 
-  push: 
-    branches: [ jiaqibranch, laukwangweibranch ]  
+  pull_request: 
+    branches: [ jiaqibranch, laukwangweibranch, MaChwe-branch, cheskalazo-branch ]  
 jobs:       
   automerge:
     runs-on: ubuntu-latest
