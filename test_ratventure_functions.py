@@ -25,7 +25,6 @@ def test_main_menu():
     Enter choice:
     
     """
-
     main_menu()
     output = get_display_output()
     assert output == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game\nEnter choice: "
@@ -106,20 +105,39 @@ def test_exit_game_prompt():
     
     Output
     -----------------
-    You have unsaved changes. Do you want to continue? 
+    You have unsaved changes. Do you want to continue? / 
+    Enter choice: 3\nThe program will close since there are no unsaved changes.
     
     """
     set_keyboard_input("3")
+    exit_game_prompt()
     choice = unsaved_changes() #create a function
     if(choice == "Yes"):
         exit_game_prompt()
         output = get_display_output()
-        assert output == ["You have unsaved changes. Do you want to continue?"]
+        assert output == "You have unsaved changes. Do you want to continue?"
     else:
         exit_game()
         output = get_display_output()
         assert output == "Enter choice: 3\nThe program will close since there are no unsaved changes."
 
+# def test_unsaved_changes(): 
+#     """A function to see if there is unsaved changes. 
+
+#     Input
+#     -----------------
+#     Yes 
+    
+#     Output
+#     -----------------
+#     You have unsaved changes. Do you want to continue?
+
+#     """
+
+#     set_keyboard_input("Yes")
+#     unsaved_changes()
+#     output = get_display_output()
+#     assert output == "You have unsaved changes. Do you want to continue?"
 
 def test_town_menu():
     """User Story 2.0: Display town menu
@@ -141,9 +159,11 @@ def test_town_menu():
     
     """
     
-    value = open(town_menu)
-    assert value == "Day 1: You are in a town. \n 1) View Character \n 2) View Map \n 3) Move \n 4) Rest \n 5) Save Game \n 6) Exit Game \n Enter choice:"
-                    
+    set_keyboard_input("1"/"2")
+    town_menu()
+    output = get_display_output()
+    assert output == "Day 1: You are in a town.\n1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game\nEnter choice:"    
+
 def test_view_character():
     """User Story 2.1: Display player's statistics 
     
