@@ -1,8 +1,8 @@
-name: Discord Notifier for QA
+name: Discord Notifier for Devs
 on: 
   push:
-    branches: [cheskalazo-branch, MaChwe-branch]
-    
+    branches: [ jiaqibranch, laukwangweibranch ]
+    #this workflow is able to do a pytest and get a result, it will be notified in our discord server regardless whether it fails or pass
 jobs:
   build:
     # build job
@@ -21,10 +21,11 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
   
     - name: Test the Code
+    # test job
       id: TestWithPytest
       run: | 
-        pytest -v --junitxml=report.xml
-    # test job
+        pytest test_ratventure_unit_test.py -v --junitxml=report.xml
+    
   notify:
     name: Discord Notification
     runs-on: ubuntu-latest
@@ -33,12 +34,13 @@ jobs:
       #- test
     if: ${{ always() }} # You always want to be notified: success, failure, or cancelled
 
-    steps: 
+    steps:
+
       - name: Notify
         uses: nobrayner/discord-webhook@v1
         with:
           github-token: ${{ secrets.github_token }}
-          discord-webhook: ${{ secrets.DISCORD_WEBHOOK }}
-          username: 'QA UPDATE'
-          avatar-url: 'https://media-exp1.licdn.com/dms/image/C4E0BAQHdT7WU3uKGgA/company-logo_200_200/0/1519878893739?e=2159024400&v=beta&t=4S_xQekU7pBE8BKd_MWgcfIlEDD8chTabeGOjriHx_4'
-          description: '${{ github.event_name }} trigged this {{STATUS}}!'
+          discord-webhook: ${{ secrets.DISCORD_WEBHOOK_DEV }}
+          username: 'DEV UPDATE'
+          avatar-url: 'https://d2fltix0v2e0sb.cloudfront.net/dev-black.png'
+          description: '${{ github.event_name }} trigged this {{STATUS}}! @ScrumMaster to Create Pull Request to Main and @QA to check!'
