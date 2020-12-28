@@ -30,7 +30,7 @@ def hero():
     return hero
 
 def rat():
-    # TODO: Create a function that initalizes the rat stats
+    # TODO Create a function that initalizes the rat stats
     # The function should initialize the rat's stats such as name, hp, defence, potential damage
     # refer to the unit test function to know what to code
     # 
@@ -56,7 +56,7 @@ def rat():
     return rat
 
 def world_map():
-    # TODO: Create a function that initializes the world map using 2D array
+    # TODO Create a function that initializes the world map using 2D array
     # A world map should be initialized as a 2D array according to how it looks like in the document
     # Refer to the unit testing function to know what to code here
     # labels: tasks
@@ -89,7 +89,7 @@ def print_map():
     Displays the Map of the game when called
     This function should print the full layout of the map
     """
-    # TODO: Create a function that prints the map of the game 
+    # TODO Create a function that prints the map of the game 
     # The map will be printed upon calling displaying details of the map 
     # Details such as the town position and hero position should be displayed
     # labels: tasks
@@ -101,7 +101,7 @@ def print_day():
     """
     Display the tile the hero is at and display whether the hero is in town or out in open
     """
-    # TODO: Create a function that prints the day of the game
+    # TODO Create a function that prints the day of the game
     # This function should also show the location of the hero besides displaying the day
     # labels: tasks
     # assignees: laukwangwei
@@ -113,7 +113,7 @@ def print_hero_stats():
     Display the hero's stats and his details
     This function should return the hero's Name, Damage, Defence and HP 
     """
-    # TODO: Create a function that prints the stats of the hero
+    # TODO Create a function that prints the stats of the hero
     # This function should print the hero's stats as well as return the stats as a dictionary object
     # labels: tasks
     # assignees: laukwangwei
@@ -123,7 +123,7 @@ def get_hero_position():
     This function mainly serves as a way for the program to get the position of the hero
     It should return the tile where the hero is on the map
     """
-    # TODO: Create a function that gets the hero's position
+    # TODO Create a function that gets the hero's position
     # This function should only serve as a way for the program to get the position of the hero
     # labels: tasks
     # assignees: legitaxes
@@ -151,7 +151,7 @@ def town_menu():
     return "\n Day 1: You are in a town. \n 1) View Character \n 2) View Map \n 3) Move \n 4) Rest \n 5) Save Game \n 6) Exit Game \n Enter choice:"
 
 def new_game():
-    # TODO: figure out the structure of the program and how it should be ran
+    # TODO figure out the structure of the program and how it should be ran
     # also figure out how test script should work with @python.mark.parametrize() for each feature in the menu
     # labels: research
     # assignees: legitaxes
