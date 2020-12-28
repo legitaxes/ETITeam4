@@ -1,6 +1,5 @@
 import pytest 
-from RatVenture_Function import * # update once developer starts 
-from project.test.tud_test_base import set_keyboard_input, get_display_output
+# from RatVenture_Function import * # update once developer starts 
 
 '''''
 Sprint 1
@@ -13,7 +12,7 @@ def test_main_menu():
     
     Input
     -----------------
-    None
+    Open the RatVenture application.
     
     Output
     -----------------
@@ -25,10 +24,8 @@ def test_main_menu():
     Enter choice:
     
     """
-
-    main_menu()
-    output = get_display_output()
-    assert output == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game\nEnter choice: "
+    value = open(main_menu)
+    assert value == "Welcome to Ratventure \n 1) New Game \n 2) Resume Game \n 3) Exit Game \n Enter choice: "
                      
                 
 def test_new_game(): 
@@ -52,7 +49,7 @@ def test_new_game():
     
     """
     
-    value = new_game()
+    value = open(new_game)
     assert value == "Enter choice: 1 \n Day 1: You are in a town. \n 1) View Character \n 2) View Map \n 3) Move \n 4) Rest \n 5) Save Game \n 6) Exit Game \n Enter choice:"
                     
 def test_resume_game(): 
@@ -69,7 +66,7 @@ def test_resume_game():
     
     """
     
-    value = resume_game()
+    value = open(resume_game)
     assert value == "Enter choice: 2 \n The game has been resumed to the previous state."
        
     
@@ -87,7 +84,7 @@ def test_exit_game():
     /closeRatVenture 
     
     """
-    value = exit_game()
+    value = open (exit_game)
     assert value == "Enter choice: 3 \n The program will close since there are no unsaved changes." 
     assert value == exit 
  
@@ -104,7 +101,7 @@ def test_exit_game_prompt():
     
     """
     
-    value = exit_game()
+    value = open (exit_game)
     assert value == "You have unsaved changes. Do you want to continue?" 
 
 def test_town_menu():
@@ -146,9 +143,12 @@ def test_view_character():
     HP: 20
     
     """
-    value = open (view_map)
-    assert value == "Enter choice: 1 \n The hero \n Damage: 2-4 \n Defence: 1 \n HP: 20" 
-    
+    set_keyboard_input("1") 
+    view_character() 
+    output = get_display_output()
+    assert output == "Enter choice: 1\nThe hero\nDamage: 2-4\nDefence: 1\nHP: 20"
+
+
 def test_view_map():
     """User Story 2.2: Display the world map
     
@@ -179,9 +179,11 @@ def test_rest():
     You are fully healed. 
     
     """
-    value = open (rest)
-    assert value == "Enter choice: 4 \n You are fully healed." 
-    
+    set_keyboard_input("4") 
+    rest() 
+    output = get_display_output()
+    assert output == "Enter choice: 4\nYou are fully healed."
+
 def test_save_game():
     """User Story 2.5: Save the game
     
@@ -195,9 +197,11 @@ def test_save_game():
     Game saved. 
     
     """
-    value = open (save_game)
-    assert value == "Enter choice: 5 \n Game saved." 
-    
+    set_keyboard_input("5")  
+    save_game() 
+    output = get_display_output()
+    assert output == "Enter choice: 5\nGame saved."
+
 def test_exit_game(): 
     """User Story 2.6: Exit the game
     
@@ -212,25 +216,11 @@ def test_exit_game():
     /closeRatVenture 
     
     """
-    value = open (exit_game)
-    assert value == "Enter choice: 6 \n The program will close since there are no unsaved changes." 
-    assert value == exit 
-    
-def test_exit_game_prompt():
-    """User Story 2.6.1: Warning Message
-    
-    Input
-    -----------------
-    6
-    
-    Output
-    -----------------
-    You have unsaved changes. Do you want to continue? 
-    
-    """
-    
-    value = open (exit_game)
-    assert value == "You have unsaved changes. Do you want to continue?" 
+    set_keyboard_input("6") 
+    exit_game() 
+    output = get_display_output()
+    assert output == "Enter choice: 6\nThe program will close since there are no unsaved changes."
+
     
 # need to know how to link one function to another and then have the yes or no input
 # for workflow testing
