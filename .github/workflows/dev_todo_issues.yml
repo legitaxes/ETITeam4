@@ -21,4 +21,4 @@ jobs:
       #adds due date to issues if it detects --- YYYY/MM/DD --- in the issues
         uses: alexleventer/github-issue-due-dates-action@1.1.0
         with:
-          GH_TOKEN: "${{ secrets.GH_TOKEN }}"
+          GH_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
