@@ -3,7 +3,7 @@ name: Move completed features by Dev for QA
 on:
   push:
     tags:
-      - 'qatocheck*'
+      [qatocheck*]
 
 jobs:
   automate-project-columns:
