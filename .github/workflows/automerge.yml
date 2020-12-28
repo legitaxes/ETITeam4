@@ -3,10 +3,23 @@
 name: auto merge
 
 on: 
-  push:
-    branches: [ main ] 
+  pull_request:
+    branches: 
+      [main]
     
-jobs:       
+jobs: 
+  auto-label:
+    name: Auto Label
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: banyan/auto-label@1.2
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        with: 
+          default-labels: '["automerge"]'
+
+              
   automerge:
     runs-on: ubuntu-latest
     steps:
