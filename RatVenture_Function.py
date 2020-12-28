@@ -45,6 +45,13 @@ def rat():
         Defence: 1
     """
     # code goes here
+    rat = {
+    "name": "Rat",
+    "hp": 10,
+    "min_damage": 1,
+    "max_damage": 3,
+    "defence": 1
+    }
 
     return rat
 
