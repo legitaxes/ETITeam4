@@ -1,0 +1,24 @@
+#This workflow will merge automatically when a pull request comes in. 
+
+name: auto merge
+
+on: 
+  push:
+    branches: [main]
+  
+jobs:       
+  automerge:
+    runs-on: ubuntu-latest
+    steps:
+      - name: auto merge    
+        uses: "pascalgn/automerge-action@v0.13.0"
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          MERGE_LABELS: "automerge,!work in progress"
+          MERGE_REMOVE_LABELS: "automerge"
+          MERGE_METHOD: "squash"
+          MERGE_COMMIT_MESSAGE: "pull-request-description"
+          UPDATE_LABELS: ""
+          UPDATE_METHOD: "rebase"
+        with:
+          pull-request: ${{ github.event.inputs.pull-request }}
