@@ -110,7 +110,7 @@ def test_exit_game_prompt():
     
     """
     set_keyboard_input("3")
-    choice = unsaved_changes()
+    choice = unsaved_changes() #create a function
     if(choice == "Yes"):
         exit_game_prompt()
         output = get_display_output()
