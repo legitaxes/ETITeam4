@@ -4,7 +4,7 @@ name: auto merge
 
 on: 
   push: 
-    branches: [main]
+    branches: [ jiaqibranch, laukwangweibranch ]  
 jobs:       
   automerge:
     runs-on: ubuntu-latest
