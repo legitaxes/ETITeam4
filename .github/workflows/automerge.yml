@@ -39,7 +39,9 @@ jobs:
         with:
           pull-request: ${{ github.event.inputs.pull-request }}
           
-
+  main:
+    runs-on: ubuntu-latest
+    steps: 
       - name: check for merge conflicts
         uses: eps1lon/actions-label-merge-conflict@releases/2.x
         with:
