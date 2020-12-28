@@ -1,0 +1,16 @@
+# This workflow move the completed features by Dev into the 'To be checked by QA' column
+name: Move completed features by Dev for QA
+on:
+  push:
+    tags:
+      - 'qatocheck*'
+
+jobs:
+  automate-project-columns:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: alex-page/github-project-automation-plus@v0.3.0
+        with:
+          project: Backlog
+          column: To be checked by QA
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
