@@ -2,8 +2,7 @@
 name: Move completed features by Dev for QA
 on:
   push:
-    tags:
-      [qatocheck*]
+    types: [assigned]
 
 jobs:
   automate-project-columns:
