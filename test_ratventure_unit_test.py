@@ -63,15 +63,38 @@ def test_print_map():
         Displays the Map of the game when called
         This function should print the full layout of the map
     """
-    # TODO Create a test case that prints the map of the game 
-    # Test case should assert the following:
-    #  > The map 
-    #  > Formatting of the "borders" 
-    #  > Displaying the "legends"
-    # labels: tasks, unit-test
-    # assignees: legitaxes
 
-def test_print_day():
+    position, x_coor, y_coor, legend, list_map = print_map()
+    theHero = print_hero_stats()
+    w_map = world_map()
+    pos = theHero["position"]
+    assert position == pos
+    assert x_coor == pos[0]
+    assert y_coor == pos[1]
+    list_print_map = []
+    for x in range(8):
+        list_print_map.append("+---"*8 + "+")
+        for y in range(8):
+            legend = "   "
+            if w_map[x][y] == "T":
+                if x == x_coor and y == y_coor:
+                    assert legend == "H/T"
+                else:
+                    assert legend == " T "
+            elif w_map[x][y] == "K":
+                if x == x_coor and y == y_coor:
+                    assert legend == "H/K"
+                else: 
+                    assert legend == " K "
+            else:
+                if x == x_coor and y == y_coor:
+                    assert legend == " H "
+            list_print_map.append("|{}".format(legend), end="")
+        list_print_map.append("|")
+    list_print_map.append("+---"*8 + "+")
+    
+
+def test_print_day(current_day):
     """
     Test function of print_day Function:
         Display the tile the hero is at and display whether the hero is in town or out in open
@@ -82,6 +105,7 @@ def test_print_day():
     #  > Displaying the day
     # labels: tasks, unit-test
     # assignees: laukwangwei
+
 
 def test_print_hero_stats():
     """
@@ -106,4 +130,6 @@ def test_get_hero_position():
     #   > The position of the hero
     # labels: tasks, unit-test
     # assignees: legitaxes
+    
+
     
