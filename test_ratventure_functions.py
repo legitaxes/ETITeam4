@@ -92,7 +92,6 @@ def test_exit_game():
     
     """
     set_keyboard_input("3")
-    
     exit_game()
     output = get_display_output()
     assert output == "Enter choice: 3\nThe program will close since there are no unsaved changes."
