@@ -146,7 +146,7 @@ def test_view_character():
     set_keyboard_input([1]) 
     view_map() 
     output = get_display_output()
-    assert output == ["Enter choice: 1", "The hero, Damage: 2-4", "Defence: 1", "HP: 20"]
+    assert output == "Enter choice: 1\nThe hero\nDamage: 2-4\nDefence: 1\nHP: 20"
 
 
 def test_view_map():
