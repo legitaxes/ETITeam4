@@ -170,7 +170,7 @@ def test_town_menu():
     """
     
     set_keyboard_input("1"/"2")
-    town_menu()
+    menu()
     output = get_display_output()
     assert output == "Day 1: You are in a town.\n1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game\nEnter choice:"    
 
