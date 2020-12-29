@@ -2,8 +2,9 @@ from random import randint
 import json
 import sys
 
+
 # Initialize Hero and Enemy Stats
-def hero():
+def theHero():
     """
     Initialize the Hero with the following:
         Name: The Hero
@@ -22,14 +23,14 @@ def hero():
     "hp": 20,
     "max_hp": 20,
     "defence": 1,
-    "position": [0, 0],
+    "position": [0, 0]
     #"orb": False,
     #"gold": 0
     }
     print(hero)
     return hero
 
-def rat():
+def theRat():
     # TODO Create a function that initalizes the rat stats
     # The function should initialize the rat's stats such as name, hp, defence, potential damage
     # refer to the unit test function to know what to code
@@ -84,7 +85,7 @@ def world_map():
     print(w_map)
     return w_map
 
-def print_map():
+def print_map(hero):
     """
     Displays the Map of the game when called
     This function should print the full layout of the map
@@ -94,20 +95,22 @@ def print_map():
     # Details such as the town position and hero position should be displayed
     # labels: tasks
     # assignees: legitaxes
+
     position = hero["position"]
     x_coor = position[0]
     y_coor = position[1]
     list_map = []
+    w_map = world_map()
     for x in range(8):
         print("+---"*8 + "+")
         list_map.append("+---"*8 + "+")
         for y in range(8):
             legend = "   "
-            if world_map[x][y] == "T":
+            if w_map[x][y] == "T":
                 legend = " T "
                 if x == x_coor and y == y_coor:
                     legend = "H/T"
-            elif world_map[x][y] == "K":
+            elif w_map[x][y] == "K":
                 legend = " K "
                 if x == x_coor and y == y_coor:
                     legend = "H/K"
@@ -115,7 +118,7 @@ def print_map():
                 if x == x_coor and y == y_coor:
                     legend = " H "
             print("|{}".format(legend), end="")
-            list_map.append("|{}".format(legend), end="")
+            list_map.append("|" + legend)
         print("|")
         list_map.append("|")
     print("+---"*8 + "+")
@@ -133,6 +136,14 @@ def print_day():
 
     return printday
 
+def rest(hero):
+    """
+    Hero's HP will be resetted to its max HP
+    """
+    hero["hp"] = hero["max_hp"]
+    print("You are fully healed.")
+    return hero["hp"]
+
 def print_hero_stats():
     """
     Display the hero's stats and his details
@@ -144,7 +155,7 @@ def print_hero_stats():
     # assignees: laukwangwei
 
 
-def get_hero_position():
+def get_hero_position(hero):
     """
     This function mainly serves as a way for the program to get the position of the hero
     It should return the tile where the hero is on the map
@@ -156,8 +167,9 @@ def get_hero_position():
     position = hero["position"]
     x_coor = position[0]
     y_coor = position[1]
-    tile = world_map[x_coor][y_coor]
-    return tile, hero, world_map
+    w_map = world_map()
+    tile = w_map[x_coor][y_coor]
+    return tile, hero, w_map
 
 
 def main_menu():
@@ -200,8 +212,10 @@ def new_game():
         6) Exit Game
         Enter choice:
     """
-    
-    return town_menu()
+    global current_day, hero
+    current_day = 1
+    hero = theHero()
+    return current_day, hero
 
 def resume_game():
     """
