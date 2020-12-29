@@ -103,6 +103,8 @@ def test_print_map(get_hero):
         list_print_map.append("|")
     list_print_map.append("+---"*8 + "+")
     # assert both lists
+    print(list_map)
+    print(list_print_map)
     assert all([a == b for a, b in zip(list_print_map, list_map)]) #this checks python list against the expected value
 
 def test_print_day():
