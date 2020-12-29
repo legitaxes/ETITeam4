@@ -169,22 +169,26 @@ def main_menu():
     return "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
 
 def town_menu():
-    print("\n Day 1: You are in a town. \n 1) View Character \n 2) View Map \n 3) Move \n 4) Rest \n 5) Save Game \n 6) Exit Game \n Enter choice:")
-    return "\n Day 1: You are in a town. \n 1) View Character \n 2) View Map \n 3) Move \n 4) Rest \n 5) Save Game \n 6) Exit Game \n Enter choice:"
-
-def new_game():
     """
-    This function should display the Menu of Town since a new instance of the game is created
-    Hence, the return value is a function called town_menu()  
-    town_menu() function should return:
-        Day 1: You are in a town.
+    This function should display the menu of Town
+    Hence, the following values should be returned:
         1) View Character
         2) View Map
         3) Move
         4) Rest
         5) Save Game
         6) Exit Game
-        Enter choice:
+    """
+    print("\n1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game")
+    return "\n1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"
+    
+def new_game():
+    """
+    This function should display the Menu of Town since a new instance of the game is created
+    Hence, the return value is a function called town_menu()  
+    town_menu() function should return:
+        -> Current_day as 1
+        -> Initialize Hero using getHero() function
     """
     global current_day, hero
     current_day = 1
