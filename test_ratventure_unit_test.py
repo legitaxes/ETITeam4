@@ -120,6 +120,20 @@ def test_print_day():
     # labels: tasks, unit-test
     # assignees: laukwangwei
 
+    tile = get_hero_position(get_hero)
+    if tile == "T":
+        value = "You are in a town."
+    else:
+        value = "You are out in the open."
+
+    if tile == "T":
+        assert value == "You are in a town."
+    elif tile == " ":
+        assert value == "You are out in the open."
+    printresult = "Day {}: {}".format(current_day, value)
+    assert printresult == "Day " + current_day + ": " + value
+
+
 
 def test_print_hero_stats():
     """

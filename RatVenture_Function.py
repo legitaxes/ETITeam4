@@ -38,7 +38,6 @@ def theRat():
         Max Damage: 3
         Defence: 1
     """
-    # code goes here
     rat = {
     "name": "Rat",
     "hp": 10,
@@ -117,7 +116,15 @@ def print_day():
     # labels: tasks
     # assignees: laukwangwei
 
-    return printday
+    tile = get_hero_position(hero)
+    location = ""
+    if tile == "T":
+        location = "You are in a town."
+    elif tile == " ":
+        location = "You are out in the open."
+    print("Day {}: {}".format(current_day, location))
+    
+    return print_day
 
 def rest(hero):
     """
