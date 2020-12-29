@@ -183,6 +183,7 @@ def test_view_character():
     HP: 20
     
     """
+    set_keyboard_input("1") 
     print_hero_stats() 
     output = get_display_output()
     assert output == "Enter choice: 1\nThe hero\nDamage: 2-4\nDefence: 1\nHP: 20"
@@ -201,43 +202,9 @@ def test_view_map():
     /displayWorldMap 
     
     """
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero)
-    #theHero = print_hero_stats()
-    w_map = world_map()
-    pos = get_hero["position"]
-    assert position == pos
-    assert x_coor == pos[0]
-    assert y_coor == pos[1]
-    list_print_map = []
-    for x in range(8):
-        list_print_map.append("+---"*8 + "+")
-        for y in range(8):
-            legend = "   "
-            if w_map[x][y] == "T":
-                if x == x_coor and y == y_coor:
-                    legend = "H/T"
-                    #assert legend == "H/T"
-                else:
-                    legend = " T "
-                    #assert legend == " T "
-            elif w_map[x][y] == "K":
-                if x == x_coor and y == y_coor:
-                    legend = "H/K"
-                    #assert legend == "H/K"
-                else:
-                    legend = " K " 
-                    #assert legend == " K "
-            else:
-                if x == x_coor and y == y_coor:
-                    legend = " H "
-                    #assert legend == " H "
-            list_print_map.append("|" + legend)
-        list_print_map.append("|")
-    list_print_map.append("+---"*8 + "+")
-    # assert both lists
-    print(list_map)
-    print(list_print_map)
-    assert all([a == b for a, b in zip(list_print_map, list_map)]) #this checks python list against the expected value
+    value = open (view_map)
+    assert value == "Enter choice: 2"
+    #assert value == worldMap
     
 def test_rest(get_hero):
     """User Story 2.4: Rest the character 
