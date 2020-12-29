@@ -2,6 +2,11 @@ import pytest
 from RatVenture_Function import * # update once developer starts 
 from tud_test_base import *
 
+@pytest.fixture
+def get_hero() -> theHero():
+    hero = theHero()
+    return hero
+
 '''''
 Sprint 1
 '''''
@@ -174,7 +179,7 @@ def test_view_map():
     assert value == "Enter choice: 2"
     #assert value == worldMap
     
-def test_rest():
+def test_rest(get_hero):
     """User Story 2.4: Rest the character 
     
     Input
@@ -187,10 +192,10 @@ def test_rest():
     You are fully healed. 
     
     """
-    set_keyboard_input("4") 
-    rest() 
-    output = get_display_output()
-    assert output == "Enter choice: 4\nYou are fully healed."
+    #set_keyboard_input("4") 
+    hp = rest(get_hero) 
+    #output = get_display_output()
+    assert hp == get_hero["max_hp"]
 
 def test_save_game():
     """User Story 2.5: Save the game
