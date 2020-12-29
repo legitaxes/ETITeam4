@@ -97,7 +97,7 @@ def test_print_map(get_hero):
                     #assert legend == " K "
             else:
                 if x == x_coor and y == y_coor:
-                    
+                    legend = " H "
                     #assert legend == " H "
             list_print_map.append("|" + legend)
         list_print_map.append("|")
