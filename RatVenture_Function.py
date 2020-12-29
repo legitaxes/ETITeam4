@@ -2,8 +2,9 @@ from random import randint
 import json
 import sys
 
+
 # Initialize Hero and Enemy Stats
-def hero():
+def theHero():
     """
     Initialize the Hero with the following:
         Name: The Hero
@@ -22,21 +23,14 @@ def hero():
     "hp": 20,
     "max_hp": 20,
     "defence": 1,
-    "position": [0, 0],
+    "position": [0, 0]
     #"orb": False,
     #"gold": 0
     }
     print(hero)
     return hero
 
-def rat():
-    # TODO Create a function that initalizes the rat stats
-    # The function should initialize the rat's stats such as name, hp, defence, potential damage
-    # refer to the unit test function to know what to code
-    # 
-    # labels: tasks
-    # assignees: laukwangwei
-    # milestone: 1
+def theRat():
     """Initialize the rat with the following:
         Name: Rat
         HP: 10
@@ -56,11 +50,6 @@ def rat():
     return rat
 
 def world_map():
-    # TODO Create a function that initializes the world map using 2D array
-    # A world map should be initialized as a 2D array according to how it looks like in the document
-    # Refer to the unit testing function to know what to code here
-    # labels: tasks
-    # assignees: legitaxes
     """
     Initialize the World Map to be like this:
             ['T', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
@@ -84,30 +73,26 @@ def world_map():
     print(w_map)
     return w_map
 
-def print_map():
+def print_map(hero):
     """
     Displays the Map of the game when called
     This function should print the full layout of the map
     """
-    # TODO Create a function that prints the map of the game 
-    # The map will be printed upon calling displaying details of the map 
-    # Details such as the town position and hero position should be displayed
-    # labels: tasks
-    # assignees: legitaxes
     position = hero["position"]
     x_coor = position[0]
     y_coor = position[1]
     list_map = []
+    w_map = world_map()
     for x in range(8):
         print("+---"*8 + "+")
         list_map.append("+---"*8 + "+")
         for y in range(8):
             legend = "   "
-            if world_map[x][y] == "T":
+            if w_map[x][y] == "T":
                 legend = " T "
                 if x == x_coor and y == y_coor:
                     legend = "H/T"
-            elif world_map[x][y] == "K":
+            elif w_map[x][y] == "K":
                 legend = " K "
                 if x == x_coor and y == y_coor:
                     legend = "H/K"
@@ -115,12 +100,13 @@ def print_map():
                 if x == x_coor and y == y_coor:
                     legend = " H "
             print("|{}".format(legend), end="")
-            list_map.append("|{}".format(legend), end="")
+            list_map.append("|" + legend)
         print("|")
         list_map.append("|")
     print("+---"*8 + "+")
     list_map.append("+---"*8 + "+")
     return position, x_coor, y_coor, legend, list_map
+
 
 def print_day():
     """
@@ -133,6 +119,14 @@ def print_day():
 
     return printday
 
+def rest(hero):
+    """
+    Hero's HP will be resetted to its max HP
+    """
+    hero["hp"] = hero["max_hp"]
+    print("You are fully healed.")
+    return hero["hp"]
+
 def print_hero_stats():
     """
     Display the hero's stats and his details
@@ -144,20 +138,17 @@ def print_hero_stats():
     # assignees: laukwangwei
 
 
-def get_hero_position():
+def get_hero_position(hero):
     """
     This function mainly serves as a way for the program to get the position of the hero
     It should return the tile where the hero is on the map
     """
-    # TODO Create a function that gets the hero's position
-    # This function should only serve as a way for the program to get the position of the hero
-    # labels: tasks
-    # assignees: legitaxes
     position = hero["position"]
     x_coor = position[0]
     y_coor = position[1]
-    tile = world_map[x_coor][y_coor]
-    return tile, hero, world_map
+    w_map = world_map()
+    tile = w_map[x_coor][y_coor]
+    return tile, hero, w_map
 
 
 def main_menu():
@@ -182,11 +173,6 @@ def town_menu():
     return "\n Day 1: You are in a town. \n 1) View Character \n 2) View Map \n 3) Move \n 4) Rest \n 5) Save Game \n 6) Exit Game \n Enter choice:"
 
 def new_game():
-    # TODO figure out the structure of the program and how it should be ran
-    # also figure out how test script should work with @python.mark.parametrize() for each feature in the menu
-    # labels: research
-    # assignees: legitaxes
-    # milestone: 1
     """
     This function should display the Menu of Town since a new instance of the game is created
     Hence, the return value is a function called town_menu()  
@@ -200,8 +186,10 @@ def new_game():
         6) Exit Game
         Enter choice:
     """
-    
-    return town_menu()
+    global current_day, hero
+    current_day = 1
+    hero = theHero()
+    return current_day, hero
 
 def resume_game():
     """
