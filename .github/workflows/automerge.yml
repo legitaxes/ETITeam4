@@ -3,18 +3,34 @@
 name: auto merge
 
 on: 
+  push: 
+    branches:
+      [main]
   pull_request:
-    branches: [main]
-  
-jobs:       
+     branches:
+      [main]
+    
+jobs: 
+  auto-label:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: banyan/auto-label@1.2
+        env:
+          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        with: 
+          labels: automerge
+
+              
   automerge:
     runs-on: ubuntu-latest
     steps:
-      - name: auto merge    
+      - name: automerge    
         uses: "pascalgn/automerge-action@v0.13.0"
+        id: "automerge"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          MERGE_LABELS: "automerge,!work in progress"
+          MERGE_LABEL_NAME: "automerge"
           MERGE_REMOVE_LABELS: "automerge"
           MERGE_METHOD: "squash"
           MERGE_COMMIT_MESSAGE: "pull-request-description"
@@ -22,3 +38,15 @@ jobs:
           UPDATE_METHOD: "rebase"
         with:
           pull-request: ${{ github.event.inputs.pull-request }}
+          
+  main:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: check for merge conflicts
+        uses: eps1lon/actions-label-merge-conflict@releases/2.x
+        with:
+          dirtyLabel: "PR: Merge Conflict"
+          removeOnDirtyLabel: "automerge"
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          commentOnDirty: "This pull request has conflicts, @ScrumMaster please resolve."
+          commentOnClean: "Conflicts have been resolved. Automerge will proceed pull request shortly."
