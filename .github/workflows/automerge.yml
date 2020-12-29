@@ -14,7 +14,8 @@ jobs:
   auto-label:
     runs-on: ubuntu-latest
     steps:
-      - uses: peter-evans/create-pull-request@v3
+      - uses: actions/checkout@v2
+      - uses: banyan/auto-label@1.2
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with: 
