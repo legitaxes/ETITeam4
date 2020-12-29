@@ -11,14 +11,12 @@ on:
       [main]
     
 jobs: 
-  createPullRequest:
-    name: Create Pull Request
+  auto-label:
     runs-on: ubuntu-latest
     steps:
       - uses: peter-evans/create-pull-request@v3
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          commit-message: Committed new changes and label as 'automerge'
         with: 
           labels: automerge
 
