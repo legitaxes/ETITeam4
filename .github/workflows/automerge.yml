@@ -7,17 +7,20 @@ on:
     branches:
       [main]
   pull_request:
+     branches:
+      [main]
     
 jobs: 
-  label:
-    name: Add automerge Label
+  createPullRequest:
+    name: Create Pull Request
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: peter-evans/create-pull-request@v3
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          commit-message: Committed new changes and label as 'automerge'
         with: 
-          parameters: '[{"labels": ["automerge"]}]'
+          labels: automerge
 
               
   automerge:
