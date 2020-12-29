@@ -10,14 +10,14 @@ on:
     
 jobs: 
   label:
-    name: Auto Label
+    name: Add automerge Label
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with: 
-          default-labels: '["automerge"]'
+          parameters: '[{"labels": ["automerge"]}]'
 
               
   automerge:
