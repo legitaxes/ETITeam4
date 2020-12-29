@@ -1,6 +1,11 @@
 import pytest 
 from RatVenture_Function import * # update once developer starts 
-from tud_test_base import set_keyboard_input, get_display_output
+from tud_test_base import *
+
+@pytest.fixture
+def get_hero() -> theHero():
+    hero = theHero()
+    return hero
 
 '''''
 Sprint 1
@@ -13,7 +18,7 @@ def test_main_menu():
     
     Input
     -----------------
-    None
+    Open the RatVenture application.
     
     Output
     -----------------
@@ -50,11 +55,16 @@ def test_new_game():
     Enter choice:
     
     """
-    set_keyboard_input("1")
-
-    new_game()
-    output = get_display_output()
-    assert output == "Enter choice: 1\nDay 1: You are in a town.\n1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game\nEnter choice:"
+    
+    current_day, hero = new_game()
+    assert current_day == 1
+    assert hero["name"] == "The Hero"
+    assert hero["min_damage"] == 2
+    assert hero["max_damage"] == 4
+    assert hero["hp"] == 20
+    assert hero["max_hp"] == 20
+    assert hero["defence"] == 1
+    assert hero["position"] == [0, 0]
                     
 def test_resume_game(): 
     """User Story: 1.2: Resume the previous game
@@ -180,9 +190,12 @@ def test_view_character():
     HP: 20
     
     """
-    value = open (view_map)
-    assert value == "Enter choice: 1 \n The hero \n Damage: 2-4 \n Defence: 1 \n HP: 20" 
-    
+    set_keyboard_input("1") 
+    print_hero_stats() 
+    output = get_display_output()
+    assert output == "Enter choice: 1\nThe hero\nDamage: 2-4\nDefence: 1\nHP: 20"
+
+
 def test_view_map():
     """User Story 2.2: Display the world map
     
@@ -198,9 +211,9 @@ def test_view_map():
     """
     value = open (view_map)
     assert value == "Enter choice: 2"
-    assert value == worldMap
+    #assert value == worldMap
     
-def test_rest():
+def test_rest(get_hero):
     """User Story 2.4: Rest the character 
     
     Input
@@ -213,9 +226,11 @@ def test_rest():
     You are fully healed. 
     
     """
-    value = open (rest)
-    assert value == "Enter choice: 4 \n You are fully healed." 
-    
+    #set_keyboard_input("4") 
+    hp = rest(get_hero) 
+    #output = get_display_output()
+    assert hp == get_hero["max_hp"]
+
 def test_save_game():
     """User Story 2.5: Save the game
     
@@ -229,9 +244,11 @@ def test_save_game():
     Game saved. 
     
     """
-    value = open (save_game)
-    assert value == "Enter choice: 5 \n Game saved." 
-    
+    set_keyboard_input("5")  
+    save_game() 
+    output = get_display_output()
+    assert output == "Enter choice: 5\nGame saved."
+
 def test_exit_game(): 
     """User Story 2.6: Exit the game
     
@@ -246,26 +263,11 @@ def test_exit_game():
     /closeRatVenture 
     
     """
-    value = open (exit_game)
-    assert value == "Enter choice: 6 \n The program will close since there are no unsaved changes." 
-    assert value == exit 
-    
-def test_exit_game_prompt():
-    """User Story 2.6.1: Warning Message
-    
-    Input
-    -----------------
-    6
-    
-    Output
-    -----------------
-    You have unsaved changes. Do you want to continue? 
-    
-    """
-    
-    value = open (exit_game)
-    assert value == "You have unsaved changes. Do you want to continue?" 
-    
+    set_keyboard_input("6") 
+    exit_game() 
+    output = get_display_output()
+    assert output == "Enter choice: 6\nThe program will close since there are no unsaved changes."
+
 # need to know how to link one function to another and then have the yes or no input
 # for workflow testing
 # for testing purposes
