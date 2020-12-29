@@ -38,3 +38,15 @@ jobs:
           UPDATE_METHOD: "rebase"
         with:
           pull-request: ${{ github.event.inputs.pull-request }}
+          
+  main:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: check for merge conflicts
+        uses: eps1lon/actions-label-merge-conflict@releases/2.x
+        with:
+          dirtyLabel: "PR: Merge Conflict"
+          removeOnDirtyLabel: "automerge"
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          commentOnDirty: "This pull request has conflicts, @ScrumMaster please resolve."
+          commentOnClean: "Conflicts have been resolved. Automerge will proceed pull request shortly."
