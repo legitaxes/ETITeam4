@@ -1,5 +1,6 @@
 import pytest 
-# from RatVenture_Function import * # update once developer starts 
+from RatVenture_Function import * # update once developer starts 
+from tud_test_base import *
 
 '''''
 Sprint 1
@@ -49,8 +50,15 @@ def test_new_game():
     
     """
     
-    value = open(new_game)
-    assert value == "Enter choice: 1 \n Day 1: You are in a town. \n 1) View Character \n 2) View Map \n 3) Move \n 4) Rest \n 5) Save Game \n 6) Exit Game \n Enter choice:"
+    current_day, hero = new_game()
+    assert current_day == 1
+    assert hero["name"] == "The Hero"
+    assert hero["min_damage"] == 2
+    assert hero["max_damage"] == 4
+    assert hero["hp"] == 20
+    assert hero["max_hp"] == 20
+    assert hero["defence"] == 1
+    assert hero["position"] == [0, 0]
                     
 def test_resume_game(): 
     """User Story: 1.2: Resume the previous game
@@ -127,7 +135,7 @@ def test_town_menu():
     value = open(town_menu)
     assert value == "Day 1: You are in a town. \n 1) View Character \n 2) View Map \n 3) Move \n 4) Rest \n 5) Save Game \n 6) Exit Game \n Enter choice:"
                     
-def test_view_character():
+def test_print_hero_stats():
     """User Story 2.1: Display player's statistics 
     
     Input
@@ -144,7 +152,7 @@ def test_view_character():
     
     """
     set_keyboard_input("1") 
-    view_character() 
+    print_hero_stats() 
     output = get_display_output()
     assert output == "Enter choice: 1\nThe hero\nDamage: 2-4\nDefence: 1\nHP: 20"
 
