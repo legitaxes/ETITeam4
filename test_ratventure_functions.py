@@ -44,15 +44,7 @@ def test_new_game():
     
     Output
     -----------------
-    Enter choice: 1
-    Day 1: You are in a town.
-    1) View Character
-    2) View Map
-    3) Move
-    4) Rest
-    5) Save Game
-    6) Exit Game
-    Enter choice:
+    Return Day & Hero 
     
     """
     
