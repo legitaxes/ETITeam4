@@ -121,15 +121,17 @@ def test_exit_game_prompt():
     """
     set_keyboard_input("3")
     exit_game_prompt()
-    choice = unsaved_changes() #create a function
-    if(choice == "Yes"):
-        exit_game_prompt()
-        output = get_display_output()
-        assert output == "You have unsaved changes. Do you want to continue?"
-    else:
-        exit_game()
-        output = get_display_output()
-        assert output == "Enter choice: 3\nThe program will close since there are no unsaved changes."
+    output = get_display_output()
+    assert output == "You have unsaved changes. Do you want to continue?"
+    #choice = unsaved_changes() #create a function
+    # if(choice == "Yes"):
+    #     exit_game_prompt()
+    #     output = get_display_output()
+    #     assert output == "You have unsaved changes. Do you want to continue?"
+    # else:
+    #     exit_game()
+    #     output = get_display_output()
+    #     assert output == "Enter choice: 3\nThe program will close since there are no unsaved changes."
 
 # def test_unsaved_changes(): 
 #     """A function to see if there is unsaved changes. 
