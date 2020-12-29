@@ -183,7 +183,6 @@ def test_view_character():
     HP: 20
     
     """
-    set_keyboard_input("1") 
     print_hero_stats() 
     output = get_display_output()
     assert output == "Enter choice: 1\nThe hero\nDamage: 2-4\nDefence: 1\nHP: 20"
