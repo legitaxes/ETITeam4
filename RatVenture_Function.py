@@ -45,6 +45,13 @@ def rat():
         Defence: 1
     """
     # code goes here
+    rat = {
+    "name": "Rat",
+    "hp": 10,
+    "min_damage": 1,
+    "max_damage": 3,
+    "defence": 1
+    }
 
     return rat
 
@@ -87,8 +94,33 @@ def print_map():
     # Details such as the town position and hero position should be displayed
     # labels: tasks
     # assignees: legitaxes
-
-    return print_w_map
+    position = hero["position"]
+    x_coor = position[0]
+    y_coor = position[1]
+    list_map = []
+    for x in range(8):
+        print("+---"*8 + "+")
+        list_map.append("+---"*8 + "+")
+        for y in range(8):
+            legend = "   "
+            if world_map[x][y] == "T":
+                legend = " T "
+                if x == x_coor and y == y_coor:
+                    legend = "H/T"
+            elif world_map[x][y] == "K":
+                legend = " K "
+                if x == x_coor and y == y_coor:
+                    legend = "H/K"
+            else:
+                if x == x_coor and y == y_coor:
+                    legend = " H "
+            print("|{}".format(legend), end="")
+            list_map.append("|{}".format(legend), end="")
+        print("|")
+        list_map.append("|")
+    print("+---"*8 + "+")
+    list_map.append("+---"*8 + "+")
+    return position, x_coor, y_coor, legend, list_map
 
 def print_day():
     """
@@ -111,6 +143,7 @@ def print_hero_stats():
     # labels: tasks
     # assignees: laukwangwei
 
+
 def get_hero_position():
     """
     This function mainly serves as a way for the program to get the position of the hero
@@ -120,7 +153,12 @@ def get_hero_position():
     # This function should only serve as a way for the program to get the position of the hero
     # labels: tasks
     # assignees: legitaxes
-    
+    position = hero["position"]
+    x_coor = position[0]
+    y_coor = position[1]
+    tile = world_map[x_coor][y_coor]
+    return tile, hero, world_map
+
 
 def main_menu():
     """
