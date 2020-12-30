@@ -163,6 +163,28 @@ def test_exit_game_prompt():
 #     unsaved_changes()
 #     output = get_display_output()
 #     assert output == "You have unsaved changes. Do you want to continue?"
+def test_main():
+    """User Story 2.0: Test input for town menu
+    
+    Input
+    -----------------
+    7
+    
+    Output
+    -----------------
+
+    Error! Please input an appropiate option.
+    1) View Character
+    2) View Map
+    3) Move
+    4) Rest
+    5) Save Game
+    6) Exit Game
+    
+    
+    """
+    output = town_menu()
+    assert output == "Error! Please input an appropiate option.\n1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"    
 
 def test_town_menu():
     """User Story 2.0: Display town menu
@@ -180,7 +202,7 @@ def test_town_menu():
     4) Rest
     5) Save Game
     6) Exit Game
-    Enter choice:
+    
     
     """
     output = town_menu()
