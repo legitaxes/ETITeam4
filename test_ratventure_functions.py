@@ -110,7 +110,7 @@ def test_exit_game():
     assert output == "The program will close since there are no unsaved changes."
     
  
-def test_exit_game_prompt():
+def test_exit_game_prompt_yes():
     """User Story 1.3.1: Warning Message
     
     Input
@@ -130,13 +130,10 @@ def test_exit_game_prompt():
     2) Resume Game
     3) Exit Game
     """
-    set_keyboard_input("Yes")
-    output = exit_game_prompt()
-    assert output == ["You have unsaved changes. Do you want to continue?", "Enter choice:", "Bye bye!"]
-
-    set_keyboard_input("No")
-    output = exit_game_prompt()
-    assert output == ["You have unsaved changes. Do you want to continue?","Enter choice:","Welcome to Ratventure!\n1) New Game\n2) Resume Game\n3) Exit Game"]
+    set_keyboard_input(["Y"])
+    exit_game_prompt()
+    output = get_display_output()
+    assert output == ["You have unsaved changes. Do you want to continue?", "Enter choice: [Y/N]", "Bye bye!"]
     #choice = unsaved_changes() #create a function
     # if(choice == "Yes"):
     #     exit_game_prompt()
@@ -164,6 +161,14 @@ def test_exit_game_prompt():
 #     unsaved_changes()
 #     output = get_display_output()
 #     assert output == "You have unsaved changes. Do you want to continue?"
+
+def test_exit_game_prompt_no():
+    set_keyboard_input(["N"])
+    exit_game_prompt()
+    output = get_display_output()
+    assert output == ["You have unsaved changes. Do you want to continue?","Enter choice: [Y/N]", "Going back to the game..."]
+
+
 def test_main():
     """User Story 2.0: Test input for town menu
     
