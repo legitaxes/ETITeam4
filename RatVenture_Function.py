@@ -145,13 +145,9 @@ def print_hero_stats(hero):
     This function should return the hero's Name, Damage, Defence and HP 
     """
 
-    print(hero["name"])
-    print(hero["hp"])
-    print(hero["max_hp"])
-    print(hero["damage"])
-    print(hero["min_damage"])
-    print(hero["max_damage"])
-    print(hero["defence"])
+    hero_stats = str(hero["name"]) + "Damage:" + str(hero["min_damage"]) + "-" + str(hero["max_damage"]) + str(hero["defence"]) + str(hero["hp"])
+    print(hero_stats)
+    return (hero_stats)
 
 
 def get_hero_position(hero):
