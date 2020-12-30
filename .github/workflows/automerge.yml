@@ -4,12 +4,13 @@ name: auto merge
 
 on: 
   push: 
-    branches:
-      [main]
+    branches: 
+      [main, cheskalazo-branch, jiaqibranch, laukwangweibranch]
   pull_request:
-     branches:
-      [main]
+    branches: 
+      [main, cheskalazo-branch, jiaqibranch, laukwangweibranch]
     
+
 jobs: 
   auto-label:
     runs-on: ubuntu-latest
