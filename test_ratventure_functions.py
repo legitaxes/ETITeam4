@@ -236,8 +236,8 @@ def test_view_character():
     HP: 20
     
     """
-    print_hero_stats() 
-    output = get_display_output()
+    #print_hero_stats() 
+    output = print_hero_stats()
     assert output == "The hero\nDamage: 2-4\nDefence: 1\nHP: 20"
 
 
