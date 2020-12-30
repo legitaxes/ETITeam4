@@ -289,9 +289,10 @@ def test_rest(get_hero):
     
     """
     #set_keyboard_input("4") 
-    hp = rest(get_hero) 
+    hp, print_result = rest(get_hero) 
     #output = get_display_output()
     assert hp == get_hero["max_hp"]
+    assert print_result == "You are fully healed."
 
 def test_save_game():
     """User Story 2.5: Save the game

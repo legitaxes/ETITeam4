@@ -172,7 +172,8 @@ def test_rest(get_hero):
         This function resets the current hp of hero to the maximum hp
         It should print the following statement: "You are fully healed"
     """
-    hp = rest(get_hero)
+    hp, print_result = rest(get_hero)
     assert hp == get_hero["hp"]
+    assert print_result == "You are fully healed."
 
 ##
