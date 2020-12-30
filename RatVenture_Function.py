@@ -242,19 +242,27 @@ def resume_game():
 
 def exit_game():
     """
-    This function exits the game and prints a "Bye Bye!"
+    This function exits the game and prints a notification message saying it will now close
     """
-    # TODO Create a function that prints a message that says byebye and exit the game
-    # This function should exit the python program using sys.exit()
-    # labels: tasks
-    return ""
+    print("The program will close since there are no unsaved changes.")
+    return "The program will close since there are no unsaved changes."
 
 def exit_game_prompt():
     """
     This function acts as a confirmation message to the user if he is in the game
+    If the user typed yes or Yes
+    The program will exit and print a bye bye! message
+    Else it will go back
     """
     # TODO Create a function that prints a confirmation message and prompts the user to select "Yes" or "No"
     # This function will act as a confirmation message to the user if he wants to really exit the game without saving
+    # 
     # labels: tasks
+    print("You have unsaved changes, Do you want to continue?")
+    choice = int(input("Enter choice:"))
+    if(choice == "yes" or "Yes"):
+        print("Bye Bye!")
+    else:
+        
     return ""
 

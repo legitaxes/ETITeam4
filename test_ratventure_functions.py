@@ -107,7 +107,7 @@ def test_exit_game():
     
     """
     output = exit_game()
-    assert output == "Enter choice: 3\nThe program will close since there are no unsaved changes."
+    assert output == "The program will close since there are no unsaved changes."
     
  
 def test_exit_game_prompt():
@@ -132,7 +132,7 @@ def test_exit_game_prompt():
     """
     set_keyboard_input("Yes")
     output = exit_game_prompt()
-    assert output == ["You have unsaved changes. Do you want to continue?", "Enter choice: ", "Bye bye!"]
+    assert output == ["You have unsaved changes. Do you want to continue?", "Enter choice:", "Bye bye!"]
 
     set_keyboard_input("No")
     output = exit_game_prompt()
