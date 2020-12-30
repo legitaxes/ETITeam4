@@ -125,7 +125,6 @@ def test_print_day():
         value = "You are in a town."
     else:
         value = "You are out in the open."
-
     if tile == "T":
         assert value == "You are in a town."
     elif tile == " ":
