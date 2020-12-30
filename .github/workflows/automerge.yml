@@ -7,19 +7,16 @@ on:
     branches:
       [main]
   pull_request:
-    branches: 
+     branches:
       [main]
     
 jobs: 
   auto-label:
-    name: Auto Label
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
         with: 
-          default-labels: '["automerge"]'
+          labels: automerge
 
               
   automerge:
