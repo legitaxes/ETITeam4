@@ -30,6 +30,12 @@ def theHero():
     print(hero)
     return hero
 
+#initialize current day as 1 
+def ini_current_day():
+    global current_day
+    current_day = 1
+    return current_day
+
 def theRat():
     """Initialize the rat with the following:
         Name: Rat
@@ -106,15 +112,9 @@ def print_map(hero):
     list_map.append("+---"*8 + "+")
     return position, x_coor, y_coor, legend, list_map
 
-#initialize current day as 1 
-def ini_current_day():
-    global current_day
-    current_day = 1
-    return current_day
-
 def print_day(hero, current_day):
     """
-    Display the tile the hero is at and display whether the hero is in town or out in open
+    Display the details of the location the hero is at and display the current day of the game
     """
     # TODO Create a function that prints the day of the game
     # This function should also show the location of the hero besides displaying the day
@@ -136,7 +136,8 @@ def rest(hero):
     """
     hero["hp"] = hero["max_hp"]
     print("You are fully healed.")
-    return hero["hp"]
+    print_result = "You are fully healed."
+    return hero["hp"], print_result
 
 def print_hero_stats():
     """
