@@ -7,6 +7,16 @@ def get_hero() -> theHero():
     hero = theHero()
     return hero
 
+@pytest.fixture
+def get_current_day() -> ini_current_day():
+    current_day = ini_current_day() 
+    return current_day
+
+@pytest.fixture
+def get_w_map() -> world_map():
+    w_map = world_map()
+    return w_map
+
 '''''
 Sprint 1
 '''''
@@ -88,7 +98,7 @@ def test_resume_game():
     """
     errormessage, output = resume_game()
     if(errormessage == ""):
-        assert output == "The game has been resumed to the previous state."
+        assert output == "The game has been resumed to the previous save state."
     else:
         assert output == "Existing file does not exist.\n"
         assert errormessage == FileNotFoundError
@@ -302,7 +312,7 @@ def test_rest(get_hero):
     assert hp == get_hero["max_hp"]
     assert print_result == "You are fully healed."
 
-def test_save_game():
+def test_save_game(get_hero, get_current_day, get_w_map):
     """User Story 2.5: Save the game
     
     
@@ -312,7 +322,7 @@ def test_save_game():
     Game saved. 
     
     """  
-    output = save_game()
+    output = save_game(get_hero, get_w_map, get_current_day)
     assert output == "Game saved."
 
 def test_exit_game(): 

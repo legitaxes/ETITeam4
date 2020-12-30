@@ -264,6 +264,13 @@ def exit_game_prompt():
         print("Bye bye!")
     elif(choice == "N"):
         print("Going back to the game...")
-        
     return choice
+
+def save_game(hero, w_map, current_day):
+    file = open("./save.json", mode = "w+")
+    file.write(json.dumps({"hero": hero, "w_map": w_map, "current_day": current_day}))
+    file.close()
+    print("Game saved.")
+    return "Game saved."
+
 
