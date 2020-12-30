@@ -136,11 +136,6 @@ def test_print_hero_stats(get_hero):
         Display the hero's stats and his details
         This function should return the hero's Name, Damage, Defence and HP 
     """
-    # TODO Create a test case that prints the stats of the hero
-    # Test case should assert the following values:
-    #  > All of the hero's stats
-    # labels: tasks, unit-test
-    # assignees: laukwangwei
 
     value = theHero()
     assert value['name'] == get_hero["name"]
