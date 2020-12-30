@@ -67,6 +67,14 @@ def test_world_map():
     assert len(value) == len(expected)
     assert all([a == b for a, b in zip(value, expected)]) #this checks python list against the expected value
 
+def test_main_menu():
+    value = main_menu()
+    assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
+
+def test_town_menu():
+    value = town_menu()
+    assert value == "1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"
+
 
 def test_print_map(get_hero):
     """
@@ -127,9 +135,6 @@ def test_print_day(get_hero, get_current_day):
     #printresult = "Day {}: {}".format(current_day, value)
     assert printresult == "Day " + str(current_day) + ": " + actual_location
 
-
-
-
 def test_print_hero_stats(get_hero):
     """
     Test function of print_hero_stats Function:
@@ -162,4 +167,71 @@ def test_rest(get_hero):
     assert hp == get_hero["hp"]
     assert print_result == "You are fully healed."
 
-##
+def test_new_game(get_hero, get_current_day):
+    """
+    This test function will test whether new_game() function is working
+    It will assert the following
+        > current_day
+        > hero
+    """
+    current_day, hero = new_game()
+    assert current_day == get_current_day
+    assert hero["name"] == get_hero["name"]
+    assert hero["min_damage"] == get_hero["min_damage"]
+    assert hero["max_damage"] == get_hero["max_damage"]
+    assert hero["hp"] == get_hero["hp"]
+    assert hero["max_hp"] == get_hero["max_hp"]
+    assert hero["defence"] == get_hero["defence"]
+    assert hero["position"] == get_hero["position"]
+	
+    
+
+def test_resume_game():
+    """
+    This test function will test whether resume_game() function is working
+    It will assert the following:
+        If there is a file from before:
+            Load the file and return The game has been resumed to the previous save state.
+        else: 
+            return "existing file does not exist"
+    """
+    error, value = resume_game()
+    if(error == ""):
+        assert value == "The game has been resumed to the previous save state." 
+    else:
+        assert error == FileNotFoundError
+        assert value == "Existing file does not exist.\n"
+
+def test_save_game():
+    """
+    This test function will test whether the save_game() function works
+    The save game function will write to the json file to store its global variable objects
+    At the end of the operation, it will print "Game Saved."
+    """
+    # TODO Create a unit test for save game function
+    # This unit test function will save the game onto a json file object
+    # The json file shall store global variables as a json string
+    # labels: tasks
+    # milestone: 1
+
+def test_exit_game():
+    """
+    This test function will test whether exit_game() works
+    The exit game function will only print the message and return an indicator whether it will exit
+    At the end of the operation, it will print "The program will close since there are no unsaved changes" 
+    """
+    # TODO Create a unit test for exit game function
+    # This unit test function will exit the game on demand
+    # labels: tasks
+    # milestone: 1
+
+def test_exit_game_prompt():
+    """
+    The test function will test whether exit_game_prompt() works
+    The exit game function will only print the message and ask for a user input
+    At the end of the operation, it will return an indicator to the program whether the user wants to exit the game
+    """
+    # TODO Create a unit test for prompting the user when exiting the game
+    # This unit test will assert a print statement upon running
+    # labels: tasks
+    # milestone: 1
