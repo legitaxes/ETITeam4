@@ -247,11 +247,12 @@ def exit_game_prompt():
     # This function will act as a confirmation message to the user if he wants to really exit the game without saving
     # 
     # labels: tasks
-    print("You have unsaved changes, Do you want to continue?")
-    choice = int(input("Enter choice:"))
-    if(choice == "yes" or "Yes"):
-        print("Bye Bye!")
-    else:
+    print("You have unsaved changes. Do you want to continue?")
+    choice = input("Enter choice: [Y/N]")
+    if(choice == "Y"):
+        print("Bye bye!")
+    elif(choice == "N"):
+        print("Going back to the game...")
         
-    return ""
+    return choice
 
