@@ -170,9 +170,6 @@ def test_town_menu():
 def test_view_character():
     """User Story 2.1: Display player's statistics 
     
-    Input
-    -----------------
-    1
     
     Output
     -----------------
@@ -185,15 +182,12 @@ def test_view_character():
     """
     print_hero_stats() 
     output = get_display_output()
-    assert output == "Enter choice: 1\nThe hero\nDamage: 2-4\nDefence: 1\nHP: 20"
+    assert output == "The hero\nDamage: 2-4\nDefence: 1\nHP: 20"
 
 
 def test_view_map():
     """User Story 2.2: Display the world map
     
-    Input
-    -----------------
-    2
     
     Output
     -----------------
@@ -249,9 +243,6 @@ def test_view_map():
 def test_rest(get_hero):
     """User Story 2.4: Rest the character 
     
-    Input
-    -----------------
-    4
     
     Output
     -----------------
@@ -267,27 +258,19 @@ def test_rest(get_hero):
 def test_save_game():
     """User Story 2.5: Save the game
     
-    Input
-    -----------------
-    5
     
     Output
     -----------------
     Enter choice: 5
     Game saved. 
     
-    """
-    set_keyboard_input("5")  
-    save_game() 
-    output = get_display_output()
-    assert output == "Enter choice: 5\nGame saved."
+    """  
+    output = save_game()
+    assert output == "Game saved."
 
 def test_exit_game(): 
     """User Story 2.6: Exit the game
     
-    Input
-    -----------------
-    6
     
     Output
     -----------------
@@ -296,10 +279,9 @@ def test_exit_game():
     /closeRatVenture 
     
     """
-    set_keyboard_input("6") 
-    exit_game() 
-    output = get_display_output()
-    assert output == "Enter choice: 6\nThe program will close since there are no unsaved changes."
+    
+    output = exit_game() 
+    assert output == "The program will close since there are no unsaved changes."
 
 # need to know how to link one function to another and then have the yes or no input
 # for workflow testing
