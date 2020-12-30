@@ -2,13 +2,15 @@
 
 name: auto merge
 
+
 on: 
   push: 
     branches: 
-      [main, MaChwe-branch, cheskalazo-branch, jiaqibranch, laukwangweibranch]
+      [main, MaChwe-branch, cheskalazo-branch, jiaqibranch, laukwangweibranch, perlebranch]
   pull_request:
     branches: 
-      [main, MaChwe-branch, cheskalazo-branch, jiaqibranch, laukwangweibranch]
+      [main, MaChwe-branch, cheskalazo-branch, jiaqibranch, laukwangweibranch, perlebranch]
+
     
 
 jobs: 
@@ -27,7 +29,7 @@ jobs:
         uses: "pascalgn/automerge-action@v0.13.0"
         id: "automerge"
         env:
-          GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+          GITHUB_TOKEN: "${{ secrets.BOT_TOKEN }}"
           MERGE_LABEL_NAME: "automerge"
           MERGE_REMOVE_LABELS: "automerge"
           MERGE_METHOD: "squash"
