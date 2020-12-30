@@ -167,21 +167,41 @@ def test_rest(get_hero):
     assert hp == get_hero["hp"]
     assert print_result == "You are fully healed."
 
-def test_new_game(get_hero, get_current_day):
+def test_new_game():
+    """
+    This test function will test whether new_game() function is working
+    It will assert the following
+        > current_day
+        > hero
+    """
     # TODO Create a unit test for new game function
     # This unit test function shall initialize a new game and will assert two variables
     # > current_day
     # > hero
     # labels: tasks
     # milestone: 1
+    
 
 def test_resume_game():
+    """
+    This test function will test whether resume_game() function is working
+    It will assert the following:
+        If there is a file from before:
+            Load the file and return The game has been resumed to the previous save state.
+        else: 
+            return "existing file does not exist"
+    """
     # TODO Create a unit test for resume game function
     # This unit test function shall resume a previous save state game and will assert the return values of resume_game()
     # labels: tasks
     # milestone: 1
 
 def test_save_game():
+    """
+    This test function will test whether the save_game() function works
+    The save game function will write to the json file to store its global variable objects
+    At the end of the operation, it will print "Game Saved."
+    """
     # TODO Create a unit test for save game function
     # This unit test function will save the game onto a json file object
     # The json file shall store global variables as a json string
@@ -189,12 +209,22 @@ def test_save_game():
     # milestone: 1
 
 def test_exit_game():
+    """
+    This test function will test whether exit_game() works
+    The exit game function will only print the message and return an indicator whether it will exit
+    At the end of the operation, it will print "The program will close since there are no unsaved changes" 
+    """
     # TODO Create a unit test for exit game function
     # This unit test function will exit the game on demand
     # labels: tasks
     # milestone: 1
 
 def test_exit_game_prompt():
+    """
+    The test function will test whether exit_game_prompt() works
+    The exit game function will only print the message and ask for a user input
+    At the end of the operation, it will return an indicator to the program whether the user wants to exit the game
+    """
     # TODO Create a unit test for prompting the user when exiting the game
     # This unit test will assert a print statement upon running
     # labels: tasks
