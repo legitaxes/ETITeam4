@@ -26,7 +26,7 @@ def test_main():
     3) Exit Game
 
     """
-    output = main_menu()
+    output = main()
     assert output == "Error! Please input an appropriate option.\nWelcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
     
 def test_main_menu(): 
@@ -128,14 +128,12 @@ def test_exit_game_prompt():
     3) Exit Game
     """
     set_keyboard_input("Yes")
-    exit_game_prompt()
-    output = get_display_output()
+    output = exit_game_prompt()
     assert output == ["You have unsaved changes. Do you want to continue?", "Enter choice: ", "Bye bye!"]
 
     set_keyboard_input("No")
-    exit_game_prompt()
-    output = get_display_output()
-    assert output == "You have unsaved changes. Do you want to continue?","Enter choice:",""
+    output = exit_game_prompt()
+    assert output == ["You have unsaved changes. Do you want to continue?","Enter choice:","Welcome to Ratventure!\n1) New Game\n2) Resume Game\n3) Exit Game"]
     #choice = unsaved_changes() #create a function
     # if(choice == "Yes"):
     #     exit_game_prompt()
