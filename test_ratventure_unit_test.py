@@ -134,7 +134,7 @@ def test_print_day():
 
 
 
-def test_print_hero_stats():
+def test_print_hero_stats(get_hero):
     """
     Test function of print_hero_stats Function:
         Display the hero's stats and his details
@@ -145,6 +145,15 @@ def test_print_hero_stats():
     #  > All of the hero's stats
     # labels: tasks, unit-test
     # assignees: laukwangwei
+
+    value = theHero()
+    assert value['name'] == get_hero["name"]
+    assert value['min_damage'] == get_hero["min_damage"]
+    assert value['max_damage'] == get_hero["max_damage"]
+    assert value['hp'] == get_hero["hp"]
+    assert value['max_hp'] == get_hero["max_hp"]
+    assert value['defence'] == get_hero["defence"]
+    assert value['position'] == get_hero["position"]
 
 def test_get_hero_position(get_hero):
     """

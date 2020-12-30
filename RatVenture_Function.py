@@ -134,7 +134,7 @@ def rest(hero):
     print("You are fully healed.")
     return hero["hp"]
 
-def print_hero_stats():
+def print_hero_stats(hero):
     """
     Display the hero's stats and his details
     This function should return the hero's Name, Damage, Defence and HP 
@@ -143,6 +143,17 @@ def print_hero_stats():
     # This function should print the hero's stats as well as return the stats as a dictionary object
     # labels: tasks
     # assignees: laukwangwei
+
+    hero_stats = {
+    "name": "The Hero",
+    "min_damage": 2,
+    "max_damage": 4,
+    "hp": 20,
+    "max_hp": 20,
+    "defence": 1,
+    }
+    print(hero_stats)
+    return hero_stats
 
 
 def get_hero_position(hero):
