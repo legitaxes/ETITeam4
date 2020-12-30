@@ -203,7 +203,7 @@ def new_game():
         -> Initialize Hero using getHero() function
     """
     global current_day, hero
-    current_day = 1
+    current_day = ini_current_day()
     hero = theHero()
     return current_day, hero
 
@@ -213,10 +213,20 @@ def resume_game():
     The previous save state should have stored variables as a json object
     This function will set the global variables in the program from the json object  
     """
-    # TODO Create a function that loads the game from a json file object in the directory
-    # This function should load global variables from the previous save state stored as json objects
-    # labels: tasks 
-    return ""
+    try:
+        global hero, world_map, current_day
+        file = open("./save.json", mode = "r")
+        load_data = json.load(file)
+        hero = load_data["hero"]
+        w_map = load_data["w_map"]
+        current_day = load_data["current_day"]
+        file.close()
+    except FileNotFoundError:
+        print("Existing file does not exist.\n")
+        return FileNotFoundError,"Existing file does not exist.\n"
+        #main()
+    print("The game has been resumed to the previous save state.")
+    return "","The game has been resumed to the previous save state."
 
 
 def exit_game():

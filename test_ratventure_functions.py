@@ -86,10 +86,13 @@ def test_resume_game():
     The game has been resumed to the previous state.
     
     """
-    output = resume_game()
-    assert output == "Enter choice: 2\nThe game has been resumed to the previous state."
-       
-    
+    errormessage, output = resume_game()
+    if(errormessage == ""):
+        assert output == "The game has been resumed to the previous state."
+    else:
+        assert output == "Existing file does not exist.\n"
+        assert errormessage == FileNotFoundError
+
 def test_exit_game(): 
     """User Story 1.3: Exit the game
     
