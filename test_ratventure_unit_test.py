@@ -8,7 +8,7 @@ def get_hero() -> theHero():
 
 @pytest.fixture
 def get_current_day() -> ini_current_day():
-    current_day = 1 
+    current_day = ini_current_day() 
     return current_day
 
 def test_theHero(get_hero):
