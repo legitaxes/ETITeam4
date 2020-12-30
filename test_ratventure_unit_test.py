@@ -136,7 +136,7 @@ def test_print_day(get_hero, get_current_day):
     elif tile == " ":
         assert value == "You are out in the open."
     printresult = "Day {}: {}".format(current_day, value)
-    assert printresult == "Day " + current_day + ": " + value
+    assert printresult == "Day " + str(current_day) + ": " + value
 
 
 
