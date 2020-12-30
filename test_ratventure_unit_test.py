@@ -167,19 +167,23 @@ def test_rest(get_hero):
     assert hp == get_hero["hp"]
     assert print_result == "You are fully healed."
 
-def test_new_game():
+def test_new_game(get_hero, get_current_day):
     """
     This test function will test whether new_game() function is working
     It will assert the following
         > current_day
         > hero
     """
-    # TODO Create a unit test for new game function
-    # This unit test function shall initialize a new game and will assert two variables
-    # > current_day
-    # > hero
-    # labels: tasks
-    # milestone: 1
+    current_day, hero = new_game()
+    assert current_day == get_current_day
+    assert hero["name"] == get_hero["name"]
+    assert hero["min_damage"] == get_hero["min_damage"]
+    assert hero["max_damage"] == get_hero["max_damage"]
+    assert hero["hp"] == get_hero["hp"]
+    assert hero["max_hp"] == get_hero["max_hp"]
+    assert hero["defence"] == get_hero["defence"]
+    assert hero["position"] == get_hero["position"]
+	
     
 
 def test_resume_game():
@@ -191,10 +195,12 @@ def test_resume_game():
         else: 
             return "existing file does not exist"
     """
-    # TODO Create a unit test for resume game function
-    # This unit test function shall resume a previous save state game and will assert the return values of resume_game()
-    # labels: tasks
-    # milestone: 1
+    error, value = resume_game()
+    if(error == ""):
+        assert value == "The game has been resumed to the previous save state." 
+    else:
+        assert error == FileNotFoundError
+        assert value == "Existing file does not exist.\n"
 
 def test_save_game():
     """
