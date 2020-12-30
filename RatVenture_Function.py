@@ -258,11 +258,19 @@ def exit_game_prompt():
     # This function will act as a confirmation message to the user if he wants to really exit the game without saving
     # 
     # labels: tasks
-    print("You have unsaved changes, Do you want to continue?")
-    choice = int(input("Enter choice:"))
-    if(choice == "yes" or "Yes"):
-        print("Bye Bye!")
-    else:
-        
-    return ""
+    print("You have unsaved changes. Do you want to continue?")
+    choice = input("Enter choice: [Y/N]")
+    if(choice == "Y"):
+        print("Bye bye!")
+    elif(choice == "N"):
+        print("Going back to the game...")
+    return choice
+
+def save_game(hero, w_map, current_day):
+    file = open("./save.json", mode = "w+")
+    file.write(json.dumps({"hero": hero, "w_map": w_map, "current_day": current_day}))
+    file.close()
+    print("Game saved.")
+    return "Game saved."
+
 
