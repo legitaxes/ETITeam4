@@ -7,9 +7,8 @@ on:
     branches:
       [main]
   pull_request:
-     branches:
-      [main]
-    
+    branches: [ cheskalazo-branch, MaChwe-branch, jiaqibranch, laukwangweibranch, perlebranch ]      
+
 jobs: 
   auto-label:
     runs-on: ubuntu-latest
