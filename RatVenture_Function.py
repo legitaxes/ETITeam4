@@ -214,7 +214,7 @@ def resume_game():
     This function will set the global variables in the program from the json object  
     """
     try:
-        global hero, world_map, current_day
+        global hero, w_map, current_day
         file = open("./save.json", mode = "r")
         load_data = json.load(file)
         hero = load_data["hero"]
