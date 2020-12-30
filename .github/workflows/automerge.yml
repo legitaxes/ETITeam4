@@ -4,12 +4,9 @@ name: auto merge
 
 on: 
   push: 
-    branches:
-      [main]
   pull_request:
-     branches:
-      [main]
     
+
 jobs: 
   auto-label:
     runs-on: ubuntu-latest
