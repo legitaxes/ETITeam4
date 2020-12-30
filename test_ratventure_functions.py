@@ -10,7 +10,8 @@ def get_hero() -> theHero():
 '''''
 Sprint 1
 '''''
-
+def test_main(): 
+    
 def test_main_menu(): 
     
     """User Story 1.0: Test whether main menu 
@@ -29,10 +30,9 @@ def test_main_menu():
     3) Exit Game
     
     """
-    main_menu()
-    output = get_display_output()
+    output = main_menu()
     assert output == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
-                     
+                    
                 
 def test_new_game(): 
     """ User Story 1.1: Create New Game
@@ -70,10 +70,7 @@ def test_resume_game():
     The game has been resumed to the previous state.
     
     """
-    set_keyboard_input("2")
-    
-    resume_game()
-    output = get_display_output()
+    output = resume_game()
     assert output == "Enter choice: 2\nThe game has been resumed to the previous state."
        
     
@@ -91,9 +88,7 @@ def test_exit_game():
     /closeRatVenture 
     
     """
-    set_keyboard_input("3")
-    exit_game()
-    output = get_display_output()
+    output = exit_game()
     assert output == "Enter choice: 3\nThe program will close since there are no unsaved changes."
     
  
@@ -109,10 +104,15 @@ def test_exit_game_prompt():
     You have unsaved changes. Do you want to continue? 
     
     """
-    set_keyboard_input("3")
+    set_keyboard_input("Yes")
     exit_game_prompt()
     output = get_display_output()
-    assert output == "You have unsaved changes. Do you want to continue?"
+    assert output == ["You have unsaved changes. Do you want to continue?", "Enter choice: ", "Bye bye!"]
+
+    set_keyboard_input("No")
+    exit_game_prompt()
+    output = get_display_output()
+    assert output == "You have unsaved changes. Do you want to continue?","Enter choice:", ""
     #choice = unsaved_changes() #create a function
     # if(choice == "Yes"):
     #     exit_game_prompt()
@@ -160,11 +160,8 @@ def test_town_menu():
     Enter choice:
     
     """
-    
-    set_keyboard_input("1"/"2")
-    menu()
-    output = get_display_output()
-    assert output == "Day 1: You are in a town.\n1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game\nEnter choice:"    
+    output = town_menu()
+    assert output == "Day 1: You are in a town.\n1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"    
 
 def test_view_character():
     """User Story 2.1: Display player's statistics 
