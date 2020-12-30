@@ -101,7 +101,6 @@ def test_exit_game():
     -----------------
     Enter choice: 3
     The program will close since there are no unsaved changes. 
-    /closeRatVenture 
     
     """
     output = exit_game()
@@ -118,7 +117,15 @@ def test_exit_game_prompt():
     Output
     -----------------
     You have unsaved changes. Do you want to continue? 
-    
+    Enter Choice: (Yes)
+    Bye bye!
+    -----------------
+    You have unsaved changes. Do you want to continue? 
+    Enter Choice: (No)
+    Welcome to Ratventure!
+    1) New Game
+    2) Resume Game
+    3) Exit Game
     """
     set_keyboard_input("Yes")
     exit_game_prompt()
@@ -128,7 +135,7 @@ def test_exit_game_prompt():
     set_keyboard_input("No")
     exit_game_prompt()
     output = get_display_output()
-    assert output == "You have unsaved changes. Do you want to continue?","Enter choice:", ""
+    assert output == "You have unsaved changes. Do you want to continue?","Enter choice:",""
     #choice = unsaved_changes() #create a function
     # if(choice == "Yes"):
     #     exit_game_prompt()
