@@ -189,9 +189,6 @@ def test_town_menu():
 def test_view_character():
     """User Story 2.1: Display player's statistics 
     
-    Input
-    -----------------
-    1
     
     Output
     -----------------
@@ -202,39 +199,73 @@ def test_view_character():
     HP: 20
     
     """
-    set_keyboard_input("1") 
     print_hero_stats() 
     output = get_display_output()
-    assert output == "Enter choice: 1\nThe hero\nDamage: 2-4\nDefence: 1\nHP: 20"
+    assert output == "The hero\nDamage: 2-4\nDefence: 1\nHP: 20"
 
 
 def test_view_map():
     """User Story 2.2: Display the world map
     
-    Input
-    -----------------
-    2
     
     Output
     -----------------
-    Enter choice: 2
-    /displayWorldMap 
+        
+        ['T', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
+        [' ', ' ', ' ', 'T', ' ', ' ', ' ', ' '],\
+        [' ', ' ', ' ', ' ', ' ', 'T', ' ', ' '],\
+        [' ', 'T', ' ', ' ', ' ', ' ', ' ', ' '],\
+        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
+        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
+        [' ', ' ', ' ', ' ', 'T', ' ', ' ', ' '],\
+        [' ', ' ', ' ', ' ', ' ', ' ', ' ', 'K']
     
     """
-    value = open (view_map)
-    assert value == "Enter choice: 2"
-    #assert value == worldMap
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero)
+    #theHero = print_hero_stats()
+    w_map = world_map()
+    pos = get_hero["position"]
+    assert position == pos
+    assert x_coor == pos[0]
+    assert y_coor == pos[1]
+    list_print_map = []
+    for x in range(8):
+        list_print_map.append("+---"*8 + "+")
+        for y in range(8):
+            legend = "   "
+            if w_map[x][y] == "T":
+                if x == x_coor and y == y_coor:
+                    legend = "H/T"
+                    #assert legend == "H/T"
+                else:
+                    legend = " T "
+                    #assert legend == " T "
+            elif w_map[x][y] == "K":
+                if x == x_coor and y == y_coor:
+                    legend = "H/K"
+                    #assert legend == "H/K"
+                else:
+                    legend = " K " 
+                    #assert legend == " K "
+            else:
+                if x == x_coor and y == y_coor:
+                    legend = " H "
+                    #assert legend == " H "
+            list_print_map.append("|" + legend)
+        list_print_map.append("|")
+    list_print_map.append("+---"*8 + "+")
+    # assert both lists
+    print(list_map)
+    print(list_print_map)
+    assert all([a == b for a, b in zip(list_print_map, list_map)]) #this checks python list against the expected value
     
 def test_rest(get_hero):
     """User Story 2.4: Rest the character 
     
-    Input
-    -----------------
-    4
     
     Output
     -----------------
-    Enter choice: 4
+    
     You are fully healed. 
     
     """
@@ -246,27 +277,19 @@ def test_rest(get_hero):
 def test_save_game():
     """User Story 2.5: Save the game
     
-    Input
-    -----------------
-    5
     
     Output
     -----------------
     Enter choice: 5
     Game saved. 
     
-    """
-    set_keyboard_input("5")  
-    save_game() 
-    output = get_display_output()
-    assert output == "Enter choice: 5\nGame saved."
+    """  
+    output = save_game()
+    assert output == "Game saved."
 
 def test_exit_game(): 
     """User Story 2.6: Exit the game
     
-    Input
-    -----------------
-    6
     
     Output
     -----------------
@@ -275,10 +298,9 @@ def test_exit_game():
     /closeRatVenture 
     
     """
-    set_keyboard_input("6") 
-    exit_game() 
-    output = get_display_output()
-    assert output == "Enter choice: 6\nThe program will close since there are no unsaved changes."
+    
+    output = exit_game() 
+    assert output == "The program will close since there are no unsaved changes."
 
 # need to know how to link one function to another and then have the yes or no input
 # for workflow testing
