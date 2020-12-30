@@ -27,12 +27,11 @@ def test_main_menu():
     1) New Game
     2) Resume Game
     3) Exit Game
-    Enter choice:
     
     """
     main_menu()
     output = get_display_output()
-    assert output == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game\nEnter choice: "
+    assert output == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
                      
                 
 def test_new_game(): 
