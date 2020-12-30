@@ -11,6 +11,23 @@ def get_hero() -> theHero():
 Sprint 1
 '''''
 def test_main(): 
+    """User Story 1.0: Test the inputs for Main Menu
+
+    Input
+    -----------------
+    4
+    
+    Output
+    -----------------
+    Please input an appropriate option. 
+    Welcome to Ratventure!
+    1) New Game
+    2) Resume Game
+    3) Exit Game
+
+    """
+    output = main_menu()
+    assert output == "Error! Please input an appropriate option.\nWelcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
     
 def test_main_menu(): 
     
@@ -24,7 +41,6 @@ def test_main_menu():
     Output
     -----------------
     Welcome to Ratventure!
-    ----------------------
     1) New Game
     2) Resume Game
     3) Exit Game
