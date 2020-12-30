@@ -203,7 +203,7 @@ def test_town_menu():
     
     """
     output = town_menu()
-    assert output == "Day 1: You are in a town.\n1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"    
+    assert output == "1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"    
 
 def test_view_character():
     """User Story 2.1: Display player's statistics 
@@ -289,9 +289,10 @@ def test_rest(get_hero):
     
     """
     #set_keyboard_input("4") 
-    hp = rest(get_hero) 
+    hp, print_result = rest(get_hero) 
     #output = get_display_output()
     assert hp == get_hero["max_hp"]
+    assert print_result == "You are fully healed."
 
 def test_save_game():
     """User Story 2.5: Save the game

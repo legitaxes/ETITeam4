@@ -30,6 +30,12 @@ def theHero():
     print(hero)
     return hero
 
+#initialize current day as 1 
+def ini_current_day():
+    global current_day
+    current_day = 1
+    return current_day
+
 def theRat():
     """Initialize the rat with the following:
         Name: Rat
@@ -106,15 +112,9 @@ def print_map(hero):
     list_map.append("+---"*8 + "+")
     return position, x_coor, y_coor, legend, list_map
 
-#initialize current day as 1 
-def ini_current_day():
-    global current_day
-    current_day = 1
-    return current_day
-
 def print_day(hero, current_day):
     """
-    Display the tile the hero is at and display whether the hero is in town or out in open
+    Display the details of the location the hero is at and display the current day of the game
     """
     # TODO Create a function that prints the day of the game
     # This function should also show the location of the hero besides displaying the day
@@ -136,7 +136,8 @@ def rest(hero):
     """
     hero["hp"] = hero["max_hp"]
     print("You are fully healed.")
-    return hero["hp"]
+    print_result = "You are fully healed."
+    return hero["hp"], print_result
 
 def print_hero_stats():
     """
@@ -190,8 +191,8 @@ def town_menu():
         5) Save Game
         6) Exit Game
     """
-    print("\n1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game")
-    return "\n1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"
+    print("1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game")
+    return "1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"
     
 def new_game():
     """
@@ -208,20 +209,31 @@ def new_game():
 
 def resume_game():
     """
-    Add comments here, include a todo comment
+    This function loads the previous game data using a json file in the same directory. 
+    The previous save state should have stored variables as a json object
+    This function will set the global variables in the program from the json object  
     """
+    # TODO Create a function that loads the game from a json file object in the directory
+    # This function should load global variables from the previous save state stored as json objects
+    # labels: tasks 
     return ""
 
 
 def exit_game():
     """
-    Add comments here, include a todo comment
+    This function exits the game and prints a "Bye Bye!"
     """
+    # TODO Create a function that prints a message that says byebye and exit the game
+    # This function should exit the python program using sys.exit()
+    # labels: tasks
     return ""
 
 def exit_game_prompt():
     """
-    Add comments here, include a todo comment
+    This function acts as a confirmation message to the user if he is in the game
     """
+    # TODO Create a function that prints a confirmation message and prompts the user to select "Yes" or "No"
+    # This function will act as a confirmation message to the user if he wants to really exit the game without saving
+    # labels: tasks
     return ""
 
