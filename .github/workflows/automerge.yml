@@ -2,13 +2,15 @@
 
 name: auto merge
 
+
 on: 
   push: 
     branches: 
-      [main, MaChwe-branch, cheskalazo-branch, jiaqibranch, laukwangweibranch]
+      [main, MaChwe-branch, cheskalazo-branch, jiaqibranch, laukwangweibranch, perlebranch]
   pull_request:
     branches: 
-      [main, MaChwe-branch, cheskalazo-branch, jiaqibranch, laukwangweibranch]
+      [main, MaChwe-branch, cheskalazo-branch, jiaqibranch, laukwangweibranch, perlebranch]
+
     
 
 jobs: 
