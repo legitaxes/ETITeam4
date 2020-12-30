@@ -118,25 +118,15 @@ def test_print_day(get_hero, get_current_day):
     Test function of print_day Function:
         Display the tile the hero is at and display whether the hero is in town or out in open
     """
-    # TODO Create a test case that prints the day of the game
-    # Test case should assert the following values:
-    #  > Location of the hero 
-    #  > Displaying the day
-    # labels: tasks, unit-test
-    # assignees: laukwangwei
     actual_tile, actual_location, printresult, current_day = print_day(get_hero, get_current_day)
 
-    tile = get_hero_position(get_hero)
-    if tile == "T":
-        value = "You are in a town."
-    else:
-        value = "You are out in the open."
-    if tile == "T":
-        assert value == "You are in a town."
-    elif tile == " ":
-        assert value == "You are out in the open."
-    printresult = "Day {}: {}".format(current_day, value)
-    assert printresult == "Day " + str(current_day) + ": " + value
+    if actual_tile == "T":
+        assert actual_location == "You are in a town."
+    elif actual_tile == " ":
+        assert actual_location == "You are out in the open."
+    #printresult = "Day {}: {}".format(current_day, value)
+    assert printresult == "Day " + str(current_day) + ": " + actual_location
+
 
 
 
