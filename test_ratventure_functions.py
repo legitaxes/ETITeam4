@@ -19,7 +19,7 @@ def test_main():
     
     Output
     -----------------
-    Please input an appropriate option. 
+    Error! Please input an appropriate option. 
     Welcome to Ratventure!
     1) New Game
     2) Resume Game
@@ -200,7 +200,6 @@ def test_town_menu():
     4) Rest
     5) Save Game
     6) Exit Game
-    
     
     """
     output = town_menu()
