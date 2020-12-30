@@ -106,8 +106,13 @@ def print_map(hero):
     list_map.append("+---"*8 + "+")
     return position, x_coor, y_coor, legend, list_map
 
+#initialize current day as 1 
+def ini_current_day():
+    global current_day
+    current_day = 1
+    return current_day
 
-def print_day():
+def print_day(hero, current_day):
     """
     Display the tile the hero is at and display whether the hero is in town or out in open
     """
@@ -115,7 +120,6 @@ def print_day():
     # This function should also show the location of the hero besides displaying the day
     # labels: tasks
     # assignees: laukwangwei
-
     tile = get_hero_position(hero)
     location = ""
     if tile == "T":
@@ -123,8 +127,8 @@ def print_day():
     elif tile == " ":
         location = "You are out in the open."
     print("Day {}: {}".format(current_day, location))
-    
-    return print_day
+    printresult = "Day " + str(current_day) + ": " +  location
+    return tile, location, printresult, current_day
 
 def rest(hero):
     """
