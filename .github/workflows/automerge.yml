@@ -2,13 +2,15 @@
 
 name: auto merge
 
+
 on: 
   push: 
     branches: 
-      [main, cheskalazo-branch, jiaqibranch, laukwangweibranch]
+      [main, MaChwe-branch, cheskalazo-branch, jiaqibranch, laukwangweibranch, perlebranch]
   pull_request:
     branches: 
-      [main, cheskalazo-branch, jiaqibranch, laukwangweibranch]
+      [main, MaChwe-branch, cheskalazo-branch, jiaqibranch, laukwangweibranch, perlebranch]
+
     
 
 jobs: 
@@ -30,7 +32,7 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_LABEL_NAME: "automerge"
           MERGE_REMOVE_LABELS: "automerge"
-          MERGE_METHOD: "squash"
+          MERGE_METHOD: "merge"
           MERGE_COMMIT_MESSAGE: "pull-request-description"
           UPDATE_LABELS: ""
           UPDATE_METHOD: "rebase"

@@ -6,6 +6,11 @@ def get_hero() -> theHero():
     hero = theHero()
     return hero
 
+@pytest.fixture
+def get_current_day() -> ini_current_day():
+    current_day = ini_current_day() 
+    return current_day
+
 def test_theHero(get_hero):
     """This test function initializes hero's stats
         OUTPUT:"name": "The Hero",
@@ -108,7 +113,7 @@ def test_print_map(get_hero):
     print(list_print_map)
     assert all([a == b for a, b in zip(list_print_map, list_map)]) #this checks python list against the expected value
 
-def test_print_day():
+def test_print_day(get_hero, get_current_day):
     """
     Test function of print_day Function:
         Display the tile the hero is at and display whether the hero is in town or out in open
@@ -119,6 +124,7 @@ def test_print_day():
     #  > Displaying the day
     # labels: tasks, unit-test
     # assignees: laukwangwei
+    actual_tile, actual_location, printresult, current_day = print_day(get_hero, get_current_day)
 
     tile = get_hero_position(get_hero)
     if tile == "T":
@@ -174,7 +180,8 @@ def test_rest(get_hero):
         This function resets the current hp of hero to the maximum hp
         It should print the following statement: "You are fully healed"
     """
-    hp = rest(get_hero)
+    hp, print_result = rest(get_hero)
     assert hp == get_hero["hp"]
+    assert print_result == "You are fully healed."
 
 ##
