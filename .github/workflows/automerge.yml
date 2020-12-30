@@ -4,10 +4,8 @@ name: auto merge
 
 on: 
   push: 
-    branches:
-      [main]
   pull_request:
-    branches: [ cheskalazo-branch, MaChwe-branch, jiaqibranch, laukwangweibranch, perlebranch, main ]      
+    
 
 jobs: 
   auto-label:
