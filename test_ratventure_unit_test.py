@@ -67,6 +67,14 @@ def test_world_map():
     assert len(value) == len(expected)
     assert all([a == b for a, b in zip(value, expected)]) #this checks python list against the expected value
 
+def test_main_menu():
+    value = main_menu()
+    assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
+
+def test_town_menu():
+    value = town_menu()
+    assert value == "1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"
+
 
 def test_print_map(get_hero):
     """
@@ -127,9 +135,6 @@ def test_print_day(get_hero, get_current_day):
     #printresult = "Day {}: {}".format(current_day, value)
     assert printresult == "Day " + str(current_day) + ": " + actual_location
 
-
-
-
 def test_print_hero_stats(get_hero):
     """
     Test function of print_hero_stats Function:
@@ -162,4 +167,35 @@ def test_rest(get_hero):
     assert hp == get_hero["hp"]
     assert print_result == "You are fully healed."
 
-##
+def test_new_game(get_hero, get_current_day):
+    # TODO Create a unit test for new game function
+    # This unit test function shall initialize a new game and will assert two variables
+    # > current_day
+    # > hero
+    # labels: tasks
+    # milestone: 1
+
+def test_resume_game():
+    # TODO Create a unit test for resume game function
+    # This unit test function shall resume a previous save state game and will assert the return values of resume_game()
+    # labels: tasks
+    # milestone: 1
+
+def test_save_game():
+    # TODO Create a unit test for save game function
+    # This unit test function will save the game onto a json file object
+    # The json file shall store global variables as a json string
+    # labels: tasks
+    # milestone: 1
+
+def test_exit_game():
+    # TODO Create a unit test for exit game function
+    # This unit test function will exit the game on demand
+    # labels: tasks
+    # milestone: 1
+
+def test_exit_game_prompt():
+    # TODO Create a unit test for prompting the user when exiting the game
+    # This unit test will assert a print statement upon running
+    # labels: tasks
+    # milestone: 1
