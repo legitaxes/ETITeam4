@@ -126,22 +126,21 @@ def test_print_day(get_hero, get_current_day):
     # assignees: laukwangwei
     actual_tile, actual_location, printresult, current_day = print_day(get_hero, get_current_day)
 
-    #tile = get_hero_position(get_hero)
-    #if tile == "T":
-        #value = "You are in a town."
-    #else:
-        #value = "You are out in the open."
-
-    if actual_tile == "T":
-        assert actual_location == "You are in a town."
-    elif actual_tile == " ":
-        assert actual_location == "You are out in the open."
-    #printresult = "Day {}: {}".format(current_day, value)
-    assert printresult == "Day " + str(current_day) + ": " + actual_location
-
+    tile = get_hero_position(get_hero)
+    if tile == "T":
+        value = "You are in a town."
+    else:
+        value = "You are out in the open."
+    if tile == "T":
+        assert value == "You are in a town."
+    elif tile == " ":
+        assert value == "You are out in the open."
+    printresult = "Day {}: {}".format(current_day, value)
+    assert printresult == "Day " + current_day + ": " + value
 
 
-def test_print_hero_stats():
+
+def test_print_hero_stats(get_hero):
     """
     Test function of print_hero_stats Function:
         Display the hero's stats and his details
@@ -152,6 +151,15 @@ def test_print_hero_stats():
     #  > All of the hero's stats
     # labels: tasks, unit-test
     # assignees: laukwangwei
+
+    value = theHero()
+    assert value['name'] == get_hero["name"]
+    assert value['min_damage'] == get_hero["min_damage"]
+    assert value['max_damage'] == get_hero["max_damage"]
+    assert value['hp'] == get_hero["hp"]
+    assert value['max_hp'] == get_hero["max_hp"]
+    assert value['defence'] == get_hero["defence"]
+    assert value['position'] == get_hero["position"]
 
 def test_get_hero_position(get_hero):
     """
