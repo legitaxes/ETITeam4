@@ -179,7 +179,7 @@ def test_exit_game_prompt_no():
     assert output == ["You have unsaved changes. Do you want to continue?","Enter choice: [Y/N]", "Going back to the game..."]
 
 
-def test_main():
+def test_main2():
     """User Story 2.0: Test input for town menu
     
     Input
@@ -236,8 +236,8 @@ def test_view_character():
     HP: 20
     
     """
-    print_hero_stats() 
-    output = get_display_output()
+    #print_hero_stats() 
+    output = print_hero_stats()
     assert output == "The hero\nDamage: 2-4\nDefence: 1\nHP: 20"
 
 
@@ -261,7 +261,7 @@ def test_view_map():
     position, x_coor, y_coor, legend, list_map = print_map(get_hero)
     #theHero = print_hero_stats()
     w_map = world_map()
-    pos = get_hero["position"]
+    pos = get_hero_position["position"]
     assert position == pos
     assert x_coor == pos[0]
     assert y_coor == pos[1]
@@ -325,7 +325,7 @@ def test_save_game(get_hero, get_current_day, get_w_map):
     output = save_game(get_hero, get_w_map, get_current_day)
     assert output == "Game saved."
 
-def test_exit_game(): 
+def test_exit_game2(): 
     """User Story 2.6: Exit the game
     
     
