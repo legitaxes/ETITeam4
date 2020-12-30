@@ -7,6 +7,16 @@ def get_hero() -> theHero():
     hero = theHero()
     return hero
 
+@pytest.fixture
+def get_current_day() -> ini_current_day():
+    current_day = ini_current_day() 
+    return current_day
+
+@pytest.fixture
+def get_w_map() -> world_map():
+    w_map = world_map()
+    return w_map
+
 '''''
 Sprint 1
 '''''
@@ -86,10 +96,13 @@ def test_resume_game():
     The game has been resumed to the previous state.
     
     """
-    output = resume_game()
-    assert output == "Enter choice: 2\nThe game has been resumed to the previous state."
-       
-    
+    errormessage, output = resume_game()
+    if(errormessage == ""):
+        assert output == "The game has been resumed to the previous save state."
+    else:
+        assert output == "Existing file does not exist.\n"
+        assert errormessage == FileNotFoundError
+
 def test_exit_game(): 
     """User Story 1.3: Exit the game
     
@@ -104,10 +117,10 @@ def test_exit_game():
     
     """
     output = exit_game()
-    assert output == "Enter choice: 3\nThe program will close since there are no unsaved changes."
+    assert output == "The program will close since there are no unsaved changes."
     
  
-def test_exit_game_prompt():
+def test_exit_game_prompt_yes():
     """User Story 1.3.1: Warning Message
     
     Input
@@ -127,13 +140,10 @@ def test_exit_game_prompt():
     2) Resume Game
     3) Exit Game
     """
-    set_keyboard_input("Yes")
-    output = exit_game_prompt()
-    assert output == ["You have unsaved changes. Do you want to continue?", "Enter choice: ", "Bye bye!"]
-
-    set_keyboard_input("No")
-    output = exit_game_prompt()
-    assert output == ["You have unsaved changes. Do you want to continue?","Enter choice:","Welcome to Ratventure!\n1) New Game\n2) Resume Game\n3) Exit Game"]
+    set_keyboard_input(["Y"])
+    exit_game_prompt()
+    output = get_display_output()
+    assert output == ["You have unsaved changes. Do you want to continue?", "Enter choice: [Y/N]", "Bye bye!"]
     #choice = unsaved_changes() #create a function
     # if(choice == "Yes"):
     #     exit_game_prompt()
@@ -161,7 +171,15 @@ def test_exit_game_prompt():
 #     unsaved_changes()
 #     output = get_display_output()
 #     assert output == "You have unsaved changes. Do you want to continue?"
-def test_main():
+
+def test_exit_game_prompt_no():
+    set_keyboard_input(["N"])
+    exit_game_prompt()
+    output = get_display_output()
+    assert output == ["You have unsaved changes. Do you want to continue?","Enter choice: [Y/N]", "Going back to the game..."]
+
+
+def test_main2():
     """User Story 2.0: Test input for town menu
     
     Input
@@ -218,8 +236,8 @@ def test_view_character():
     HP: 20
     
     """
-    print_hero_stats() 
-    output = get_display_output()
+    #print_hero_stats() 
+    output = print_hero_stats()
     assert output == "The hero\nDamage: 2-4\nDefence: 1\nHP: 20"
 
 
@@ -243,7 +261,7 @@ def test_view_map():
     position, x_coor, y_coor, legend, list_map = print_map(get_hero)
     #theHero = print_hero_stats()
     w_map = world_map()
-    pos = get_hero["position"]
+    pos = get_hero_position["position"]
     assert position == pos
     assert x_coor == pos[0]
     assert y_coor == pos[1]
@@ -294,7 +312,7 @@ def test_rest(get_hero):
     assert hp == get_hero["max_hp"]
     assert print_result == "You are fully healed."
 
-def test_save_game():
+def test_save_game(get_hero, get_current_day, get_w_map):
     """User Story 2.5: Save the game
     
     
@@ -304,10 +322,10 @@ def test_save_game():
     Game saved. 
     
     """  
-    output = save_game()
+    output = save_game(get_hero, get_w_map, get_current_day)
     assert output == "Game saved."
 
-def test_exit_game(): 
+def test_exit_game2(): 
     """User Story 2.6: Exit the game
     
     
