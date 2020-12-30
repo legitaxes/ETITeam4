@@ -197,8 +197,7 @@ def test_view_map():
     
     Output
     -----------------
-    Enter choice: 2
-    /displayWorldMap 
+    WorldMap 
     
     """
     position, x_coor, y_coor, legend, list_map = print_map(get_hero)
@@ -248,7 +247,7 @@ def test_rest(get_hero):
     
     Output
     -----------------
-    Enter choice: 4
+    
     You are fully healed. 
     
     """
