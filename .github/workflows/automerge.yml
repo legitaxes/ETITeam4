@@ -5,10 +5,10 @@ name: auto merge
 on: 
   push: 
     branches: 
-      [main, cheskalazo-branch, jiaqibranch, laukwangweibranch]
+      [main, MaChwe=branch, cheskalazo-branch, jiaqibranch, laukwangweibranch]
   pull_request:
     branches: 
-      [main, cheskalazo-branch, jiaqibranch, laukwangweibranch]
+      [main, MaChwe=branch, cheskalazo-branch, jiaqibranch, laukwangweibranch]
     
 
 jobs: 
