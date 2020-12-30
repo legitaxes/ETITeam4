@@ -191,8 +191,8 @@ def town_menu():
         5) Save Game
         6) Exit Game
     """
-    print("\n1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game")
-    return "\n1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"
+    print("1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game")
+    return "1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"
     
 def new_game():
     """
@@ -209,20 +209,31 @@ def new_game():
 
 def resume_game():
     """
-    Add comments here, include a todo comment
+    This function loads the previous game data using a json file in the same directory. 
+    The previous save state should have stored variables as a json object
+    This function will set the global variables in the program from the json object  
     """
+    # TODO Create a function that loads the game from a json file object in the directory
+    # This function should load global variables from the previous save state stored as json objects
+    # labels: tasks 
     return ""
 
 
 def exit_game():
     """
-    Add comments here, include a todo comment
+    This function exits the game and prints a "Bye Bye!"
     """
+    # TODO Create a function that prints a message that says byebye and exit the game
+    # This function should exit the python program using sys.exit()
+    # labels: tasks
     return ""
 
 def exit_game_prompt():
     """
-    Add comments here, include a todo comment
+    This function acts as a confirmation message to the user if he is in the game
     """
+    # TODO Create a function that prints a confirmation message and prompts the user to select "Yes" or "No"
+    # This function will act as a confirmation message to the user if he wants to really exit the game without saving
+    # labels: tasks
     return ""
 
