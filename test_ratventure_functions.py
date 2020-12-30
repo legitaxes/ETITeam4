@@ -125,20 +125,14 @@ def test_exit_game_prompt_yes():
     
     Input
     -----------------
-    3
+    Y
     
     Output
     -----------------
     You have unsaved changes. Do you want to continue? 
-    Enter Choice: (Yes)
+    Enter Choice: [Y/N]
     Bye bye!
-    -----------------
-    You have unsaved changes. Do you want to continue? 
-    Enter Choice: (No)
-    Welcome to Ratventure!
-    1) New Game
-    2) Resume Game
-    3) Exit Game
+    
     """
     set_keyboard_input(["Y"])
     exit_game_prompt()
@@ -173,6 +167,20 @@ def test_exit_game_prompt_yes():
 #     assert output == "You have unsaved changes. Do you want to continue?"
 
 def test_exit_game_prompt_no():
+    """User Story 1.3.2: Warning Message
+    
+    Input
+    -----------------
+    N
+    
+    Output
+    -----------------
+    You have unsaved changes. Do you want to continue? 
+    Enter Choice: [Y/N]
+    Going back to the game...
+
+    """
+    
     set_keyboard_input(["N"])
     exit_game_prompt()
     output = get_display_output()
