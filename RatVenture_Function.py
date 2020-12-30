@@ -213,12 +213,6 @@ def resume_game():
     The previous save state should have stored variables as a json object
     This function will set the global variables in the program from the json object  
     """
-<<<<<<< HEAD
-    # TODO Create a function that loads the game from a json file object in the directory
-    # This function should load global variables from the previous save state stored as json objects
-    # labels: tasks 
-    return ""
-=======
     try:
         global hero, w_map, current_day
         file = open("./save.json", mode = "r")
@@ -233,35 +227,18 @@ def resume_game():
         #main()
     print("The game has been resumed to the previous save state.")
     return "","The game has been resumed to the previous save state."
->>>>>>> 9283dc41f3b9d75ee5e4041a7ab8c6259426ded0
 
 
 def exit_game():
     """
-<<<<<<< HEAD
-    This function exits the game and prints a "Bye Bye!"
-    """
-    # TODO Create a function that prints a message that says byebye and exit the game
-    # This function should exit the python program using sys.exit()
-    # labels: tasks
-    return ""
-=======
     This function exits the game and prints a notification message saying it will now close
     """
     print("The program will close since there are no unsaved changes.")
     return "The program will close since there are no unsaved changes."
->>>>>>> 9283dc41f3b9d75ee5e4041a7ab8c6259426ded0
 
 def exit_game_prompt():
     """
     This function acts as a confirmation message to the user if he is in the game
-<<<<<<< HEAD
-    """
-    # TODO Create a function that prints a confirmation message and prompts the user to select "Yes" or "No"
-    # This function will act as a confirmation message to the user if he wants to really exit the game without saving
-    # labels: tasks
-    return ""
-=======
     If the user typed yes or Yes
     The program will exit and print a bye bye! message
     Else it will go back
@@ -285,5 +262,4 @@ def save_game(hero, w_map, current_day):
     print("Game saved.")
     return "Game saved."
 
->>>>>>> 9283dc41f3b9d75ee5e4041a7ab8c6259426ded0
 
