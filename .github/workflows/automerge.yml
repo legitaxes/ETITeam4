@@ -7,7 +7,7 @@ on:
     branches:
       [main]
   pull_request:
-    branches: [ cheskalazo-branch, MaChwe-branch, jiaqibranch, laukwangweibranch, perlebranch ]      
+    branches: [ cheskalazo-branch, MaChwe-branch, jiaqibranch, laukwangweibranch, perlebranch, main ]      
 
 jobs: 
   auto-label:
