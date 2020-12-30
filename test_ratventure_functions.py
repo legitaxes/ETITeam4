@@ -21,7 +21,7 @@ def get_w_map() -> world_map():
 Sprint 1
 '''''
 def test_main(): 
-    """User Story 1.0: Test the inputs for Main Menu
+    """User Story 1.0.1: Test the inputs for Main Menu
 
     Input
     -----------------
@@ -180,7 +180,7 @@ def test_exit_game_prompt_no():
 
 
 def test_main2():
-    """User Story 2.0: Test input for town menu
+    """User Story 2.0.1: Test input for town menu
     
     Input
     -----------------
@@ -211,7 +211,6 @@ def test_town_menu():
     
     Output
     -----------------
-    Day 1: You are in a town.
     1) View Character
     2) View Map
     3) Move
