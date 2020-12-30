@@ -139,15 +139,15 @@ def rest(hero):
     print_result = "You are fully healed."
     return hero["hp"], print_result
 
-def print_hero_stats():
+def print_hero_stats(hero):
     """
     Display the hero's stats and his details
     This function should return the hero's Name, Damage, Defence and HP 
     """
-    # TODO Create a function that prints the stats of the hero
-    # This function should print the hero's stats as well as return the stats as a dictionary object
-    # labels: tasks
-    # assignees: laukwangwei
+
+    hero_stats = str(hero["name"]) + "Damage:" + str(hero["min_damage"]) + "-" + str(hero["max_damage"]) + str(hero["defence"]) + str(hero["hp"])
+    print(hero_stats)
+    return (hero_stats)
 
 
 def get_hero_position(hero):
@@ -203,7 +203,7 @@ def new_game():
         -> Initialize Hero using getHero() function
     """
     global current_day, hero
-    current_day = 1
+    current_day = ini_current_day()
     hero = theHero()
     return current_day, hero
 
@@ -213,27 +213,77 @@ def resume_game():
     The previous save state should have stored variables as a json object
     This function will set the global variables in the program from the json object  
     """
+<<<<<<< HEAD
     # TODO Create a function that loads the game from a json file object in the directory
     # This function should load global variables from the previous save state stored as json objects
     # labels: tasks 
     return ""
+=======
+    try:
+        global hero, w_map, current_day
+        file = open("./save.json", mode = "r")
+        load_data = json.load(file)
+        hero = load_data["hero"]
+        w_map = load_data["w_map"]
+        current_day = load_data["current_day"]
+        file.close()
+    except FileNotFoundError:
+        print("Existing file does not exist.\n")
+        return FileNotFoundError,"Existing file does not exist.\n"
+        #main()
+    print("The game has been resumed to the previous save state.")
+    return "","The game has been resumed to the previous save state."
+>>>>>>> 9283dc41f3b9d75ee5e4041a7ab8c6259426ded0
 
 
 def exit_game():
     """
+<<<<<<< HEAD
     This function exits the game and prints a "Bye Bye!"
     """
     # TODO Create a function that prints a message that says byebye and exit the game
     # This function should exit the python program using sys.exit()
     # labels: tasks
     return ""
+=======
+    This function exits the game and prints a notification message saying it will now close
+    """
+    print("The program will close since there are no unsaved changes.")
+    return "The program will close since there are no unsaved changes."
+>>>>>>> 9283dc41f3b9d75ee5e4041a7ab8c6259426ded0
 
 def exit_game_prompt():
     """
     This function acts as a confirmation message to the user if he is in the game
+<<<<<<< HEAD
     """
     # TODO Create a function that prints a confirmation message and prompts the user to select "Yes" or "No"
     # This function will act as a confirmation message to the user if he wants to really exit the game without saving
     # labels: tasks
     return ""
+=======
+    If the user typed yes or Yes
+    The program will exit and print a bye bye! message
+    Else it will go back
+    """
+    # TODO Create a function that prints a confirmation message and prompts the user to select "Yes" or "No"
+    # This function will act as a confirmation message to the user if he wants to really exit the game without saving
+    # 
+    # labels: tasks
+    print("You have unsaved changes. Do you want to continue?")
+    choice = input("Enter choice: [Y/N]")
+    if(choice == "Y"):
+        print("Bye bye!")
+    elif(choice == "N"):
+        print("Going back to the game...")
+    return choice
+
+def save_game(hero, w_map, current_day):
+    file = open("./save.json", mode = "w+")
+    file.write(json.dumps({"hero": hero, "w_map": w_map, "current_day": current_day}))
+    file.close()
+    print("Game saved.")
+    return "Game saved."
+
+>>>>>>> 9283dc41f3b9d75ee5e4041a7ab8c6259426ded0
 

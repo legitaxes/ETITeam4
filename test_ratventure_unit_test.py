@@ -8,7 +8,7 @@ def get_hero() -> theHero():
 
 @pytest.fixture
 def get_current_day() -> ini_current_day():
-    current_day = 1 
+    current_day = ini_current_day() 
     return current_day
 
 def test_theHero(get_hero):
@@ -118,19 +118,7 @@ def test_print_day(get_hero, get_current_day):
     Test function of print_day Function:
         Display the tile the hero is at and display whether the hero is in town or out in open
     """
-    # TODO Create a test case that prints the day of the game
-    # Test case should assert the following values:
-    #  > Location of the hero 
-    #  > Displaying the day
-    # labels: tasks, unit-test
-    # assignees: laukwangwei
     actual_tile, actual_location, printresult, current_day = print_day(get_hero, get_current_day)
-
-    #tile = get_hero_position(get_hero)
-    #if tile == "T":
-        #value = "You are in a town."
-    #else:
-        #value = "You are out in the open."
 
     if actual_tile == "T":
         assert actual_location == "You are in a town."
@@ -141,17 +129,15 @@ def test_print_day(get_hero, get_current_day):
 
 
 
-def test_print_hero_stats():
+
+def test_print_hero_stats(get_hero):
     """
     Test function of print_hero_stats Function:
         Display the hero's stats and his details
         This function should return the hero's Name, Damage, Defence and HP 
     """
-    # TODO Create a test case that prints the stats of the hero
-    # Test case should assert the following values:
-    #  > All of the hero's stats
-    # labels: tasks, unit-test
-    # assignees: laukwangwei
+    
+    assert print_hero_stats(theHero()) == str(get_hero["name"]) + "Damage:" + str(get_hero["min_damage"]) + "-" + str(get_hero["max_damage"]) + str(get_hero["defence"]) + str(get_hero["hp"])
 
 def test_get_hero_position(get_hero):
     """
