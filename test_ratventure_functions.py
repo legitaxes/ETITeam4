@@ -232,13 +232,13 @@ def test_town_menu():
     output = town_menu()
     assert output == "1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"    
 
-def test_view_character():
+def test_view_character(get_hero):
     """User Story 2.1: Display player's statistics 
     
     
     Output
     -----------------
-    Enter choice: 1
+    
     The hero
     Damage: 2-4
     Defence: 1
@@ -246,11 +246,18 @@ def test_view_character():
     
     """
     #print_hero_stats() 
-    output = print_hero_stats()
-    assert output == "The hero\nDamage: 2-4\nDefence: 1\nHP: 20"
+    set_keyboard_input([])
+    print_hero_stats(get_hero)
+    output =get_display_output()
+    damage = "Damage: {}-{}".format(get_hero["min_damage"], get_hero["max_damage"])
+    defence = "Defence: {}".format(get_hero["defence"])
+    hp = "HP: {}".format(get_hero["hp"])
+    assert output == [get_hero["name"], damage, defence, hp]
 
+    
+   
 
-def test_view_map():
+def test_view_map(get_hero):
     """User Story 2.2: Display the world map
     
     
@@ -270,7 +277,7 @@ def test_view_map():
     position, x_coor, y_coor, legend, list_map = print_map(get_hero)
     #theHero = print_hero_stats()
     w_map = world_map()
-    pos = get_hero_position["position"]
+    pos = get_hero["position"]
     assert position == pos
     assert x_coor == pos[0]
     assert y_coor == pos[1]
