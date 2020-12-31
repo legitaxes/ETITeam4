@@ -143,7 +143,9 @@ def test_exit_game_prompt_yes():
     set_keyboard_input(["Y"])
     exit_game_prompt()
     output = get_display_output()
-    assert output == ["You have unsaved changes. Do you want to continue?", "Enter choice: [Y/N]", "Bye bye!"]
+    assert output == ["You have unsaved changes. Do you want to continue?", 
+                    "Enter choice: [Y/N]", 
+                    "Bye bye!"]
     #choice = unsaved_changes() #create a function
     # if(choice == "Yes"):
     #     exit_game_prompt()
