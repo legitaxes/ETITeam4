@@ -144,10 +144,11 @@ def print_hero_stats(hero):
     Display the hero's stats and his details
     This function should return the hero's Name, Damage, Defence and HP 
     """
-
-    hero_stats = str(hero["name"]) + "Damage:" + str(hero["min_damage"]) + "-" + str(hero["max_damage"]) + str(hero["defence"]) + str(hero["hp"])
-    print(hero_stats)
-    return (hero_stats)
+    print(hero["name"])
+    print("Damage: {}-{}".format(hero["min_damage"], hero["max_damage"]))
+    print("Defence: {}".format(hero["defence"]))
+    print("HP: {}".format(hero["hp"]))
+    #return hero
 
 
 def get_hero_position(hero):
@@ -239,9 +240,9 @@ def exit_game():
 def exit_game_prompt():
     """
     This function acts as a confirmation message to the user if he is in the game
-    If the user typed yes or Yes
+    If the user typed Y
     The program will exit and print a bye bye! message
-    Else it will go back
+    or N: will go back to the previous menu
     """
     # TODO Create a function that prints a confirmation message and prompts the user to select "Yes" or "No"
     # This function will act as a confirmation message to the user if he wants to really exit the game without saving
