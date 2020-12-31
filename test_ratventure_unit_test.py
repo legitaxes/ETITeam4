@@ -13,6 +13,11 @@ def get_current_day() -> ini_current_day():
     current_day = ini_current_day() 
     return current_day
 
+@pytest.fixture
+def get_w_map() -> world_map():
+    w_map = world_map()
+    return w_map
+
 def test_theHero(get_hero):
     """This test function initializes hero's stats
         OUTPUT:"name": "The Hero",
@@ -215,17 +220,16 @@ def test_resume_game():
         assert error == FileNotFoundError
         assert value == "Existing file does not exist.\n"
 
-def test_save_game():
+def test_save_game(get_hero, get_current_day, get_w_map):
     """
     This test function will test whether the save_game() function works
     The save game function will write to the json file to store its global variable objects
     At the end of the operation, it will print "Game Saved."
     """
-    # TODO Create a unit test for save game function
-    # This unit test function will save the game onto a json file object
-    # The json file shall store global variables as a json string
-    # labels: tasks
-    # milestone: 1
+    set_keyboard_input([])
+    save_game(get_hero, get_w_map, get_current_day)
+    output = get_display_output()
+    assert output == ["Game saved."]
 
 def test_exit_game():
     """
@@ -233,18 +237,30 @@ def test_exit_game():
     The exit game function will only print the message and return an indicator whether it will exit
     At the end of the operation, it will print "The program will close since there are no unsaved changes" 
     """
-    # TODO Create a unit test for exit game function
-    # This unit test function will exit the game on demand
-    # labels: tasks
-    # milestone: 1
+    set_keyboard_input([])
+    exit_game()
+    output = get_display_output()
+    assert output == ["The program will close since there are no unsaved changes."]
 
-def test_exit_game_prompt():
+
+def test_exit_game_prompt_yes():
     """
     The test function will test whether exit_game_prompt() works
     The exit game function will only print the message and ask for a user input
     At the end of the operation, it will return an indicator to the program whether the user wants to exit the game
     """
-    # TODO Create a unit test for prompting the user when exiting the game
-    # This unit test will assert a print statement upon running
-    # labels: tasks
-    # milestone: 1
+    set_keyboard_input(["Y"])
+    exit_game_prompt()
+    output = get_display_output()
+    assert output == ["You have unsaved changes. Do you want to continue?", "Enter choice: [Y/N]", "Bye bye!"]
+
+def test_exit_game_prompt_no():
+    """
+    The test function will test the no option for exit game prompt to check whether the display output is correct
+    At the end of the operation it should print another line of code saying "Going back to the game..."
+    """
+    set_keyboard_input(["N"])
+    exit_game_prompt()
+    output = get_display_output()
+    assert output == ["You have unsaved changes. Do you want to continue?", "Enter choice: [Y/N]", "Going back to the game..."]
+
