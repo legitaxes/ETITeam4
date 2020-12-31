@@ -1,5 +1,7 @@
 import pytest 
 from RatVenture_Function import * # update once developer starts 
+from tud_test_base import set_keyboard_input, get_display_output
+
 
 @pytest.fixture
 def get_hero() -> theHero():
@@ -139,10 +141,21 @@ def test_print_hero_stats(get_hero):
     """
     Test function of print_hero_stats Function:
         Display the hero's stats and his details
-        This function should return the hero's Name, Damage, Defence and HP 
+        This function print the following:
+        The Hero
+        Damage: min damage - max damage
+        Defence: defence
+        HP: hp
     """
+    #set keyboard input function is necessary to test the print statements
+    set_keyboard_input([])
+    print_hero_stats(get_hero)
+    output = get_display_output()
+    damage = "Damage: {}-{}".format(get_hero["min_damage"], get_hero["max_damage"])
+    defence = "Defence: {}".format(get_hero["defence"])
+    hp = "HP: {}".format(get_hero["hp"])
+    assert output == [get_hero["name"], damage, defence, hp] 
     
-    assert print_hero_stats(theHero()) == str(get_hero["name"]) + "Damage:" + str(get_hero["min_damage"]) + "-" + str(get_hero["max_damage"]) + str(get_hero["defence"]) + str(get_hero["hp"])
 
 def test_get_hero_position(get_hero):
     """
