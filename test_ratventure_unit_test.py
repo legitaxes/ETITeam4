@@ -74,9 +74,44 @@ def test_world_map():
     assert len(value) == len(expected)
     assert all([a == b for a, b in zip(value, expected)]) #this checks python list against the expected value
 
-def test_main_menu():
-    value = main_menu()
-    assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
+def test_main_menu_input_1():
+    set_keyboard_input([1])
+    main_menu()
+    output = get_display_output()
+    assert output == ["Welcome to Ratventure", 
+                        "----------------------", 
+                        "1) New Game", 
+                        "2) Resume Game", 
+                        "3) Exit Game", 
+                        "Enter Choice: ", 
+                        "Starting a new game..."]
+    #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
+
+def test_main_menu_input_2():
+    set_keyboard_input([2])
+    main_menu()
+    output = get_display_output()
+    assert output == ["Welcome to Ratventure", 
+                        "----------------------", 
+                        "1) New Game", 
+                        "2) Resume Game", 
+                        "3) Exit Game", 
+                        "Enter Choice: ", 
+                        "Resuming from last save state..."]
+    #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
+
+def test_main_menu_input_3():
+    set_keyboard_input([3])
+    main_menu()
+    output = get_display_output()
+    assert output == ["Welcome to Ratventure", 
+                        "----------------------", 
+                        "1) New Game", 
+                        "2) Resume Game", 
+                        "3) Exit Game", 
+                        "Enter Choice: ", 
+                        "Exiting game..."]
+    #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
 
 def test_town_menu():
     value = town_menu()
@@ -241,7 +276,6 @@ def test_exit_game():
     exit_game()
     output = get_display_output()
     assert output == ["The program will close since there are no unsaved changes."]
-
 
 def test_exit_game_prompt_yes():
     """
