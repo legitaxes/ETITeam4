@@ -86,7 +86,7 @@ def test_main_menu_input_1():
                         "Enter Choice: ", 
                         "Starting a new game..."]
     #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
-    
+
 def test_main_menu_input_2():
     set_keyboard_input([2])
     main_menu()
@@ -276,13 +276,7 @@ def test_exit_game():
     exit_game()
     output = get_display_output()
     assert output == ["The program will close since there are no unsaved changes."]
-<<<<<<< HEAD
 
-
-=======
-
-
->>>>>>> 3da68a21ce722eb357b51e9b30bf0f9f0d2f57b5
 def test_exit_game_prompt_yes():
     """
     The test function will test whether exit_game_prompt() works
