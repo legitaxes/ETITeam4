@@ -176,10 +176,22 @@ def main_menu():
     3) Exit Game
     Enter choice:
     """
-    print("Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game")
-    
-    #choice = int(input("Enter Choice: "))
-    return "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
+    print("Welcome to Ratventure")
+    print("----------------------")
+    print("1) New Game")
+    print("2) Resume Game")
+    print("3) Exit Game")
+    choice = int(input("Enter Choice: "))
+    if(choice < 1 or choice > 3):
+        print("Please enter a valid choice")
+    else:
+        if(choice == 1):
+            print("Starting a new game...")
+        elif(choice == 2):
+            print("Resuming from last save state...")
+        elif(choice == 3):
+            print("Exiting game...")
+    return choice
 
 def town_menu():
     """

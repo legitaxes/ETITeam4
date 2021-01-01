@@ -38,26 +38,67 @@ def test_main():
     """
     output = main()
     assert output == "Error! Please input an appropriate option.\nWelcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
-    
-def test_main_menu(): 
-    
-    """User Story 1.0: Test whether main menu 
-    pops out when program opens
-    
-    Input
-    -----------------
-    Open the RatVenture application.
-    
-    Output
-    -----------------
-    Welcome to Ratventure!
-    1) New Game
-    2) Resume Game
-    3) Exit Game
-    
-    """
-    output = main_menu()
-    assert output == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
+
+def test_main_menu_input_1():
+    set_keyboard_input([1])
+    main_menu()
+    output = get_display_output()
+    assert output == ["Welcome to Ratventure", 
+                        "----------------------", 
+                        "1) New Game", 
+                        "2) Resume Game", 
+                        "3) Exit Game", 
+                        "Enter Choice: ", 
+                        "Starting a new game..."]
+    #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
+
+def test_main_menu_input_2():
+    set_keyboard_input([2])
+    main_menu()
+    output = get_display_output()
+    assert output == ["Welcome to Ratventure", 
+                        "----------------------", 
+                        "1) New Game", 
+                        "2) Resume Game", 
+                        "3) Exit Game", 
+                        "Enter Choice: ", 
+                        "Resuming from last save state..."]
+    #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
+
+def test_main_menu_input_3():
+    set_keyboard_input([3])
+    main_menu()
+    output = get_display_output()
+    assert output == ["Welcome to Ratventure", 
+                        "----------------------", 
+                        "1) New Game", 
+                        "2) Resume Game", 
+                        "3) Exit Game", 
+                        "Enter Choice: ", 
+                        "Exiting game..."]
+    #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
+
+def test_main_menu_input_4():
+    set_keyboard_input([4])
+    main_menu()
+    output = get_display_output()
+    assert output == ["Welcome to Ratventure", "----------------------", "1) New Game", "2) Resume Game", "3) Exit Game", "Enter Choice: ", "Please enter a valid choice"]
+    #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
+
+def test_main_menu_input_0():
+    set_keyboard_input([0])
+    main_menu()
+    output = get_display_output()
+    assert output == ["Welcome to Ratventure", "----------------------", "1) New Game", "2) Resume Game", "3) Exit Game", "Enter Choice: ", "Please enter a valid choice"]
+    #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
+
+
+def test_main_menu_input_negative():
+    set_keyboard_input([-1])
+    main_menu()
+    output = get_display_output()
+    assert output == ["Welcome to Ratventure", "----------------------", "1) New Game", "2) Resume Game", "3) Exit Game", "Enter Choice: ", "Please enter a valid choice"]
+    #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
                     
                 
 def test_new_game(): 
