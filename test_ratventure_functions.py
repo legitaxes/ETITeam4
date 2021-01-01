@@ -315,7 +315,7 @@ def test_view_map(get_hero):
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', 'K']
     
     """
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero)
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, False)
     #theHero = print_hero_stats()
     w_map = world_map()
     pos = get_hero["position"]

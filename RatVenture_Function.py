@@ -78,7 +78,7 @@ def world_map():
     print(w_map)
     return w_map
 
-def print_map(hero):
+def print_map(hero, flag=True):
     """
     Displays the Map of the game when called
     This function should print the full layout of the map
@@ -104,13 +104,16 @@ def print_map(hero):
             else:
                 if x == x_coor and y == y_coor:
                     legend = " H "
-            print("|{}".format(legend), end="")
+            if(flag == True):
+                print("|{}".format(legend), end="")
             list_map.append("|" + legend)
         print("|")
         list_map.append("|")
     print("+---"*8 + "+")
     list_map.append("+---"*8 + "+")
     return position, x_coor, y_coor, legend, list_map
+
+print_map(theHero())
 
 def print_day(hero, current_day):
     """
