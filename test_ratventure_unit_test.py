@@ -1,5 +1,7 @@
 import pytest 
 from RatVenture_Function import * # update once developer starts 
+from tud_test_base import set_keyboard_input, get_display_output
+
 
 @pytest.fixture
 def get_hero() -> theHero():
@@ -10,6 +12,11 @@ def get_hero() -> theHero():
 def get_current_day() -> ini_current_day():
     current_day = ini_current_day() 
     return current_day
+
+@pytest.fixture
+def get_w_map() -> world_map():
+    w_map = world_map()
+    return w_map
 
 def test_theHero(get_hero):
     """This test function initializes hero's stats
@@ -67,9 +74,44 @@ def test_world_map():
     assert len(value) == len(expected)
     assert all([a == b for a, b in zip(value, expected)]) #this checks python list against the expected value
 
-def test_main_menu():
-    value = main_menu()
-    assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
+def test_main_menu_input_1():
+    set_keyboard_input([1])
+    main_menu()
+    output = get_display_output()
+    assert output == ["Welcome to Ratventure", 
+                        "----------------------", 
+                        "1) New Game", 
+                        "2) Resume Game", 
+                        "3) Exit Game", 
+                        "Enter Choice: ", 
+                        "Starting a new game..."]
+    #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
+
+def test_main_menu_input_2():
+    set_keyboard_input([2])
+    main_menu()
+    output = get_display_output()
+    assert output == ["Welcome to Ratventure", 
+                        "----------------------", 
+                        "1) New Game", 
+                        "2) Resume Game", 
+                        "3) Exit Game", 
+                        "Enter Choice: ", 
+                        "Resuming from last save state..."]
+    #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
+
+def test_main_menu_input_3():
+    set_keyboard_input([3])
+    main_menu()
+    output = get_display_output()
+    assert output == ["Welcome to Ratventure", 
+                        "----------------------", 
+                        "1) New Game", 
+                        "2) Resume Game", 
+                        "3) Exit Game", 
+                        "Enter Choice: ", 
+                        "Exiting game..."]
+    #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
 
 def test_town_menu():
     value = town_menu()
@@ -83,7 +125,7 @@ def test_print_map(get_hero):
         This function should print the full layout of the map
     """
 
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero)
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, False)
     #theHero = print_hero_stats()
     w_map = world_map()
     pos = get_hero["position"]
@@ -139,10 +181,21 @@ def test_print_hero_stats(get_hero):
     """
     Test function of print_hero_stats Function:
         Display the hero's stats and his details
-        This function should return the hero's Name, Damage, Defence and HP 
+        This function print the following:
+        The Hero
+        Damage: min damage - max damage
+        Defence: defence
+        HP: hp
     """
+    #set keyboard input function is necessary to test the print statements
+    set_keyboard_input([])
+    print_hero_stats(get_hero)
+    output = get_display_output()
+    damage = "Damage: {}-{}".format(get_hero["min_damage"], get_hero["max_damage"])
+    defence = "Defence: {}".format(get_hero["defence"])
+    hp = "HP: {}".format(get_hero["hp"])
+    assert output == [get_hero["name"], damage, defence, hp] 
     
-    assert print_hero_stats(theHero()) == str(get_hero["name"]) + "Damage:" + str(get_hero["min_damage"]) + "-" + str(get_hero["max_damage"]) + str(get_hero["defence"]) + str(get_hero["hp"])
 
 def test_get_hero_position(get_hero):
     """
@@ -202,17 +255,16 @@ def test_resume_game():
         assert error == FileNotFoundError
         assert value == "Existing file does not exist.\n"
 
-def test_save_game():
+def test_save_game(get_hero, get_current_day, get_w_map):
     """
     This test function will test whether the save_game() function works
     The save game function will write to the json file to store its global variable objects
     At the end of the operation, it will print "Game Saved."
     """
-    # TODO Create a unit test for save game function
-    # This unit test function will save the game onto a json file object
-    # The json file shall store global variables as a json string
-    # labels: tasks
-    # milestone: 1
+    set_keyboard_input([])
+    save_game(get_hero, get_w_map, get_current_day)
+    output = get_display_output()
+    assert output == ["Game saved."]
 
 def test_exit_game():
     """
@@ -220,18 +272,29 @@ def test_exit_game():
     The exit game function will only print the message and return an indicator whether it will exit
     At the end of the operation, it will print "The program will close since there are no unsaved changes" 
     """
-    # TODO Create a unit test for exit game function
-    # This unit test function will exit the game on demand
-    # labels: tasks
-    # milestone: 1
+    set_keyboard_input([])
+    exit_game()
+    output = get_display_output()
+    assert output == ["The program will close since there are no unsaved changes."]
 
-def test_exit_game_prompt():
+def test_exit_game_prompt_yes():
     """
     The test function will test whether exit_game_prompt() works
     The exit game function will only print the message and ask for a user input
     At the end of the operation, it will return an indicator to the program whether the user wants to exit the game
     """
-    # TODO Create a unit test for prompting the user when exiting the game
-    # This unit test will assert a print statement upon running
-    # labels: tasks
-    # milestone: 1
+    set_keyboard_input(["Y"])
+    exit_game_prompt()
+    output = get_display_output()
+    assert output == ["You have unsaved changes. Do you want to continue?", "Enter choice: [Y/N]", "Bye bye!"]
+
+def test_exit_game_prompt_no():
+    """
+    The test function will test the no option for exit game prompt to check whether the display output is correct
+    At the end of the operation it should print another line of code saying "Going back to the game..."
+    """
+    set_keyboard_input(["N"])
+    exit_game_prompt()
+    output = get_display_output()
+    assert output == ["You have unsaved changes. Do you want to continue?", "Enter choice: [Y/N]", "Going back to the game..."]
+

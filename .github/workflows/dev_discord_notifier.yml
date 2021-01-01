@@ -25,7 +25,14 @@ jobs:
       id: TestWithPytest
       run: | 
         pytest test_ratventure_unit_test.py -v --junitxml=report.xml
-    
+
+    - name: Publish Unit Test Results
+      uses: EnricoMi/publish-unit-test-result-action@v1.5
+      if: always()
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        files: report.xml
+        
   notify:
     name: Discord Notification
     runs-on: ubuntu-latest
