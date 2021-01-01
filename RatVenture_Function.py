@@ -113,8 +113,6 @@ def print_map(hero, flag=True):
     list_map.append("+---"*8 + "+")
     return position, x_coor, y_coor, legend, list_map
 
-print_map(theHero())
-
 def print_day(hero, current_day):
     """
     Display the details of the location the hero is at and display the current day of the game
