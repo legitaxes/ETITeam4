@@ -20,24 +20,6 @@ def get_w_map() -> world_map():
 '''''
 Sprint 1
 '''''
-def test_main(): 
-    """User Story 1.0.1: Test the inputs for Main Menu
-
-    Input
-    -----------------
-    4
-    
-    Output
-    -----------------
-    Error! Please input an appropriate option. 
-    Welcome to Ratventure!
-    1) New Game
-    2) Resume Game
-    3) Exit Game
-
-    """
-    output = main()
-    assert output == "Error! Please input an appropriate option.\nWelcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
 
 def test_main_menu_input_1():
     set_keyboard_input([1])
@@ -99,7 +81,13 @@ def test_main_menu_input_negative():
     output = get_display_output()
     assert output == ["Welcome to Ratventure", "----------------------", "1) New Game", "2) Resume Game", "3) Exit Game", "Enter Choice: ", "Please enter a valid choice"]
     #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
-                    
+
+def test_main_menu_input_special_character():
+    set_keyboard_input(['@'])
+    main_menu()
+    output = get_display_output()
+    assert output == ["Welcome to Ratventure", "----------------------", "1) New Game", "2) Resume Game", "3) Exit Game", "Enter Choice: ", "Please enter a valid choice"]
+    #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"                    
                 
 def test_new_game(): 
     """ User Story 1.1: Create New Game

@@ -174,6 +174,6 @@ During the building phase of the product, we will be producing a working product
 
 + It is the best way to maintain optimum control, reduce problems, and allow the project manager to run production without having to micromanage the members of the project. SDLC shows what’s happening, and exactly where the development process can be improved. SDLC also aims to analyze and improve the process of creating software as it creates a scalable view of the project, from day-to-day coding to managing production dates.  
 
-
+### Latest Changes
 
 --- 
