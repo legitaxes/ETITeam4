@@ -270,10 +270,36 @@ def exit_game_prompt():
     return choice
 
 def save_game(hero, w_map, current_day):
+    """
+    This function saves the current progress of the game onto an external json file named: 'save.json'
+    """
     file = open("./save.json", mode = "w+")
     file.write(json.dumps({"hero": hero, "w_map": w_map, "current_day": current_day}))
     file.close()
     print("Game saved.")
     return "Game saved."
 
+def set_hero_position(x = None, y = None):
+    """
+    This function should set the hero's position and return true if it is a valid movement
+    Else it should return false if the hero is out of bounds in the map
+    """
+    # TODO Create a fucntion that allows the hero to set its position on the map
+    # This function should return true or false depending on whether the movement is valid
+    # labels: tasks
+    # milestone: 1
+
+
+def move_hero():
+    """
+    This function moves the hero based on the hero's input
+    Input being: W, A, S, D | Up, Left, Down, Right
+    Program should show the map of the game and prompt for user input 
+    """
+    # TODO Create a function that allows the hero to move up, down, left and right
+    # This function should show the map of the game first using print_map() and then prompt for user input
+    # labels: tasks
+    # milestone: 1
+
+    return
 

@@ -237,8 +237,6 @@ def test_new_game(get_hero, get_current_day):
     assert hero["defence"] == get_hero["defence"]
     assert hero["position"] == get_hero["position"]
 	
-    
-
 def test_resume_game():
     """
     This test function will test whether resume_game() function is working
@@ -298,3 +296,47 @@ def test_exit_game_prompt_no():
     output = get_display_output()
     assert output == ["You have unsaved changes. Do you want to continue?", "Enter choice: [Y/N]", "Going back to the game..."]
 
+def test_set_hero_position():
+    """
+    This unit test function should test whether the hero's position is set correctly
+    Test should get the x coor and y coor after the movement and put it in the map
+    If the character is out of bound of the map, it should return false 
+    Whereas if the character is not out of bound in the map, it should return true
+    """
+    # TODO Create a unit test function of set_hero_position() that sets the hero position in the map
+    # If the hero is out of bound in the map it should return false 
+    # Else this function should return true if the movement isnt invalid
+    # labels: tasks, unit-test
+    # milestone: 1
+    
+
+def test_move_hero():
+    """
+    This unit test function should print the map of the game and then ask for user input
+    Test should cover W, A, S, D movement in the game
+    Moving out of bounds is NOT allowed
+    """
+    # TODO Create a unit test function of move hero that shows the map and prompts for user input
+    # This function should print the map of the game and then prompt for movement input
+    # Need to create 4 different test function of move_hero()
+    # move_hero_up(), move_hero_down(), move_hero_left(), move_hero_right()
+    # labels: tasks, unit-test
+    # milestone: 1
+
+    return
+
+def test_move_hero_up():
+
+    return
+
+def test_move_hero_down():
+    
+    return
+
+def test_move_hero_left():
+
+    return
+
+def test_move_hero_right():
+
+    return
