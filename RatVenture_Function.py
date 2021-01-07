@@ -279,7 +279,7 @@ def save_game(hero, w_map, current_day):
     print("Game saved.")
     return "Game saved."
 
-def set_hero_position(x = None, y = None):
+def set_hero_position(hero, x=None, y=None):
     """
     This function should set the hero's position and return true if it is a valid movement
     Else it should return false if the hero is out of bounds in the map
@@ -288,6 +288,24 @@ def set_hero_position(x = None, y = None):
     # This function should return true or false depending on whether the movement is valid
     # labels: tasks
     # milestone: 1
+    position = hero["position"]
+    x_coor = position[0]
+    y_coor = position[1]
+    if y != None:
+        y_coor += y
+        if y_coor < 0 or y_coor > 7:
+            print("Not able to move out of map (Up/Down)!")
+            return False, hero["position"]
+    if x != None:
+        x_coor += x
+        if x_coor < 0 or x_coor > 7:
+            print("Not able to move out of map (Left/Right)!")
+            return False, hero["position"]
+    #save the updated hero position
+    position[0] = x_coor
+    position[1] = y_coor
+    hero["position"] = position
+    return True, hero["position"]
 
 
 def move_hero():
