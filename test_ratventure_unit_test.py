@@ -296,12 +296,12 @@ def test_exit_game_prompt_no():
     output = get_display_output()
     assert output == ["You have unsaved changes. Do you want to continue?", "Enter choice: [Y/N]", "Going back to the game..."]
 
-def test_set_hero_position(get_hero, x=None, y=None):
+@pytest.mark.parametrize("x,y",[(1,2), (2,4)])
+def test_set_hero_position(get_hero, x, y):
     """
     This unit test function should test whether the hero's position is set correctly
-    Test should get the x coor and y coor after the movement and put it in the map
-    If the character is out of bound of the map, it should return false 
-    Whereas if the character is not out of bound in the map, it should return true
+    Test should set the x coordinate and y coordiante to be None
+    This test should test whether the returned hero_position and condition is correct
     """
     # TODO Create a unit test function of set_hero_position() that sets the hero position in the map
     # If the hero is out of bound in the map it should return false 
@@ -309,7 +309,9 @@ def test_set_hero_position(get_hero, x=None, y=None):
     # labels: tasks, unit-test
     # milestone: 1
     set_keyboard_input([])
-    condition, hero_position = set_hero_position(get_hero)
+    # needs to be run by itself to get output of the program
+    set_hero_position(get_hero, x, y)
+    condition, hero_position = set_hero_position(get_hero, x, y)
     position = get_hero["position"]
     x_coor = position[0]
     y_coor = position[1]
@@ -319,12 +321,49 @@ def test_set_hero_position(get_hero, x=None, y=None):
         if y_coor < 0 or y_coor > 7:
             assert output == ["Not able to move out of map (Up/Down)!"]
             assert condition == False
+            assert hero_position == get_hero["position"]
+            return
     if x!= None:
         x_coor += x
         if x_coor < 0 or x_coor > 7:
             assert output == ["Not able to move out of map (Left/Right)!"]
             assert condition == False
-    
+            assert hero_position == get_hero["position"]
+            return
+    #save the updated position
+    position[0] = x_coor
+    position[1] = y_coor
+    assert hero_position == position
+    assert condition == True
+
+@pytest.mark.parametrize("x,y",[(-1,2), (2,-4), (8,1), (3,8)])
+def test_set_hero_position_out_of_bounds(get_hero, x, y):
+    """
+    This unit test function should test whether the hero's position is set correctly
+    Test should set the x coordinate to out of bounds and y to be a normal integer
+    x out of bounds = any number not between 0 ~ 7
+    y out of bounds = any number not between 0 ~ 7
+    """
+    set_keyboard_input([])
+    condition, hero_position = set_hero_position(get_hero, x, y)
+    position = get_hero["position"]
+    x_coor = position[0]
+    y_coor = position[1]
+    output = get_display_output()
+    if y!= None:
+        y_coor += y
+        if y_coor < 0 or y_coor > 7:
+            assert output == ["Not able to move out of map (Up/Down)!"]
+            assert condition == False
+            assert hero_position == get_hero["position"]
+            return
+    if x!= None:
+        x_coor += x
+        if x_coor < 0 or x_coor > 7:
+            assert output == ["Not able to move out of map (Left/Right)!"]
+            assert condition == False
+            assert hero_position == get_hero["position"]
+            return
     #save the updated position
     position[0] = x_coor
     position[1] = y_coor
