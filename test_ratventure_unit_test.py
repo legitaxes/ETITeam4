@@ -314,7 +314,7 @@ def test_set_hero_position(get_hero, x, y):
     if y!= None:
         y_coor += y
         if y_coor < 0 or y_coor > 7:
-            assert output == ["Not able to move out of map (Up/Down)!"]
+            assert output == ["Not able to move out of map (Left/Right)!"]
             assert condition == False
             assert hero_position == get_hero["position"]
             return #test function should stop if its false
@@ -322,7 +322,7 @@ def test_set_hero_position(get_hero, x, y):
     if x!= None:
         x_coor += x
         if x_coor < 0 or x_coor > 7:
-            assert output == ["Not able to move out of map (Left/Right)!"]
+            assert output == ["Not able to move out of map (Up/Down)!"]
             assert condition == False
             assert hero_position == get_hero["position"]
             return #test function should stop if its false
@@ -350,7 +350,7 @@ def test_set_hero_position_out_of_bounds(get_hero, x, y):
     if y!= None:
         y_coor += y
         if y_coor < 0 or y_coor > 7:
-            assert output == ["Not able to move out of map (Up/Down)!"]
+            assert output == ["Not able to move out of map (Left/Right)!"]
             assert condition == False
             assert hero_position == get_hero["position"]
             return
@@ -358,7 +358,7 @@ def test_set_hero_position_out_of_bounds(get_hero, x, y):
     if x!= None:
         x_coor += x
         if x_coor < 0 or x_coor > 7:
-            assert output == ["Not able to move out of map (Left/Right)!"]
+            assert output == ["Not able to move out of map (Up/Down)!"]
             assert condition == False
             assert hero_position == get_hero["position"]
             return
