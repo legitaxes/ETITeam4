@@ -111,6 +111,8 @@ def print_map(hero, flag=True):
         list_map.append("|")
     print("+---"*8 + "+")
     list_map.append("+---"*8 + "+")
+    # list of items returned below are mainly used for unit test
+    # they do not serve any other extra purpose
     return position, x_coor, y_coor, legend, list_map
 
 def print_day(hero, current_day):
@@ -291,12 +293,12 @@ def set_hero_position(hero, x=None, y=None):
     if y != None:
         y_coor += y
         if y_coor < 0 or y_coor > 7:
-            print("Not able to move out of map (Up/Down)!")
+            print("Not able to move out of map (Left/Right)!")
             return False, hero["position"]
     if x != None:
         x_coor += x
         if x_coor < 0 or x_coor > 7:
-            print("Not able to move out of map (Left/Right)!")
+            print("Not able to move out of map (Up/Down)!")
             return False, hero["position"]
     #save the updated hero position
     position[0] = x_coor
@@ -305,16 +307,65 @@ def set_hero_position(hero, x=None, y=None):
     return True, hero["position"]
 
 
-def move_hero():
+def move_hero(hero, flag=True):
     """
     This function moves the hero based on the hero's input
     Input being: W, A, S, D | Up, Left, Down, Right
     Program should show the map of the game and prompt for user input 
+    Any Flag that is False is used for Unit Test Cases ONLY
     """
-    # TODO Create a function that allows the hero to move up, down, left and right
-    # This function should show the map of the game first using print_map() and then prompt for user input
-    # labels: tasks
-    # milestone: 1
+    if(flag == True):
+        print_map(hero)
+    print("W = up; A = left; S = down; D = right")
 
-    return
-
+    while True:
+        move = input("Your move: ").lower()
+        if move == "w":
+            status, pos = set_hero_position(hero, x=-1)
+            if status == False:
+                if flag == False:
+                    return False
+                continue
+            elif status == True:
+                if flag == False:
+                    return True
+                break
+        elif move == "a":
+            status, pos = set_hero_position(hero, y=-1)
+            if status == False:
+                if flag == False:
+                    return False
+                continue
+            elif status == True:
+                if flag == False:
+                    return True
+                break
+        elif move == "s":
+            status, pos = set_hero_position(hero, x=1)
+            if status == False:
+                if flag == False:
+                    return False
+                continue
+            elif status == True:
+                if flag == False:
+                    return True
+                break
+        elif move == "d":
+            status, pos = set_hero_position(hero, y=1)
+            if status == False:
+                if flag == False:
+                    return False
+                continue
+            elif status == True:
+                if flag == False:
+                    return True
+                break
+        elif(flag == False):
+            print("Input out of range")
+            return False
+        else:
+            print("Input out of range")
+    if(flag == False):
+        return True
+    else:
+        print_map(hero)

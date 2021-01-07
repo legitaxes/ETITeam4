@@ -369,73 +369,13 @@ def test_set_hero_position_out_of_bounds(get_hero, x, y):
     assert hero_position == position
     assert condition == True
 
-
-def test_move_hero(get_hero):
+@pytest.mark.parametrize("move",[("W"), ("w")])
+def test_move_hero_up(get_hero, move):
     """
-    This unit test function should print the map of the game and then ask for user input
-    Test should cover W, A, S, D movement in the game
-    Moving out of bounds is NOT allowed
-    """
-    # TODO Create a unit test function of move hero that shows the map and prompts for user input
-    # This function should print the map of the game and then prompt for movement input
-    # Need to create 4 different test function of move_hero()
-    # move_hero_up(), move_hero_down(), move_hero_left(), move_hero_right()
-    # labels: tasks, unit-test
-    # milestone: 1
-    set_keyboard_input([])
-
-    # Asserting print_map function 
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero, False)
-    w_map = world_map()
-    pos = get_hero["position"]
-    assert position == pos
-    assert x_coor == pos[0]
-    assert y_coor == pos[1]
-    list_print_map = []
-    for x in range(8):
-        list_print_map.append("+---"*8 + "+")
-        for y in range(8):
-            legend = "   "
-            if w_map[x][y] == "T":
-                if x == x_coor and y == y_coor:
-                    legend = "H/T"
-                    #assert legend == "H/T"
-                else:
-                    legend = " T "
-                    #assert legend == " T "
-            elif w_map[x][y] == "K":
-                if x == x_coor and y == y_coor:
-                    legend = "H/K"
-                    #assert legend == "H/K"
-                else:
-                    legend = " K " 
-                    #assert legend == " K "
-            else:
-                if x == x_coor and y == y_coor:
-                    legend = " H "
-                    #assert legend == " H "
-            list_print_map.append("|" + legend)
-        list_print_map.append("|")
-    list_print_map.append("+---"*8 + "+")
-    # assert both lists
-    assert all([a == b for a, b in zip(list_print_map, list_map)]) #this checks python list against the expected value
-
-    move_hero()
-    output = get_display_output()
-    assert output == ["W = up; A = left; S = down; D = right"]
-    return
-
-def test_move_hero_up(get_hero):
-    """
-    This unit test function should print the map of the game and then ask for user input
     Test should cover 'W' part of the movement
     If the movement is an invalid one, it should print: "Not able to move out of map (Up/Down)"
+    Tested on the starting point of the map [0,0]. Test should be a failing test case with the error message of Not being able to move up
     """
-    set_keyboard_input(["w"])
-    actual_status = move_hero(get_hero)
-    test_status = set_hero_position(get_hero,x=-1)
-    output = get_display_output()
-
     # Asserting print_map function 
     position, x_coor, y_coor, legend, list_map = print_map(get_hero, False)
     w_map = world_map()
@@ -472,25 +412,26 @@ def test_move_hero_up(get_hero):
     # assert both lists
     assert all([a == b for a, b in zip(list_print_map, list_map)]) #this checks python list against the expected value
 
+    set_keyboard_input([move])
+    actual_status = move_hero(get_hero,False)
+    #test_status = set_hero_position(get_hero,x=-1)
+    output = get_display_output()
     # testing the actual move function
-    if(actual_status == test_status):
-        assert actual_status == test_status
-        if(test_status == False):
-            assert output == ["W = up; A = left; S = down; D = right", 
-                        "Your move: w", "Not able to move out of map (Up/Down)!"]
-        elif(test_status == True):
-            assert output == ["W = up; A = left; S = down; D = right", 
-                        "Your move: w"]
+    #if(actual_status == test_status):
+    if(actual_status == False):
+        assert output == ["W = up; A = left; S = down; D = right", 
+                    "Your move: ", "Not able to move out of map (Up/Down)!"]
+    elif(actual_status == True):
+        assert output == ["W = up; A = left; S = down; D = right", 
+                    "Your move: "]
 
-def test_move_hero_down(get_hero):
+@pytest.mark.parametrize("move",[("D"), ("d")])
+def test_move_hero_down(get_hero, move):
     """
-    This unit test function should print the map of the game and then ask for user input
     Test should cover 'S' part of the movement
     If the movement is an invalid one, it should print: "Not able to move out of map (Up/Down)"
+    Tested on the starting point of the map [0,0]. Test should be a passing test case without needing an error message
     """
-    #test case of move hero down, getting the print output
-    set_keyboard_input(["s"])
-
     # Asserting print_map function 
     position, x_coor, y_coor, legend, list_map = print_map(get_hero, False)
     w_map = world_map()
@@ -526,30 +467,27 @@ def test_move_hero_down(get_hero):
     list_print_map.append("+---"*8 + "+")
     # assert both lists
     assert all([a == b for a, b in zip(list_print_map, list_map)]) #this checks python list against the expected value
-
-    actual_status = move_hero(get_hero)
-    test_status = set_hero_position(get_hero,x=1)
+    
+    #test case of move hero down, getting the print output
+    set_keyboard_input([move])
+    actual_status = move_hero(get_hero,False)
+    #test_status = set_hero_position(get_hero,x=1)
     output = get_display_output()
     # Testing the actual move function
+    if(actual_status == False):
+        assert output == ["W = up; A = left; S = down; D = right", 
+                    "Your move: ", "Not able to move out of map (Up/Down)!"]
+    elif(actual_status == True):
+        assert output == ["W = up; A = left; S = down; D = right", 
+                    "Your move: "]
 
-    if(actual_status == test_status):
-        assert actual_status == test_status
-        if(test_status == False):
-            assert output == ["W = up; A = left; S = down; D = right", 
-                        "Your move: s", "Not able to move out of map (Up/Down)!"]
-        elif(test_status == True):
-            assert output == ["W = up; A = left; S = down; D = right", 
-                        "Your move: s"]
-
-def test_move_hero_left(get_hero):
+@pytest.mark.parametrize("move",[("A"), ("a")])
+def test_move_hero_left(get_hero, move):
     """
-    This unit test function should print the map of the game and then ask for user input
     Test should cover 'A' part of the movement
     If the movement is an invalid one, it should print: "Not able to move out of map (Left/Right)"
+    Tested on the starting point of the map [0,0]. Test should be a failing test case with the error message of Not being able to move left
     """
-    #test case of move hero left, getting the print output
-    set_keyboard_input(["a"])
-
     # Asserting print_map function 
     position, x_coor, y_coor, legend, list_map = print_map(get_hero, False)
     w_map = world_map()
@@ -586,29 +524,25 @@ def test_move_hero_left(get_hero):
     # assert both lists
     assert all([a == b for a, b in zip(list_print_map, list_map)]) #this checks python list against the expected value
 
-    actual_status = move_hero(get_hero)
-    test_status = set_hero_position(get_hero,y=-1)
+    #test case of move hero left, getting the print output
+    set_keyboard_input([move])
+    status = move_hero(get_hero,False)
     output = get_display_output()
     # Testing the actual move function
+    if(status == False):
+        assert output == ["W = up; A = left; S = down; D = right", 
+                    "Your move: ", "Not able to move out of map (Left/Right)!"]
+    elif(status == True):
+        assert output == ["W = up; A = left; S = down; D = right", 
+                    "Your move: "]
 
-    if(actual_status == test_status):
-        assert actual_status == test_status
-        if(test_status == False):
-            assert output == ["W = up; A = left; S = down; D = right", 
-                        "Your move: a", "Not able to move out of map (Left/Right)!"]
-        elif(test_status == True):
-            assert output == ["W = up; A = left; S = down; D = right", 
-                        "Your move: a"]
-
-def test_move_hero_right(get_hero):
+@pytest.mark.parametrize("move",[("D"), ("d")])
+def test_move_hero_right(get_hero, move):
     """
-    This unit test function should print the map of the game and then ask for user input
     Test should cover 'D' part of the movement
     If the movement is an invalid one, it should print: "Not able to move out of map (Left/Right)"
+    Tested on the starting point of the map [0,0]. Test should be a pass with no error message
     """
-    #test case of move hero left, getting the print output
-    set_keyboard_input(["d"])
-
     # Asserting print_map function 
     position, x_coor, y_coor, legend, list_map = print_map(get_hero, False)
     w_map = world_map()
@@ -645,79 +579,66 @@ def test_move_hero_right(get_hero):
     # assert both lists
     assert all([a == b for a, b in zip(list_print_map, list_map)]) #this checks python list against the expected value
 
-    actual_status = move_hero(get_hero)
-    test_status = set_hero_position(get_hero,y=1)
+    #test case of move hero right, getting the print output
+    set_keyboard_input([move])
+    status = move_hero(get_hero,False)
     output = get_display_output()
     # Testing the actual move function
-
-    if(actual_status == test_status):
-        assert actual_status == test_status
-        if(test_status == False):
-            assert output == ["W = up; A = left; S = down; D = right", 
-                        "Your move: d", "Not able to move out of map (Left/Right)!"]
-        elif(test_status == True):
-            assert output == ["W = up; A = left; S = down; D = right", 
-                        "Your move: d"]
-
-def test_move_hero_out_of_range(get_hero):
-    """
-    This unit test function should print the map of the game and then ask for user input
-    Test should cover anything else typed to the input of the movement
-    If the movement is an invalid one, it should print: "Input out of range"
-    """
-    #test case of move hero left, getting the print output
-    set_keyboard_input(["z"])
-
-    # Asserting print_map function 
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero, False)
-    w_map = world_map()
-    pos = get_hero["position"]
-    assert position == pos
-    assert x_coor == pos[0]
-    assert y_coor == pos[1]
-    list_print_map = []
-    for x in range(8):
-        list_print_map.append("+---"*8 + "+")
-        for y in range(8):
-            legend = "   "
-            if w_map[x][y] == "T":
-                if x == x_coor and y == y_coor:
-                    legend = "H/T"
-                    #assert legend == "H/T"
-                else:
-                    legend = " T "
-                    #assert legend == " T "
-            elif w_map[x][y] == "K":
-                if x == x_coor and y == y_coor:
-                    legend = "H/K"
-                    #assert legend == "H/K"
-                else:
-                    legend = " K " 
-                    #assert legend == " K "
-            else:
-                if x == x_coor and y == y_coor:
-                    legend = " H "
-                    #assert legend == " H "
-            list_print_map.append("|" + legend)
-        list_print_map.append("|")
-    list_print_map.append("+---"*8 + "+")
-    # assert both lists
-    assert all([a == b for a, b in zip(list_print_map, list_map)]) #this checks python list against the expected value
-
-    actual_status = move_hero(get_hero)
-    if(actual_status == None):
-        output = get_display_output()
+    if(status == False):
         assert output == ["W = up; A = left; S = down; D = right", 
-                        "Your move: z", "Input out of range"]
-    test_status = set_hero_position(get_hero,y=1)
-    output = get_display_output()
-    # Testing the actual move function
+                    "Your move: ", "Not able to move out of map (Left/Right)!"]
+    elif(status == True):
+        assert output == ["W = up; A = left; S = down; D = right", 
+                    "Your move: "]
 
-    if(actual_status == test_status):
-        assert actual_status == test_status
-        if(test_status == False):
-            assert output == ["W = up; A = left; S = down; D = right", 
-                        "Your move: d", "Not able to move out of map (Left/Right)!"]
-        elif(test_status == True):
-            assert output == ["W = up; A = left; S = down; D = right", 
-                        "Your move: d"]
+@pytest.mark.parametrize("oor_input",[("k"), ("z"), ("b"), ("g"),("q"),("y"),("p")])
+def test_move_hero_out_of_range(get_hero,oor_input):
+    """
+    Test should cover anything else typed to the input of the movement
+    This test case tests for out of range characters not accepted by the function
+    It should print Index out of Range when any input other than W A S D is inputted
+    """
+    # Asserting print_map function 
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, False)
+    w_map = world_map()
+    pos = get_hero["position"]
+    assert position == pos
+    assert x_coor == pos[0]
+    assert y_coor == pos[1]
+    list_print_map = []
+    for x in range(8):
+        list_print_map.append("+---"*8 + "+")
+        for y in range(8):
+            legend = "   "
+            if w_map[x][y] == "T":
+                if x == x_coor and y == y_coor:
+                    legend = "H/T"
+                    #assert legend == "H/T"
+                else:
+                    legend = " T "
+                    #assert legend == " T "
+            elif w_map[x][y] == "K":
+                if x == x_coor and y == y_coor:
+                    legend = "H/K"
+                    #assert legend == "H/K"
+                else:
+                    legend = " K " 
+                    #assert legend == " K "
+            else:
+                if x == x_coor and y == y_coor:
+                    legend = " H "
+                    #assert legend == " H "
+            list_print_map.append("|" + legend)
+        list_print_map.append("|")
+    list_print_map.append("+---"*8 + "+")
+    # assert both lists
+    assert all([a == b for a, b in zip(list_print_map, list_map)]) #this checks python list against the expected value
+    
+    #test case with wrong user input, getting the print output
+    set_keyboard_input([oor_input])
+    status = move_hero(get_hero,False)
+    output = get_display_output()
+    # Test case should always fail since other inputs are not accepted
+    assert status == False
+    assert output == ["W = up; A = left; S = down; D = right", 
+                    "Your move: ", "Input out of range"]
