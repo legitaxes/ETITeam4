@@ -283,11 +283,8 @@ def set_hero_position(hero, x=None, y=None):
     """
     This function should set the hero's position and return true if it is a valid movement
     Else it should return false if the hero is out of bounds in the map
+    Both scenarios should return the hero's position to check against the test cases
     """
-    # TODO Create a fucntion that allows the hero to set its position on the map
-    # This function should return true or false depending on whether the movement is valid
-    # labels: tasks
-    # milestone: 1
     position = hero["position"]
     x_coor = position[0]
     y_coor = position[1]
