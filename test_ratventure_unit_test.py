@@ -296,7 +296,7 @@ def test_exit_game_prompt_no():
     output = get_display_output()
     assert output == ["You have unsaved changes. Do you want to continue?", "Enter choice: [Y/N]", "Going back to the game..."]
 
-def test_set_hero_position():
+def test_set_hero_position(get_hero, x=None, y=None):
     """
     This unit test function should test whether the hero's position is set correctly
     Test should get the x coor and y coor after the movement and put it in the map
@@ -308,7 +308,29 @@ def test_set_hero_position():
     # Else this function should return true if the movement isnt invalid
     # labels: tasks, unit-test
     # milestone: 1
+    set_keyboard_input([])
+    condition, hero_position = set_hero_position(get_hero)
+    position = get_hero["position"]
+    x_coor = position[0]
+    y_coor = position[1]
+    output = get_display_output()
+    if y!= None:
+        y_coor += y
+        if y_coor < 0 or y_coor > 7:
+            assert output == ["Not able to move out of map (Up/Down)!"]
+            assert condition == False
+    if x!= None:
+        x_coor += x
+        if x_coor < 0 or x_coor > 7:
+            assert output == ["Not able to move out of map (Left/Right)!"]
+            assert condition == False
     
+    #save the updated position
+    position[0] = x_coor
+    position[1] = y_coor
+    assert hero_position == position
+    assert condition == True
+
 
 def test_move_hero():
     """
