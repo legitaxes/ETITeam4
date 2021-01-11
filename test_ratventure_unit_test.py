@@ -642,3 +642,176 @@ def test_move_hero_out_of_range(get_hero,oor_input):
     assert status == False
     assert output == ["W = up; A = left; S = down; D = right", 
                     "Your move: ", "Input out of range"]
+
+
+# =====================================================================================================
+# +++++++++++++++++++
+# ++++++|Main|+++++++
+# +++++++++++++++++++
+
+@pytest.mark.parametrize("choice_main_menu",[(1), (2), (3)])
+@pytest.mark.parametrize("choice_town_menu",[(1), (2), (3), (4), (5), (6)])
+def test_main(choice_main_menu, choice_town_menu, get_hero):
+    """
+        Testing the Main Function of the program
+        This test will cover the choices in the following order:
+        | 1, 1 | 1, 2 | 1, 3 | 1, 4 | 1, 5 | 1, 6 |
+        | 2, 1 | 2, 2 | 2, 3 | 2, 4 | 2, 5 | 2, 6 |
+        The first '1' indicates the start of a new game whereas the first '2' indicates resume game
+        The second number in the matrix runs the available options in the town menu from 1 to 6
+    """
+    # TODO Finish unit test for main function 1, 1 and 2, 1
+    # This task should cover running a new game instance and then viewing the character stats
+    # labels: unit-test, tasks
+    # milestone: 2
+
+    #calling print day function to  get print day results to be used under resume game section
+    actual_tile, actual_location, printresult, current_day = print_day(get_hero, get_current_day)
+
+    set_keyboard_input([choice_main_menu,choice_town_menu])
+    main()
+    output = get_display_output()
+    if choice_main_menu == 1:
+        if choice_town_menu == 1:
+            assert output == ["Welcome to RatVenture!",
+                            "----------------------",
+                            "1) New Game",
+                            "2) Resume Game",
+                            "3) Exit Game"
+                            "Enter choice: ",
+                            "Day 1: You are in a town.",
+                            "1) View Character",
+                            "2) View Map",
+                            "3) Move",
+                            "4) Rest",
+                            "5) Save Game",
+                            "6) Exit Game",
+                            "Enter choice: ",
+                            get_hero["name"],
+                            "Damage: " + get_hero["min_damage"] + "-" + get_hero["max_damage"],
+                            "Defence: " + get_hero["defence"],
+                            "HP: " + get_hero["hp"]]
+
+        # elif choice_town_menu == 2:
+        #     assert output == ["Welcome to RatVenture!",
+        #                     "----------------------",
+        #                     "1) New Game",
+        #                     "2) Resume Game",
+        #                     "3) Exit Game"
+        #                     "Enter choice: ",
+        #                     "Day 1: You are in a town.",
+        #                     "1) View Character",
+        #                     "2) View Map",
+        #                     "3) Move",
+        #                     "4) Rest",
+        #                     "5) Save Game",
+        #                     "6) Exit Game",
+        #                     "Enter choice: ",
+        #                     ""]
+        # elif choice_town_menu == 3:
+        #     assert output == ["Welcome to RatVenture!",
+        #                     "----------------------",
+        #                     "1) New Game",
+        #                     "2) Resume Game",
+        #                     "3) Exit Game"
+        #                     "Enter choice: ",
+        #                     "Day 1: You are in a town.",
+        #                     "1) View Character",
+        #                     "2) View Map",
+        #                     "3) Move",
+        #                     "4) Rest",
+        #                     "5) Save Game",
+        #                     "6) Exit Game",
+        #                     "Enter choice: ",
+        #                     ""]
+        # elif choice_town_menu == 4:
+        #     assert output == ["Welcome to RatVenture!",
+        #                     "----------------------",
+        #                     "1) New Game",
+        #                     "2) Resume Game",
+        #                     "3) Exit Game"
+        #                     "Enter choice: ",
+        #                     "Day 1: You are in a town.",
+        #                     "1) View Character",
+        #                     "2) View Map",
+        #                     "3) Move",
+        #                     "4) Rest",
+        #                     "5) Save Game",
+        #                     "6) Exit Game",
+        #                     "Enter choice: ",
+        #                     ""]
+        # elif choice_town_menu == 5:
+        #     assert output == ["Welcome to RatVenture!",
+        #                     "----------------------",
+        #                     "1) New Game",
+        #                     "2) Resume Game",
+        #                     "3) Exit Game"
+        #                     "Enter choice: ",
+        #                     "Day 1: You are in a town.",
+        #                     "1) View Character",
+        #                     "2) View Map",
+        #                     "3) Move",
+        #                     "4) Rest",
+        #                     "5) Save Game",
+        #                     "6) Exit Game",
+        #                     "Enter choice: ",
+        #                     ""]
+        # elif choice_town_menu == 6:
+        #     assert output == ["Welcome to RatVenture!",
+        #                     "----------------------",
+        #                     "1) New Game",
+        #                     "2) Resume Game",
+        #                     "3) Exit Game"
+        #                     "Enter choice: ",
+        #                     "Day 1: You are in a town.",
+        #                     "1) View Character",
+        #                     "2) View Map",
+        #                     "3) Move",
+        #                     "4) Rest",
+        #                     "5) Save Game",
+        #                     "6) Exit Game",
+        #                     "Enter choice: ",
+        #                     ""]
+    
+    # load game unit testing
+    # print day results: actual_tile, actual_location, printresult, current_day
+    elif choice_main_menu == 2:
+        if choice_town_menu == 1:
+            assert output == ["Welcome to RatVenture!",
+                            "----------------------",
+                            "1) New Game",
+                            "2) Resume Game",
+                            "3) Exit Game"
+                            "Enter choice: ",
+                            printresult,
+                            "1) View Character",
+                            "2) View Map",
+                            "3) Move",
+                            "4) Rest",
+                            "5) Save Game",
+                            "6) Exit Game",
+                            "Enter choice: ",
+                            get_hero["name"],
+                            "Damage: " + get_hero["min_damage"] + "-" + get_hero["max_damage"],
+                            "Defence: " + get_hero["defence"],
+                            "HP: " + get_hero["hp"]]
+
+
+    #     elif choice_town_menu == 2:
+    #         assert output == ""
+
+    #     elif choice_town_menu == 3:
+    #         assert output == "" 
+
+    #     elif choice_town_menu == 4:
+    #         assert output == "" 
+
+    #     elif choice_town_menu == 5:
+    #         assert output == "" 
+
+    #     elif choice_town_menu == 6:
+    #         assert output == "" 
+
+    # # exit game unit testing
+    # elif choice_main_menu == 3:
+    #     assert output == ""
