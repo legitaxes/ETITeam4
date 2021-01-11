@@ -131,7 +131,7 @@ def print_day(hero, current_day):
         location = "You are out in the open."
     print("Day {}: {}".format(current_day, location))
     printresult = "Day " + str(current_day) + ": " +  location
-    return tile, location, printresult, current_day
+    return location, current_day, printresult
 
 def rest(hero):
     """

@@ -168,14 +168,14 @@ def test_print_day(get_hero, get_current_day):
     Test function of print_day Function:
         Display the tile the hero is at and display whether the hero is in town or out in open
     """
-    actual_tile, actual_location, printresult, current_day = print_day(get_hero, get_current_day)
-
-    if actual_tile == "T":
-        assert actual_location == "You are in a town."
-    elif actual_tile == " ":
-        assert actual_location == "You are out in the open."
+    location, current_day, printresult = print_day(get_hero, get_current_day)
+    assert printresult == "Day " + str(current_day) + ": " + location
+    # if actual_tile == "T":
+    #     assert actual_location == "You are in a town."
+    # elif actual_tile == " ":
+    #     assert actual_location == "You are out in the open."
     #printresult = "Day {}: {}".format(current_day, value)
-    assert printresult == "Day " + str(current_day) + ": " + actual_location
+    
 
 def test_print_hero_stats(get_hero):
     """
