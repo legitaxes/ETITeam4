@@ -102,7 +102,7 @@ def test_new_game():
     
     """
     
-    current_day, hero = new_game()
+    current_day, hero, w_map = new_game()
     assert current_day == 1
     assert hero["name"] == "The Hero"
     assert hero["min_damage"] == 2
@@ -125,7 +125,7 @@ def test_resume_game():
     The game has been resumed to the previous state.
     
     """
-    errormessage, output = resume_game()
+    errormessage, output, hero, w_map, current_day = resume_game()
     if(errormessage == ""):
         assert output == "The game has been resumed to the previous save state."
     else:
@@ -286,7 +286,7 @@ def test_view_character(get_hero):
     
    
 
-def test_view_map(get_hero):
+def test_view_map(get_hero, get_w_map):
     """User Story 2.2: Display the world map
     
     
@@ -303,7 +303,7 @@ def test_view_map(get_hero):
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', 'K']
     
     """
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero, False)
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
     #theHero = print_hero_stats()
     w_map = world_map()
     pos = get_hero["position"]
