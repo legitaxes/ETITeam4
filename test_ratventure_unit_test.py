@@ -118,14 +118,14 @@ def test_town_menu():
     assert value == "1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"
 
 
-def test_print_map(get_hero):
+def test_print_map(get_hero, get_w_map):
     """
     Test function of print_map Function:
         Displays the Map of the game when called
         This function should print the full layout of the map
     """
 
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero, False)
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
     #theHero = print_hero_stats()
     w_map = world_map()
     pos = get_hero["position"]
@@ -197,18 +197,17 @@ def test_print_hero_stats(get_hero):
     assert output == [get_hero["name"], damage, defence, hp] 
     
 
-def test_get_hero_position(get_hero):
+def test_get_hero_position(get_hero, get_w_map):
     """
     Test function of get_hero_position Function:
         This function mainly serves as a way for the program to get the position of the hero
         It should return the tile where the hero is on the map
     """
-    tile, theHero, w_map = get_hero_position(get_hero)   
-    position = theHero["position"]
-    assert theHero["position"] == get_hero["position"]
+    tile = get_hero_position(get_hero)   
+    position = get_hero["position"]
     x_coor = position[0]
     y_coor = position[1]
-    assert tile == w_map[x_coor][y_coor]
+    assert tile == get_w_map[x_coor][y_coor]
     
 def test_rest(get_hero):
     """
@@ -227,7 +226,7 @@ def test_new_game(get_hero, get_current_day):
         > current_day
         > hero
     """
-    current_day, hero = new_game()
+    current_day, hero, w_map = new_game()
     assert current_day == get_current_day
     assert hero["name"] == get_hero["name"]
     assert hero["min_damage"] == get_hero["min_damage"]
@@ -246,7 +245,7 @@ def test_resume_game():
         else: 
             return "existing file does not exist"
     """
-    error, value = resume_game()
+    error, value, hero, w_map, current_day = resume_game()
     if(error == ""):
         assert value == "The game has been resumed to the previous save state." 
     else:
@@ -370,14 +369,14 @@ def test_set_hero_position_out_of_bounds(get_hero, x, y):
     assert condition == True
 
 @pytest.mark.parametrize("move",[("W"), ("w")])
-def test_move_hero_up(get_hero, move):
+def test_move_hero_up(get_hero, get_w_map, move):
     """
     Test should cover 'W' part of the movement
     If the movement is an invalid one, it should print: "Not able to move out of map (Up/Down)"
     Tested on the starting point of the map [0,0]. Test should be a failing test case with the error message of Not being able to move up
     """
     # Asserting print_map function 
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero, False)
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
     w_map = world_map()
     pos = get_hero["position"]
     assert position == pos
@@ -413,7 +412,7 @@ def test_move_hero_up(get_hero, move):
     assert all([a == b for a, b in zip(list_print_map, list_map)]) #this checks python list against the expected value
 
     set_keyboard_input([move])
-    actual_status = move_hero(get_hero,False)
+    actual_status = move_hero(get_hero, get_w_map, False)
     #test_status = set_hero_position(get_hero,x=-1)
     output = get_display_output()
     # testing the actual move function
@@ -426,14 +425,14 @@ def test_move_hero_up(get_hero, move):
                     "Your move: "]
 
 @pytest.mark.parametrize("move",[("D"), ("d")])
-def test_move_hero_down(get_hero, move):
+def test_move_hero_down(get_hero, get_w_map, move):
     """
     Test should cover 'S' part of the movement
     If the movement is an invalid one, it should print: "Not able to move out of map (Up/Down)"
     Tested on the starting point of the map [0,0]. Test should be a passing test case without needing an error message
     """
     # Asserting print_map function 
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero, False)
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
     w_map = world_map()
     pos = get_hero["position"]
     assert position == pos
@@ -470,7 +469,7 @@ def test_move_hero_down(get_hero, move):
     
     #test case of move hero down, getting the print output
     set_keyboard_input([move])
-    actual_status = move_hero(get_hero,False)
+    actual_status = move_hero(get_hero, get_w_map, False)
     #test_status = set_hero_position(get_hero,x=1)
     output = get_display_output()
     # Testing the actual move function
@@ -482,14 +481,14 @@ def test_move_hero_down(get_hero, move):
                     "Your move: "]
 
 @pytest.mark.parametrize("move",[("A"), ("a")])
-def test_move_hero_left(get_hero, move):
+def test_move_hero_left(get_hero, get_w_map, move):
     """
     Test should cover 'A' part of the movement
     If the movement is an invalid one, it should print: "Not able to move out of map (Left/Right)"
     Tested on the starting point of the map [0,0]. Test should be a failing test case with the error message of Not being able to move left
     """
     # Asserting print_map function 
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero, False)
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
     w_map = world_map()
     pos = get_hero["position"]
     assert position == pos
@@ -526,7 +525,7 @@ def test_move_hero_left(get_hero, move):
 
     #test case of move hero left, getting the print output
     set_keyboard_input([move])
-    status = move_hero(get_hero,False)
+    status = move_hero(get_hero, get_w_map, False)
     output = get_display_output()
     # Testing the actual move function
     if(status == False):
@@ -537,14 +536,14 @@ def test_move_hero_left(get_hero, move):
                     "Your move: "]
 
 @pytest.mark.parametrize("move",[("D"), ("d")])
-def test_move_hero_right(get_hero, move):
+def test_move_hero_right(get_hero, get_w_map, move):
     """
     Test should cover 'D' part of the movement
     If the movement is an invalid one, it should print: "Not able to move out of map (Left/Right)"
     Tested on the starting point of the map [0,0]. Test should be a pass with no error message
     """
     # Asserting print_map function 
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero, False)
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
     w_map = world_map()
     pos = get_hero["position"]
     assert position == pos
@@ -581,7 +580,7 @@ def test_move_hero_right(get_hero, move):
 
     #test case of move hero right, getting the print output
     set_keyboard_input([move])
-    status = move_hero(get_hero,False)
+    status = move_hero(get_hero, get_w_map, False)
     output = get_display_output()
     # Testing the actual move function
     if(status == False):
@@ -592,14 +591,14 @@ def test_move_hero_right(get_hero, move):
                     "Your move: "]
 
 @pytest.mark.parametrize("oor_input",[("k"), ("z"), ("b"), ("g"),("q"),("y"),("p")])
-def test_move_hero_out_of_range(get_hero,oor_input):
+def test_move_hero_out_of_range(get_hero, get_w_map, oor_input):
     """
     Test should cover anything else typed to the input of the movement
     This test case tests for out of range characters not accepted by the function
     It should print Index out of Range when any input other than W A S D is inputted
     """
     # Asserting print_map function 
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero, False)
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
     w_map = world_map()
     pos = get_hero["position"]
     assert position == pos
@@ -636,7 +635,7 @@ def test_move_hero_out_of_range(get_hero,oor_input):
     
     #test case with wrong user input, getting the print output
     set_keyboard_input([oor_input])
-    status = move_hero(get_hero,False)
+    status = move_hero(get_hero, get_w_map, False)
     output = get_display_output()
     # Test case should always fail since other inputs are not accepted
     assert status == False
@@ -648,8 +647,8 @@ def test_move_hero_out_of_range(get_hero,oor_input):
 # +++++++++++++++++++
 # ++++++|Main|+++++++
 # +++++++++++++++++++
-
-@pytest.mark.parametrize("choice_main_menu",[(1), (2), (3)])
+# =====================================================================================================
+@pytest.mark.parametrize("choice_main_menu",[(1), (2)])
 @pytest.mark.parametrize("choice_town_menu",[(1), (2), (3), (4), (5), (6)])
 def test_main(choice_main_menu, choice_town_menu, get_hero):
     """
@@ -666,7 +665,7 @@ def test_main(choice_main_menu, choice_town_menu, get_hero):
     # milestone: 2
 
     #calling print day function to  get print day results to be used under resume game section
-    actual_tile, actual_location, printresult, current_day = print_day(get_hero, get_current_day)
+    location, current_day, printresult = print_day(get_hero, get_current_day)
 
     set_keyboard_input([choice_main_menu,choice_town_menu])
     main()
