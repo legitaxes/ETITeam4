@@ -33,12 +33,12 @@ def main(choice1=None, choice2=None, movement=None):
 
             if choice == 1:
                 print_hero_stats(hero)
-                if choice1 != None: # if its running as pytest function
+                if choice1 != None: # if running in test environment
                     output = get_display_output()
                     return output
             
             elif choice == 2:
-                if choice1 != None:
+                if choice1 != None: # if running in test environment
                     pos, x, y, legend, list_map = print_map(hero, w_map, False)
                     output = get_display_output()
                     return output
@@ -46,7 +46,7 @@ def main(choice1=None, choice2=None, movement=None):
                     print_map(hero, w_map)
                 
             elif choice == 3:
-                if movement != None:
+                if movement != None: # if running in test environment
                     status = move_hero(hero, w_map, False)
                     current_day += 1
                     output = get_display_output()
@@ -56,7 +56,7 @@ def main(choice1=None, choice2=None, movement=None):
                     current_day += 1
 
             elif choice == 4:
-                if choice1 != None:
+                if choice1 != None: # if running in test environment
                     rest(hero)
                     current_day += 1
                     output = get_display_output()
@@ -66,7 +66,7 @@ def main(choice1=None, choice2=None, movement=None):
                     current_day += 1
 
             elif choice == 5:
-                if choice1 != None:
+                if choice1 != None: # if running in test environment
                     save_game(hero, w_map, current_day)
                     output = get_display_output()
                     return output
@@ -74,8 +74,13 @@ def main(choice1=None, choice2=None, movement=None):
                     save_game(hero, w_map, current_day)
 
             elif choice == 6:
-                exit_game()
-                sys.exit(0)
+                if choice1 != None: # if running in test environment
+                    exit_game()
+                    output = get_display_output()
+                    return output
+                else:
+                    exit_game()
+                    sys.exit(0)
 
         # if the hero is not in town 
         # feature for combat not done yet
