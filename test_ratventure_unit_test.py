@@ -652,7 +652,7 @@ def test_move_hero_out_of_range(get_hero, get_w_map, oor_input):
 #@pytest.mark.parametrize("choice_main_menu",[(1), (2)])
 #@pytest.mark.parametrize("choice_town_menu",[(1), (2), (4), (5), (6)])
 @pytest.mark.parametrize("choice_main_menu",[(1),(2)])
-@pytest.mark.parametrize("choice_town_menu",[(1),(2),(4),(5)])
+@pytest.mark.parametrize("choice_town_menu",[(1),(2),(4),(5), (6)])
 def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
     """
         Testing the Main Function of the program
@@ -662,7 +662,7 @@ def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
         The first '1' indicates the start of a new game whereas the first '2' indicates resume game
         The second number in the matrix runs the available options in the town menu from 1 to 6
     """
-    # TODO Finish unit test for main function 1-3 and 2-3
+    # TODO Finish unit test for main function 1-6 and 2-6
     # This task should cover running a new game instance and then viewing the character stats
     # labels: unit-test, tasks
     # milestone: 2
@@ -752,6 +752,25 @@ def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
                             "6) Exit Game",
                             "Enter choice: ",
                             "Game saved."]
+        
+        # Exit Game Function
+        elif choice_town_menu == 6:
+            assert output == ["Welcome to Ratventure",
+                            "----------------------",
+                            "1) New Game",
+                            "2) Resume Game",
+                            "3) Exit Game",
+                            "Enter Choice: ",
+                            "Starting a new game...",
+                            "Day 1: You are in a town.",
+                            "1) View Character\n"
+                            "2) View Map\n"
+                            "3) Move\n"
+                            "4) Rest\n"
+                            "5) Save Game\n"
+                            "6) Exit Game",
+                            "Enter choice: ",
+                            "The program will close since there are no unsaved changes."]
 
     # resume game unit testing
     # print day results: actual_tile, actual_location, printresult, current_day
@@ -833,6 +852,25 @@ def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
                             "6) Exit Game",
                             "Enter choice: ",
                             "Game saved."]
+
+        # Exit Game function
+        elif choice_town_menu == 6:
+            assert output == ["Welcome to Ratventure",
+                            "----------------------",
+                            "1) New Game",
+                            "2) Resume Game",
+                            "3) Exit Game",
+                            "Enter Choice: ",
+                            "Resuming from last save state...",
+                            printresult,
+                            "1) View Character\n"
+                            "2) View Map\n"
+                            "3) Move\n"
+                            "4) Rest\n"
+                            "5) Save Game\n"
+                            "6) Exit Game",
+                            "Enter choice: ",
+                            "The program will close since there are no unsaved changes."]
 
 @pytest.mark.parametrize("choice_main_menu",[(1),(2)])
 @pytest.mark.parametrize("choice_town_menu",[(3)])
