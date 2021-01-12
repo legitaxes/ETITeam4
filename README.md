@@ -10,6 +10,8 @@ Team Roles:
 ---
 ### Latest Changes
 
+* finished up main function for feature 1 to 6 for town menu
+with completed unit tests . PR [#512](https://github.com/legitaxes/ETITeam4/pull/512) by [@legitaxes](https://github.com/legitaxes).
 * Cheskalazo branch. PR [#508](https://github.com/legitaxes/ETITeam4/pull/508) by [@cheskalazo](https://github.com/cheskalazo).
 * Added a lot of new changes to ensure main.py works
 
