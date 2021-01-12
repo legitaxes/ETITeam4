@@ -66,7 +66,12 @@ def main(choice1=None, choice2=None, movement=None):
                     current_day += 1
 
             elif choice == 5:
-                save_game(hero, w_map, current_day)
+                if choice1 != None:
+                    save_game(hero, w_map, current_day)
+                    output = get_display_output()
+                    return output
+                else:
+                    save_game(hero, w_map, current_day)
 
             elif choice == 6:
                 exit_game()

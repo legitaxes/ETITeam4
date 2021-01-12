@@ -652,7 +652,7 @@ def test_move_hero_out_of_range(get_hero, get_w_map, oor_input):
 #@pytest.mark.parametrize("choice_main_menu",[(1), (2)])
 #@pytest.mark.parametrize("choice_town_menu",[(1), (2), (4), (5), (6)])
 @pytest.mark.parametrize("choice_main_menu",[(1),(2)])
-@pytest.mark.parametrize("choice_town_menu",[(1),(2),(4)])
+@pytest.mark.parametrize("choice_town_menu",[(1),(2),(4),(5)])
 def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
     """
         Testing the Main Function of the program
