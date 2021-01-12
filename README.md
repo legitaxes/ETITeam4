@@ -10,6 +10,7 @@ Team Roles:
 ---
 ### Latest Changes
 
+* jiaqibranch. PR [#498](https://github.com/legitaxes/ETITeam4/pull/498) by [@legitaxes](https://github.com/legitaxes).
 
 
 ---
