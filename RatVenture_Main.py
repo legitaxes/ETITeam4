@@ -56,6 +56,7 @@ def main(choice1=None, choice2=None, movement=None):
                     current_day += 1
 
             elif choice == 4:
+
                 rest(hero)
                 current_day += 1
 

@@ -674,7 +674,9 @@ def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
     #set_keyboard_input([choice_main_menu, choice_town_menu])
     output = main(choice_main_menu, choice_town_menu)
     #output = get_display_output()
+    # new game function
     if choice_main_menu == 1:
+        # View Character function
         if choice_town_menu == 1:
             assert output == ["Welcome to Ratventure",
                             "----------------------",
@@ -696,6 +698,7 @@ def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
                             "Defence: " + str(get_hero["defence"]),
                             "HP: " + str(get_hero["hp"])]
         
+        # View Map function
         elif choice_town_menu == 2:
             assert output == ["Welcome to Ratventure",
                             "----------------------",
@@ -712,13 +715,30 @@ def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
                             "5) Save Game\n"
                             "6) Exit Game",
                             "Enter choice: "]
+        # Rest function
+        elif choice_town_menu == 4:
+            assert output == ["Welcome to Ratventure",
+                            "----------------------",
+                            "1) New Game",
+                            "2) Resume Game",
+                            "3) Exit Game",
+                            "Enter Choice: ",
+                            "Starting a new game...",
+                            "Day 1: You are in a town.",
+                            "1) View Character\n"
+                            "2) View Map\n"
+                            "3) Move\n"
+                            "4) Rest\n"
+                            "5) Save Game\n"
+                            "6) Exit Game",
+                            "Enter choice: ",
+                            "You are fully healed."]
 
 
-
-    
-    # load game unit testing
+    # resume game unit testing
     # print day results: actual_tile, actual_location, printresult, current_day
     elif choice_main_menu == 2:
+        # View Character function
         if choice_town_menu == 1:
             assert output == ["Welcome to Ratventure",
                             "----------------------",
@@ -740,6 +760,7 @@ def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
                             "Defence: " + str(get_hero["defence"]),
                             "HP: " + str(get_hero["hp"])]
         
+        # View Map function
         elif choice_town_menu == 2:
             assert output == ["Welcome to Ratventure",
                             "----------------------",
@@ -748,7 +769,7 @@ def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
                             "3) Exit Game",
                             "Enter Choice: ",
                             "Resuming from last save state...",
-                            "Day 1: You are in a town.",
+                            printresult,
                             "1) View Character\n"
                             "2) View Map\n"
                             "3) Move\n"
@@ -756,6 +777,25 @@ def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
                             "5) Save Game\n"
                             "6) Exit Game",
                             "Enter choice: "]
+
+        # Rest function
+        elif choice_town_menu == 4:
+            assert output == ["Welcome to Ratventure",
+                            "----------------------",
+                            "1) New Game",
+                            "2) Resume Game",
+                            "3) Exit Game",
+                            "Enter Choice: ",
+                            "Starting a new game...",
+                            printresult,
+                            "1) View Character\n"
+                            "2) View Map\n"
+                            "3) Move\n"
+                            "4) Rest\n"
+                            "5) Save Game\n"
+                            "6) Exit Game",
+                            "Enter choice: ",
+                            "You are fully healed."]
 
 @pytest.mark.parametrize("choice_main_menu",[(1),(2)])
 @pytest.mark.parametrize("choice_town_menu",[(3)])
