@@ -650,9 +650,9 @@ def test_move_hero_out_of_range(get_hero, get_w_map, oor_input):
 # +++++++++++++++++++
 # =====================================================================================================
 #@pytest.mark.parametrize("choice_main_menu",[(1), (2)])
-#@pytest.mark.parametrize("choice_town_menu",[(1), (2), (3), (4), (5), (6)])
+#@pytest.mark.parametrize("choice_town_menu",[(1), (2), (4), (5), (6)])
 @pytest.mark.parametrize("choice_main_menu",[(1),(2)])
-@pytest.mark.parametrize("choice_town_menu",[(1),(2)])
+@pytest.mark.parametrize("choice_town_menu",[(1),(2),(4),(5), (6)])
 def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
     """
         Testing the Main Function of the program
@@ -662,19 +662,15 @@ def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
         The first '1' indicates the start of a new game whereas the first '2' indicates resume game
         The second number in the matrix runs the available options in the town menu from 1 to 6
     """
-    # TODO Finish unit test for main function 1-3 and 2-3
-    # This task should cover running a new game instance and then viewing the character stats
-    # labels: unit-test, tasks
-    # milestone: 2
-
-    #calling print day function to  get print day results to be used under resume game section
-    
+    #calling print day function to  get printresults to be used under resume game function section
     location, current_day, printresult = print_day(get_hero, get_current_day)
-
-    #set_keyboard_input([choice_main_menu, choice_town_menu])
     output = main(choice_main_menu, choice_town_menu)
-    #output = get_display_output()
+
+    # === ========================= ===
+    # === New Game Function section ===
+    # === ========================= ===
     if choice_main_menu == 1:
+        # View Character function
         if choice_town_menu == 1:
             assert output == ["Welcome to Ratventure",
                             "----------------------",
@@ -696,6 +692,7 @@ def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
                             "Defence: " + str(get_hero["defence"]),
                             "HP: " + str(get_hero["hp"])]
         
+        # View Map function
         elif choice_town_menu == 2:
             assert output == ["Welcome to Ratventure",
                             "----------------------",
@@ -712,11 +709,68 @@ def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
                             "5) Save Game\n"
                             "6) Exit Game",
                             "Enter choice: "]
+        # Rest function
+        elif choice_town_menu == 4:
+            assert output == ["Welcome to Ratventure",
+                            "----------------------",
+                            "1) New Game",
+                            "2) Resume Game",
+                            "3) Exit Game",
+                            "Enter Choice: ",
+                            "Starting a new game...",
+                            "Day 1: You are in a town.",
+                            "1) View Character\n"
+                            "2) View Map\n"
+                            "3) Move\n"
+                            "4) Rest\n"
+                            "5) Save Game\n"
+                            "6) Exit Game",
+                            "Enter choice: ",
+                            "You are fully healed."]
+        
+        # Save Game function
+        elif choice_town_menu == 5:
+            assert output == ["Welcome to Ratventure",
+                            "----------------------",
+                            "1) New Game",
+                            "2) Resume Game",
+                            "3) Exit Game",
+                            "Enter Choice: ",
+                            "Starting a new game...",
+                            "Day 1: You are in a town.",
+                            "1) View Character\n"
+                            "2) View Map\n"
+                            "3) Move\n"
+                            "4) Rest\n"
+                            "5) Save Game\n"
+                            "6) Exit Game",
+                            "Enter choice: ",
+                            "Game saved."]
+        
+        # Exit Game Function
+        elif choice_town_menu == 6:
+            assert output == ["Welcome to Ratventure",
+                            "----------------------",
+                            "1) New Game",
+                            "2) Resume Game",
+                            "3) Exit Game",
+                            "Enter Choice: ",
+                            "Starting a new game...",
+                            "Day 1: You are in a town.",
+                            "1) View Character\n"
+                            "2) View Map\n"
+                            "3) Move\n"
+                            "4) Rest\n"
+                            "5) Save Game\n"
+                            "6) Exit Game",
+                            "Enter choice: ",
+                            "The program will close since there are no unsaved changes."]
 
-    
-    # load game unit testing
-    # print day results: actual_tile, actual_location, printresult, current_day
+    # === ============================ ===
+    # === Resume Game Function section ===
+    # === ============================ ===
     elif choice_main_menu == 2:
+        # View Character function
         if choice_town_menu == 1:
             assert output == ["Welcome to Ratventure",
                             "----------------------",
@@ -738,6 +792,7 @@ def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
                             "Defence: " + str(get_hero["defence"]),
                             "HP: " + str(get_hero["hp"])]
         
+        # View Map function
         elif choice_town_menu == 2:
             assert output == ["Welcome to Ratventure",
                             "----------------------",
@@ -746,7 +801,7 @@ def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
                             "3) Exit Game",
                             "Enter Choice: ",
                             "Resuming from last save state...",
-                            "Day 1: You are in a town.",
+                            printresult,
                             "1) View Character\n"
                             "2) View Map\n"
                             "3) Move\n"
@@ -755,21 +810,230 @@ def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
                             "6) Exit Game",
                             "Enter choice: "]
 
-    #     elif choice_town_menu == 2:
-    #         assert output == ""
+        # Rest function
+        elif choice_town_menu == 4:
+            assert output == ["Welcome to Ratventure",
+                            "----------------------",
+                            "1) New Game",
+                            "2) Resume Game",
+                            "3) Exit Game",
+                            "Enter Choice: ",
+                            "Resuming from last save state...",
+                            printresult,
+                            "1) View Character\n"
+                            "2) View Map\n"
+                            "3) Move\n"
+                            "4) Rest\n"
+                            "5) Save Game\n"
+                            "6) Exit Game",
+                            "Enter choice: ",
+                            "You are fully healed."]
 
-    #     elif choice_town_menu == 3:
-    #         assert output == "" 
+        # Save Game function
+        elif choice_town_menu == 5:
+            assert output == ["Welcome to Ratventure",
+                            "----------------------",
+                            "1) New Game",
+                            "2) Resume Game",
+                            "3) Exit Game",
+                            "Enter Choice: ",
+                            "Resuming from last save state...",
+                            printresult,
+                            "1) View Character\n"
+                            "2) View Map\n"
+                            "3) Move\n"
+                            "4) Rest\n"
+                            "5) Save Game\n"
+                            "6) Exit Game",
+                            "Enter choice: ",
+                            "Game saved."]
 
-    #     elif choice_town_menu == 4:
-    #         assert output == "" 
+        # Exit Game function
+        elif choice_town_menu == 6:
+            assert output == ["Welcome to Ratventure",
+                            "----------------------",
+                            "1) New Game",
+                            "2) Resume Game",
+                            "3) Exit Game",
+                            "Enter Choice: ",
+                            "Resuming from last save state...",
+                            printresult,
+                            "1) View Character\n"
+                            "2) View Map\n"
+                            "3) Move\n"
+                            "4) Rest\n"
+                            "5) Save Game\n"
+                            "6) Exit Game",
+                            "Enter choice: ",
+                            "The program will close since there are no unsaved changes."]
 
-    #     elif choice_town_menu == 5:
-    #         assert output == "" 
+@pytest.mark.parametrize("choice_main_menu",[(1),(2)])
+@pytest.mark.parametrize("choice_town_menu",[(3)])
+@pytest.mark.parametrize("movement", ("w","a","s","d"))
+def test_main_move(choice_main_menu, choice_town_menu, movement, get_hero, get_current_day):
+    """
+    This main function tests the movement part of the game with various inputs such as W A S D 
+    """
+    location, current_day, printresult = print_day(get_hero, get_current_day)
 
-    #     elif choice_town_menu == 6:
-    #         assert output == "" 
+    #set_keyboard_input([choice_main_menu, choice_town_menu])
+    output, status = main(choice_main_menu, choice_town_menu, movement)
+    if choice_main_menu == 1:
+        if choice_town_menu == 3:
+            if status == False:
+                if movement == 'w':
+                    assert output == ["Welcome to Ratventure",
+                                    "----------------------",
+                                    "1) New Game",
+                                    "2) Resume Game",
+                                    "3) Exit Game",
+                                    "Enter Choice: ",
+                                    "Starting a new game...",
+                                    printresult,
+                                    "1) View Character\n"
+                                    "2) View Map\n"
+                                    "3) Move\n"
+                                    "4) Rest\n"
+                                    "5) Save Game\n"
+                                    "6) Exit Game",
+                                    "Enter choice: ",
+                                    "W = up; A = left; S = down; D = right",
+                                    "Your move: ",
+                                    "Not able to move out of map (Up/Down)!"]
+                
+                elif movement == "a":
+                    assert output == ["Welcome to Ratventure",
+                                    "----------------------",
+                                    "1) New Game",
+                                    "2) Resume Game",
+                                    "3) Exit Game",
+                                    "Enter Choice: ",
+                                    "Starting a new game...",
+                                    printresult,
+                                    "1) View Character\n"
+                                    "2) View Map\n"
+                                    "3) Move\n"
+                                    "4) Rest\n"
+                                    "5) Save Game\n"
+                                    "6) Exit Game",
+                                    "Enter choice: ",
+                                    "W = up; A = left; S = down; D = right",
+                                    "Your move: ",
+                                    "Not able to move out of map (Left/Right)!"]
+                
+                elif movement == "s":
+                    assert output == ["Welcome to Ratventure",
+                                    "----------------------",
+                                    "1) New Game",
+                                    "2) Resume Game",
+                                    "3) Exit Game",
+                                    "Enter Choice: ",
+                                    "Starting a new game...",
+                                    printresult,
+                                    "1) View Character\n"
+                                    "2) View Map\n"
+                                    "3) Move\n"
+                                    "4) Rest\n"
+                                    "5) Save Game\n"
+                                    "6) Exit Game",
+                                    "Enter choice: ",
+                                    "W = up; A = left; S = down; D = right",
+                                    "Your move: ",
+                                    "Not able to move out of map (Up/Down)!"]
+                
+                elif movement == "d":
+                    assert output == ["Welcome to Ratventure",
+                                    "----------------------",
+                                    "1) New Game",
+                                    "2) Resume Game",
+                                    "3) Exit Game",
+                                    "Enter Choice: ",
+                                    "Starting a new game...",
+                                    printresult,
+                                    "1) View Character\n"
+                                    "2) View Map\n"
+                                    "3) Move\n"
+                                    "4) Rest\n"
+                                    "5) Save Game\n"
+                                    "6) Exit Game",
+                                    "Enter choice: ",
+                                    "W = up; A = left; S = down; D = right",
+                                    "Your move: ",
+                                    "Not able to move out of map (Left/Right)!"]
+            
+            elif status == True:
+                if movement == "w":
+                    assert output == ["Welcome to Ratventure",
+                                "----------------------",
+                                "1) New Game",
+                                "2) Resume Game",
+                                "3) Exit Game",
+                                "Enter Choice: ",
+                                "Starting a new game...",
+                                printresult,
+                                "1) View Character\n"
+                                "2) View Map\n"
+                                "3) Move\n"
+                                "4) Rest\n"
+                                "5) Save Game\n"
+                                "6) Exit Game",
+                                "Enter choice: ",
+                                "W = up; A = left; S = down; D = right",
+                                "Your move: "] 
 
-    # # exit game unit testing
-    # elif choice_main_menu == 3:
-    #     assert output == ""
+                elif movement == "a":
+                    assert output == ["Welcome to Ratventure",
+                                "----------------------",
+                                "1) New Game",
+                                "2) Resume Game",
+                                "3) Exit Game",
+                                "Enter Choice: ",
+                                "Starting a new game...",
+                                printresult,
+                                "1) View Character\n"
+                                "2) View Map\n"
+                                "3) Move\n"
+                                "4) Rest\n"
+                                "5) Save Game\n"
+                                "6) Exit Game",
+                                "Enter choice: ",
+                                "W = up; A = left; S = down; D = right",
+                                "Your move: "] 
+
+                elif movement == "s":
+                    assert output == ["Welcome to Ratventure",
+                                "----------------------",
+                                "1) New Game",
+                                "2) Resume Game",
+                                "3) Exit Game",
+                                "Enter Choice: ",
+                                "Starting a new game...",
+                                printresult,
+                                "1) View Character\n"
+                                "2) View Map\n"
+                                "3) Move\n"
+                                "4) Rest\n"
+                                "5) Save Game\n"
+                                "6) Exit Game",
+                                "Enter choice: ",
+                                "W = up; A = left; S = down; D = right",
+                                "Your move: "]
+
+                elif movement == "d":
+                    assert output == ["Welcome to Ratventure",
+                                "----------------------",
+                                "1) New Game",
+                                "2) Resume Game",
+                                "3) Exit Game",
+                                "Enter Choice: ",
+                                "Starting a new game...",
+                                printresult,
+                                "1) View Character\n"
+                                "2) View Map\n"
+                                "3) Move\n"
+                                "4) Rest\n"
+                                "5) Save Game\n"
+                                "6) Exit Game",
+                                "Enter choice: ",
+                                "W = up; A = left; S = down; D = right",
+                                "Your move: "] 
