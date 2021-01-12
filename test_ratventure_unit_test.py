@@ -662,19 +662,13 @@ def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
         The first '1' indicates the start of a new game whereas the first '2' indicates resume game
         The second number in the matrix runs the available options in the town menu from 1 to 6
     """
-    # TODO Finish unit test for main function 1-6 and 2-6
-    # This task should cover running a new game instance and then viewing the character stats
-    # labels: unit-test, tasks
-    # milestone: 2
-
-    #calling print day function to  get print day results to be used under resume game section
-    
+    #calling print day function to  get printresults to be used under resume game function section
     location, current_day, printresult = print_day(get_hero, get_current_day)
-
-    #set_keyboard_input([choice_main_menu, choice_town_menu])
     output = main(choice_main_menu, choice_town_menu)
-    #output = get_display_output()
-    # new game function
+
+    # === ========================= ===
+    # === New Game Function section ===
+    # === ========================= ===
     if choice_main_menu == 1:
         # View Character function
         if choice_town_menu == 1:
@@ -772,8 +766,9 @@ def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
                             "Enter choice: ",
                             "The program will close since there are no unsaved changes."]
 
-    # resume game unit testing
-    # print day results: actual_tile, actual_location, printresult, current_day
+    # === ============================ ===
+    # === Resume Game Function section ===
+    # === ============================ ===
     elif choice_main_menu == 2:
         # View Character function
         if choice_town_menu == 1:
