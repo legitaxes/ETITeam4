@@ -56,9 +56,14 @@ def main(choice1=None, choice2=None, movement=None):
                     current_day += 1
 
             elif choice == 4:
-
-                rest(hero)
-                current_day += 1
+                if choice1 != None:
+                    rest(hero)
+                    current_day += 1
+                    output = get_display_output()
+                    return output
+                else:
+                    rest(hero)
+                    current_day += 1
 
             elif choice == 5:
                 save_game(hero, w_map, current_day)
