@@ -27,7 +27,7 @@ def theHero():
     #"orb": False,
     #"gold": 0
     }
-    print(hero)
+    #print(hero)
     return hero
 
 #initialize current day as 1 
@@ -66,6 +66,7 @@ def world_map():
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', 'K']
     """
+    global w_map
     #code goes here
     w_map = [['T', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
              [' ', ' ', ' ', 'T', ' ', ' ', ' ', ' '],\
@@ -75,10 +76,10 @@ def world_map():
              [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
              [' ', ' ', ' ', ' ', 'T', ' ', ' ', ' '],\
              [' ', ' ', ' ', ' ', ' ', ' ', ' ', 'K']]
-    print(w_map)
+    #print(w_map)
     return w_map
 
-def print_map(hero, flag=True):
+def print_map(hero, w_map, flag=True):
     """
     Displays the Map of the game when called
     This function should print the full layout of the map
@@ -89,8 +90,10 @@ def print_map(hero, flag=True):
     list_map = []
     w_map = world_map()
     for x in range(8):
-        print("+---"*8 + "+")
-        list_map.append("+---"*8 + "+")
+        if flag == False:
+            list_map.append("+---"*8 + "+")
+        else:
+            print("+---"*8 + "+")
         for y in range(8):
             legend = "   "
             if w_map[x][y] == "T":
@@ -104,13 +107,19 @@ def print_map(hero, flag=True):
             else:
                 if x == x_coor and y == y_coor:
                     legend = " H "
-            if(flag == True):
+            if flag == True:
                 print("|{}".format(legend), end="")
-            list_map.append("|" + legend)
-        print("|")
-        list_map.append("|")
-    print("+---"*8 + "+")
-    list_map.append("+---"*8 + "+")
+                #print("|" + legend, sep="")
+            else:
+                 list_map.append("|" + legend)
+        if flag == False: 
+            list_map.append("|")
+        else:
+            print("|")
+    if flag == False:
+        list_map.append("+---"*8 + "+")
+    else:
+        print("+---"*8 + "+")
     # list of items returned below are mainly used for unit test
     # they do not serve any other extra purpose
     return position, x_coor, y_coor, legend, list_map
@@ -131,7 +140,7 @@ def print_day(hero, current_day):
         location = "You are out in the open."
     print("Day {}: {}".format(current_day, location))
     printresult = "Day " + str(current_day) + ": " +  location
-    return tile, location, printresult, current_day
+    return location, current_day, printresult
 
 def rest(hero):
     """
@@ -162,9 +171,9 @@ def get_hero_position(hero):
     position = hero["position"]
     x_coor = position[0]
     y_coor = position[1]
-    w_map = world_map()
+    #w_map = world_map()
     tile = w_map[x_coor][y_coor]
-    return tile, hero, w_map
+    return tile
 
 
 def main_menu():
@@ -221,7 +230,8 @@ def new_game():
     global current_day, hero
     current_day = ini_current_day()
     hero = theHero()
-    return current_day, hero
+    w_map = world_map()
+    return current_day, hero, w_map
 
 def resume_game():
     """
@@ -241,8 +251,8 @@ def resume_game():
         print("Existing file does not exist.\n")
         return FileNotFoundError,"Existing file does not exist.\n"
         #main()
-    print("The game has been resumed to the previous save state.")
-    return "","The game has been resumed to the previous save state."
+    #print("The game has been resumed to the previous save state.")
+    return "","The game has been resumed to the previous save state.", hero, w_map, current_day
 
 
 def exit_game():
@@ -307,7 +317,7 @@ def set_hero_position(hero, x=None, y=None):
     return True, hero["position"]
 
 
-def move_hero(hero, flag=True):
+def move_hero(hero, w_map, flag=True):
     """
     This function moves the hero based on the hero's input
     Input being: W, A, S, D | Up, Left, Down, Right
@@ -315,7 +325,7 @@ def move_hero(hero, flag=True):
     Any Flag that is False is used for Unit Test Cases ONLY
     """
     if(flag == True):
-        print_map(hero)
+        print_map(hero, w_map)
     print("W = up; A = left; S = down; D = right")
 
     while True:
@@ -368,4 +378,6 @@ def move_hero(hero, flag=True):
     if(flag == False):
         return True
     else:
-        print_map(hero)
+        print_map(hero, w_map)
+
+
