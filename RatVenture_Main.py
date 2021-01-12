@@ -2,11 +2,16 @@ from random import randint
 import json
 import sys
 from RatVenture_Function import * 
+from tud_test_base import set_keyboard_input, get_display_output
 
-def main():
+def main(choice1=None, choice2=None):
     global current_day, hero, w_map
     #hero = theHero()
-    choice = main_menu()
+    if choice1 != None: # if its a main program
+        set_keyboard_input([choice1, choice2])
+        choice = main_menu()
+    else:
+        choice = main_menu()
     if choice == 1:
         current_day, hero, w_map = new_game()
     elif choice == 2:
@@ -24,11 +29,22 @@ def main():
 
             if choice == 1:
                 print_hero_stats(hero)
+                if choice1 != None: # if its running as pytest function
+                    output = get_display_output()
+                    return output
+            
             elif choice == 2:
-                print_map(hero, w_map)
+                if choice1 != None:
+                    pos, x, y, legend, list_map = print_map(hero, w_map, False)
+                    output = get_display_output()
+                    return output
+                else:
+                    print_map(hero, w_map)
+                
             elif choice == 3:
                 move_hero(hero, w_map)
                 current_day += 1
+                
             elif choice == 4:
                 rest(hero)
                 current_day += 1

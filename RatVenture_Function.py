@@ -90,9 +90,10 @@ def print_map(hero, w_map, flag=True):
     list_map = []
     w_map = world_map()
     for x in range(8):
-        print("+---"*8 + "+")
         if flag == False:
             list_map.append("+---"*8 + "+")
+        else:
+            print("+---"*8 + "+")
         for y in range(8):
             legend = "   "
             if w_map[x][y] == "T":
@@ -108,14 +109,17 @@ def print_map(hero, w_map, flag=True):
                     legend = " H "
             if flag == True:
                 print("|{}".format(legend), end="")
+                #print("|" + legend, sep="")
             else:
                  list_map.append("|" + legend)
-        print("|")
         if flag == False: 
             list_map.append("|")
-    print("+---"*8 + "+")
+        else:
+            print("|")
     if flag == False:
         list_map.append("+---"*8 + "+")
+    else:
+        print("+---"*8 + "+")
     # list of items returned below are mainly used for unit test
     # they do not serve any other extra purpose
     return position, x_coor, y_coor, legend, list_map
@@ -247,7 +251,7 @@ def resume_game():
         print("Existing file does not exist.\n")
         return FileNotFoundError,"Existing file does not exist.\n"
         #main()
-    print("The game has been resumed to the previous save state.")
+    #print("The game has been resumed to the previous save state.")
     return "","The game has been resumed to the previous save state.", hero, w_map, current_day
 
 
