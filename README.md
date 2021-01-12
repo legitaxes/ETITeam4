@@ -10,6 +10,12 @@ Team Roles:
 ---
 ### Latest Changes
 
+* Cheskalazo branch. PR [#508](https://github.com/legitaxes/ETITeam4/pull/508) by [@cheskalazo](https://github.com/cheskalazo).
+* Added a lot of new changes to ensure main.py works
+
+Added a new file to run the main function which will handle the logic of the program
+
+Fixed many issues encountered when creating main.py and fixed the considerations needed for the functions. PR [#503](https://github.com/legitaxes/ETITeam4/pull/503) by [@legitaxes](https://github.com/legitaxes).
 * jiaqibranch. PR [#498](https://github.com/legitaxes/ETITeam4/pull/498) by [@legitaxes](https://github.com/legitaxes).
 
 
