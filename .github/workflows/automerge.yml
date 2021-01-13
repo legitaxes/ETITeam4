@@ -2,11 +2,26 @@
 
 name: auto merge
 
+
 on: 
+  push: 
+    branches: 
+      [main, MaChwe-branch, cheskalazo-branch, jiaqibranch, laukwangweibranch, perlebranch]
   pull_request:
-    types: [labelled]
+    branches: 
+      [main, MaChwe-branch, cheskalazo-branch, jiaqibranch, laukwangweibranch, perlebranch]
+
     
-jobs:       
+
+jobs: 
+  auto-label:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with: 
+          labels: automerge
+
+              
   automerge:
     runs-on: ubuntu-latest
     steps:
@@ -17,9 +32,21 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_LABEL_NAME: "automerge"
           MERGE_REMOVE_LABELS: "automerge"
-          MERGE_METHOD: "squash"
+          MERGE_METHOD: "merge"
           MERGE_COMMIT_MESSAGE: "pull-request-description"
           UPDATE_LABELS: ""
           UPDATE_METHOD: "rebase"
         with:
           pull-request: ${{ github.event.inputs.pull-request }}
+          
+  main:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: check for merge conflicts
+        uses: eps1lon/actions-label-merge-conflict@releases/2.x
+        with:
+          dirtyLabel: "PR: Merge Conflict"
+          removeOnDirtyLabel: "automerge"
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          commentOnDirty: "This pull request has conflicts, @ScrumMaster please resolve."
+          commentOnClean: "Conflicts have been resolved. Automerge will proceed pull request shortly."

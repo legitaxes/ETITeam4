@@ -2,8 +2,9 @@ from random import randint
 import json
 import sys
 
+
 # Initialize Hero and Enemy Stats
-def hero():
+def theHero():
     """
     Initialize the Hero with the following:
         Name: The Hero
@@ -22,21 +23,20 @@ def hero():
     "hp": 20,
     "max_hp": 20,
     "defence": 1,
-    "position": [0, 0],
+    "position": [0, 0]
     #"orb": False,
     #"gold": 0
     }
-    print(hero)
+    #print(hero)
     return hero
 
-def rat():
-    # TODO Create a function that initalizes the rat stats
-    # The function should initialize the rat's stats such as name, hp, defence, potential damage
-    # refer to the unit test function to know what to code
-    # 
-    # labels: tasks
-    # assignees: laukwangwei
-    # milestone: 1
+#initialize current day as 1 
+def ini_current_day():
+    global current_day
+    current_day = 1
+    return current_day
+
+def theRat():
     """Initialize the rat with the following:
         Name: Rat
         HP: 10
@@ -44,7 +44,6 @@ def rat():
         Max Damage: 3
         Defence: 1
     """
-    # code goes here
     rat = {
     "name": "Rat",
     "hp": 10,
@@ -56,11 +55,6 @@ def rat():
     return rat
 
 def world_map():
-    # TODO Create a function that initializes the world map using 2D array
-    # A world map should be initialized as a 2D array according to how it looks like in the document
-    # Refer to the unit testing function to know what to code here
-    # labels: tasks
-    # assignees: legitaxes
     """
     Initialize the World Map to be like this:
             ['T', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
@@ -72,62 +66,115 @@ def world_map():
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', 'K']
     """
+    global w_map
     #code goes here
     w_map = [['T', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
+             [' ', ' ', ' ', 'T', ' ', ' ', ' ', ' '],\
+             [' ', ' ', ' ', ' ', ' ', 'T', ' ', ' '],\
+             [' ', 'T', ' ', ' ', ' ', ' ', ' ', ' '],\
              [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
              [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
-             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
-             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
-             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
-             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
+             [' ', ' ', ' ', ' ', 'T', ' ', ' ', ' '],\
              [' ', ' ', ' ', ' ', ' ', ' ', ' ', 'K']]
-    print(w_map)
+    #print(w_map)
     return w_map
 
-def print_map():
+def print_map(hero, w_map, flag=True):
     """
     Displays the Map of the game when called
     This function should print the full layout of the map
     """
-    # TODO Create a function that prints the map of the game 
-    # The map will be printed upon calling displaying details of the map 
-    # Details such as the town position and hero position should be displayed
-    # labels: tasks
-    # assignees: legitaxes
+    position = hero["position"]
+    x_coor = position[0]
+    y_coor = position[1]
+    list_map = []
+    w_map = world_map()
+    for x in range(8):
+        if flag == False:
+            list_map.append("+---"*8 + "+")
+        else:
+            print("+---"*8 + "+")
+        for y in range(8):
+            legend = "   "
+            if w_map[x][y] == "T":
+                legend = " T "
+                if x == x_coor and y == y_coor:
+                    legend = "H/T"
+            elif w_map[x][y] == "K":
+                legend = " K "
+                if x == x_coor and y == y_coor:
+                    legend = "H/K"
+            else:
+                if x == x_coor and y == y_coor:
+                    legend = " H "
+            if flag == True:
+                print("|{}".format(legend), end="")
+                #print("|" + legend, sep="")
+            else:
+                 list_map.append("|" + legend)
+        if flag == False: 
+            list_map.append("|")
+        else:
+            print("|")
+    if flag == False:
+        list_map.append("+---"*8 + "+")
+    else:
+        print("+---"*8 + "+")
+    # list of items returned below are mainly used for unit test
+    # they do not serve any other extra purpose
+    return position, x_coor, y_coor, legend, list_map
 
-    return print_w_map
-
-def print_day():
+def print_day(hero, current_day):
     """
-    Display the tile the hero is at and display whether the hero is in town or out in open
+    Display the details of the location the hero is at and display the current day of the game
     """
     # TODO Create a function that prints the day of the game
     # This function should also show the location of the hero besides displaying the day
     # labels: tasks
     # assignees: laukwangwei
+    tile = get_hero_position(hero)
+    location = ""
+    if tile == "T":
+        location = "You are in a town."
+    elif tile == " ":
+        location = "You are out in the open."
+    print("Day {}: {}".format(current_day, location))
+    printresult = "Day " + str(current_day) + ": " +  location
+    return location, current_day, printresult
 
-    return printday
+def rest(hero):
+    """
+    Hero's HP will be resetted to its max HP
+    """
+    hero["hp"] = hero["max_hp"]
+    print("You are fully healed.")
+    print_result = "You are fully healed."
+    return hero["hp"], print_result
 
-def print_hero_stats():
+def print_hero_stats(hero):
     """
     Display the hero's stats and his details
     This function should return the hero's Name, Damage, Defence and HP 
     """
-    # TODO Create a function that prints the stats of the hero
-    # This function should print the hero's stats as well as return the stats as a dictionary object
-    # labels: tasks
-    # assignees: laukwangwei
+    print(hero["name"])
+    print("Damage: {}-{}".format(hero["min_damage"], hero["max_damage"]))
+    print("Defence: {}".format(hero["defence"]))
+    print("HP: {}".format(hero["hp"]))
+    #return hero
 
-def get_hero_position():
+
+def get_hero_position(hero):
     """
     This function mainly serves as a way for the program to get the position of the hero
     It should return the tile where the hero is on the map
     """
-    # TODO Create a function that gets the hero's position
-    # This function should only serve as a way for the program to get the position of the hero
-    # labels: tasks
-    # assignees: legitaxes
-    
+    position = hero["position"]
+    x_coor = position[0]
+    y_coor = position[1]
+    #w_map = world_map()
+    tile = w_map[x_coor][y_coor]
+    return tile
+
 
 def main_menu():
     """
@@ -141,53 +188,196 @@ def main_menu():
     3) Exit Game
     Enter choice:
     """
-    print("Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game")
-    
-    #choice = int(input("Enter Choice: "))
-    return "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
+    print("Welcome to Ratventure")
+    print("----------------------")
+    print("1) New Game")
+    print("2) Resume Game")
+    print("3) Exit Game")
+    choice = int(input("Enter Choice: "))
+    if(choice < 1 or choice > 3):
+        print("Please enter a valid choice")
+    else:
+        if(choice == 1):
+            print("Starting a new game...")
+        elif(choice == 2):
+            print("Resuming from last save state...")
+        elif(choice == 3):
+            print("Exiting game...")
+    return choice
 
 def town_menu():
-    print("\n Day 1: You are in a town. \n 1) View Character \n 2) View Map \n 3) Move \n 4) Rest \n 5) Save Game \n 6) Exit Game \n Enter choice:")
-    return "\n Day 1: You are in a town. \n 1) View Character \n 2) View Map \n 3) Move \n 4) Rest \n 5) Save Game \n 6) Exit Game \n Enter choice:"
-
-def new_game():
-    # TODO figure out the structure of the program and how it should be ran
-    # also figure out how test script should work with @python.mark.parametrize() for each feature in the menu
-    # labels: research
-    # assignees: legitaxes
-    # milestone: 1
     """
-    This function should display the Menu of Town since a new instance of the game is created
-    Hence, the return value is a function called town_menu()  
-    town_menu() function should return:
-        Day 1: You are in a town.
+    This function should display the menu of Town
+    Hence, the following values should be returned:
         1) View Character
         2) View Map
         3) Move
         4) Rest
         5) Save Game
         6) Exit Game
-        Enter choice:
     """
+    print("1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game")
+    return "1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"
     
-    return town_menu()
+def new_game():
+    """
+    This function should display the Menu of Town since a new instance of the game is created
+    Hence, the return value is a function called town_menu()  
+    town_menu() function should return:
+        -> Current_day as 1
+        -> Initialize Hero using getHero() function
+    """
+    global current_day, hero
+    current_day = ini_current_day()
+    hero = theHero()
+    w_map = world_map()
+    return current_day, hero, w_map
 
 def resume_game():
     """
-    Add comments here, include a todo comment
+    This function loads the previous game data using a json file in the same directory. 
+    The previous save state should have stored variables as a json object
+    This function will set the global variables in the program from the json object  
     """
-    return ""
+    try:
+        global hero, w_map, current_day
+        file = open("./save.json", mode = "r")
+        load_data = json.load(file)
+        hero = load_data["hero"]
+        w_map = load_data["w_map"]
+        current_day = load_data["current_day"]
+        file.close()
+    except FileNotFoundError:
+        print("Existing file does not exist.\n")
+        return FileNotFoundError,"Existing file does not exist.\n"
+        #main()
+    #print("The game has been resumed to the previous save state.")
+    return "","The game has been resumed to the previous save state.", hero, w_map, current_day
 
 
 def exit_game():
     """
-    Add comments here, include a todo comment
+    This function exits the game and prints a notification message saying it will now close
     """
-    return ""
+    print("The program will close since there are no unsaved changes.")
+    return "The program will close since there are no unsaved changes."
 
 def exit_game_prompt():
     """
-    Add comments here, include a todo comment
+    This function acts as a confirmation message to the user if he is in the game
+    If the user typed Y
+    The program will exit and print a bye bye! message
+    or N: will go back to the previous menu
     """
-    return ""
+    # TODO Create a function that prints a confirmation message and prompts the user to select "Yes" or "No"
+    # This function will act as a confirmation message to the user if he wants to really exit the game without saving
+    # 
+    # labels: tasks
+    print("You have unsaved changes. Do you want to continue?")
+    choice = input("Enter choice: [Y/N]")
+    if(choice == "Y"):
+        print("Bye bye!")
+    elif(choice == "N"):
+        print("Going back to the game...")
+    return choice
+
+def save_game(hero, w_map, current_day):
+    """
+    This function saves the current progress of the game onto an external json file named: 'save.json'
+    """
+    file = open("./save.json", mode = "w+")
+    file.write(json.dumps({"hero": hero, "w_map": w_map, "current_day": current_day}))
+    file.close()
+    print("Game saved.")
+    return "Game saved."
+
+def set_hero_position(hero, x=None, y=None):
+    """
+    This function should set the hero's position and return true if it is a valid movement
+    Else it should return false if the hero is out of bounds in the map
+    Both scenarios should return the hero's position to check against the test cases
+    """
+    position = hero["position"]
+    x_coor = position[0]
+    y_coor = position[1]
+    if y != None:
+        y_coor += y
+        if y_coor < 0 or y_coor > 7:
+            print("Not able to move out of map (Left/Right)!")
+            return False, hero["position"]
+    if x != None:
+        x_coor += x
+        if x_coor < 0 or x_coor > 7:
+            print("Not able to move out of map (Up/Down)!")
+            return False, hero["position"]
+    #save the updated hero position
+    position[0] = x_coor
+    position[1] = y_coor
+    hero["position"] = position
+    return True, hero["position"]
+
+
+def move_hero(hero, w_map, flag=True):
+    """
+    This function moves the hero based on the hero's input
+    Input being: W, A, S, D | Up, Left, Down, Right
+    Program should show the map of the game and prompt for user input 
+    Any Flag that is False is used for Unit Test Cases ONLY
+    """
+    if(flag == True):
+        print_map(hero, w_map)
+    print("W = up; A = left; S = down; D = right")
+
+    while True:
+        move = input("Your move: ").lower()
+        if move == "w":
+            status, pos = set_hero_position(hero, x=-1)
+            if status == False:
+                if flag == False:
+                    return False
+                continue
+            elif status == True:
+                if flag == False:
+                    return True
+                break
+        elif move == "a":
+            status, pos = set_hero_position(hero, y=-1)
+            if status == False:
+                if flag == False:
+                    return False
+                continue
+            elif status == True:
+                if flag == False:
+                    return True
+                break
+        elif move == "s":
+            status, pos = set_hero_position(hero, x=1)
+            if status == False:
+                if flag == False:
+                    return False
+                continue
+            elif status == True:
+                if flag == False:
+                    return True
+                break
+        elif move == "d":
+            status, pos = set_hero_position(hero, y=1)
+            if status == False:
+                if flag == False:
+                    return False
+                continue
+            elif status == True:
+                if flag == False:
+                    return True
+                break
+        elif(flag == False):
+            print("Input out of range")
+            return False
+        else:
+            print("Input out of range")
+    if(flag == False):
+        return True
+    else:
+        print_map(hero, w_map)
+
 

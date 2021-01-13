@@ -2,11 +2,23 @@
  **Team Member Name: Jia Qi, Kwangwei, Cheska, Perle, Chwe**  
  
 Team Roles:
-  1. Scrum Master: Perle Chen (rotation for every Sprint) 
+  1. Scrum Master: Perle Chen
   2. Project Manager: Poh Jia Qi
   2. Developers: Lau Kwang Wei, Poh Jia Qi, Perle Chen 
   2. QA(s): Ma Chwe, Francheska Lazo 
   3. Technical Lead: Lau Kwang Wei, Poh Jia Qi 
+---
+### Latest Changes
+
+* Cheskalazo branch. PR [#508](https://github.com/legitaxes/ETITeam4/pull/508) by [@cheskalazo](https://github.com/cheskalazo).
+* Added a lot of new changes to ensure main.py works
+
+Added a new file to run the main function which will handle the logic of the program
+
+Fixed many issues encountered when creating main.py and fixed the considerations needed for the functions. PR [#503](https://github.com/legitaxes/ETITeam4/pull/503) by [@legitaxes](https://github.com/legitaxes).
+* jiaqibranch. PR [#498](https://github.com/legitaxes/ETITeam4/pull/498) by [@legitaxes](https://github.com/legitaxes).
+
+
 ---
 
 ## Project Background
@@ -174,6 +186,6 @@ During the building phase of the product, we will be producing a working product
 
 + It is the best way to maintain optimum control, reduce problems, and allow the project manager to run production without having to micromanage the members of the project. SDLC shows what’s happening, and exactly where the development process can be improved. SDLC also aims to analyze and improve the process of creating software as it creates a scalable view of the project, from day-to-day coding to managing production dates.  
 
-
+### Latest Changes
 
 --- 
