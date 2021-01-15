@@ -381,3 +381,17 @@ def move_hero(hero, w_map, flag=True):
         print_map(hero, w_map)
 
 
+# ==============================
+# ==========SPRINT 2============
+# ==============================
+
+"""
+Sprint 2 of the development will add the combat system to the game as well as making the game functional and completely playable
+"""
+
+def attack(hero, rat):
+    # TODO Create a attack() function which allows the program to calculate damage dealt
+    # This function will only 2 integers being the total damage after calculated
+    # labels: tasks
+    # milestone: 2
+    return

@@ -10,6 +10,11 @@ def get_hero() -> theHero():
     return hero
 
 @pytest.fixture
+def get_rat() -> theRat():
+    rat = theRat()
+    return rat
+
+@pytest.fixture
 def get_current_day() -> ini_current_day():
     current_day = ini_current_day() 
     return current_day
@@ -1086,7 +1091,7 @@ def test_print_rat_stats():
     # milestone: 2
     # assignees: laukwangwei
 
-def test_attack():
+def test_attack(get_hero, get_rat):
     """
     This test will test the logic of the attacking system in the game
     Both the hero and the rat's damage will be rolled between their minimum attack to their maximum attack
@@ -1096,10 +1101,32 @@ def test_attack():
         and if the hero's hp hit 0, its game over.
         and if the rat's hp hit 0, it will asser the print statement of you are victorious
     """
-    # TODO Create a unit test function for the attack function
-    # This test shall only be tested for the logic of the function 
-    # labels: tasks, unit-test
-    # milestone: 2
+
+    # hero_damage_test = randint(get_hero["min_damage"], get_hero["max_damage"])
+    # enemy_damage_test = randint(get_rat["min_damage"], get_rat["max_damage"])
+    set_keyboard_input([])
+    hero_total_damage_test, enemy_total_damage_test = attack(get_hero, get_rat)
+    output = get_display_output()
+
+    # do a short calculation to get the remaining HP
+    hero_hp = get_hero["hp"] - enemy_total_damage_test
+    enemy_hp = get_rat["hp"] - hero_total_damage_test
+
+    if hero_hp <=0:
+        assert output == ["You deal " + hero_total_damage_test + " damage to the " + get_rat["name"],
+                        "Ouch! The " + get_rat["name"] + " hit you for " + enemy_total_damage_test + " damage",
+                        "You ran out of HP! Game Over."]
+    elif enemy_hp <=0:
+        assert output == ["You deal " + hero_total_damage_test + " damage to the " + get_rat["name"],
+                        "Ouch! The " + get_rat["name"] + " hit you for " + enemy_total_damage_test + " damage",
+                        "You have " + hero_hp + " HP left.",
+                        "The " + get_rat["name"] + " is dead! You are victorious!"]
+    else:
+        assert output == ["You deal " + hero_total_damage_test + " damage to the " + get_rat["name"],
+                        "Ouch! The " + get_rat["name"] + " hit you for " + enemy_total_damage_test + " damage",
+                        "You have " + hero_hp + " HP left."]
+    #hero_total_damage_test = hero_damage_test - get_
+
 
 def test_encounter():
     """
