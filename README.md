@@ -10,6 +10,7 @@ Team Roles:
 ---
 ### Latest Changes
 
+* jiaqibranch. PR [#526](https://github.com/legitaxes/ETITeam4/pull/526) by [@legitaxes](https://github.com/legitaxes).
 * jiaqibranch. PR [#515](https://github.com/legitaxes/ETITeam4/pull/515) by [@legitaxes](https://github.com/legitaxes).
 * finished up main function for feature 1 to 6 for town menu
 with completed unit tests . PR [#512](https://github.com/legitaxes/ETITeam4/pull/512) by [@legitaxes](https://github.com/legitaxes).
