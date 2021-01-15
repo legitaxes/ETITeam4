@@ -1126,7 +1126,7 @@ def test_attack(get_hero, get_rat):
                         "You have " + str(get_hero["hp"]) + " HP left.",
                         "The " + get_rat["name"] + " is dead! You are victorious!"]
     
-    lse:
+    else:
         assert output == ["You deal " + str(hero_total_damage_test) + " damage to the " + get_rat["name"],
                         "Ouch! The " + get_rat["name"] + " hit you for " + str(enemy_total_damage_test) + " damage",
                         "You have " + str(get_hero["hp"]) + " HP left."]
