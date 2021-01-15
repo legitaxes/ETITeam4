@@ -390,10 +390,6 @@ Sprint 2 of the development will add the combat system to the game as well as ma
 """
 
 def attack(hero, rat, flag=True):
-    # TODO Create a attack() function which allows the program to calculate damage dealt
-    # This function will only 2 integers being the total damage after calculated
-    # labels: tasks
-    # milestone: 2
     hero_damage = randint(hero["min_damage"], hero["max_damage"])
     enemy_damage = randint(rat["min_damage"], rat["max_damage"])
 
