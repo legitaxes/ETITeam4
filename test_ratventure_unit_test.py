@@ -1113,18 +1113,18 @@ def test_attack(get_hero, get_rat):
     enemy_hp = get_rat["hp"] - hero_total_damage_test
 
     if hero_hp <=0:
-        assert output == ["You deal " + hero_total_damage_test + " damage to the " + get_rat["name"],
-                        "Ouch! The " + get_rat["name"] + " hit you for " + enemy_total_damage_test + " damage",
+        assert output == ["You deal " + str(hero_total_damage_test) + " damage to the " + get_rat["name"],
+                        "Ouch! The " + get_rat["name"] + " hit you for " + str(enemy_total_damage_test) + " damage",
                         "You ran out of HP! Game Over."]
     elif enemy_hp <=0:
-        assert output == ["You deal " + hero_total_damage_test + " damage to the " + get_rat["name"],
-                        "Ouch! The " + get_rat["name"] + " hit you for " + enemy_total_damage_test + " damage",
-                        "You have " + hero_hp + " HP left.",
+        assert output == ["You deal " + str(hero_total_damage_test) + " damage to the " + get_rat["name"],
+                        "Ouch! The " + get_rat["name"] + " hit you for " + str(enemy_total_damage_test) + " damage",
+                        "You have " + str(hero_hp) + " HP left.",
                         "The " + get_rat["name"] + " is dead! You are victorious!"]
     else:
-        assert output == ["You deal " + hero_total_damage_test + " damage to the " + get_rat["name"],
-                        "Ouch! The " + get_rat["name"] + " hit you for " + enemy_total_damage_test + " damage",
-                        "You have " + hero_hp + " HP left."]
+        assert output == ["You deal " + str(hero_total_damage_test) + " damage to the " + get_rat["name"],
+                        "Ouch! The " + get_rat["name"] + " hit you for " + str(enemy_total_damage_test) + " damage",
+                        "You have " + str(hero_hp) + " HP left."]
     #hero_total_damage_test = hero_damage_test - get_
 
 

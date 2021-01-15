@@ -389,9 +389,30 @@ def move_hero(hero, w_map, flag=True):
 Sprint 2 of the development will add the combat system to the game as well as making the game functional and completely playable
 """
 
-def attack(hero, rat):
+def attack(hero, rat, flag=True):
     # TODO Create a attack() function which allows the program to calculate damage dealt
     # This function will only 2 integers being the total damage after calculated
     # labels: tasks
     # milestone: 2
-    return
+    hero_damage = randint(hero["min_damage"], hero["max_damage"])
+    enemy_damage = randint(rat["min_damage"], rat["max_damage"])
+
+    hero_total_damage = hero_damage - rat["defence"]
+    rat_total_damage = enemy_damage - hero["defence"]
+
+    if rat_total_damage <= 0:
+        rat_total_damage = 0
+    # calculate the hp after damage
+    rat["hp"] = rat["hp"] - hero_total_damage
+    hero["hp"] = hero["hp"] - rat_total_damage
+    print("You deal {} damage to the {}".format(hero_total_damage, rat["name"]))
+    print("Ouch! The {} hit you for {} damage".format(rat["name"],rat_total_damage))
+
+    if hero["hp"] <= 0:
+        print("You ran out of HP! Game over.")
+        if flag == True:
+            sys.exit(0)
+    print("You have {} HP left.".format(str(hero["hp"])))
+    if rat["hp"] <= 0:
+        print("The {} is dead! You are victorious!".format(rat["name"]))
+    return hero_total_damage, rat_total_damage
