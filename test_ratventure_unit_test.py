@@ -1101,30 +1101,33 @@ def test_attack(get_hero, get_rat):
         and if the hero's hp hit 0, its game over.
         and if the rat's hp hit 0, it will asser the print statement of you are victorious
     """
+    # save original hp to a variable
+    origin_hp = get_hero["hp"]
+    origin_hp_rat = get_rat["hp"]
 
-    # hero_damage_test = randint(get_hero["min_damage"], get_hero["max_damage"])
-    # enemy_damage_test = randint(get_rat["min_damage"], get_rat["max_damage"])
     set_keyboard_input([])
-    hero_total_damage_test, enemy_total_damage_test = attack(get_hero, get_rat)
+    attack(get_hero, get_rat, False)
     output = get_display_output()
 
     # do a short calculation to get the remaining HP
-    hero_hp = get_hero["hp"] - enemy_total_damage_test
-    enemy_hp = get_rat["hp"] - hero_total_damage_test
+    hero_total_damage_test = origin_hp_rat - get_rat["hp"] 
+    enemy_total_damage_test = origin_hp - get_hero["hp"] 
+    # hero_hp = get_hero["hp"] - enemy_total_damage_test
+    # enemy_hp = get_rat["hp"] - hero_total_damage_test
 
-    if hero_hp <=0:
+    if get_hero["hp"]  <=0:
         assert output == ["You deal " + str(hero_total_damage_test) + " damage to the " + get_rat["name"],
                         "Ouch! The " + get_rat["name"] + " hit you for " + str(enemy_total_damage_test) + " damage",
                         "You ran out of HP! Game Over."]
-    elif enemy_hp <=0:
+    elif get_rat["hp"] <=0:
         assert output == ["You deal " + str(hero_total_damage_test) + " damage to the " + get_rat["name"],
                         "Ouch! The " + get_rat["name"] + " hit you for " + str(enemy_total_damage_test) + " damage",
-                        "You have " + str(hero_hp) + " HP left.",
+                        "You have " + str(get_hero["hp"]) + " HP left.",
                         "The " + get_rat["name"] + " is dead! You are victorious!"]
     else:
         assert output == ["You deal " + str(hero_total_damage_test) + " damage to the " + get_rat["name"],
                         "Ouch! The " + get_rat["name"] + " hit you for " + str(enemy_total_damage_test) + " damage",
-                        "You have " + str(hero_hp) + " HP left."]
+                        "You have " + str(get_hero["hp"]) + " HP left."]
     #hero_total_damage_test = hero_damage_test - get_
 
 
