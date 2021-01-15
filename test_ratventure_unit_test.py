@@ -1037,3 +1037,80 @@ def test_main_move(choice_main_menu, choice_town_menu, movement, get_hero, get_c
                                 "Enter choice: ",
                                 "W = up; A = left; S = down; D = right",
                                 "Your move: "] 
+
+
+# ==============================
+# ==========SPRINT 2============
+# ==============================
+
+def test_fight_menu():
+    """
+    This test will test the print statement of the combat menu when fighting the rat
+    It should only assert to output statements only and there will be no inputs
+            1) Attack
+            2) Run
+    """
+    # TODO Create a unit test function for the fight menu
+    # This test will only assert the two print statements
+    # labels: tasks, unit-test
+    # milestone: 2
+    # assignees: laukwangwei
+
+def test_outdoor_menu():
+    """
+    This test will test the print statement of the outdoor menu text once there are no encounter or if the enemy is slained
+    It should only assert the output statements as the following:
+            1) View Character
+            2) View Map
+            3) Move
+            4) Exit Game
+    """
+    # TODO Create a unit test function for the outdoor menu
+    # This test shall only assert the print statements of the outdoor menu
+    # labels: tasks, unit-test
+    # milestone: 2
+    # assignees: laukwangwei
+
+def test_print_rat_stats():
+    """
+    This test will only test the print_rat_stats() function for its print statement whether it is correct
+    It should only assert the following: 
+            Encounter! - Rat
+            Damage: [min_damage] - [max_damage]
+            Defence: [defence]
+            HP: [hp]
+    """
+    # TODO Create a unit test function for printing the rat stats
+    # This test shall only assert the print statements of the print_rat_stats() function
+    # labels: tasks, unit-test
+    # milestone: 2
+    # assignees: laukwangwei
+
+def test_attack():
+    """
+    This test will test the logic of the attacking system in the game
+    Both the hero and the rat's damage will be rolled between their minimum attack to their maximum attack
+    Then the damage will be reduced by the number of defence the enemy or the hero have
+    The test will only test the damage calculation and the print output within the test function 
+    After the calculation of damage, the HP of the hero and the enemy must be reduced 
+        and if the hero's hp hit 0, its game over.
+        and if the rat's hp hit 0, it will asser the print statement of you are victorious
+    """
+    # TODO Create a unit test function for the attack function
+    # This test shall only be tested for the logic of the function 
+    # labels: tasks, unit-test
+    # milestone: 2
+
+def test_encounter():
+    """
+    This test will assert the print statements that are supposed to be there such as 
+        print_rat_stats(), combat menu
+    It will also test for the choices made and what functions it should run after the selected choice
+    IF the player move or run away from the combat, the HP of the enemy will be resetted along with printing the outdoor menu text
+    If the player does anything besides moving away from the same spot, the encounter function will be ran again
+    Or if the player does decide to move, he will be able to move normally without any events occuring if the tile he is standing on next is not empty
+    """
+    # TODO Create a unit test function for the encounter() function
+    # This test will handle the logic of the outdoor menu system and combat menu system
+    # labels: tasks, unit-test
+    # milestone: 2
