@@ -139,7 +139,7 @@ def print_day(hero, current_day):
     elif tile == " ":
         location = "You are out in the open."
     print("Day {}: {}".format(current_day, location))
-    printresult = "Day " + str(current_day) + ": " +  location
+    printresult = "Day " + f'{current_day}' + ": " +  location
     return location, current_day, printresult
 
 def rest(hero):
@@ -408,6 +408,6 @@ def attack(hero, rat, flag=True):
         print("You ran out of HP! Game over.")
         if flag == True:
             sys.exit(0)
-    print("You have {} HP left.".format(str(hero["hp"])))
+    print("You have {} HP left.".format(hero["hp"]))
     if rat["hp"] <= 0:
         print("The {} is dead! You are victorious!".format(rat["name"]))
