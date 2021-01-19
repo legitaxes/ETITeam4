@@ -231,28 +231,149 @@ def test_exit_game_prompt_no():
     assert output == ["You have unsaved changes. Do you want to continue?","Enter choice: [Y/N]", "Going back to the game..."]
 
 
-def test_main2():
-    """User Story 2.0.1: Test input for town menu
+# def test_main2():
+#     """User Story 2.0.1: Test input for town menu
     
-    Input
-    -----------------
-    7
+#     Input
+#     -----------------
+#     7
     
-    Output
-    -----------------
+#     Output
+#     -----------------
 
-    Error! Please input an appropiate option.
-    1) View Character
-    2) View Map
-    3) Move
-    4) Rest
-    5) Save Game
-    6) Exit Game
+#     Error! Please input an appropiate option.
+#     1) View Character
+#     2) View Map
+#     3) Move
+#     4) Rest
+#     5) Save Game
+#     6) Exit Game
     
     
-    """
-    output = town_menu()
-    assert output == "Error! Please input an appropiate option.\n1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"    
+#     """
+#     output = town_menu()
+#     assert output == "Error! Please input an appropiate option.\n1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"    
+
+def test_town_menu_input_1():
+    set_keyboard_input([1])
+    town_menu()
+    output = get_display_output()
+    assert output == ["1) View Character", 
+                        "2) View Map", 
+                        "3) Move", 
+                        "4) Rest", 
+                        "5) Save Game", 
+                        "6) Exit Game", 
+                        "Viewing the Character's statistics..."]
+
+def test_town_menu_input_2():
+    set_keyboard_input([2])
+    town_menu()
+    output = get_display_output()
+    assert output == ["1) View Character", 
+                        "2) View Map", 
+                        "3) Move", 
+                        "4) Rest", 
+                        "5) Save Game", 
+                        "6) Exit Game", 
+                        "Viewing the Town Map..."]
+
+def test_town_menu_input_3():
+    set_keyboard_input([3])
+    town_menu()
+    output = get_display_output()
+    assert output == ["1) View Character", 
+                        "2) View Map", 
+                        "3) Move", 
+                        "4) Rest", 
+                        "5) Save Game", 
+                        "6) Exit Game", 
+                        "Moving the Hero..."]
+
+def test_town_menu_input_4():
+    set_keyboard_input([4])
+    town_menu()
+    output = get_display_output()
+    assert output == ["1) View Character", 
+                        "2) View Map", 
+                        "3) Move", 
+                        "4) Rest", 
+                        "5) Save Game", 
+                        "6) Exit Game", 
+                        "Resting the Hero..."]
+
+def test_town_menu_input_5():
+    set_keyboard_input([5])
+    town_menu()
+    output = get_display_output()
+    assert output == ["1) View Character", 
+                        "2) View Map", 
+                        "3) Move", 
+                        "4) Rest", 
+                        "5) Save Game", 
+                        "6) Exit Game", 
+                        "Saving the game..."]
+
+def test_town_menu_input_6():
+    set_keyboard_input([6])
+    town_menu()
+    output = get_display_output()
+    assert output == ["1) View Character", 
+                        "2) View Map", 
+                        "3) Move", 
+                        "4) Rest", 
+                        "5) Save Game", 
+                        "6) Exit Game", 
+                        "Exiting game..."]
+
+def test_town_menu_input_0():
+    set_keyboard_input([0])
+    town_menu()
+    output = get_display_output()
+    assert output == ["1) View Character", 
+                        "2) View Map", 
+                        "3) Move", 
+                        "4) Rest", 
+                        "5) Save Game", 
+                        "6) Exit Game", 
+                        "Please enter a valid choice."]
+    
+def test_town_menu_input_negative():
+    set_keyboard_input([-3])
+    town_menu()
+    output = get_display_output()
+    assert output == ["1) View Character", 
+                        "2) View Map", 
+                        "3) Move", 
+                        "4) Rest", 
+                        "5) Save Game", 
+                        "6) Exit Game", 
+                        "Please enter a valid choice."]
+
+def test_town_menu_input_positive():
+    set_keyboard_input([9])
+    town_menu()
+    output = get_display_output()
+    assert output == ["1) View Character", 
+                        "2) View Map", 
+                        "3) Move", 
+                        "4) Rest", 
+                        "5) Save Game", 
+                        "6) Exit Game", 
+                        "Please enter a valid choice."]
+
+def test_town_menu_input_specialcharacter():
+    set_keyboard_input([=])
+    town_menu()
+    output = get_display_output()
+    assert output == ["1) View Character", 
+                        "2) View Map", 
+                        "3) Move", 
+                        "4) Rest", 
+                        "5) Save Game", 
+                        "6) Exit Game", 
+                        "Please enter a valid numerical choice."]
+
 
 def test_town_menu():
     """User Story 2.0: Display town menu
@@ -273,6 +394,8 @@ def test_town_menu():
     """
     output = town_menu()
     assert output == "1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"    
+
+    
 
 def test_view_character(get_hero):
     """User Story 2.1: Display player's statistics 
