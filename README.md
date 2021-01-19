@@ -2,11 +2,28 @@
  **Team Member Name: Jia Qi, Kwangwei, Cheska, Perle, Chwe**  
  
 Team Roles:
-  1. Scrum Master: Perle Chen (rotation for every Sprint) 
+  1. Scrum Master: Perle Chen
   2. Project Manager: Poh Jia Qi
   2. Developers: Lau Kwang Wei, Poh Jia Qi, Perle Chen 
   2. QA(s): Ma Chwe, Francheska Lazo 
   3. Technical Lead: Lau Kwang Wei, Poh Jia Qi 
+---
+### Latest Changes
+
+* Added attack function into the game as well as cleaning up explicit str() conversion into fstrings. PR [#532](https://github.com/legitaxes/ETITeam4/pull/532) by [@legitaxes](https://github.com/legitaxes).
+* jiaqibranch. PR [#526](https://github.com/legitaxes/ETITeam4/pull/526) by [@legitaxes](https://github.com/legitaxes).
+* jiaqibranch. PR [#515](https://github.com/legitaxes/ETITeam4/pull/515) by [@legitaxes](https://github.com/legitaxes).
+* finished up main function for feature 1 to 6 for town menu
+with completed unit tests . PR [#512](https://github.com/legitaxes/ETITeam4/pull/512) by [@legitaxes](https://github.com/legitaxes).
+* Cheskalazo branch. PR [#508](https://github.com/legitaxes/ETITeam4/pull/508) by [@cheskalazo](https://github.com/cheskalazo).
+* Added a lot of new changes to ensure main.py works
+
+Added a new file to run the main function which will handle the logic of the program
+
+Fixed many issues encountered when creating main.py and fixed the considerations needed for the functions. PR [#503](https://github.com/legitaxes/ETITeam4/pull/503) by [@legitaxes](https://github.com/legitaxes).
+* jiaqibranch. PR [#498](https://github.com/legitaxes/ETITeam4/pull/498) by [@legitaxes](https://github.com/legitaxes).
+
+
 ---
 
 ## Project Background
@@ -173,7 +190,3 @@ During the building phase of the product, we will be producing a working product
 + As mentioned above, it consists of six to eight steps to follow. To start off, the team will do the planning by discussing the brief overview of the project and assigning the roles for effectiveness and efficiency. As soon as everyone is clear with what the goals are, we will move on to gathering the requirements by identifying and consolidating the features of the Ratventure. Subsequently, we will be preparing system and software design documents stated in the requirement specification document. Once the system design phase is complete, developers start to build the entire system by writing code using the chosen programming language. The testing team will start testing the functionality of the entire system after the software is completed and deployed in the testing environment. Until the software is bug-free, stable, and working accordingly, the QA and testing team will have to communicate to developers to fix any bugs that may be found. After all the errors are fixed, we will start to do the final deployment.  
 
 + It is the best way to maintain optimum control, reduce problems, and allow the project manager to run production without having to micromanage the members of the project. SDLC shows what’s happening, and exactly where the development process can be improved. SDLC also aims to analyze and improve the process of creating software as it creates a scalable view of the project, from day-to-day coding to managing production dates.  
-
-
-
---- 
