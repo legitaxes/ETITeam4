@@ -58,8 +58,6 @@ def test_main_mainmenu_3():
     assert output == ["Enter choice: 3",
                         "Exiting the game..."]
 
-def test_main_townmenu_1(): 
-    
 
 def test_main_menu_input_1():
     set_keyboard_input([1])
