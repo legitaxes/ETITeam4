@@ -10,6 +10,11 @@ def get_hero() -> theHero():
     return hero
 
 @pytest.fixture
+def get_rat() -> theRat():
+    rat = theRat()
+    return rat
+
+@pytest.fixture
 def get_current_day() -> ini_current_day():
     current_day = ini_current_day() 
     return current_day
@@ -170,7 +175,7 @@ def test_print_day(get_hero, get_current_day):
         Display the tile the hero is at and display whether the hero is in town or out in open
     """
     location, current_day, printresult = print_day(get_hero, get_current_day)
-    assert printresult == "Day " + str(current_day) + ": " + location
+    assert printresult == "Day " + f'{current_day}' + ": " + location
     # if actual_tile == "T":
     #     assert actual_location == "You are in a town."
     # elif actual_tile == " ":
@@ -688,9 +693,9 @@ def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
                             "6) Exit Game",
                             "Enter choice: ",
                             get_hero["name"],
-                            "Damage: " + str(get_hero["min_damage"]) + "-" + str(get_hero["max_damage"]),
-                            "Defence: " + str(get_hero["defence"]),
-                            "HP: " + str(get_hero["hp"])]
+                            "Damage: " + f'{get_hero["min_damage"]}' + "-" + f'{get_hero["max_damage"]}',
+                            "Defence: " + f'{get_hero["defence"]}',
+                            "HP: " + f'{get_hero["hp"]}']
         
         # View Map function
         elif choice_town_menu == 2:
@@ -788,9 +793,9 @@ def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
                             "6) Exit Game",
                             "Enter choice: ",
                             get_hero["name"],
-                            "Damage: " + str(get_hero["min_damage"]) + "-" + str(get_hero["max_damage"]),
-                            "Defence: " + str(get_hero["defence"]),
-                            "HP: " + str(get_hero["hp"])]
+                            "Damage: " + f'{get_hero["min_damage"]}' + "-" + f'{get_hero["max_damage"]}',
+                            "Defence: " + f'{get_hero["defence"]}',
+                            "HP: " + f'{get_hero["hp"]}']
         
         # View Map function
         elif choice_town_menu == 2:
@@ -1086,7 +1091,7 @@ def test_print_rat_stats():
     # milestone: 2
     # assignees: laukwangwei
 
-def test_attack():
+def test_attack(get_hero, get_rat):
     """
     This test will test the logic of the attacking system in the game
     Both the hero and the rat's damage will be rolled between their minimum attack to their maximum attack
@@ -1096,10 +1101,37 @@ def test_attack():
         and if the hero's hp hit 0, its game over.
         and if the rat's hp hit 0, it will asser the print statement of you are victorious
     """
-    # TODO Create a unit test function for the attack function
-    # This test shall only be tested for the logic of the function 
-    # labels: tasks, unit-test
-    # milestone: 2
+    # save original hp to a variable
+    origin_hp = get_hero["hp"]
+    origin_hp_rat = get_rat["hp"]
+
+    set_keyboard_input([])
+    attack(get_hero, get_rat, False)
+    output = get_display_output()
+
+    # do a short calculation to get the remaining HP
+    hero_total_damage_test = origin_hp_rat - get_rat["hp"] 
+    enemy_total_damage_test = origin_hp - get_hero["hp"] 
+    # hero_hp = get_hero["hp"] - enemy_total_damage_test
+    # enemy_hp = get_rat["hp"] - hero_total_damage_test
+
+    if get_hero["hp"]  <=0:
+        assert output == ["You deal " + f'{hero_total_damage_test}' + " damage to the " + get_rat["name"],
+                        "Ouch! The " + get_rat["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
+                        "You ran out of HP! Game Over."]
+    
+    elif get_rat["hp"] <=0:
+        assert output == ["You deal " + f'{hero_total_damage_test}' + " damage to the " + get_rat["name"],
+                        "Ouch! The " + get_rat["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
+                        "You have " + f'{get_hero["hp"]}' + " HP left.",
+                        "The " + get_rat["name"] + " is dead! You are victorious!"]
+    
+    else:
+        assert output == ["You deal " + f'{hero_total_damage_test}' + " damage to the " + get_rat["name"],
+                        "Ouch! The " + get_rat["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
+                        "You have " + f'{get_hero["hp"]}' + " HP left."]
+    
+
 
 def test_encounter():
     """
