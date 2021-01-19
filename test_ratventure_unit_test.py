@@ -193,6 +193,7 @@ def test_print_hero_stats(get_hero):
         Defence: defence
         HP: hp
     """
+
     #set keyboard input function is necessary to test the print statements
     set_keyboard_input([])
     print_hero_stats(get_hero)
@@ -202,6 +203,9 @@ def test_print_hero_stats(get_hero):
     hp = "HP: {}".format(get_hero["hp"])
     assert output == [get_hero["name"], damage, defence, hp] 
     
+  
+    assert print_hero_stats(theHero()) == str(get_hero["name"]) + "Damage:" + str(get_hero["min_damage"]) + "-" + str(get_hero["max_damage"]) + str(get_hero["defence"]) + str(get_hero["hp"])
+
 
 def test_get_hero_position(get_hero, get_w_map):
     """
