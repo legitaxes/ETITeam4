@@ -521,15 +521,7 @@ def test_exit_game2():
     output = exit_game() 
     assert output == "The program will close since there are no unsaved changes."
 
-# add a move_hero test function here
 
-
-# need to know how to link one function to another and then have the yes or no input
-# for workflow testing
-# for testing purposes
-
-#just to push
-#just trying
 
 
 
