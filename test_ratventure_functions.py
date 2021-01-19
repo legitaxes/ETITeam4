@@ -1,5 +1,6 @@
 import pytest 
 from RatVenture_Function import * # update once developer starts 
+from RatVenture_Main import *
 from tud_test_base import *
 
 @pytest.fixture
@@ -20,9 +21,10 @@ def get_w_map() -> world_map():
 '''''
 Sprint 1
 '''''
-def test_main_function_1(): 
-    set_keyboard_input([choice1, choice2])
-    choice = main_menu()
+def test_main_mainmenu_1(): 
+    set_keyboard_input([1])
+    main()
+    main_menu()
     output = get_display_output()
     assert output == ["Enter choice: 1",
                         "Day 1: You are in town.",
@@ -33,6 +35,31 @@ def test_main_function_1():
                         "5) Save Game", 
                         "6) Exit Game",
                         "Enter choice:"]
+
+def test_main_mainmenu_2(): 
+    set_keyboard_input([2])
+    main()
+    main_menu()
+    output = get_display_output()
+    assert output == ["Enter choice: 2",
+                        "1) View Character",
+                        "2) View Map", 
+                        "3) Move",
+                        "4) Rest", 
+                        "5) Save Game", 
+                        "6) Exit Game",
+                        "Enter choice:"]
+
+def test_main_mainmenu_3(): 
+    set_keyboard_input([3])
+    main()
+    main_menu()
+    output = get_display_output()
+    assert output == ["Enter choice: 3",
+                        "Exiting the game..."]
+
+def test_main_townmenu_1(): 
+    
 
 def test_main_menu_input_1():
     set_keyboard_input([1])
@@ -363,7 +390,7 @@ def test_town_menu_input_positive():
                         "Please enter a valid choice."]
 
 def test_town_menu_input_specialcharacter():
-    set_keyboard_input([=])
+    set_keyboard_input(['='])
     town_menu()
     output = get_display_output()
     assert output == ["1) View Character", 
