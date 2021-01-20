@@ -160,12 +160,6 @@ def print_hero_stats(hero):
     #return hero
 
 
-    hero_stats = str(hero["name"]) + "Damage:" + str(hero["min_damage"]) + "-" + str(hero["max_damage"]) + str(hero["defence"]) + str(hero["hp"])
-    print(hero_stats)
-    return (hero_stats)
-
-
-
 def get_hero_position(hero):
     """
     This function mainly serves as a way for the program to get the position of the hero
