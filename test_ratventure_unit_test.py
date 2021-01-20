@@ -1101,34 +1101,39 @@ def test_attack(get_hero, get_rat):
         and if the hero's hp hit 0, its game over.
         and if the rat's hp hit 0, it will asser the print statement of you are victorious
     """
+    # save original hp to a variable
+    origin_hp = get_hero["hp"]
+    origin_hp_rat = get_rat["hp"]
 
-    # hero_damage_test = randint(get_hero["min_damage"], get_hero["max_damage"])
-    # enemy_damage_test = randint(get_rat["min_damage"], get_rat["max_damage"])
     set_keyboard_input([])
-    hero_total_damage_test, enemy_total_damage_test = attack(get_hero, get_rat)
+    attack(get_hero, get_rat, False)
     output = get_display_output()
 
     # do a short calculation to get the remaining HP
-    hero_hp = get_hero["hp"] - enemy_total_damage_test
-    enemy_hp = get_rat["hp"] - hero_total_damage_test
+    hero_total_damage_test = origin_hp_rat - get_rat["hp"] 
+    enemy_total_damage_test = origin_hp - get_hero["hp"] 
+    # hero_hp = get_hero["hp"] - enemy_total_damage_test
+    # enemy_hp = get_rat["hp"] - hero_total_damage_test
 
-    if hero_hp <=0:
-        assert output == ["You deal " + str(hero_total_damage_test) + " damage to the " + get_rat["name"],
-                        "Ouch! The " + get_rat["name"] + " hit you for " + str(enemy_total_damage_test) + " damage",
+    if get_hero["hp"]  <=0:
+        assert output == ["You deal " + f'{hero_total_damage_test}' + " damage to the " + get_rat["name"],
+                        "Ouch! The " + get_rat["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
                         "You ran out of HP! Game Over."]
-    elif enemy_hp <=0:
-        assert output == ["You deal " + str(hero_total_damage_test) + " damage to the " + get_rat["name"],
-                        "Ouch! The " + get_rat["name"] + " hit you for " + str(enemy_total_damage_test) + " damage",
-                        "You have " + str(hero_hp) + " HP left.",
+    
+    elif get_rat["hp"] <=0:
+        assert output == ["You deal " + f'{hero_total_damage_test}' + " damage to the " + get_rat["name"],
+                        "Ouch! The " + get_rat["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
+                        "You have " + f'{get_hero["hp"]}' + " HP left.",
                         "The " + get_rat["name"] + " is dead! You are victorious!"]
+    
     else:
-        assert output == ["You deal " + str(hero_total_damage_test) + " damage to the " + get_rat["name"],
-                        "Ouch! The " + get_rat["name"] + " hit you for " + str(enemy_total_damage_test) + " damage",
-                        "You have " + str(hero_hp) + " HP left."]
-    #hero_total_damage_test = hero_damage_test - get_
+        assert output == ["You deal " + f'{hero_total_damage_test}' + " damage to the " + get_rat["name"],
+                        "Ouch! The " + get_rat["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
+                        "You have " + f'{get_hero["hp"]}' + " HP left."]
+    
 
-
-def test_encounter():
+# @pytest.mark.parametrize("choice", ("1","2"))
+def test_encounter_1(get_rat, get_current_day, get_hero):
     """
     This test will assert the print statements that are supposed to be there such as 
         print_rat_stats(), combat menu
@@ -1137,7 +1142,96 @@ def test_encounter():
     If the player does anything besides moving away from the same spot, the encounter function will be ran again
     Or if the player does decide to move, he will be able to move normally without any events occuring if the tile he is standing on next is not empty
     """
-    # TODO Create a unit test function for the encounter() function
-    # This test will handle the logic of the outdoor menu system and combat menu system
-    # labels: tasks, unit-test
-    # milestone: 2
+
+    origin_hp = get_hero["hp"]
+    origin_hp_rat = get_rat["hp"]
+
+    set_keyboard_input(["1"])
+    status = encounter(get_hero, get_rat)
+    output = get_display_output()
+
+    hero_total_damage_test = origin_hp_rat - get_rat["hp"] 
+    enemy_total_damage_test = origin_hp - get_hero["hp"] 
+
+    if get_rat["hp"] <= 0:
+        assert status == False
+        if get_hero["hp"]  <=0:
+            assert output == ["Encounter! - " + get_rat["name"],
+                        "Damage: " + f'{get_rat["min_damage"]}' + "-" + f'{get_rat["max_damage"]}',
+                        "Defence: " + f'{get_rat["defence"]}',
+                        "HP: " + f'{get_rat["hp"]}',
+                        "1) Attack",
+                        "2) Run",
+                        "You deal " + f'{hero_total_damage_test}' + " damage to the " + get_rat["name"],
+                        "Ouch! The " + get_rat["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
+                        "You ran out of HP! Game Over."]
+    
+        elif get_rat["hp"] <=0:
+            assert output == ["Encounter! - " + get_rat["name"],
+                        "Damage: " + f'{get_rat["min_damage"]}' + "-" + f'{get_rat["max_damage"]}',
+                        "Defence: " + f'{get_rat["defence"]}',
+                        "HP: " + f'{get_rat["hp"]}',
+                        "1) Attack",
+                        "2) Run",
+                        "You deal " + f'{hero_total_damage_test}' + " damage to the " + get_rat["name"],
+                        "Ouch! The " + get_rat["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
+                        "You have " + f'{get_hero["hp"]}' + " HP left.",
+                        "The " + get_rat["name"] + " is dead! You are victorious!"]
+    
+        else:
+            assert output == ["Encounter! - " + get_rat["name"],
+                        "Damage: " + f'{get_rat["min_damage"]}' + "-" + f'{get_rat["max_damage"]}',
+                        "Defence: " + f'{get_rat["defence"]}',
+                        "HP: " + f'{get_rat["hp"]}',
+                        "1) Attack",
+                        "2) Run",
+                        "You deal " + f'{hero_total_damage_test}' + " damage to the " + get_rat["name"],
+                        "Ouch! The " + get_rat["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
+                        "You have " + f'{get_hero["hp"]}' + " HP left."]
+
+    else:
+        with patch('encounter') as mock:
+            assert mock.called, 'Encounter function should be called'
+            #mock.assert_called_with(encounter, [get_hero, get_rat])
+            #mock.assert_called_with(42)
+    
+@pytest.mark.parametrize("open_choice", [("1","2","3","4")])
+def test_encounter_2(get_rat, get_current_day, open_choice, get_hero):
+    """
+    This test will assert the print statements that are supposed to be there such as 
+        print_rat_stats(), combat menu
+    It will also test for the choices made and what functions it should run after the selected choice
+    IF the player move or run away from the combat, the HP of the enemy will be resetted along with printing the outdoor menu text
+    If the player does anything besides moving away from the same spot, the encounter function will be ran again
+    Or if the player does decide to move, he will be able to move normally without any events occuring if the tile he is standing on next is not empty
+    This test function will focus on the running part of the encounter
+    """
+    
+    set_keyboard_input(["2", open_choice])
+    status = encounter(get_hero, get_rat)
+    output = get_display_output()
+    assert get_rat["hp"] == 10
+
+    if open_choice == 1 or open_choice == 2 or open_choice == 4:
+        with patch('encounter') as mock:
+            assert mock.called, 'Encounter function should be called'
+            #mock.assert_called_with(encounter, [get_hero, get_rat])
+            #mock.assert_called_with(42)
+    
+    elif open_choice == 3:
+        with patch('move_hero') as mock:
+            #encounter(get_hero, get_rat)
+            assert mock.called, 'Move Hero function should be called'
+            #mock.assert_called_with(move_hero, get_hero)
+
+        # assert output == ["Encounter! - " + get_rat["name"],
+        #         "Damage: " + f'{get_rat["min_damage"]}' + "-" + f'{get_rat["max_damage"]}',
+        #         "Defence: " + f'{get_rat["defence"]}',
+        #         "HP: " + f'{get_rat["hp"]}',
+        #         "1) Attack",
+        #         "2) Run",
+        #         "You run and hide",
+        #         "1) View Character",
+        #         "2) View Map",
+        #         "3) Move",
+        #         "4) Exit Game"]
