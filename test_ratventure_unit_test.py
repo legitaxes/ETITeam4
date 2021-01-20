@@ -202,9 +202,6 @@ def test_print_hero_stats(get_hero):
     defence = "Defence: {}".format(get_hero["defence"])
     hp = "HP: {}".format(get_hero["hp"])
     assert output == [get_hero["name"], damage, defence, hp] 
-    
-  
-    assert print_hero_stats(theHero()) == str(get_hero["name"]) + "Damage:" + str(get_hero["min_damage"]) + "-" + str(get_hero["max_damage"]) + str(get_hero["defence"]) + str(get_hero["hp"])
 
 
 def test_get_hero_position(get_hero, get_w_map):
