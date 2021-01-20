@@ -1083,11 +1083,6 @@ def test_print_rat_stats():
             Defence: [defence]
             HP: [hp]
     """
-    # TODO Create a unit test function for printing the rat stats
-    # This test shall only assert the print statements of the print_rat_stats() function
-    # labels: tasks, unit-test
-    # milestone: 2
-    # assignees: laukwangwei
     set_keyboard_input([])
     print_rat_stats(get_rat)
     output = get_display_output()
