@@ -20,24 +20,6 @@ def get_w_map() -> world_map():
 '''''
 Sprint 1
 '''''
-def test_main(): 
-    """User Story 1.0.1: Test the inputs for Main Menu
-
-    Input
-    -----------------
-    4
-    
-    Output
-    -----------------
-    Error! Please input an appropriate option. 
-    Welcome to Ratventure!
-    1) New Game
-    2) Resume Game
-    3) Exit Game
-
-    """
-    output = main()
-    assert output == "Error! Please input an appropriate option.\nWelcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
 
 def test_main_menu_input_1():
     set_keyboard_input([1])
@@ -99,7 +81,13 @@ def test_main_menu_input_negative():
     output = get_display_output()
     assert output == ["Welcome to Ratventure", "----------------------", "1) New Game", "2) Resume Game", "3) Exit Game", "Enter Choice: ", "Please enter a valid choice"]
     #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
-                    
+
+def test_main_menu_input_special_character():
+    set_keyboard_input(['@'])
+    main_menu()
+    output = get_display_output()
+    assert output == ["Welcome to Ratventure", "----------------------", "1) New Game", "2) Resume Game", "3) Exit Game", "Enter Choice: ", "Please enter a valid choice"]
+    #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"                    
                 
 def test_new_game(): 
     """ User Story 1.1: Create New Game
@@ -114,7 +102,7 @@ def test_new_game():
     
     """
     
-    current_day, hero = new_game()
+    current_day, hero, w_map = new_game()
     assert current_day == 1
     assert hero["name"] == "The Hero"
     assert hero["min_damage"] == 2
@@ -137,7 +125,7 @@ def test_resume_game():
     The game has been resumed to the previous state.
     
     """
-    errormessage, output = resume_game()
+    errormessage, output, hero, w_map, current_day = resume_game()
     if(errormessage == ""):
         assert output == "The game has been resumed to the previous save state."
     else:
@@ -298,7 +286,7 @@ def test_view_character(get_hero):
     
    
 
-def test_view_map(get_hero):
+def test_view_map(get_hero, get_w_map):
     """User Story 2.2: Display the world map
     
     
@@ -315,7 +303,7 @@ def test_view_map(get_hero):
         [' ', ' ', ' ', ' ', ' ', ' ', ' ', 'K']
     
     """
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero)
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
     #theHero = print_hero_stats()
     w_map = world_map()
     pos = get_hero["position"]
@@ -396,6 +384,9 @@ def test_exit_game2():
     
     output = exit_game() 
     assert output == "The program will close since there are no unsaved changes."
+
+# add a move_hero test function here
+
 
 # need to know how to link one function to another and then have the yes or no input
 # for workflow testing

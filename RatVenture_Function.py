@@ -27,7 +27,7 @@ def theHero():
     #"orb": False,
     #"gold": 0
     }
-    print(hero)
+    #print(hero)
     return hero
 
 #initialize current day as 1 
@@ -66,6 +66,7 @@ def world_map():
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', 'K']
     """
+    global w_map
     #code goes here
     w_map = [['T', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
              [' ', ' ', ' ', 'T', ' ', ' ', ' ', ' '],\
@@ -75,10 +76,10 @@ def world_map():
              [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
              [' ', ' ', ' ', ' ', 'T', ' ', ' ', ' '],\
              [' ', ' ', ' ', ' ', ' ', ' ', ' ', 'K']]
-    print(w_map)
+    #print(w_map)
     return w_map
 
-def print_map(hero):
+def print_map(hero, w_map, flag=True):
     """
     Displays the Map of the game when called
     This function should print the full layout of the map
@@ -89,8 +90,10 @@ def print_map(hero):
     list_map = []
     w_map = world_map()
     for x in range(8):
-        print("+---"*8 + "+")
-        list_map.append("+---"*8 + "+")
+        if flag == False:
+            list_map.append("+---"*8 + "+")
+        else:
+            print("+---"*8 + "+")
         for y in range(8):
             legend = "   "
             if w_map[x][y] == "T":
@@ -104,12 +107,21 @@ def print_map(hero):
             else:
                 if x == x_coor and y == y_coor:
                     legend = " H "
-            print("|{}".format(legend), end="")
-            list_map.append("|" + legend)
-        print("|")
-        list_map.append("|")
-    print("+---"*8 + "+")
-    list_map.append("+---"*8 + "+")
+            if flag == True:
+                print("|{}".format(legend), end="")
+                #print("|" + legend, sep="")
+            else:
+                 list_map.append("|" + legend)
+        if flag == False: 
+            list_map.append("|")
+        else:
+            print("|")
+    if flag == False:
+        list_map.append("+---"*8 + "+")
+    else:
+        print("+---"*8 + "+")
+    # list of items returned below are mainly used for unit test
+    # they do not serve any other extra purpose
     return position, x_coor, y_coor, legend, list_map
 
 def print_day(hero, current_day):
@@ -128,7 +140,7 @@ def print_day(hero, current_day):
         location = "You are out in the open."
     print("Day {}: {}".format(current_day, location))
     printresult = "Day " + str(current_day) + ": " +  location
-    return tile, location, printresult, current_day
+    return location, current_day, printresult
 
 def rest(hero):
     """
@@ -159,9 +171,9 @@ def get_hero_position(hero):
     position = hero["position"]
     x_coor = position[0]
     y_coor = position[1]
-    w_map = world_map()
+    #w_map = world_map()
     tile = w_map[x_coor][y_coor]
-    return tile, hero, w_map
+    return tile
 
 
 def main_menu():
@@ -218,7 +230,8 @@ def new_game():
     global current_day, hero
     current_day = ini_current_day()
     hero = theHero()
-    return current_day, hero
+    w_map = world_map()
+    return current_day, hero, w_map
 
 def resume_game():
     """
@@ -238,8 +251,8 @@ def resume_game():
         print("Existing file does not exist.\n")
         return FileNotFoundError,"Existing file does not exist.\n"
         #main()
-    print("The game has been resumed to the previous save state.")
-    return "","The game has been resumed to the previous save state."
+    #print("The game has been resumed to the previous save state.")
+    return "","The game has been resumed to the previous save state.", hero, w_map, current_day
 
 
 def exit_game():
@@ -269,10 +282,137 @@ def exit_game_prompt():
     return choice
 
 def save_game(hero, w_map, current_day):
+    """
+    This function saves the current progress of the game onto an external json file named: 'save.json'
+    """
     file = open("./save.json", mode = "w+")
     file.write(json.dumps({"hero": hero, "w_map": w_map, "current_day": current_day}))
     file.close()
     print("Game saved.")
     return "Game saved."
 
+def set_hero_position(hero, x=None, y=None):
+    """
+    This function should set the hero's position and return true if it is a valid movement
+    Else it should return false if the hero is out of bounds in the map
+    Both scenarios should return the hero's position to check against the test cases
+    """
+    position = hero["position"]
+    x_coor = position[0]
+    y_coor = position[1]
+    if y != None:
+        y_coor += y
+        if y_coor < 0 or y_coor > 7:
+            print("Not able to move out of map (Left/Right)!")
+            return False, hero["position"]
+    if x != None:
+        x_coor += x
+        if x_coor < 0 or x_coor > 7:
+            print("Not able to move out of map (Up/Down)!")
+            return False, hero["position"]
+    #save the updated hero position
+    position[0] = x_coor
+    position[1] = y_coor
+    hero["position"] = position
+    return True, hero["position"]
 
+
+def move_hero(hero, w_map, flag=True):
+    """
+    This function moves the hero based on the hero's input
+    Input being: W, A, S, D | Up, Left, Down, Right
+    Program should show the map of the game and prompt for user input 
+    Any Flag that is False is used for Unit Test Cases ONLY
+    """
+    if(flag == True):
+        print_map(hero, w_map)
+    print("W = up; A = left; S = down; D = right")
+
+    while True:
+        move = input("Your move: ").lower()
+        if move == "w":
+            status, pos = set_hero_position(hero, x=-1)
+            if status == False:
+                if flag == False:
+                    return False
+                continue
+            elif status == True:
+                if flag == False:
+                    return True
+                break
+        elif move == "a":
+            status, pos = set_hero_position(hero, y=-1)
+            if status == False:
+                if flag == False:
+                    return False
+                continue
+            elif status == True:
+                if flag == False:
+                    return True
+                break
+        elif move == "s":
+            status, pos = set_hero_position(hero, x=1)
+            if status == False:
+                if flag == False:
+                    return False
+                continue
+            elif status == True:
+                if flag == False:
+                    return True
+                break
+        elif move == "d":
+            status, pos = set_hero_position(hero, y=1)
+            if status == False:
+                if flag == False:
+                    return False
+                continue
+            elif status == True:
+                if flag == False:
+                    return True
+                break
+        elif(flag == False):
+            print("Input out of range")
+            return False
+        else:
+            print("Input out of range")
+    if(flag == False):
+        return True
+    else:
+        print_map(hero, w_map)
+
+
+# ==============================
+# ==========SPRINT 2============
+# ==============================
+
+"""
+Sprint 2 of the development will add the combat system to the game as well as making the game functional and completely playable
+"""
+
+def attack(hero, rat, flag=True):
+    # TODO Create a attack() function which allows the program to calculate damage dealt
+    # This function will only 2 integers being the total damage after calculated
+    # labels: tasks
+    # milestone: 2
+    hero_damage = randint(hero["min_damage"], hero["max_damage"])
+    enemy_damage = randint(rat["min_damage"], rat["max_damage"])
+
+    hero_total_damage = hero_damage - rat["defence"]
+    rat_total_damage = enemy_damage - hero["defence"]
+
+    if rat_total_damage <= 0:
+        rat_total_damage = 0
+    # calculate the hp after damage
+    rat["hp"] = rat["hp"] - hero_total_damage
+    hero["hp"] = hero["hp"] - rat_total_damage
+    print("You deal {} damage to the {}".format(hero_total_damage, rat["name"]))
+    print("Ouch! The {} hit you for {} damage".format(rat["name"],rat_total_damage))
+
+    if hero["hp"] <= 0:
+        print("You ran out of HP! Game over.")
+        if flag == True:
+            sys.exit(0)
+    print("You have {} HP left.".format(str(hero["hp"])))
+    if rat["hp"] <= 0:
+        print("The {} is dead! You are victorious!".format(rat["name"]))
+    return hero_total_damage, rat_total_damage
