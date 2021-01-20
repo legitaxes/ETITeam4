@@ -175,7 +175,7 @@ def test_print_day(get_hero, get_current_day):
         Display the tile the hero is at and display whether the hero is in town or out in open
     """
     location, current_day, printresult = print_day(get_hero, get_current_day)
-    assert printresult == "Day " + str(current_day) + ": " + location
+    assert printresult == "Day " + f'{current_day}' + ": " + location
     # if actual_tile == "T":
     #     assert actual_location == "You are in a town."
     # elif actual_tile == " ":
@@ -193,6 +193,7 @@ def test_print_hero_stats(get_hero):
         Defence: defence
         HP: hp
     """
+
     #set keyboard input function is necessary to test the print statements
     set_keyboard_input([])
     print_hero_stats(get_hero)
@@ -201,7 +202,7 @@ def test_print_hero_stats(get_hero):
     defence = "Defence: {}".format(get_hero["defence"])
     hp = "HP: {}".format(get_hero["hp"])
     assert output == [get_hero["name"], damage, defence, hp] 
-    
+
 
 def test_get_hero_position(get_hero, get_w_map):
     """
@@ -693,9 +694,9 @@ def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
                             "6) Exit Game",
                             "Enter choice: ",
                             get_hero["name"],
-                            "Damage: " + str(get_hero["min_damage"]) + "-" + str(get_hero["max_damage"]),
-                            "Defence: " + str(get_hero["defence"]),
-                            "HP: " + str(get_hero["hp"])]
+                            "Damage: " + f'{get_hero["min_damage"]}' + "-" + f'{get_hero["max_damage"]}',
+                            "Defence: " + f'{get_hero["defence"]}',
+                            "HP: " + f'{get_hero["hp"]}']
         
         # View Map function
         elif choice_town_menu == 2:
@@ -793,9 +794,9 @@ def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
                             "6) Exit Game",
                             "Enter choice: ",
                             get_hero["name"],
-                            "Damage: " + str(get_hero["min_damage"]) + "-" + str(get_hero["max_damage"]),
-                            "Defence: " + str(get_hero["defence"]),
-                            "HP: " + str(get_hero["hp"])]
+                            "Damage: " + f'{get_hero["min_damage"]}' + "-" + f'{get_hero["max_damage"]}',
+                            "Defence: " + f'{get_hero["defence"]}',
+                            "HP: " + f'{get_hero["hp"]}']
         
         # View Map function
         elif choice_town_menu == 2:

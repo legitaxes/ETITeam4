@@ -128,10 +128,6 @@ def print_day(hero, current_day):
     """
     Display the details of the location the hero is at and display the current day of the game
     """
-    # TODO Create a function that prints the day of the game
-    # This function should also show the location of the hero besides displaying the day
-    # labels: tasks
-    # assignees: laukwangwei
     tile = get_hero_position(hero)
     location = ""
     if tile == "T":
@@ -139,7 +135,7 @@ def print_day(hero, current_day):
     elif tile == " ":
         location = "You are out in the open."
     print("Day {}: {}".format(current_day, location))
-    printresult = "Day " + str(current_day) + ": " +  location
+    printresult = "Day " + f'{current_day}' + ": " +  location
     return location, current_day, printresult
 
 def rest(hero):
@@ -156,6 +152,7 @@ def print_hero_stats(hero):
     Display the hero's stats and his details
     This function should return the hero's Name, Damage, Defence and HP 
     """
+
     print(hero["name"])
     print("Damage: {}-{}".format(hero["min_damage"], hero["max_damage"]))
     print("Defence: {}".format(hero["defence"]))
@@ -269,10 +266,6 @@ def exit_game_prompt():
     The program will exit and print a bye bye! message
     or N: will go back to the previous menu
     """
-    # TODO Create a function that prints a confirmation message and prompts the user to select "Yes" or "No"
-    # This function will act as a confirmation message to the user if he wants to really exit the game without saving
-    # 
-    # labels: tasks
     print("You have unsaved changes. Do you want to continue?")
     choice = input("Enter choice: [Y/N]")
     if(choice == "Y"):
@@ -390,10 +383,6 @@ Sprint 2 of the development will add the combat system to the game as well as ma
 """
 
 def attack(hero, rat, flag=True):
-    # TODO Create a attack() function which allows the program to calculate damage dealt
-    # This function will only 2 integers being the total damage after calculated
-    # labels: tasks
-    # milestone: 2
     hero_damage = randint(hero["min_damage"], hero["max_damage"])
     enemy_damage = randint(rat["min_damage"], rat["max_damage"])
 
@@ -412,7 +401,6 @@ def attack(hero, rat, flag=True):
         print("You ran out of HP! Game over.")
         if flag == True:
             sys.exit(0)
-    print("You have {} HP left.".format(str(hero["hp"])))
+    print("You have {} HP left.".format(hero["hp"]))
     if rat["hp"] <= 0:
         print("The {} is dead! You are victorious!".format(rat["name"]))
-    return hero_total_damage, rat_total_damage
