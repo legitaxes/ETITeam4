@@ -1057,7 +1057,7 @@ def test_fight_menu():
             2) Run
     """
     value = fight_menu()
-    assert value == "1) Attack\n2)Run"
+    assert value == "1) Attack\n2) Run"
 
 def test_outdoor_menu():
     """
@@ -1074,7 +1074,7 @@ def test_outdoor_menu():
     # milestone: 2
     # assignees: perlechen
 
-def test_print_rat_stats():
+def test_print_rat_stats(get_rat):
     """
     This test will only test the print_rat_stats() function for its print statement whether it is correct
     It should only assert the following: 
