@@ -1056,11 +1056,8 @@ def test_fight_menu():
             1) Attack
             2) Run
     """
-    # TODO Create a unit test function for the fight menu
-    # This test will only assert the two print statements
-    # labels: tasks, unit-test
-    # milestone: 2
-    # assignees: laukwangwei
+    value = fight_menu()
+    assert value == "1) Attack\n2)Run"
 
 def test_outdoor_menu():
     """
@@ -1075,7 +1072,7 @@ def test_outdoor_menu():
     # This test shall only assert the print statements of the outdoor menu
     # labels: tasks, unit-test
     # milestone: 2
-    # assignees: laukwangwei
+    # assignees: perlechen
 
 def test_print_rat_stats():
     """
@@ -1086,11 +1083,14 @@ def test_print_rat_stats():
             Defence: [defence]
             HP: [hp]
     """
-    # TODO Create a unit test function for printing the rat stats
-    # This test shall only assert the print statements of the print_rat_stats() function
-    # labels: tasks, unit-test
-    # milestone: 2
-    # assignees: laukwangwei
+    set_keyboard_input([])
+    print_rat_stats(get_rat)
+    output = get_display_output()
+    ratdamage = "Damage: {}-{}".format(get_rat["min_damage"], get_rat["max_damage"])
+    ratdefence = "Defence: {}".format(get_rat["defence"])
+    rathp = "HP: {}".format(get_rat["hp"])
+    assert output == [get_rat["name"], ratdamage, ratdefence, rathp]
+
 
 def test_attack(get_hero, get_rat):
     """
