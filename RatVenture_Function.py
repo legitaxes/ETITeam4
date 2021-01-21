@@ -420,7 +420,7 @@ def print_rat_stats(rat):
     Display the rat's Stats and his details
     This function should return the rat's Name, Damage, Defence and HP
     """
-    print(rat["name"])
+    print("Encounter! - {}".format(rat["name"]))
     print("Damage: {}-{}".format(rat["min_damage"], rat["max_damage"]))
     print("Defence: {}".format(rat["defence"]))
     print("HP: {}".format(rat["hp"]))

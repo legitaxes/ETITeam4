@@ -1086,10 +1086,11 @@ def test_print_rat_stats(get_rat):
     set_keyboard_input([])
     print_rat_stats(get_rat)
     output = get_display_output()
+    ratname = "Encounter! - {}".format(get_rat["name"])
     ratdamage = "Damage: {}-{}".format(get_rat["min_damage"], get_rat["max_damage"])
     ratdefence = "Defence: {}".format(get_rat["defence"])
     rathp = "HP: {}".format(get_rat["hp"])
-    assert output == [get_rat["name"], ratdamage, ratdefence, rathp]
+    assert output == [ratname, ratdamage, ratdefence, rathp]
 
 
 def test_attack(get_hero, get_rat):
