@@ -1056,9 +1056,10 @@ def test_fight_menu():
             1) Attack
             2) Run
     """
-    value = fight_menu()
-    assert value == "1) Attack\n2) Run"
-
+    set_keyboard_input([])
+    fight_menu()
+    output = get_display_output()
+    assert output == ["1) Attack\n" "2) Run"]
 
 def test_outdoor_menu():
     """

@@ -414,7 +414,6 @@ def fight_menu():
         2) Run
     """
     print("1) Attack\n2) Run")
-    return "1) Attack\n2) Run"
 
 def print_rat_stats(rat):
     """
