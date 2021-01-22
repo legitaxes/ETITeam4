@@ -404,3 +404,24 @@ def attack(hero, rat, flag=True):
     print("You have {} HP left.".format(hero["hp"]))
     if rat["hp"] <= 0:
         print("The {} is dead! You are victorious!".format(rat["name"]))
+        
+
+def fight_menu():
+    """
+    This function should display the Combat Menu when fighting a rat
+    Hence, the following values should be return:
+        1) Attack
+        2) Run
+    """
+    print("1) Attack\n2) Run")
+    return "1) Attack\n2) Run"
+
+def print_rat_stats(rat):
+    """
+    Display the rat's Stats and his details
+    This function should return the rat's Name, Damage, Defence and HP
+    """
+    print("Encounter! - {}".format(rat["name"]))
+    print("Damage: {}-{}".format(rat["min_damage"], rat["max_damage"]))
+    print("Defence: {}".format(rat["defence"]))
+    print("HP: {}".format(rat["hp"]))
