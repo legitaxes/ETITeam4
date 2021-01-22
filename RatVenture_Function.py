@@ -404,6 +404,7 @@ def attack(hero, rat, flag=True):
     print("You have {} HP left.".format(hero["hp"]))
     if rat["hp"] <= 0:
         print("The {} is dead! You are victorious!".format(rat["name"]))
+        
 
 def fight_menu():
     """
