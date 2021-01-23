@@ -1070,11 +1070,11 @@ def test_outdoor_menu():
             3) Move
             4) Exit Game
     """
-    # TODO Create a unit test function for the outdoor menu
     # This test shall only assert the print statements of the outdoor menu
-    # labels: tasks, unit-test
-    # milestone: 2
-    # assignees: perlechen
+    value = outdoor_menu()
+    assert value == "1) View Character\n2) View Map\n3) Move\n4) Exit Game"
+
+
 
 def test_print_rat_stats(get_rat):
     """

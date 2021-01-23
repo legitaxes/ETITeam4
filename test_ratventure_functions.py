@@ -420,7 +420,25 @@ def test_town_menu():
     output = town_menu()
     assert output == "1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"    
 
+ def test_outdoor_menu():
+    """User Story 4: 
     
+    Input
+    -----------------
+    Enter '1- Run' as choice
+    
+    Output
+    -----------------
+    1) View Character
+    2) View Map
+    3) Move
+    4) Exit Game
+    
+    """
+    output = outdoor_menu()
+    assert output == "1) View Character\n2) View Map\n3) Move\n4) Exit Game"    
+
+       
 
 def test_view_character(get_hero):
     """User Story 2.1: Display player's statistics 
