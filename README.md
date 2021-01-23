@@ -10,6 +10,7 @@ Team Roles:
 ---
 ### Latest Changes
 
+* added outdoor menu unit test. PR [#590](https://github.com/legitaxes/ETITeam4/pull/590) by [@perlechen](https://github.com/perlechen).
 * completed unit testing for assigned task. PR [#582](https://github.com/legitaxes/ETITeam4/pull/582) by [@laukwangwei](https://github.com/laukwangwei).
 * Cheskalazo branch. PR [#574](https://github.com/legitaxes/ETITeam4/pull/574) by [@cheskalazo](https://github.com/cheskalazo).
 * Added attack function into the game as well as cleaning up explicit str() conversion into fstrings. PR [#532](https://github.com/legitaxes/ETITeam4/pull/532) by [@legitaxes](https://github.com/legitaxes).
