@@ -1166,6 +1166,7 @@ def test_encounter_1(get_rat, get_current_day, get_hero):
                         "HP: " + f'{get_rat["hp"]}',
                         "1) Attack",
                         "2) Run",
+                        "Enter choice: ",
                         "You deal " + f'{hero_total_damage_test}' + " damage to the " + get_rat["name"],
                         "Ouch! The " + get_rat["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
                         "You ran out of HP! Game Over."]
@@ -1177,6 +1178,7 @@ def test_encounter_1(get_rat, get_current_day, get_hero):
                         "HP: " + f'{get_rat["hp"]}',
                         "1) Attack",
                         "2) Run",
+                        "Enter choice: ",
                         "You deal " + f'{hero_total_damage_test}' + " damage to the " + get_rat["name"],
                         "Ouch! The " + get_rat["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
                         "You have " + f'{get_hero["hp"]}' + " HP left.",
@@ -1189,6 +1191,7 @@ def test_encounter_1(get_rat, get_current_day, get_hero):
                         "HP: " + f'{get_rat["hp"]}',
                         "1) Attack",
                         "2) Run",
+                        "Enter choice: ",
                         "You deal " + f'{hero_total_damage_test}' + " damage to the " + get_rat["name"],
                         "Ouch! The " + get_rat["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
                         "You have " + f'{get_hero["hp"]}' + " HP left."]
