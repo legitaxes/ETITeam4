@@ -435,7 +435,7 @@ def encounter(hero, rat):
         attack(hero, rat)
         if rat["hp"] <= 0:
             position = hero["position"]
-            return
+            return 
         encounter(hero, rat)
     
     if encounter_choice == 2:
