@@ -2,7 +2,6 @@ import pytest
 from RatVenture_Function import * # update once developer starts 
 from RatVenture_Main import main
 from tud_test_base import set_keyboard_input, get_display_output
-from mock import patch
 
 @pytest.fixture
 def get_hero() -> theHero():
