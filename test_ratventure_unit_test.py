@@ -659,7 +659,8 @@ def test_move_hero_out_of_range(get_hero, get_w_map, oor_input):
 #@pytest.mark.parametrize("choice_town_menu",[(1), (2), (4), (5), (6)])
 @pytest.mark.parametrize("choice_main_menu",[(1),(2)])
 @pytest.mark.parametrize("choice_town_menu",[(1),(2),(4),(5), (6)])
-def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
+@pytest.mark.parametrize("choice_outdoor_menu",[(1),(2),(4)])
+def test_main(choice_main_menu, choice_town_menu, choice_outdoor_menu, get_hero, get_current_day):
     """
         Testing the Main Function of the program
         This test will cover the choices in the following order:
@@ -1071,8 +1072,10 @@ def test_outdoor_menu():
             4) Exit Game
     """
     # This test shall only assert the print statements of the outdoor menu
-    value = outdoor_menu()
-    assert value == "1) View Character\n2) View Map\n3) Move\n4) Exit Game"
+    set_keyboard_input([])
+    outdoor_menu()
+    output = get_display_output()
+    assert output == ["1) View Character\n2) View Map\n3) Move\n4) Exit Game"]
 
 
 

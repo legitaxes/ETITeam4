@@ -425,20 +425,6 @@ def print_rat_stats(rat):
     print("Defence: {}".format(rat["defence"]))
     print("HP: {}".format(rat["hp"]))
 
-<<<<<<< HEAD
-def outdoor_menu():
-    """
-    This function should display the menu of Town
-    Hence, the following values should be returned:
-        1) View Character
-        2) View Map
-        3) Move
-        4) Exit Game
-    """
-    print("1) View Character\n2) View Map\n3) Move\n4) Exit Game")
-    return "1) View Character\n2) View Map\n3) Move\n4) Exit Game"
-    
-=======
 def encounter(hero, rat, flag=True):
     print_rat_stats(rat)
     fight_menu()
@@ -475,4 +461,15 @@ def encounter(hero, rat, flag=True):
 
         elif outdoor_choice == 5:
             sys.exit(0)
->>>>>>> 7fd004e281257a523c3a4e0c8cb4dd452c1502ae
+
+def outdoor_menu():
+    """
+    This function should display the menu of Outdoor
+    Hence, the following values should be returned:
+        1) View Character
+        2) View Map
+        3) Move
+        4) Exit Game
+    """
+    print("1) View Character\n2) View Map\n3) Move\n4) Exit Game")
+    #return "1) View Character\n2) View Map\n3) Move\n4) Exit Game"
