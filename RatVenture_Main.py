@@ -10,8 +10,8 @@ def main(choice1=None, choice2=None, movement=None):
     # labels: tasks
     # milestone: 2
     
-    global current_day, hero, w_map
-    #hero = theHero()
+    global current_day, hero, w_map, rat
+    rat = theRat()
     if choice1 != None and movement == None: # if its running as a test function
         set_keyboard_input([choice1, choice2])
         choice = main_menu()
@@ -89,7 +89,23 @@ def main(choice1=None, choice2=None, movement=None):
 
         # if the hero is not in town 
         # feature for combat not done yet
-        # elif position == " ":
+        elif position == " ":
+            if rat["hp"] <= 0:
+                outdoor_menu()
+                choice = int(input("Enter choice: "))
+
+                if choice == 1:
+                    print_hero_stats(hero)
+                elif choice == 2:
+                    print_map(hero, w_map)
+                elif choice == 3:
+                    move_hero(hero, w_map)
+                    rat["hp"] = 10
+                elif choice == 4:
+                    sys.exit(0)
+        else:
+            if rat["hp"] > 0:
+                encounter(hero, rat)
 
 if __name__ == "__main__":
     main()
