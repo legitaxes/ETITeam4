@@ -424,3 +424,16 @@ def print_rat_stats(rat):
     print("Damage: {}-{}".format(rat["min_damage"], rat["max_damage"]))
     print("Defence: {}".format(rat["defence"]))
     print("HP: {}".format(rat["hp"]))
+
+def outdoor_menu():
+    """
+    This function should display the menu of Town
+    Hence, the following values should be returned:
+        1) View Character
+        2) View Map
+        3) Move
+        4) Exit Game
+    """
+    print("1) View Character\n2) View Map\n3) Move\n4) Exit Game")
+    return "1) View Character\n2) View Map\n3) Move\n4) Exit Game"
+    
