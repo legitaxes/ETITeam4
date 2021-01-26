@@ -425,18 +425,25 @@ def print_rat_stats(rat):
     print("Defence: {}".format(rat["defence"]))
     print("HP: {}".format(rat["hp"]))
 
-def encounter(hero, rat):
+def encounter(hero, rat, flag=True):
     print_rat_stats(rat)
     fight_menu()
+    if flag == None: #check if function is called
+        return
     encounter_choice = int(input("Enter choice: "))
     global current_day, world_map
 
     if encounter_choice == 1:
         attack(hero, rat)
         if rat["hp"] <= 0:
-            position = hero["position"]
+            #position = hero["position"]
             return
-        encounter(hero, rat)
+        if flag == False: #if its running as unit test function, print rat stats and menu again
+            # print_rat_stats(rat)
+            # fight_menu()
+            encounter(hero, rat, None)
+        else:
+            encounter(hero, rat)
     
     if encounter_choice == 2:
         print("You run and hide.")
