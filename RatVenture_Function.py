@@ -425,6 +425,7 @@ def print_rat_stats(rat):
     print("Defence: {}".format(rat["defence"]))
     print("HP: {}".format(rat["hp"]))
 
+<<<<<<< HEAD
 def outdoor_menu():
     """
     This function should display the menu of Town
@@ -437,3 +438,41 @@ def outdoor_menu():
     print("1) View Character\n2) View Map\n3) Move\n4) Exit Game")
     return "1) View Character\n2) View Map\n3) Move\n4) Exit Game"
     
+=======
+def encounter(hero, rat, flag=True):
+    print_rat_stats(rat)
+    fight_menu()
+    if flag == None: #check if function is called
+        return
+    encounter_choice = int(input("Enter choice: "))
+    global current_day, world_map
+
+    if encounter_choice == 1:
+        attack(hero, rat)
+        if rat["hp"] <= 0:
+            #position = hero["position"]
+            return
+        if flag == False: #if its running as unit test function, print rat stats and menu again
+            # print_rat_stats(rat)
+            # fight_menu()
+            encounter(hero, rat, None)
+        else:
+            encounter(hero, rat)
+    
+    if encounter_choice == 2:
+        print("You run and hide.")
+        rat["hp"] = 10
+        outdoor_menu()
+        outdoor_choice = int(input("Enter choice: "))
+
+        if outdoor_choice == 1 or outdoor_choice == 2 or outdoor_choice == 4:
+            encounter(hero, rat)
+        
+        elif outdoor_choice == 3:
+            move_hero(hero, w_map)
+            rat["hp"] = 10
+            current_day += 1
+
+        elif outdoor_choice == 5:
+            sys.exit(0)
+>>>>>>> 7fd004e281257a523c3a4e0c8cb4dd452c1502ae
