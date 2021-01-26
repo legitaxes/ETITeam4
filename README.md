@@ -10,25 +10,18 @@ Team Roles:
 ---
 ### Latest Changes
 
-* update perlebranch. PR [#599](https://github.com/legitaxes/ETITeam4/pull/599) by [@perlechen](https://github.com/perlechen).
 * added encounter function, not working as there are other function such as outdoor_menu() not completed. 
 Will fix unit test for encounter soon TM. PR [#595](https://github.com/legitaxes/ETITeam4/pull/595) by [@legitaxes](https://github.com/legitaxes).
 * added outdoor menu unit test. PR [#590](https://github.com/legitaxes/ETITeam4/pull/590) by [@perlechen](https://github.com/perlechen).
 * completed unit testing for assigned task. PR [#582](https://github.com/legitaxes/ETITeam4/pull/582) by [@laukwangwei](https://github.com/laukwangwei).
-* Cheskalazo branch. PR [#574](https://github.com/legitaxes/ETITeam4/pull/574) by [@cheskalazo](https://github.com/cheskalazo).
 * Added attack function into the game as well as cleaning up explicit str() conversion into fstrings. PR [#532](https://github.com/legitaxes/ETITeam4/pull/532) by [@legitaxes](https://github.com/legitaxes).
-* jiaqibranch. PR [#526](https://github.com/legitaxes/ETITeam4/pull/526) by [@legitaxes](https://github.com/legitaxes).
-* jiaqibranch. PR [#515](https://github.com/legitaxes/ETITeam4/pull/515) by [@legitaxes](https://github.com/legitaxes).
 * finished up main function for feature 1 to 6 for town menu
 with completed unit tests . PR [#512](https://github.com/legitaxes/ETITeam4/pull/512) by [@legitaxes](https://github.com/legitaxes).
-* Cheskalazo branch. PR [#508](https://github.com/legitaxes/ETITeam4/pull/508) by [@cheskalazo](https://github.com/cheskalazo).
 * Added a lot of new changes to ensure main.py works
 
 Added a new file to run the main function which will handle the logic of the program
 
 Fixed many issues encountered when creating main.py and fixed the considerations needed for the functions. PR [#503](https://github.com/legitaxes/ETITeam4/pull/503) by [@legitaxes](https://github.com/legitaxes).
-* jiaqibranch. PR [#498](https://github.com/legitaxes/ETITeam4/pull/498) by [@legitaxes](https://github.com/legitaxes).
-
 
 ---
 
