@@ -10,6 +10,12 @@ Team Roles:
 ---
 ### Latest Changes
 
+* update perlebranch. PR [#621](https://github.com/legitaxes/ETITeam4/pull/621) by [@perlechen](https://github.com/perlechen).
+* changed outdoor_menu . PR [#618](https://github.com/legitaxes/ETITeam4/pull/618) by [@perlechen](https://github.com/perlechen).
+* update perlebranch. PR [#614](https://github.com/legitaxes/ETITeam4/pull/614) by [@perlechen](https://github.com/perlechen).
+* update perlebranch (#603). PR [#606](https://github.com/legitaxes/ETITeam4/pull/606) by [@perlechen](https://github.com/perlechen).
+* removed mock module  . PR [#610](https://github.com/legitaxes/ETITeam4/pull/610) by [@legitaxes](https://github.com/legitaxes).
+* completed half of the encounter() function because outdoor_menu() is …. PR [#604](https://github.com/legitaxes/ETITeam4/pull/604) by [@legitaxes](https://github.com/legitaxes).
 * added encounter function, not working as there are other function such as outdoor_menu() not completed. 
 Will fix unit test for encounter soon TM. PR [#595](https://github.com/legitaxes/ETITeam4/pull/595) by [@legitaxes](https://github.com/legitaxes).
 * added outdoor menu unit test. PR [#590](https://github.com/legitaxes/ETITeam4/pull/590) by [@perlechen](https://github.com/perlechen).

@@ -461,3 +461,15 @@ def encounter(hero, rat, flag=True):
 
         elif outdoor_choice == 5:
             sys.exit(0)
+
+def outdoor_menu():
+    """
+    This function should display the menu of Outdoor
+    Hence, the following values should be returned:
+        1) View Character
+        2) View Map
+        3) Move
+        4) Exit Game
+    """
+    print("1) View Character\n2) View Map\n3) Move\n4) Exit Game")
+    #return "1) View Character\n2) View Map\n3) Move\n4) Exit Game"
