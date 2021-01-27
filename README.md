@@ -10,6 +10,7 @@ Team Roles:
 ---
 ### Latest Changes
 
+* update perlebranch. PR [#621](https://github.com/legitaxes/ETITeam4/pull/621) by [@perlechen](https://github.com/perlechen).
 * changed outdoor_menu . PR [#618](https://github.com/legitaxes/ETITeam4/pull/618) by [@perlechen](https://github.com/perlechen).
 * update perlebranch. PR [#614](https://github.com/legitaxes/ETITeam4/pull/614) by [@perlechen](https://github.com/perlechen).
 * update perlebranch (#603). PR [#606](https://github.com/legitaxes/ETITeam4/pull/606) by [@perlechen](https://github.com/perlechen).
