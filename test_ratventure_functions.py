@@ -122,8 +122,7 @@ def test_main_menu():
                         "2) Resume Game", 
                         "3) Exit Game", 
                         "Enter Choice: "]
-
-
+    
 def test_main_menu_input_1():
     set_keyboard_input([1])
     main_menu()
