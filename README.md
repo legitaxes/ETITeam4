@@ -95,7 +95,8 @@ In each user story in the kanban board, there will be an explanation of what nee
 #### *2. In game functions*        
 2.0 Display game menu    
 2.1 Displaying character stats. Name, Damage, Defence, HP   
-2.2 Display map - show current hero position and town position   
+2.2 Display map - show current hero position and town position
+\*2.2.1 Display Rat King on map
 2.3 Move a tile in the map - cannot go out of bound. Add 1 day to the day counter   
 2.4 Rest the character - reset HP   
 2.5 Save the game - save current state   
@@ -104,6 +105,9 @@ In each user story in the kanban board, there will be an explanation of what nee
 #### *3. Combat Functions*    
 3.0 Display the map, combat menu and monster stats  
 3.1 Attacking monster. Deals random dmg ranging from damage range
+\*3.1.1 Obtain Orb of power
+\*3.1.2 Attack Rat King 
+\*3.1.3 Move towards Rat King
 3.2 Run away from the monster - leads to Function 4.0 
 3.3 Killing a monster shows "The Rat is dead! You are victorious!" and go to Function 4.0
 
@@ -114,7 +118,7 @@ In each user story in the kanban board, there will be an explanation of what nee
 4.3 Move a tile  
 4.4 Exit game  
 
-
+\*New user requirements introduced after Sprint 1
 ---
 + **Test Cases**  
 *The aim of a test case is to evaluate if various features work as intended within a system and to ensure that all related standards, guidelines and customer requirements are fulfilled by the system. The method of writing a test case will also allow the system to discover flaws or faults.*  
