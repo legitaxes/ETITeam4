@@ -114,6 +114,15 @@ def test_main_townmenu_5():
     assert output == ["Enter choice: 5", 
                         "Game saved."]                                        
 
+def test_main_menu():
+    output = combat_menu()
+    assert output == ["Welcome to Ratventure", 
+                        "----------------------", 
+                        "1) New Game", 
+                        "2) Resume Game", 
+                        "3) Exit Game", 
+                        "Enter Choice: "]
+    
 def test_main_menu_input_1():
     set_keyboard_input([1])
     main_menu()
@@ -333,6 +342,8 @@ def test_exit_game_prompt_no():
 #     """
 #     output = town_menu()
 #     assert output == "Error! Please input an appropiate option.\n1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"    
+
+# User Story 2
 
 def test_town_menu_input_1():
     set_keyboard_input([1])
@@ -556,7 +567,11 @@ def test_view_map(get_hero, get_w_map):
     print(list_map)
     print(list_print_map)
     assert all([a == b for a, b in zip(list_print_map, list_map)]) #this checks python list against the expected value
-    
+
+def test_move(): 
+
+    # Insert codes here
+
 def test_rest(get_hero):
     """User Story 2.4: Rest the character 
     
@@ -602,6 +617,33 @@ def test_exit_game2():
     assert output == "The program will close since there are no unsaved changes."
 
 
+# User Story 3
 
+def test_combatmenu():
+    main_menu()
+    output = get_display_output()
+    assert output == ["Welcome to Ratventure", "----------------------", "1) New Game", "2) Resume Game", "3) Exit Game", "Enter Choice: ", "Please enter a valid choice"]
+    #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
 
+def test_combatmenu_attack():
+    set_keyboard_input([1])
+    combat_menu()
+    output = get_display_output()
+    assert output == "You attacked the Rat!"
+
+ def test_combatmenu_run():
+    set_keyboard_input([2])
+    combat_menu()
+   output = get_display_output()
+    assert output == "You run and hide."
+
+def test_combat_menu(get_hero): 
+    combat_menu()
+    set_keyboard_input([])
+    print_hero_stats(get_hero)
+    output =get_display_output()
+    damage = "Damage: {}-{}".format(get_hero["min_damage"], get_hero["max_damage"])
+    defence = "Defence: {}".format(get_hero["defence"])
+    hp = "HP: {}".format(get_hero["hp"])
+    assert output == [get_hero["name"], damage, defence, hp] #day
 
