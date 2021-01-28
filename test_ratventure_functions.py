@@ -58,6 +58,61 @@ def test_main_mainmenu_3():
     assert output == ["Enter choice: 3",
                         "Exiting the game..."]
 
+def test_main_townmenu_1(): 
+    set_keyboard_input([1])
+    main()
+    town_menu()
+    output = get_display_output()
+    assert output == ["Enter choice: 1", 
+                        "Day 1: You are in a town.", 
+                        "1) View Character", 
+                        "2) View Map",
+                        "3) Move", 
+                        "4) Rest", 
+                        "5) Save Game", 
+                        "6) Exit Game", 
+                        "Enter choice:"]
+
+def test_main_townmenu_2(): 
+    set_keyboard_input([2])
+    main()
+    town_menu()
+    output = get_display_output()
+    assert output == ["Enter choice: 2",
+                        "Day:",
+                        "['T', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
+                            [' ', ' ', ' ', 'T', ' ', ' ', ' ', ' '],\
+                            [' ', ' ', ' ', ' ', ' ', 'T', ' ', ' '],\
+                            [' ', 'T', ' ', ' ', ' ', ' ', ' ', ' '],\
+                            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
+                            [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
+                            [' ', ' ', ' ', ' ', 'T', ' ', ' ', ' '],\
+                            [' ', ' ', ' ', ' ', ' ', ' ', ' ', 'K']"]
+
+def test_main_townmenu_3(): 
+    set_keyboard_input([3])
+    main()
+    town_menu()
+    output = get_display_output()
+    assert output == ["Enter choice: 3", 
+                        "W = up; A = left; S = down; D = right",
+                        "Your move:"]
+
+def test_main_townmenu_4(): 
+    set_keyboard_input([4])
+    main()
+    town_menu()
+    output = get_display_output()
+    assert output == ["Enter choice: 4", 
+                        "You are fully healed."]
+
+def test_main_townmenu_5(): 
+    set_keyboard_input([5])
+    main()
+    town_menu()
+    output = get_display_output()
+    assert output == ["Enter choice: 5", 
+                        "Game saved."]                                        
 
 def test_main_menu_input_1():
     set_keyboard_input([1])
