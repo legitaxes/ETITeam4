@@ -418,9 +418,9 @@ def test_town_menu():
     
     """
     output = town_menu()
-    assert output == "1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"    
+    assert output == "1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"     
 
-    
+       
 
 def test_view_character(get_hero):
     """User Story 2.1: Display player's statistics 

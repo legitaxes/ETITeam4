@@ -10,19 +10,26 @@ Team Roles:
 ---
 ### Latest Changes
 
+* Merge pull request #629 from legitaxes/main. PR [#631](https://github.com/legitaxes/ETITeam4/pull/631) by [@perlechen](https://github.com/perlechen).
+* update my branch from the main (#624). PR [#625](https://github.com/legitaxes/ETITeam4/pull/625) by [@legitaxes](https://github.com/legitaxes).
+* update perlebranch. PR [#621](https://github.com/legitaxes/ETITeam4/pull/621) by [@perlechen](https://github.com/perlechen).
+* changed outdoor_menu . PR [#618](https://github.com/legitaxes/ETITeam4/pull/618) by [@perlechen](https://github.com/perlechen).
+* update perlebranch. PR [#614](https://github.com/legitaxes/ETITeam4/pull/614) by [@perlechen](https://github.com/perlechen).
+* update perlebranch (#603). PR [#606](https://github.com/legitaxes/ETITeam4/pull/606) by [@perlechen](https://github.com/perlechen).
+* removed mock module  . PR [#610](https://github.com/legitaxes/ETITeam4/pull/610) by [@legitaxes](https://github.com/legitaxes).
+* completed half of the encounter() function because outdoor_menu() is …. PR [#604](https://github.com/legitaxes/ETITeam4/pull/604) by [@legitaxes](https://github.com/legitaxes).
+* added encounter function, not working as there are other function such as outdoor_menu() not completed. 
+Will fix unit test for encounter soon TM. PR [#595](https://github.com/legitaxes/ETITeam4/pull/595) by [@legitaxes](https://github.com/legitaxes).
+* added outdoor menu unit test. PR [#590](https://github.com/legitaxes/ETITeam4/pull/590) by [@perlechen](https://github.com/perlechen).
+* completed unit testing for assigned task. PR [#582](https://github.com/legitaxes/ETITeam4/pull/582) by [@laukwangwei](https://github.com/laukwangwei).
 * Added attack function into the game as well as cleaning up explicit str() conversion into fstrings. PR [#532](https://github.com/legitaxes/ETITeam4/pull/532) by [@legitaxes](https://github.com/legitaxes).
-* jiaqibranch. PR [#526](https://github.com/legitaxes/ETITeam4/pull/526) by [@legitaxes](https://github.com/legitaxes).
-* jiaqibranch. PR [#515](https://github.com/legitaxes/ETITeam4/pull/515) by [@legitaxes](https://github.com/legitaxes).
 * finished up main function for feature 1 to 6 for town menu
 with completed unit tests . PR [#512](https://github.com/legitaxes/ETITeam4/pull/512) by [@legitaxes](https://github.com/legitaxes).
-* Cheskalazo branch. PR [#508](https://github.com/legitaxes/ETITeam4/pull/508) by [@cheskalazo](https://github.com/cheskalazo).
 * Added a lot of new changes to ensure main.py works
 
 Added a new file to run the main function which will handle the logic of the program
 
 Fixed many issues encountered when creating main.py and fixed the considerations needed for the functions. PR [#503](https://github.com/legitaxes/ETITeam4/pull/503) by [@legitaxes](https://github.com/legitaxes).
-* jiaqibranch. PR [#498](https://github.com/legitaxes/ETITeam4/pull/498) by [@legitaxes](https://github.com/legitaxes).
-
 
 ---
 

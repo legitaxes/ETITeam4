@@ -3,7 +3,6 @@ from RatVenture_Function import * # update once developer starts
 from RatVenture_Main import main
 from tud_test_base import set_keyboard_input, get_display_output
 
-
 @pytest.fixture
 def get_hero() -> theHero():
     hero = theHero()
@@ -202,9 +201,6 @@ def test_print_hero_stats(get_hero):
     defence = "Defence: {}".format(get_hero["defence"])
     hp = "HP: {}".format(get_hero["hp"])
     assert output == [get_hero["name"], damage, defence, hp] 
-    
-  
-    assert print_hero_stats(theHero()) == str(get_hero["name"]) + "Damage:" + str(get_hero["min_damage"]) + "-" + str(get_hero["max_damage"]) + str(get_hero["defence"]) + str(get_hero["hp"])
 
 
 def test_get_hero_position(get_hero, get_w_map):
@@ -662,7 +658,8 @@ def test_move_hero_out_of_range(get_hero, get_w_map, oor_input):
 #@pytest.mark.parametrize("choice_town_menu",[(1), (2), (4), (5), (6)])
 @pytest.mark.parametrize("choice_main_menu",[(1),(2)])
 @pytest.mark.parametrize("choice_town_menu",[(1),(2),(4),(5), (6)])
-def test_main(choice_main_menu, choice_town_menu, get_hero, get_current_day):
+@pytest.mark.parametrize("choice_outdoor_menu",[(1),(2),(4)])
+def test_main(choice_main_menu, choice_town_menu, choice_outdoor_menu, get_hero, get_current_day):
     """
         Testing the Main Function of the program
         This test will cover the choices in the following order:
@@ -1059,11 +1056,10 @@ def test_fight_menu():
             1) Attack
             2) Run
     """
-    # TODO Create a unit test function for the fight menu
-    # This test will only assert the two print statements
-    # labels: tasks, unit-test
-    # milestone: 2
-    # assignees: laukwangwei
+    set_keyboard_input([])
+    fight_menu()
+    output = get_display_output()
+    assert output == ["1) Attack\n" "2) Run"]
 
 def test_outdoor_menu():
     """
@@ -1074,13 +1070,15 @@ def test_outdoor_menu():
             3) Move
             4) Exit Game
     """
-    # TODO Create a unit test function for the outdoor menu
     # This test shall only assert the print statements of the outdoor menu
-    # labels: tasks, unit-test
-    # milestone: 2
-    # assignees: laukwangwei
+    set_keyboard_input([])
+    outdoor_menu()
+    output = get_display_output()
+    assert output == ["1) View Character\n2) View Map\n3) Move\n4) Exit Game"]
 
-def test_print_rat_stats():
+
+
+def test_print_rat_stats(get_rat):
     """
     This test will only test the print_rat_stats() function for its print statement whether it is correct
     It should only assert the following: 
@@ -1089,11 +1087,15 @@ def test_print_rat_stats():
             Defence: [defence]
             HP: [hp]
     """
-    # TODO Create a unit test function for printing the rat stats
-    # This test shall only assert the print statements of the print_rat_stats() function
-    # labels: tasks, unit-test
-    # milestone: 2
-    # assignees: laukwangwei
+    set_keyboard_input([])
+    print_rat_stats(get_rat)
+    output = get_display_output()
+    ratname = "Encounter! - {}".format(get_rat["name"])
+    ratdamage = "Damage: {}-{}".format(get_rat["min_damage"], get_rat["max_damage"])
+    ratdefence = "Defence: {}".format(get_rat["defence"])
+    rathp = "HP: {}".format(get_rat["hp"])
+    assert output == [ratname, ratdamage, ratdefence, rathp]
+
 
 def test_attack(get_hero, get_rat):
     """
@@ -1137,82 +1139,86 @@ def test_attack(get_hero, get_rat):
     
 
 # @pytest.mark.parametrize("choice", ("1","2"))
+# @patch('__main__.encounter')
 def test_encounter_1(get_rat, get_current_day, get_hero):
     """
     This test will assert the print statements that are supposed to be there such as 
         print_rat_stats(), combat menu
-    It will also test for the choices made and what functions it should run after the selected choice
-    IF the player move or run away from the combat, the HP of the enemy will be resetted along with printing the outdoor menu text
-    If the player does anything besides moving away from the same spot, the encounter function will be ran again
-    Or if the player does decide to move, he will be able to move normally without any events occuring if the tile he is standing on next is not empty
+    This function acts as a recursive function until the rat is dead or if the player decides to run away
+    This specific test function will test on the Attack part of encounter where the encounter() function should run again if the rat is not dead
     """
 
     origin_hp = get_hero["hp"]
     origin_hp_rat = get_rat["hp"]
 
-    set_keyboard_input(["1"])
-    status = encounter(get_hero, get_rat)
+    set_keyboard_input(["1","1"])
+    encounter(get_hero, get_rat, False)
     output = get_display_output()
 
     hero_total_damage_test = origin_hp_rat - get_rat["hp"] 
     enemy_total_damage_test = origin_hp - get_hero["hp"] 
 
-    if get_rat["hp"] <= 0:
-        assert status == False
+    if get_rat["hp"] > 0:
+        # assert status == False
         if get_hero["hp"]  <=0:
             assert output == ["Encounter! - " + get_rat["name"],
                         "Damage: " + f'{get_rat["min_damage"]}' + "-" + f'{get_rat["max_damage"]}',
                         "Defence: " + f'{get_rat["defence"]}',
-                        "HP: " + f'{get_rat["hp"]}',
-                        "1) Attack",
+                        "HP: 10",
+                        "1) Attack\n"
                         "2) Run",
+                        "Enter choice: ",
                         "You deal " + f'{hero_total_damage_test}' + " damage to the " + get_rat["name"],
                         "Ouch! The " + get_rat["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
-                        "You ran out of HP! Game Over."]
-    
-        elif get_rat["hp"] <=0:
-            assert output == ["Encounter! - " + get_rat["name"],
-                        "Damage: " + f'{get_rat["min_damage"]}' + "-" + f'{get_rat["max_damage"]}',
-                        "Defence: " + f'{get_rat["defence"]}',
-                        "HP: " + f'{get_rat["hp"]}',
-                        "1) Attack",
-                        "2) Run",
-                        "You deal " + f'{hero_total_damage_test}' + " damage to the " + get_rat["name"],
-                        "Ouch! The " + get_rat["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
-                        "You have " + f'{get_hero["hp"]}' + " HP left.",
-                        "The " + get_rat["name"] + " is dead! You are victorious!"]
-    
+                        "You ran out of HP! Game Over."]    
         else:
             assert output == ["Encounter! - " + get_rat["name"],
                         "Damage: " + f'{get_rat["min_damage"]}' + "-" + f'{get_rat["max_damage"]}',
                         "Defence: " + f'{get_rat["defence"]}',
-                        "HP: " + f'{get_rat["hp"]}',
-                        "1) Attack",
+                        "HP: 10",
+                        "1) Attack\n"
                         "2) Run",
+                        "Enter choice: ",
                         "You deal " + f'{hero_total_damage_test}' + " damage to the " + get_rat["name"],
                         "Ouch! The " + get_rat["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
-                        "You have " + f'{get_hero["hp"]}' + " HP left."]
-
-    else:
-        with patch('encounter') as mock:
-            assert mock.called, 'Encounter function should be called'
-            #mock.assert_called_with(encounter, [get_hero, get_rat])
-            #mock.assert_called_with(42)
+                        "You have " + f'{get_hero["hp"]}' + " HP left.",
+                        "Encounter! - " + get_rat["name"],
+                        "Damage: " + f'{get_rat["min_damage"]}' + "-" + f'{get_rat["max_damage"]}',
+                        "Defence: " + f'{get_rat["defence"]}',
+                        "HP: " + f'{get_rat["hp"]}',
+                        "1) Attack\n"
+                        "2) Run"]                        
+            # self.assertTrue(mock.called)
+    
+    elif get_rat["hp"] <=0:
+        assert output == ["Encounter! - " + get_rat["name"],
+                    "Damage: " + f'{get_rat["min_damage"]}' + "-" + f'{get_rat["max_damage"]}',
+                    "Defence: " + f'{get_rat["defence"]}',
+                    "HP: 10",
+                    "1) Attack\n"
+                    "2) Run",
+                    "Enter choice: ",
+                    "You deal " + f'{hero_total_damage_test}' + " damage to the " + get_rat["name"],
+                    "Ouch! The " + get_rat["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
+                    "You have " + f'{get_hero["hp"]}' + " HP left.",
+                    "The " + get_rat["name"] + " is dead! You are victorious!"]
+    # else:
+    #     with patch('encounter') as mock:
+    #         assert mock.called, 'Encounter function should be called'
+    #         #mock.assert_called_with(encounter, [get_hero, get_rat])
+    #         #mock.assert_called_with(42)
     
 @pytest.mark.parametrize("open_choice", [("1","2","3","4")])
 def test_encounter_2(get_rat, get_current_day, open_choice, get_hero):
     """
     This test will assert the print statements that are supposed to be there such as 
-        print_rat_stats(), combat menu
+        print_rat_stats(), combat menu and outdoor menu
     It will also test for the choices made and what functions it should run after the selected choice
-    IF the player move or run away from the combat, the HP of the enemy will be resetted along with printing the outdoor menu text
-    If the player does anything besides moving away from the same spot, the encounter function will be ran again
-    Or if the player does decide to move, he will be able to move normally without any events occuring if the tile he is standing on next is not empty
-    This test function will focus on the running part of the encounter
+    This test function will focus on the running part of the encounter where by an outdoor menu will be shown if the user decides to run away from battle
     """
     
     set_keyboard_input(["2", open_choice])
-    status = encounter(get_hero, get_rat)
+    encounter(get_hero, get_rat)
     output = get_display_output()
     assert get_rat["hp"] == 10
 
