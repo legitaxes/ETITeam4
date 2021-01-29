@@ -520,9 +520,112 @@ def test_townmenu_exitgame():
 #     hp = "HP: {}".format(get_rat["hp"])
 #     assert output == [encounter, damage, defence, hp]
 
-def test_fightmenu(): 
+def test_combatmenu(): 
     set_keyboard_input([])
     fight_menu()
     output = get_display_output()
     assert output == ["1) Attack\n2) Run"]
+
+def test_combatmenu_input_1():
+    set_keyboard_input([1])
+    fight_menu()
+    output = get_display_output()
+    assert output == ["1) Attack\n2) Run", 
+                        "Attacking the Rat..."]
+
+def test_combatmenu_input_2():
+    set_keyboard_input([2])
+    fight_menu()
+    output = get_display_output()
+    assert output == ["1) Attack\n2) Run", 
+                        "Running and hiding..."]      
+
+def test_combatmenu_input_2():
+    set_keyboard_input([2])
+    fight_menu()
+    output = get_display_output()
+    assert output == ["1) Attack\n2) Run", 
+                        "Running and hiding..."]
+
+def test_combatmenu_input_0():
+    set_keyboard_input([0])
+    fight_menu()
+    output = get_display_output()
+    assert output == ["1) Attack\n2) Run", 
+                        "Please enter a valid choice."]
+
+def test_combatmenu_input_negative():
+    set_keyboard_input([-2])
+    fight_menu()
+    output = get_display_output()
+    assert output == ["1) Attack\n2) Run", 
+                        "Please enter a valid choice."]    
+
+def test_combatmenu_input_positive():
+    set_keyboard_input([9])
+    fight_menu()
+    output = get_display_output()
+    assert output == ["1) Attack\n2) Run", 
+                        "Please enter a valid choice."]  
+
+def test_combatmenu_input_specialcharacter():
+    set_keyboard_input(["="])
+    fight_menu()
+    output = get_display_output()
+    assert output == ["1) Attack\n2) Run", 
+                        "Please enter a valid numerical choice."]               
+
+def test_combatmenu_view_ratstats(get_rat):
+    set_keyboard_input([])
+    print_rat_stats(get_rat)
+    output = get_display_output()
+    encounter = "Encounter! - {}".format(get_rat["name"])
+    damage = "Damage: {}-{}".format(get_rat["min_damage"], get_rat["max_damage"])
+    defence = "Defence: {}".format(get_rat["defence"])
+    hp = "HP: {}".format(get_rat["hp"])
+    assert output == [encounter, damage, defence, hp]
+
+
+def test_combatmenu_viewmap(get_hero, get_w_map):
+    
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
+    #theHero = print_hero_stats()
+    w_map = world_map()
+    pos = get_hero["position"]
+    assert position == pos
+    assert x_coor == pos[0]
+    assert y_coor == pos[1]
+    list_print_map = []
+    for x in range(8):
+        list_print_map.append("+---"*8 + "+")
+        for y in range(8):
+            legend = "   "
+            if w_map[x][y] == "T":
+                if x == x_coor and y == y_coor:
+                    legend = "H/T"
+                    #assert legend == "H/T"
+                else:
+                    legend = " T "
+                    #assert legend == " T "
+            elif w_map[x][y] == "K":
+                if x == x_coor and y == y_coor:
+                    legend = "H/K"
+                    #assert legend == "H/K"
+                else:
+                    legend = " K " 
+                    #assert legend == " K "
+            else:
+                if x == x_coor and y == y_coor:
+                    legend = " H "
+                    #assert legend == " H "
+            list_print_map.append("|" + legend)
+        list_print_map.append("|")
+    list_print_map.append("+---"*8 + "+")
+    # assert both lists
+    print(list_map)
+    print(list_print_map)
+    assert all([a == b for a, b in zip(list_print_map, list_map)]) #this checks python list against the expected value
+
+def test_combatmenu_attackRat(): 
+    
 
