@@ -1253,8 +1253,5 @@ def test_generate_orb():
     """
     This test will test whether the orb is generated randomly on the town based on the generate_orb() function
     """
-    # TODO Create a unit test function generate_orb()
-    # This function should assert the correct random orb generated
-    # assignees: legitaxes
-    # labels: unit-test, tasks
-    # milestone: 3
+    output = generate_orb() #town [1,3], [2,5], [3,1], [6,4]
+    assert output == [1,3] or [2,5] or [3,1] or [6,4]

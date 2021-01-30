@@ -67,7 +67,7 @@ def world_map():
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', 'K']
     """
     global w_map
-    #code goes here
+    #code goes here, town [1,3], [2,5], [3,1], [6,4]
     w_map = [['T', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
              [' ', ' ', ' ', 'T', ' ', ' ', ' ', ' '],\
              [' ', ' ', ' ', ' ', ' ', 'T', ' ', ' '],\
@@ -492,6 +492,7 @@ def outdoor_menu():
 def generate_orb():
     """
     generate_orb() generates an orb in any of the town location randomly
+    Function should return the random orb location
     """
     # TODO Create a function that generates orb randomly in town
     # This function should save the location of the orb in the map
