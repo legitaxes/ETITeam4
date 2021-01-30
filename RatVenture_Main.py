@@ -5,11 +5,6 @@ from RatVenture_Function import *
 from tud_test_base import set_keyboard_input, get_display_output
 
 def main(choice1=None, choice2=None, movement=None):
-    # TODO Complete the main function after the combat system is done
-    # This is the remaining 50% of the main function which handles the instance when hero moves to an empty tile
-    # labels: tasks
-    # milestone: 2
-    
     global current_day, hero, w_map, rat
     rat = theRat()
     if choice1 != None and movement == None: # if its running as a test function
@@ -103,9 +98,9 @@ def main(choice1=None, choice2=None, movement=None):
                     rat["hp"] = 10
                 elif choice == 4:
                     sys.exit(0)
-        else:
-            if rat["hp"] > 0:
-                encounter(hero, rat)
+            else:
+                if rat["hp"] > 0:
+                    encounter(hero, rat)
 
 if __name__ == "__main__":
     main()
