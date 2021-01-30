@@ -489,13 +489,20 @@ def outdoor_menu():
 # ==============================
 # Requirement changes / New functions 
 
-def generate_orb():
+def generate_orb(i=randint(1,4)):
     """
     generate_orb() generates an orb in any of the town location randomly
     Function should return the random orb location
     """
-    # TODO Create a function that generates orb randomly in town
-    # This function should save the location of the orb in the map
-    # assignees: legitaxes
-    # labels: tasks
-    # milestone: 3
+    global orb
+    #town locations [1,3], [2,5], [3,1], [6,4]
+    orblocation = []
+    switcher={
+        1: [1,3],
+        2: [2,5],
+        3: [3,1],
+        4: [6,4]
+    }
+    orblocation = switcher.get(i, "Invalid input of number")
+    orb = orblocation
+    return orblocation
