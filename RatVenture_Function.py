@@ -497,12 +497,12 @@ def generate_orb(i=randint(1,4)):
     global orb
     #town locations [1,3], [2,5], [3,1], [6,4]
     orblocation = []
-    switcher={
+    switch = {
         1: [1,3],
         2: [2,5],
         3: [3,1],
         4: [6,4]
     }
-    orblocation = switcher.get(i, "Invalid input of number")
+    orblocation = switch.get(i, "Invalid input of number")
     orb = orblocation
     return orblocation
