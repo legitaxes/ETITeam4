@@ -10,6 +10,7 @@ Team Roles:
 ---
 ### Latest Changes
 
+* fixed and completed the second part of encounter unit test. PR [#687](https://github.com/legitaxes/ETITeam4/pull/687) by [@legitaxes](https://github.com/legitaxes).
 * fixed major bug when moving hero. PR [#680](https://github.com/legitaxes/ETITeam4/pull/680) by [@legitaxes](https://github.com/legitaxes).
 * changed outdoor_menu . PR [#618](https://github.com/legitaxes/ETITeam4/pull/618) by [@perlechen](https://github.com/perlechen).
 * removed mock module  . PR [#610](https://github.com/legitaxes/ETITeam4/pull/610) by [@legitaxes](https://github.com/legitaxes).
