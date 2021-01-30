@@ -10,11 +10,12 @@ Team Roles:
 ---
 ### Latest Changes
 
+* fixed major bug when moving hero. PR [#680](https://github.com/legitaxes/ETITeam4/pull/680) by [@legitaxes](https://github.com/legitaxes).
 * changed outdoor_menu . PR [#618](https://github.com/legitaxes/ETITeam4/pull/618) by [@perlechen](https://github.com/perlechen).
 * removed mock module  . PR [#610](https://github.com/legitaxes/ETITeam4/pull/610) by [@legitaxes](https://github.com/legitaxes).
 * completed half of the encounter() function because outdoor_menu() is …. PR [#604](https://github.com/legitaxes/ETITeam4/pull/604) by [@legitaxes](https://github.com/legitaxes).
 * added encounter function, not working as there are other function such as outdoor_menu() not completed. 
-Will fix unit test for encounter soon TM. PR [#595](https://github.com/legitaxes/ETITeam4/pull/595) by [@legitaxes](https://github.com/legitaxes).
+* Will fix unit test for encounter soon TM. PR [#595](https://github.com/legitaxes/ETITeam4/pull/595) by [@legitaxes](https://github.com/legitaxes).
 * added outdoor menu unit test. PR [#590](https://github.com/legitaxes/ETITeam4/pull/590) by [@perlechen](https://github.com/perlechen).
 * completed unit testing for assigned task. PR [#582](https://github.com/legitaxes/ETITeam4/pull/582) by [@laukwangwei](https://github.com/laukwangwei).
 * Added attack function into the game as well as cleaning up explicit str() conversion into fstrings. PR [#532](https://github.com/legitaxes/ETITeam4/pull/532) by [@legitaxes](https://github.com/legitaxes).
