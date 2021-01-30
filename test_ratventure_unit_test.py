@@ -1254,4 +1254,14 @@ def test_generate_orb():
     This test will test whether the orb is generated randomly on the town based on the generate_orb() function
     """
     output = generate_orb() #town [1,3], [2,5], [3,1], [6,4]
-    assert output == [1,3] or [2,5] or [3,1] or [6,4]
+    # yes i know this is not efficient but i cant think of any way to do this 
+    # too bad!
+    if output == [1,3]:
+        assert output == [1,3]
+    elif output == [2,5]:
+        assert output == [2,5]
+    elif output == [3,1]:
+        assert output == [3,1]
+    elif output == [6,4]:
+        assert output == [6,4]
+    #assert output == [1,3] or [2,5] or [3,1] or [6,4]
