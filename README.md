@@ -10,6 +10,7 @@ Team Roles:
 ---
 ### Latest Changes
 
+* fixed major bug when moving hero. PR [#680](https://github.com/legitaxes/ETITeam4/pull/680) by [@legitaxes](https://github.com/legitaxes).
 * Merge pull request #629 from legitaxes/main. PR [#631](https://github.com/legitaxes/ETITeam4/pull/631) by [@perlechen](https://github.com/perlechen).
 * update my branch from the main (#624). PR [#625](https://github.com/legitaxes/ETITeam4/pull/625) by [@legitaxes](https://github.com/legitaxes).
 * update perlebranch. PR [#621](https://github.com/legitaxes/ETITeam4/pull/621) by [@perlechen](https://github.com/perlechen).

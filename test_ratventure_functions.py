@@ -627,6 +627,7 @@ def test_combatmenu_viewmap(get_hero, get_w_map):
     print(list_print_map)
     assert all([a == b for a, b in zip(list_print_map, list_map)]) #this checks python list against the expected value
 
+
 # def test_combatmenu_attackRat(get_hero, get_rat, flag=True): 
 #         set_keyboard_input([])
 #         attack(get_hero, get_rat, flag=True)
@@ -674,8 +675,6 @@ def test_combatmenu_run():
                         "3) Move", 
                         "4) Exit Game",
                         "Enter Choice:"]
-
-
 
 
 
