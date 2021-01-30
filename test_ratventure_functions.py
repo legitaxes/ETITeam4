@@ -498,6 +498,7 @@ def test_townmenu_exitgame():
     assert output == "The program will close since there are no unsaved changes."
 
 
+
 # User Story 3
 
 # def test_combatmenu(get_rat): 
@@ -626,6 +627,59 @@ def test_combatmenu_viewmap(get_hero, get_w_map):
     print(list_print_map)
     assert all([a == b for a, b in zip(list_print_map, list_map)]) #this checks python list against the expected value
 
-def test_combatmenu_attackRat(): 
-    
+# def test_combatmenu_attackRat(get_hero, get_rat, flag=True): 
+#         set_keyboard_input([])
+#         attack(get_hero, get_rat, flag=True)
+#         output = get_display_output()
+
+#         hero_damage = randint(get_hero["min_damage"], get_hero["max_damage"])
+#         enemy_damage = randint(get_rat["min_damage"], get_rat["max_damage"])
+
+#         hero_total_damage = hero_damage - get_rat["defence"]
+#         rat_total_damage = enemy_damage - get_hero["defence"]
+#         if rat_total_damage <= 0:
+#            rat_total_damage = 0
+
+#         offenseHero = "You deal {} damage to the {}".format(hero_total_damage, get_rat["name"])
+#         offenseRat = "Ouch! The {} hit you for {} damage".format(get_rat["name"],rat_total_damage)
+#         hp = "You have {} HP left.".format(get_hero["hp"])
+#         assert output == [offenseHero, offenseRat, hp]
+
+#         if hero["hp"] <= 0:
+#             print("You ran out of HP! Game over.")
+#                 if flag == True:
+#                 sys.exit(0)
+
+#         print("You have {} HP left.".format(hero["hp"]))
+#         if rat["hp"] <= 0:
+#             print("The {} is dead! You are victorious!".format(rat["name"]))
+
+#         # need to reverse engineer, incomplete  
+
+def test_combatmenu_Orb(): 
+    """ User Story 3.1.1 """
+    set_keyboard_input([])
+    # the function for Orb power
+    output = get_display_output()
+    assert output == ["You have successfuly obtained the Orb power."]
+
+def test_combatmenu_run(): 
+    set_keyboard_input([])
+    hero_run()
+    output == get_display_output()
+    assert output == ["Enter choice: ", 
+                        "You run and hide.", 
+                        "1) View Character", 
+                        "2) View Map", 
+                        "3) Move", 
+                        "4) Exit Game",
+                        "Enter Choice:"]
+
+
+
+
+
+
+
+
 
