@@ -1136,7 +1136,7 @@ def test_attack(get_hero, get_rat):
                         "Ouch! The " + get_rat["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
                         "You have " + f'{get_hero["hp"]}' + " HP left."]
     
-    
+
 def test_encounter_1(get_rat, get_current_day, get_hero):
     """
     This test will assert the print statements that are supposed to be there such as 
@@ -1243,3 +1243,18 @@ def test_encounter_2(get_rat, get_current_day, get_hero, open_choice):
                         "Enter choice: ",
                         "W = up; A = left; S = down; D = right"]
         assert get_rat["hp"] == 10
+
+
+
+# ==============================
+# ==========SPRINT 3============
+# ==============================
+def test_generate_orb():
+    """
+    This test will test whether the orb is generated randomly on the town based on the generate_orb() function
+    """
+    # TODO Create a unit test function generate_orb()
+    # This function should assert the correct random orb generated
+    # assignees: legitaxes
+    # labels: unit-test, tasks
+    # milestone: 3

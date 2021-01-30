@@ -482,3 +482,19 @@ def outdoor_menu():
     """
     print("1) View Character\n2) View Map\n3) Move\n4) Exit Game")
     #return "1) View Character\n2) View Map\n3) Move\n4) Exit Game"
+
+
+# ==============================
+# ==========SPRINT 3============
+# ==============================
+# Requirement changes / New functions 
+
+def generate_orb():
+    """
+    generate_orb() generates an orb in any of the town location randomly
+    """
+    # TODO Create a function that generates orb randomly in town
+    # This function should save the location of the orb in the map
+    # assignees: legitaxes
+    # labels: tasks
+    # milestone: 3
