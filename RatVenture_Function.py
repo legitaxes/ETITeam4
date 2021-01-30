@@ -67,7 +67,7 @@ def world_map():
             [' ', ' ', ' ', ' ', ' ', ' ', ' ', 'K']
     """
     global w_map
-    #code goes here
+    #code goes here, town [1,3], [2,5], [3,1], [6,4]
     w_map = [['T', ' ', ' ', ' ', ' ', ' ', ' ', ' '],\
              [' ', ' ', ' ', 'T', ' ', ' ', ' ', ' '],\
              [' ', ' ', ' ', ' ', ' ', 'T', ' ', ' '],\
@@ -482,3 +482,27 @@ def outdoor_menu():
     """
     print("1) View Character\n2) View Map\n3) Move\n4) Exit Game")
     #return "1) View Character\n2) View Map\n3) Move\n4) Exit Game"
+
+
+# ==============================
+# ==========SPRINT 3============
+# ==============================
+# Requirement changes / New functions 
+
+def generate_orb(i=randint(1,4)):
+    """
+    generate_orb() generates an orb in any of the town location randomly
+    Function should return the random orb location
+    """
+    global orb
+    #town locations [1,3], [2,5], [3,1], [6,4]
+    orblocation = []
+    switch = {
+        1: [1,3],
+        2: [2,5],
+        3: [3,1],
+        4: [6,4]
+    }
+    orblocation = switch.get(i, "Invalid input of number")
+    orb = orblocation
+    return orblocation

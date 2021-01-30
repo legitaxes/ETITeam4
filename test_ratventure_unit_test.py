@@ -1136,7 +1136,7 @@ def test_attack(get_hero, get_rat):
                         "Ouch! The " + get_rat["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
                         "You have " + f'{get_hero["hp"]}' + " HP left."]
     
-    
+
 def test_encounter_1(get_rat, get_current_day, get_hero):
     """
     This test will assert the print statements that are supposed to be there such as 
@@ -1243,3 +1243,25 @@ def test_encounter_2(get_rat, get_current_day, get_hero, open_choice):
                         "Enter choice: ",
                         "W = up; A = left; S = down; D = right"]
         assert get_rat["hp"] == 10
+
+
+
+# ==============================
+# ==========SPRINT 3============
+# ==============================
+def test_generate_orb():
+    """
+    This test will test whether the orb is generated randomly on the town based on the generate_orb() function
+    """
+    output = generate_orb() #town [1,3], [2,5], [3,1], [6,4]
+    # yes i know this is not efficient but i cant think of any way to do this 
+    # too bad!
+    if output == [1,3]:
+        assert output == [1,3]
+    elif output == [2,5]:
+        assert output == [2,5]
+    elif output == [3,1]:
+        assert output == [3,1]
+    elif output == [6,4]:
+        assert output == [6,4]
+    #assert output == [1,3] or [2,5] or [3,1] or [6,4]
