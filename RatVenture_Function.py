@@ -320,7 +320,8 @@ def move_hero(hero, w_map, flag=True):
     if(flag == True):
         print_map(hero, w_map)
     print("W = up; A = left; S = down; D = right")
-
+    if(flag == None): #ensure the function have ran
+        return
     while True:
         move = input("Your move: ").lower()
         if move == "w":
@@ -452,12 +453,20 @@ def encounter(hero, rat, flag=True):
         outdoor_choice = int(input("Enter choice: "))
 
         if outdoor_choice == 1 or outdoor_choice == 2 or outdoor_choice == 4:
-            encounter(hero, rat)
+            if flag == False:
+                encounter(hero, rat, None)
+            else:
+                encounter(hero, rat)
         
         elif outdoor_choice == 3:
-            move_hero(hero, w_map)
-            rat["hp"] = 10
-            current_day += 1
+            if flag == False:
+                move_hero(hero, w_map, None)
+                rat["hp"] = 10
+                current_day += 1
+            else:
+                move_hero(hero, w_map)
+                rat["hp"] = 10
+                current_day += 1
 
         elif outdoor_choice == 5:
             sys.exit(0)
