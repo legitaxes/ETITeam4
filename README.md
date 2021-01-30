@@ -10,6 +10,7 @@ Team Roles:
 ---
 ### Latest Changes
 
+* added generate_orb() function which generates orb at random town locations. PR [#695](https://github.com/legitaxes/ETITeam4/pull/695) by [@legitaxes](https://github.com/legitaxes).
 * closed todo issue for main function. PR [#691](https://github.com/legitaxes/ETITeam4/pull/691) by [@legitaxes](https://github.com/legitaxes).
 * fixed and completed the second part of encounter unit test. PR [#687](https://github.com/legitaxes/ETITeam4/pull/687) by [@legitaxes](https://github.com/legitaxes).
 * fixed major bug when moving hero. PR [#680](https://github.com/legitaxes/ETITeam4/pull/680) by [@legitaxes](https://github.com/legitaxes).
