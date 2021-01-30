@@ -18,48 +18,16 @@ def get_w_map() -> world_map():
     w_map = world_map()
     return w_map
 
+@pytest.fixture
+def get_rat() -> theRat(): 
+    rat = theRat()
+    return rat
+
 '''''
 Sprint 1
-'''''
-def test_main_mainmenu_1(): 
-    set_keyboard_input([1])
-    main()
-    main_menu()
-    output = get_display_output()
-    assert output == ["Enter choice: 1",
-                        "Day 1: You are in town.",
-                        "1) View Character",
-                        "2) View Map", 
-                        "3) Move",
-                        "4) Rest", 
-                        "5) Save Game", 
-                        "6) Exit Game",
-                        "Enter choice:"]
-
-def test_main_mainmenu_2(): 
-    set_keyboard_input([2])
-    main()
-    main_menu()
-    output = get_display_output()
-    assert output == ["Enter choice: 2",
-                        "1) View Character",
-                        "2) View Map", 
-                        "3) Move",
-                        "4) Rest", 
-                        "5) Save Game", 
-                        "6) Exit Game",
-                        "Enter choice:"]
-
-def test_main_mainmenu_3(): 
-    set_keyboard_input([3])
-    main()
-    main_menu()
-    output = get_display_output()
-    assert output == ["Enter choice: 3",
-                        "Exiting the game..."]
-
-
-def test_main_menu_input_1():
+'''''                                 
+                     
+def test_mainmenu_input_1():
     set_keyboard_input([1])
     main_menu()
     output = get_display_output()
@@ -72,7 +40,7 @@ def test_main_menu_input_1():
                         "Starting a new game..."]
     #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
 
-def test_main_menu_input_2():
+def test_mainmenu_input_2():
     set_keyboard_input([2])
     main_menu()
     output = get_display_output()
@@ -85,7 +53,7 @@ def test_main_menu_input_2():
                         "Resuming from last save state..."]
     #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
 
-def test_main_menu_input_3():
+def test_mainmenu_input_3():
     set_keyboard_input([3])
     main_menu()
     output = get_display_output()
@@ -98,14 +66,14 @@ def test_main_menu_input_3():
                         "Exiting game..."]
     #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
 
-def test_main_menu_input_4():
+def test_mainmenu_input_4():
     set_keyboard_input([4])
     main_menu()
     output = get_display_output()
     assert output == ["Welcome to Ratventure", "----------------------", "1) New Game", "2) Resume Game", "3) Exit Game", "Enter Choice: ", "Please enter a valid choice"]
     #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
 
-def test_main_menu_input_0():
+def test_mainmenu_input_0():
     set_keyboard_input([0])
     main_menu()
     output = get_display_output()
@@ -113,21 +81,21 @@ def test_main_menu_input_0():
     #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
 
 
-def test_main_menu_input_negative():
+def test_mainmenu_input_negative():
     set_keyboard_input([-1])
     main_menu()
     output = get_display_output()
     assert output == ["Welcome to Ratventure", "----------------------", "1) New Game", "2) Resume Game", "3) Exit Game", "Enter Choice: ", "Please enter a valid choice"]
     #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"
 
-def test_main_menu_input_special_character():
+def test_mainmenu_input_specialcharacter():
     set_keyboard_input(['@'])
     main_menu()
     output = get_display_output()
     assert output == ["Welcome to Ratventure", "----------------------", "1) New Game", "2) Resume Game", "3) Exit Game", "Enter Choice: ", "Please enter a valid choice"]
     #assert value == "Welcome to Ratventure\n1) New Game\n2) Resume Game\n3) Exit Game"                    
                 
-def test_new_game(): 
+def test_mainmenu_newgame(): 
     """ User Story 1.1: Create New Game
     
     Input
@@ -150,7 +118,7 @@ def test_new_game():
     assert hero["defence"] == 1
     assert hero["position"] == [0, 0]
                     
-def test_resume_game(): 
+def test_mainmenu_resumegame(): 
     """User Story: 1.2: Resume the previous game
     
      Input
@@ -170,7 +138,7 @@ def test_resume_game():
         assert output == "Existing file does not exist.\n"
         assert errormessage == FileNotFoundError
 
-def test_exit_game(): 
+def test_mainmenu_exitgame(): 
     """User Story 1.3: Exit the game
     
      Input
@@ -187,7 +155,7 @@ def test_exit_game():
     assert output == "The program will close since there are no unsaved changes."
     
  
-def test_exit_game_prompt_yes():
+def test_mainmenu_exitgame_prompt_yes():
     """User Story 1.3.1: Warning Message
     
     Input
@@ -235,7 +203,7 @@ def test_exit_game_prompt_yes():
 #     output = get_display_output()
 #     assert output == "You have unsaved changes. Do you want to continue?"
 
-def test_exit_game_prompt_no():
+def test_mainmenu_exitgame_prompt_no():
     """User Story 1.3.2: Warning Message
     
     Input
@@ -255,31 +223,9 @@ def test_exit_game_prompt_no():
     output = get_display_output()
     assert output == ["You have unsaved changes. Do you want to continue?","Enter choice: [Y/N]", "Going back to the game..."]
 
+# User Story 2
 
-# def test_main2():
-#     """User Story 2.0.1: Test input for town menu
-    
-#     Input
-#     -----------------
-#     7
-    
-#     Output
-#     -----------------
-
-#     Error! Please input an appropiate option.
-#     1) View Character
-#     2) View Map
-#     3) Move
-#     4) Rest
-#     5) Save Game
-#     6) Exit Game
-    
-    
-#     """
-#     output = town_menu()
-#     assert output == "Error! Please input an appropiate option.\n1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"    
-
-def test_town_menu_input_1():
+def test_townmenu_input_1():
     set_keyboard_input([1])
     town_menu()
     output = get_display_output()
@@ -291,7 +237,7 @@ def test_town_menu_input_1():
                         "6) Exit Game", 
                         "Viewing the Character's statistics..."]
 
-def test_town_menu_input_2():
+def test_townmenu_input_2():
     set_keyboard_input([2])
     town_menu()
     output = get_display_output()
@@ -303,7 +249,7 @@ def test_town_menu_input_2():
                         "6) Exit Game", 
                         "Viewing the Town Map..."]
 
-def test_town_menu_input_3():
+def test_townmenu_input_3():
     set_keyboard_input([3])
     town_menu()
     output = get_display_output()
@@ -315,7 +261,7 @@ def test_town_menu_input_3():
                         "6) Exit Game", 
                         "Moving the Hero..."]
 
-def test_town_menu_input_4():
+def test_townmenu_input_4():
     set_keyboard_input([4])
     town_menu()
     output = get_display_output()
@@ -327,7 +273,7 @@ def test_town_menu_input_4():
                         "6) Exit Game", 
                         "Resting the Hero..."]
 
-def test_town_menu_input_5():
+def test_townmenu_input_5():
     set_keyboard_input([5])
     town_menu()
     output = get_display_output()
@@ -339,7 +285,7 @@ def test_town_menu_input_5():
                         "6) Exit Game", 
                         "Saving the game..."]
 
-def test_town_menu_input_6():
+def test_townmenu_input_6():
     set_keyboard_input([6])
     town_menu()
     output = get_display_output()
@@ -351,7 +297,7 @@ def test_town_menu_input_6():
                         "6) Exit Game", 
                         "Exiting game..."]
 
-def test_town_menu_input_0():
+def test_townMenu_input_0():
     set_keyboard_input([0])
     town_menu()
     output = get_display_output()
@@ -363,7 +309,7 @@ def test_town_menu_input_0():
                         "6) Exit Game", 
                         "Please enter a valid choice."]
     
-def test_town_menu_input_negative():
+def test_townmenu_input_negative():
     set_keyboard_input([-3])
     town_menu()
     output = get_display_output()
@@ -375,7 +321,7 @@ def test_town_menu_input_negative():
                         "6) Exit Game", 
                         "Please enter a valid choice."]
 
-def test_town_menu_input_positive():
+def test_townmenu_input_positive():
     set_keyboard_input([9])
     town_menu()
     output = get_display_output()
@@ -387,7 +333,7 @@ def test_town_menu_input_positive():
                         "6) Exit Game", 
                         "Please enter a valid choice."]
 
-def test_town_menu_input_specialcharacter():
+def test_townmenu_input_specialcharacter():
     set_keyboard_input(['='])
     town_menu()
     output = get_display_output()
@@ -400,7 +346,7 @@ def test_town_menu_input_specialcharacter():
                         "Please enter a valid numerical choice."]
 
 
-def test_town_menu():
+def test_townmenu():
     """User Story 2.0: Display town menu
     
     Input
@@ -422,7 +368,7 @@ def test_town_menu():
 
        
 
-def test_view_character(get_hero):
+def test_townmenu_viewcharacter(get_hero):
     """User Story 2.1: Display player's statistics 
     
     
@@ -447,7 +393,7 @@ def test_view_character(get_hero):
     
    
 
-def test_view_map(get_hero, get_w_map):
+def test_townmenu_viewmap(get_hero, get_w_map):
     """User Story 2.2: Display the world map
     
     
@@ -501,8 +447,13 @@ def test_view_map(get_hero, get_w_map):
     print(list_map)
     print(list_print_map)
     assert all([a == b for a, b in zip(list_print_map, list_map)]) #this checks python list against the expected value
-    
-def test_rest(get_hero):
+
+def test_townmenu_move(): 
+    """ Incomplete function."""
+
+    print("Move.")
+
+def test_townmenu_rest(get_hero):
     """User Story 2.4: Rest the character 
     
     
@@ -518,7 +469,7 @@ def test_rest(get_hero):
     assert hp == get_hero["max_hp"]
     assert print_result == "You are fully healed."
 
-def test_save_game(get_hero, get_current_day, get_w_map):
+def test_townmenu_savegame(get_hero, get_current_day, get_w_map):
     """User Story 2.5: Save the game
     
     
@@ -531,7 +482,7 @@ def test_save_game(get_hero, get_current_day, get_w_map):
     output = save_game(get_hero, get_w_map, get_current_day)
     assert output == "Game saved."
 
-def test_exit_game2(): 
+def test_townmenu_exitgame(): 
     """User Story 2.6: Exit the game
     
     
@@ -547,6 +498,134 @@ def test_exit_game2():
     assert output == "The program will close since there are no unsaved changes."
 
 
+# User Story 3
+
+# def test_combatmenu(get_rat): 
+#     set_keyboard_input([])
+#     print_rat_stats(get_rat)
+#     output = get_display_output()
+
+#     # tile = get_hero_position(get_hero)
+#     # location = ""
+#     # if tile == "T":
+#     #     location = "You are in a town."
+#     # elif tile == " ":
+#     #     location = "You are out in the open."
+        
+#     #day = "Day {}: {}".format(get_current_day, location)
+
+#     encounter = "Encounter! - {}".format(get_rat["name"])
+#     damage = "Damage: {}-{}".format(get_rat["min_damage"], get_rat["max_damage"])
+#     defence = "Defence: {}".format(get_rat["defence"])
+#     hp = "HP: {}".format(get_rat["hp"])
+#     assert output == [encounter, damage, defence, hp]
+
+def test_combatmenu(): 
+    set_keyboard_input([])
+    fight_menu()
+    output = get_display_output()
+    assert output == ["1) Attack\n2) Run"]
+
+def test_combatmenu_input_1():
+    set_keyboard_input([1])
+    fight_menu()
+    output = get_display_output()
+    assert output == ["1) Attack\n2) Run", 
+                        "Attacking the Rat..."]
+
+def test_combatmenu_input_2():
+    set_keyboard_input([2])
+    fight_menu()
+    output = get_display_output()
+    assert output == ["1) Attack\n2) Run", 
+                        "Running and hiding..."]      
+
+def test_combatmenu_input_2():
+    set_keyboard_input([2])
+    fight_menu()
+    output = get_display_output()
+    assert output == ["1) Attack\n2) Run", 
+                        "Running and hiding..."]
+
+def test_combatmenu_input_0():
+    set_keyboard_input([0])
+    fight_menu()
+    output = get_display_output()
+    assert output == ["1) Attack\n2) Run", 
+                        "Please enter a valid choice."]
+
+def test_combatmenu_input_negative():
+    set_keyboard_input([-2])
+    fight_menu()
+    output = get_display_output()
+    assert output == ["1) Attack\n2) Run", 
+                        "Please enter a valid choice."]    
+
+def test_combatmenu_input_positive():
+    set_keyboard_input([9])
+    fight_menu()
+    output = get_display_output()
+    assert output == ["1) Attack\n2) Run", 
+                        "Please enter a valid choice."]  
+
+def test_combatmenu_input_specialcharacter():
+    set_keyboard_input(["="])
+    fight_menu()
+    output = get_display_output()
+    assert output == ["1) Attack\n2) Run", 
+                        "Please enter a valid numerical choice."]               
+
+def test_combatmenu_view_ratstats(get_rat):
+    set_keyboard_input([])
+    print_rat_stats(get_rat)
+    output = get_display_output()
+    encounter = "Encounter! - {}".format(get_rat["name"])
+    damage = "Damage: {}-{}".format(get_rat["min_damage"], get_rat["max_damage"])
+    defence = "Defence: {}".format(get_rat["defence"])
+    hp = "HP: {}".format(get_rat["hp"])
+    assert output == [encounter, damage, defence, hp]
 
 
+def test_combatmenu_viewmap(get_hero, get_w_map):
+    
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
+    #theHero = print_hero_stats()
+    w_map = world_map()
+    pos = get_hero["position"]
+    assert position == pos
+    assert x_coor == pos[0]
+    assert y_coor == pos[1]
+    list_print_map = []
+    for x in range(8):
+        list_print_map.append("+---"*8 + "+")
+        for y in range(8):
+            legend = "   "
+            if w_map[x][y] == "T":
+                if x == x_coor and y == y_coor:
+                    legend = "H/T"
+                    #assert legend == "H/T"
+                else:
+                    legend = " T "
+                    #assert legend == " T "
+            elif w_map[x][y] == "K":
+                if x == x_coor and y == y_coor:
+                    legend = "H/K"
+                    #assert legend == "H/K"
+                else:
+                    legend = " K " 
+                    #assert legend == " K "
+            else:
+                if x == x_coor and y == y_coor:
+                    legend = " H "
+                    #assert legend == " H "
+            list_print_map.append("|" + legend)
+        list_print_map.append("|")
+    list_print_map.append("+---"*8 + "+")
+    # assert both lists
+    print(list_map)
+    print(list_print_map)
+    assert all([a == b for a, b in zip(list_print_map, list_map)]) #this checks python list against the expected value
+
+def test_combatmenu_attackRat(): 
+    
 
