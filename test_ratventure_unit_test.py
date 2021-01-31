@@ -129,7 +129,9 @@ def test_print_map(get_hero, get_w_map):
         Displays the Map of the game when called
         This function should print the full layout of the map
     """
-
+    # TODO Adjust test_print_map() function to cater to new changes
+    # assignees: legitaxes
+    # labels: tasks, unit-test 
     position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
     #theHero = print_hero_stats()
     w_map = world_map()
@@ -232,6 +234,9 @@ def test_new_game(get_hero, get_current_day):
         > current_day
         > hero
     """
+    # TODO Adjust test_new_game test function to cater for orb
+    # assignees: legitaxes
+    # labels: tasks, unit-test
     current_day, hero, w_map = new_game()
     assert current_day == get_current_day
     assert hero["name"] == get_hero["name"]
@@ -1278,7 +1283,7 @@ def test_theRatKing():
     """
     # TODO Add a test function for theRatKing()
     # assignees: laukwangwei
-    # labels: tasks
+    # labels: tasks, unit-test
     # milestone: 3
 
 def test_pickup_orb():
@@ -1291,7 +1296,7 @@ def test_pickup_orb():
     """
     # TODO Add a test function for pickup_orb()
     # assignees: laukwangwei
-    # labels: tasks
+    # labels: tasks, unit-test
     # milestone: 3
 
 def test_print_ratking_stats():
@@ -1306,7 +1311,7 @@ def test_print_ratking_stats():
     """
     # TODO Add a test function print rat king stats
     # assignees: laukwangwei
-    # labels: tasks
+    # labels: tasks, unit-test
     # milestone: 3
 
 def test_win_game():
@@ -1320,6 +1325,6 @@ def test_win_game():
     """
     # TODO Add a test function that prints a couple of lines when the player beats the rat king
     # assignees: laukwangwei
-    # labels: tasks
+    # labels: tasks, unit-test
     # milestone: 3
 

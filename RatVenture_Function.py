@@ -88,6 +88,9 @@ def print_map(hero, w_map, flag=True):
     Displays the Map of the game when called
     This function should print the full layout of the map
     """
+    # TODO Add the new requirement of showing the orb in the town
+    # assignees: legitaxes
+    # labels: tasks
     position = hero["position"]
     x_coor = position[0]
     y_coor = position[1]
@@ -232,6 +235,7 @@ def new_game():
     current_day = ini_current_day()
     hero = theHero()
     w_map = world_map()
+    generate_orb()
     return current_day, hero, w_map
 
 def resume_game():
@@ -240,6 +244,9 @@ def resume_game():
     The previous save state should have stored variables as a json object
     This function will set the global variables in the program from the json object  
     """
+    # TODO Adjust Resume game to load orb data
+    # assignees: legitaxes
+    # labels: tasks
     try:
         global hero, w_map, current_day
         file = open("./save.json", mode = "r")
@@ -282,6 +289,9 @@ def save_game(hero, w_map, current_day):
     """
     This function saves the current progress of the game onto an external json file named: 'save.json'
     """
+    # TODO Adjust Save game to save orb data
+    # assignees: legitaxes
+    # labels: tasks
     file = open("./save.json", mode = "w+")
     file.write(json.dumps({"hero": hero, "w_map": w_map, "current_day": current_day}))
     file.close()
@@ -511,15 +521,6 @@ def generate_orb(i=randint(1,4)):
     orb = orblocation
     return orblocation
 
-def theRatKing():
-    """
-    This function initializes the rat king stats and the dictionary for rat king
-    """
-    # TODO Add a function that initializes Rat King
-    # assignees: laukwangwei
-    # labels: tasks
-    # milestone: 3
-
 def pickup_orb():
     """
     Print Orb Function will print the following lines when the orb is picked up
@@ -529,6 +530,15 @@ def pickup_orb():
         "Your defence rose by 5!"
     """
     # TODO Add a function to allow the user to pick up Orb
+    # assignees: laukwangwei
+    # labels: tasks
+    # milestone: 3
+
+def theRatKing():
+    """
+    This function initializes the rat king stats and the dictionary for rat king
+    """
+    # TODO Add a function that initializes Rat King
     # assignees: laukwangwei
     # labels: tasks
     # milestone: 3
@@ -558,3 +568,21 @@ def win_game():
     # labels: tasks
     # milestone: 3
 
+def ratking_encounter():
+    """
+    Essentially the same as encounter() from before but this is for RatKing
+    """
+    # TODO Add a function for encountering against Rat King
+    # assignees: legitaxes
+    # labels: tasks
+    # milestone: 3
+
+def ratking_attack():
+    """
+    Essentially another attack() function but for RatKing
+    This function will check whether the player is holding the orb as well
+    """
+    # TODO Add a function for attacking Rat King
+    # assignees: legitaxes
+    # labels: tasks
+    # milestone: 3
