@@ -1077,7 +1077,6 @@ def test_outdoor_menu():
     assert output == ["1) View Character\n2) View Map\n3) Move\n4) Exit Game"]
 
 
-
 def test_print_rat_stats(get_rat):
     """
     This test will only test the print_rat_stats() function for its print statement whether it is correct
@@ -1138,8 +1137,6 @@ def test_attack(get_hero, get_rat):
                         "You have " + f'{get_hero["hp"]}' + " HP left."]
     
 
-# @pytest.mark.parametrize("choice", ("1","2"))
-# @patch('__main__.encounter')
 def test_encounter_1(get_rat, get_current_day, get_hero):
     """
     This test will assert the print statements that are supposed to be there such as 
@@ -1147,7 +1144,6 @@ def test_encounter_1(get_rat, get_current_day, get_hero):
     This function acts as a recursive function until the rat is dead or if the player decides to run away
     This specific test function will test on the Attack part of encounter where the encounter() function should run again if the rat is not dead
     """
-
     origin_hp = get_hero["hp"]
     origin_hp_rat = get_rat["hp"]
 
@@ -1202,46 +1198,70 @@ def test_encounter_1(get_rat, get_current_day, get_hero):
                     "Ouch! The " + get_rat["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
                     "You have " + f'{get_hero["hp"]}' + " HP left.",
                     "The " + get_rat["name"] + " is dead! You are victorious!"]
-    # else:
-    #     with patch('encounter') as mock:
-    #         assert mock.called, 'Encounter function should be called'
-    #         #mock.assert_called_with(encounter, [get_hero, get_rat])
-    #         #mock.assert_called_with(42)
-    
-@pytest.mark.parametrize("open_choice", [("1","2","3","4")])
-def test_encounter_2(get_rat, get_current_day, open_choice, get_hero):
+
+
+@pytest.mark.parametrize("open_choice", [(1),(2),(3),(4)])
+def test_encounter_2(get_rat, get_current_day, get_hero, open_choice):
     """
     This test will assert the print statements that are supposed to be there such as 
         print_rat_stats(), combat menu and outdoor menu
     It will also test for the choices made and what functions it should run after the selected choice
     This test function will focus on the running part of the encounter where by an outdoor menu will be shown if the user decides to run away from battle
     """
-    
-    set_keyboard_input(["2", open_choice])
-    encounter(get_hero, get_rat)
+    set_keyboard_input(['2', open_choice])
+    encounter(get_hero, get_rat, False)
     output = get_display_output()
-    assert get_rat["hp"] == 10
-
-    if open_choice == 1 or open_choice == 2 or open_choice == 4:
-        with patch('encounter') as mock:
-            assert mock.called, 'Encounter function should be called'
-            #mock.assert_called_with(encounter, [get_hero, get_rat])
-            #mock.assert_called_with(42)
     
-    elif open_choice == 3:
-        with patch('move_hero') as mock:
-            #encounter(get_hero, get_rat)
-            assert mock.called, 'Move Hero function should be called'
-            #mock.assert_called_with(move_hero, get_hero)
+    if open_choice == 1 or open_choice == 2 or open_choice == 4: # select anything other than move_hero()
+        assert output == ["Encounter! - " + get_rat["name"],
+                        "Damage: " + f'{get_rat["min_damage"]}' + "-" + f'{get_rat["max_damage"]}',
+                        "Defence: " + f'{get_rat["defence"]}',
+                        "HP: 10",
+                        "1) Attack\n"
+                        "2) Run",
+                        "Enter choice: ",
+                        "You run and hide.",
+                        "1) View Character\n2) View Map\n3) Move\n4) Exit Game",
+                        "Enter choice: ",
+                        "Encounter! - " + get_rat["name"],
+                        "Damage: " + f'{get_rat["min_damage"]}' + "-" + f'{get_rat["max_damage"]}',
+                        "Defence: " + f'{get_rat["defence"]}',
+                        "HP: " + f'{get_rat["hp"]}',
+                        "1) Attack\n"
+                        "2) Run"] # ensure the encounter function is ran again            
 
-        # assert output == ["Encounter! - " + get_rat["name"],
-        #         "Damage: " + f'{get_rat["min_damage"]}' + "-" + f'{get_rat["max_damage"]}',
-        #         "Defence: " + f'{get_rat["defence"]}',
-        #         "HP: " + f'{get_rat["hp"]}',
-        #         "1) Attack",
-        #         "2) Run",
-        #         "You run and hide",
-        #         "1) View Character",
-        #         "2) View Map",
-        #         "3) Move",
-        #         "4) Exit Game"]
+    elif open_choice == 3:
+        assert output == ["Encounter! - " + get_rat["name"],
+                        "Damage: " + f'{get_rat["min_damage"]}' + "-" + f'{get_rat["max_damage"]}',
+                        "Defence: " + f'{get_rat["defence"]}',
+                        "HP: 10",
+                        "1) Attack\n"
+                        "2) Run",
+                        "Enter choice: ",
+                        "You run and hide.",
+                        "1) View Character\n2) View Map\n3) Move\n4) Exit Game",
+                        "Enter choice: ",
+                        "W = up; A = left; S = down; D = right"]
+        assert get_rat["hp"] == 10
+
+
+
+# ==============================
+# ==========SPRINT 3============
+# ==============================
+def test_generate_orb():
+    """
+    This test will test whether the orb is generated randomly on the town based on the generate_orb() function
+    """
+    output = generate_orb() #town [1,3], [2,5], [3,1], [6,4]
+    # yes i know this is not efficient but i cant think of any way to do this 
+    # too bad!
+    if output == [1,3]:
+        assert output == [1,3]
+    elif output == [2,5]:
+        assert output == [2,5]
+    elif output == [3,1]:
+        assert output == [3,1]
+    elif output == [6,4]:
+        assert output == [6,4]
+    #assert output == [1,3] or [2,5] or [3,1] or [6,4]
