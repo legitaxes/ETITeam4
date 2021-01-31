@@ -1328,3 +1328,21 @@ def test_win_game():
     # labels: tasks, unit-test
     # milestone: 3
 
+def test_ratking_encounter():
+    """
+    Essentially the same as encounter() from before but this is for RatKing Test function
+    """
+    # TODO Add a test function for encountering against Rat King
+    # assignees: legitaxes
+    # labels: tasks, unit-test
+    # milestone: 3
+
+def test_ratking_attack():
+    """
+    Essentially another attack() function but for RatKing
+    This test function will check whether the player is holding the orb as well
+    """
+    # TODO Add a function for attacking Rat King
+    # assignees: legitaxes
+    # labels: tasks, unit-test
+    # milestone: 3
