@@ -366,7 +366,6 @@ def test_townmenu():
     output = town_menu()
     assert output == "1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"     
 
-       
 
 def test_townmenu_viewcharacter(get_hero):
     """User Story 2.1: Display player's statistics 
@@ -391,8 +390,6 @@ def test_townmenu_viewcharacter(get_hero):
     assert output == [get_hero["name"], damage, defence, hp]
 
     
-   
-
 def test_townmenu_viewmap(get_hero, get_w_map):
     """User Story 2.2: Display the world map
     
@@ -448,10 +445,69 @@ def test_townmenu_viewmap(get_hero, get_w_map):
     print(list_print_map)
     assert all([a == b for a, b in zip(list_print_map, list_map)]) #this checks python list against the expected value
 
-def test_townmenu_move(): 
-    """ Incomplete function."""
+def test_townmenu_move(get_hero, get_w_map, flag=True): 
+    set_keyboard_input([])
+    move_hero(get_hero, get_w_map, flag=True)
+    output = get_display_output()
 
-    print("Move.")
+    if(flag == True):
+        print_map(hero, w_map)
+    moves = "W = up; A = left; S = down; D = right"
+
+    while True:
+        move = input("Your move: ").lower()
+        if move == "w":
+            status, pos = set_hero_position(hero, x=-1)
+            if status == False:
+                if flag == False:
+                    return False
+                continue
+            elif status == True:
+                if flag == False:
+                    return True
+                break
+        elif move == "a":
+            status, pos = set_hero_position(hero, y=-1)
+            if status == False:
+                if flag == False:
+                    return False
+                continue
+            elif status == True:
+                if flag == False:
+                    return True
+                break
+        elif move == "s":
+            status, pos = set_hero_position(hero, x=1)
+            if status == False:
+                if flag == False:
+                    return False
+                continue
+            elif status == True:
+                if flag == False:
+                    return True
+                break
+        elif move == "d":
+            status, pos = set_hero_position(hero, y=1)
+            if status == False:
+                if flag == False:
+                    return False
+                continue
+            elif status == True:
+                if flag == False:
+                    return True
+                break
+        elif(flag == False):
+            out_of_range = "Input out of range"
+            return False
+        else:
+            out_of_range = "Input out of range"
+    if(flag == False):
+        return True
+    else:
+        print_map(get_hero, get_w_map)
+
+    assert output == [moves, out_of_range, print_map(get_hero, get_w_map)]
+
 
 def test_townmenu_rest(get_hero):
     """User Story 2.4: Rest the character 
@@ -541,13 +597,6 @@ def test_combatmenu_input_2():
     assert output == ["1) Attack\n2) Run", 
                         "Running and hiding..."]      
 
-def test_combatmenu_input_2():
-    set_keyboard_input([2])
-    fight_menu()
-    output = get_display_output()
-    assert output == ["1) Attack\n2) Run", 
-                        "Running and hiding..."]
-
 def test_combatmenu_input_0():
     set_keyboard_input([0])
     fight_menu()
@@ -625,37 +674,35 @@ def test_combatmenu_viewmap(get_hero, get_w_map):
     # assert both lists
     print(list_map)
     print(list_print_map)
-    assert all([a == b for a, b in zip(list_print_map, list_map)]) #this checks python list against the expected value
+    assert all([a == b for a, b in zip(list_print_map, list_map)]) 
 
 
-# def test_combatmenu_attackRat(get_hero, get_rat, flag=True): 
-#         set_keyboard_input([])
-#         attack(get_hero, get_rat, flag=True)
-#         output = get_display_output()
+def test_combatmenu_attackRat(get_hero, get_rat, flag=True): 
+        origin_hp = get_hero["hp"]
+        origin_hp_rat = get_rat["hp"]
+        set_keyboard_input([])
+        attack(get_hero, get_rat, flag=True)
+        output = get_display_output()
 
-#         hero_damage = randint(get_hero["min_damage"], get_hero["max_damage"])
-#         enemy_damage = randint(get_rat["min_damage"], get_rat["max_damage"])
+        hero_total_damage = origin_hp_rat - get_rat["hp"]
+        rat_total_damage = origin_hp - get_hero["hp"]
+        if rat_total_damage <= 0:
+           rat_total_damage = 0
 
-#         hero_total_damage = hero_damage - get_rat["defence"]
-#         rat_total_damage = enemy_damage - get_hero["defence"]
-#         if rat_total_damage <= 0:
-#            rat_total_damage = 0
+        offenseHero = "You deal {} damage to the {}".format(hero_total_damage, get_rat["name"])
+        offenseRat = "Ouch! The {} hit you for {} damage".format(get_rat["name"],rat_total_damage)
+        hp = "You have {} HP left.".format(get_hero["hp"])
+        assert output == [offenseHero, offenseRat, hp]
 
-#         offenseHero = "You deal {} damage to the {}".format(hero_total_damage, get_rat["name"])
-#         offenseRat = "Ouch! The {} hit you for {} damage".format(get_rat["name"],rat_total_damage)
-#         hp = "You have {} HP left.".format(get_hero["hp"])
-#         assert output == [offenseHero, offenseRat, hp]
+        if get_hero["hp"] <= 0:
+            print("You ran out of HP! Game over.")
+            if flag == True:
+                sys.exit(0)
 
-#         if hero["hp"] <= 0:
-#             print("You ran out of HP! Game over.")
-#                 if flag == True:
-#                 sys.exit(0)
+        print("You have {} HP left.".format(get_hero["hp"]))
+        if get_rat["hp"] <= 0:
+            print("The {} is dead! You are victorious!".format(get_rat["name"]))
 
-#         print("You have {} HP left.".format(hero["hp"]))
-#         if rat["hp"] <= 0:
-#             print("The {} is dead! You are victorious!".format(rat["name"]))
-
-#         # need to reverse engineer, incomplete  
 
 def test_combatmenu_Orb(): 
     """ User Story 3.1.1 """
@@ -664,17 +711,97 @@ def test_combatmenu_Orb():
     output = get_display_output()
     assert output == ["You have successfuly obtained the Orb power."]
 
-def test_combatmenu_run(): 
-    set_keyboard_input([])
-    hero_run()
-    output == get_display_output()
-    assert output == ["Enter choice: ", 
-                        "You run and hide.", 
-                        "1) View Character", 
-                        "2) View Map", 
-                        "3) Move", 
-                        "4) Exit Game",
-                        "Enter Choice:"]
+""" def test_combatmenu_run(get_hero, get_rat, flag=True): 
+    set_keyboard_input([2])
+    #fight_menu()
+    encounter(get_hero, get_rat)
+    output = get_display_output()
+    
+
+    if flag == None: #check if function is called
+        return
+    encounter_choice = 2
+    global current_day, world_map
+    
+    if encounter_choice == 2:
+        assert output == ["You run and hide."]
+        get_rat["hp"] = 10
+        outdoor_menu() """
+
+def test_combatmenu_run(get_hero, get_rat):
+    set_keyboard_input(2, 4])
+    encounter(get_hero, get_rat, False)
+    #print_rat_stats(get_rat)
+    #fight_menu()
+    output = get_display_output()
+    encounter1 = "Encounter! - {}".format(get_rat["name"])
+    damage = "Damage: {}-{}".format(get_rat["min_damage"], get_rat["max_damage"])
+    defence = "Defence: {}".format(get_rat["defence"])
+    hp = "HP: {}".format(get_rat["hp"])
+    assert output == [encounter1, damage, defence, hp, "1) Attack\n2) Run","You run and hide."]
+
+def test_outdoormenu_herostats(get_hero): 
+    outdoor_menu()
+    set_keyboard_input([1])
+    print_hero_stats(get_hero)
+    output =get_display_output()
+    damage = "Damage: {}-{}".format(get_hero["min_damage"], get_hero["max_damage"])
+    defence = "Defence: {}".format(get_hero["defence"])
+    hp = "HP: {}".format(get_hero["hp"])
+    assert output == [get_hero["name"], damage, defence, hp]
+
+def test_outdoormenu_viewmap(get_hero, get_w_map): 
+    outdoor_menu()
+    set_keyboard_input([2])
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
+    #theHero = print_hero_stats()
+    w_map = world_map()
+    pos = get_hero["position"]
+    assert position == pos
+    assert x_coor == pos[0]
+    assert y_coor == pos[1]
+    list_print_map = []
+    for x in range(8):
+        list_print_map.append("+---"*8 + "+")
+        for y in range(8):
+            legend = "   "
+            if w_map[x][y] == "T":
+                if x == x_coor and y == y_coor:
+                    legend = "H/T"
+                    #assert legend == "H/T"
+                else:
+                    legend = " T "
+                    #assert legend == " T "
+            elif w_map[x][y] == "K":
+                if x == x_coor and y == y_coor:
+                    legend = "H/K"
+                    #assert legend == "H/K"
+                else:
+                    legend = " K " 
+                    #assert legend == " K "
+            else:
+                if x == x_coor and y == y_coor:
+                    legend = " H "
+                    #assert legend == " H "
+            list_print_map.append("|" + legend)
+        list_print_map.append("|")
+    list_print_map.append("+---"*8 + "+")
+    # assert both lists
+    print(list_map)
+    print(list_print_map)
+    assert all([a == b for a, b in zip(list_print_map, list_map)]) #this checks python list against the expected value
+
+    
+def test_outdoormenu_exitgame(): 
+    set_keyboard_input([4])
+    outdoor_menu()
+    output = exit_game()
+    assert output == "The program will close since there are no unsaved changes."
+
+
+        
+
+        
 
 
 
