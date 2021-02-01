@@ -9,22 +9,30 @@ Team Roles:
   3. Technical Lead: Lau Kwang Wei, Poh Jia Qi 
 ---
 ### Latest Changes
+* assigning tasks to @laukwangwei for the new requirement changes. PR [#701](https://github.com/legitaxes/ETITeam4/pull/701) by [@legitaxes](https://github.com/legitaxes).
+* Update cheskalazo branch. PR [#697](https://github.com/legitaxes/ETITeam4/pull/697) by [@cheskalazo](https://github.com/cheskalazo).
 
+* added generate_orb() function which generates orb at random town locations. PR [#695](https://github.com/legitaxes/ETITeam4/pull/695) by [@legitaxes](https://github.com/legitaxes).
+* closed todo issue for main function. PR [#691](https://github.com/legitaxes/ETITeam4/pull/691) by [@legitaxes](https://github.com/legitaxes).
+* fixed and completed the second part of encounter unit test. PR [#687](https://github.com/legitaxes/ETITeam4/pull/687) by [@legitaxes](https://github.com/legitaxes).
+
+* fixed major bug when moving hero. PR [#680](https://github.com/legitaxes/ETITeam4/pull/680) by [@legitaxes](https://github.com/legitaxes).
+* changed outdoor_menu . PR [#618](https://github.com/legitaxes/ETITeam4/pull/618) by [@perlechen](https://github.com/perlechen).
+* removed mock module  . PR [#610](https://github.com/legitaxes/ETITeam4/pull/610) by [@legitaxes](https://github.com/legitaxes).
+* completed half of the encounter() function because outdoor_menu() is …. PR [#604](https://github.com/legitaxes/ETITeam4/pull/604) by [@legitaxes](https://github.com/legitaxes).
+* added encounter function, not working as there are other function such as outdoor_menu() not completed. 
+* Will fix unit test for encounter soon TM. PR [#595](https://github.com/legitaxes/ETITeam4/pull/595) by [@legitaxes](https://github.com/legitaxes).
+* added outdoor menu unit test. PR [#590](https://github.com/legitaxes/ETITeam4/pull/590) by [@perlechen](https://github.com/perlechen).
 * completed unit testing for assigned task. PR [#582](https://github.com/legitaxes/ETITeam4/pull/582) by [@laukwangwei](https://github.com/laukwangwei).
 * Cheskalazo branch. PR [#574](https://github.com/legitaxes/ETITeam4/pull/574) by [@cheskalazo](https://github.com/cheskalazo).
 * Added attack function into the game as well as cleaning up explicit str() conversion into fstrings. PR [#532](https://github.com/legitaxes/ETITeam4/pull/532) by [@legitaxes](https://github.com/legitaxes).
-* jiaqibranch. PR [#526](https://github.com/legitaxes/ETITeam4/pull/526) by [@legitaxes](https://github.com/legitaxes).
-* jiaqibranch. PR [#515](https://github.com/legitaxes/ETITeam4/pull/515) by [@legitaxes](https://github.com/legitaxes).
 * finished up main function for feature 1 to 6 for town menu
 with completed unit tests . PR [#512](https://github.com/legitaxes/ETITeam4/pull/512) by [@legitaxes](https://github.com/legitaxes).
-* Cheskalazo branch. PR [#508](https://github.com/legitaxes/ETITeam4/pull/508) by [@cheskalazo](https://github.com/cheskalazo).
 * Added a lot of new changes to ensure main.py works
 
 Added a new file to run the main function which will handle the logic of the program
 
 Fixed many issues encountered when creating main.py and fixed the considerations needed for the functions. PR [#503](https://github.com/legitaxes/ETITeam4/pull/503) by [@legitaxes](https://github.com/legitaxes).
-* jiaqibranch. PR [#498](https://github.com/legitaxes/ETITeam4/pull/498) by [@legitaxes](https://github.com/legitaxes).
-
 
 ---
 
@@ -90,7 +98,8 @@ In each user story in the kanban board, there will be an explanation of what nee
 #### *2. In game functions*        
 2.0 Display game menu    
 2.1 Displaying character stats. Name, Damage, Defence, HP   
-2.2 Display map - show current hero position and town position   
+2.2 Display map - show current hero position and town position
+*2.2.1 Display Rat King on map
 2.3 Move a tile in the map - cannot go out of bound. Add 1 day to the day counter   
 2.4 Rest the character - reset HP   
 2.5 Save the game - save current state   
@@ -99,6 +108,9 @@ In each user story in the kanban board, there will be an explanation of what nee
 #### *3. Combat Functions*    
 3.0 Display the map, combat menu and monster stats  
 3.1 Attacking monster. Deals random dmg ranging from damage range
+*3.1.1 Obtain Orb of power
+*3.1.2 Attack Rat King 
+*3.1.3 Move towards Rat King
 3.2 Run away from the monster - leads to Function 4.0 
 3.3 Killing a monster shows "The Rat is dead! You are victorious!" and go to Function 4.0
 
@@ -109,7 +121,7 @@ In each user story in the kanban board, there will be an explanation of what nee
 4.3 Move a tile  
 4.4 Exit game  
 
-
+*New user requirements introduced after Sprint 1
 ---
 + **Test Cases**  
 *The aim of a test case is to evaluate if various features work as intended within a system and to ensure that all related standards, guidelines and customer requirements are fulfilled by the system. The method of writing a test case will also allow the system to discover flaws or faults.*  
