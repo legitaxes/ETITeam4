@@ -1330,10 +1330,6 @@ def test_win_game():
 
     Those printed lines should be asserted
     """
-    # TODO Add a test function that prints a couple of lines when the player beats the rat king
-    # assignees: laukwangwei
-    # labels: tasks, unit-test
-    # milestone: 3
     set_keyboard_input()
     win_game()
     output = get_display_output()
