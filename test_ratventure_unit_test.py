@@ -129,7 +129,9 @@ def test_print_map(get_hero, get_w_map):
         Displays the Map of the game when called
         This function should print the full layout of the map
     """
-
+    # TODO Adjust test_print_map() function to cater to new changes
+    # assignees: legitaxes
+    # labels: tasks, unit-test 
     position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
     #theHero = print_hero_stats()
     w_map = world_map()
@@ -232,6 +234,9 @@ def test_new_game(get_hero, get_current_day):
         > current_day
         > hero
     """
+    # TODO Adjust test_new_game test function to cater for orb
+    # assignees: legitaxes
+    # labels: tasks, unit-test
     current_day, hero, w_map = new_game()
     assert current_day == get_current_day
     assert hero["name"] == get_hero["name"]
@@ -1265,3 +1270,79 @@ def test_generate_orb():
     elif output == [6,4]:
         assert output == [6,4]
     #assert output == [1,3] or [2,5] or [3,1] or [6,4]
+
+def test_theRatKing():
+    """
+    This test will test whether the variables for ratking has been initialize correctly
+    Values that should be initialized are:
+        Name: Rat King
+        Min Damage: 8
+        Max Damage: 12
+        Defence: 5
+        HP: 25
+    """
+    # TODO Add a test function for theRatKing()
+    # assignees: laukwangwei
+    # labels: tasks, unit-test
+    # milestone: 3
+
+def test_pickup_orb():
+    """
+    Print Orb Function will print the following lines when the orb is picked up
+    This function should also set the hero's Orb to be True
+        "You found the Orb of Power!"
+        "Your attack rose by 5!"
+        "Your defence rose by 5!"
+    """
+    # TODO Add a test function for pickup_orb()
+    # assignees: laukwangwei
+    # labels: tasks, unit-test
+    # milestone: 3
+
+def test_print_ratking_stats():
+    """
+    The function prints the Rat King Stats as the following:
+        "Encounter! - Rat King"
+        "Damage: MinDamage - MaxDamage"
+        "Defence: DefenceLevel"
+        "HP: HP"
+    
+    Need to assert whether the printed statements are there
+    """
+    # TODO Add a test function print rat king stats
+    # assignees: laukwangwei
+    # labels: tasks, unit-test
+    # milestone: 3
+
+def test_win_game():
+    """
+    The function should print the following:
+        "The Rat King is Dead! You are Victorious!"
+        "Congratulations, you have defeated the Rat King"
+        "The world is saved! You win!"
+
+    Those printed lines should be asserted
+    """
+    # TODO Add a test function that prints a couple of lines when the player beats the rat king
+    # assignees: laukwangwei
+    # labels: tasks, unit-test
+    # milestone: 3
+
+def test_ratking_encounter():
+    """
+    Essentially the same as encounter() from before but this is for RatKing Test function
+    """
+    # TODO Add a test function for encountering against Rat King
+    # assignees: legitaxes
+    # labels: tasks, unit-test
+    # milestone: 3
+
+def test_ratking_attack():
+    """
+    Essentially another attack() function but for RatKing
+    This test function will check whether the player is holding the orb as well
+    """
+    # TODO Add a function for attacking Rat King
+    # assignees: legitaxes
+    # labels: tasks, unit-test
+    # milestone: 3

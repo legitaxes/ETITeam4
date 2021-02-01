@@ -15,7 +15,12 @@ def theHero():
         MAX HP: 20
         Defence: 1
         Position: [0, 0]
+        Orb: False
     """
+    # TODO Add a new variable for hero to check whether the hero is holding an orb
+    # assignees: laukwangwei
+    # labels: tasks, changes-needed
+    # milestone: 3
     hero = {
     "name": "The Hero",
     "min_damage": 2,
@@ -24,8 +29,7 @@ def theHero():
     "max_hp": 20,
     "defence": 1,
     "position": [0, 0]
-    #"orb": False,
-    #"gold": 0
+    #"orb": False #remember to put comma above this line
     }
     #print(hero)
     return hero
@@ -84,6 +88,9 @@ def print_map(hero, w_map, flag=True):
     Displays the Map of the game when called
     This function should print the full layout of the map
     """
+    # TODO Add the new requirement of showing the orb in the town
+    # assignees: legitaxes
+    # labels: tasks
     position = hero["position"]
     x_coor = position[0]
     y_coor = position[1]
@@ -228,6 +235,7 @@ def new_game():
     current_day = ini_current_day()
     hero = theHero()
     w_map = world_map()
+    generate_orb()
     return current_day, hero, w_map
 
 def resume_game():
@@ -236,6 +244,9 @@ def resume_game():
     The previous save state should have stored variables as a json object
     This function will set the global variables in the program from the json object  
     """
+    # TODO Adjust Resume game to load orb data
+    # assignees: legitaxes
+    # labels: tasks
     try:
         global hero, w_map, current_day
         file = open("./save.json", mode = "r")
@@ -278,6 +289,9 @@ def save_game(hero, w_map, current_day):
     """
     This function saves the current progress of the game onto an external json file named: 'save.json'
     """
+    # TODO Adjust Save game to save orb data
+    # assignees: legitaxes
+    # labels: tasks
     file = open("./save.json", mode = "w+")
     file.write(json.dumps({"hero": hero, "w_map": w_map, "current_day": current_day}))
     file.close()
@@ -506,3 +520,69 @@ def generate_orb(i=randint(1,4)):
     orblocation = switch.get(i, "Invalid input of number")
     orb = orblocation
     return orblocation
+
+def pickup_orb():
+    """
+    Print Orb Function will print the following lines when the orb is picked up
+    This function should also set the hero's Orb to be True
+        "You found the Orb of Power!"
+        "Your attack rose by 5!"
+        "Your defence rose by 5!"
+    """
+    # TODO Add a function to allow the user to pick up Orb
+    # assignees: laukwangwei
+    # labels: tasks
+    # milestone: 3
+
+def theRatKing():
+    """
+    This function initializes the rat king stats and the dictionary for rat king
+    """
+    # TODO Add a function that initializes Rat King
+    # assignees: laukwangwei
+    # labels: tasks
+    # milestone: 3
+
+def print_ratking_stats():
+    """
+    The function prints the Rat King Stats as the following:
+        "Encounter! - Rat King"
+        "Damage: MinDamage - MaxDamage"
+        "Defence: DefenceLevel"
+        "HP: HP"
+    """
+    # TODO Add a function print rat king stats
+    # assignees: laukwangwei
+    # labels: tasks
+    # milestone: 3
+
+def win_game():
+    """
+    The function should print the following:
+        "The Rat King is Dead! You are Victorious!"
+        "Congratulations, you have defeated the Rat King"
+        "The world is saved! You win!"
+    """
+    # TODO Add a function that prints a couple of lines when the player beats the rat king
+    # assignees: laukwangwei
+    # labels: tasks
+    # milestone: 3
+
+def ratking_encounter():
+    """
+    Essentially the same as encounter() from before but this is for RatKing
+    """
+    # TODO Add a function for encountering against Rat King
+    # assignees: legitaxes
+    # labels: tasks
+    # milestone: 3
+
+def ratking_attack():
+    """
+    Essentially another attack() function but for RatKing
+    This function will check whether the player is holding the orb as well
+    """
+    # TODO Add a function for attacking Rat King
+    # assignees: legitaxes
+    # labels: tasks
+    # milestone: 3
