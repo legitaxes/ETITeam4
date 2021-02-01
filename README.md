@@ -9,7 +9,6 @@ Team Roles:
   3. Technical Lead: Lau Kwang Wei, Poh Jia Qi 
 ---
 ### Latest Changes
-
 * assigning tasks to @laukwangwei for the new requirement changes. PR [#701](https://github.com/legitaxes/ETITeam4/pull/701) by [@legitaxes](https://github.com/legitaxes).
 * Update cheskalazo branch. PR [#697](https://github.com/legitaxes/ETITeam4/pull/697) by [@cheskalazo](https://github.com/cheskalazo).
 
@@ -25,6 +24,7 @@ Team Roles:
 * Will fix unit test for encounter soon TM. PR [#595](https://github.com/legitaxes/ETITeam4/pull/595) by [@legitaxes](https://github.com/legitaxes).
 * added outdoor menu unit test. PR [#590](https://github.com/legitaxes/ETITeam4/pull/590) by [@perlechen](https://github.com/perlechen).
 * completed unit testing for assigned task. PR [#582](https://github.com/legitaxes/ETITeam4/pull/582) by [@laukwangwei](https://github.com/laukwangwei).
+* Cheskalazo branch. PR [#574](https://github.com/legitaxes/ETITeam4/pull/574) by [@cheskalazo](https://github.com/cheskalazo).
 * Added attack function into the game as well as cleaning up explicit str() conversion into fstrings. PR [#532](https://github.com/legitaxes/ETITeam4/pull/532) by [@legitaxes](https://github.com/legitaxes).
 * finished up main function for feature 1 to 6 for town menu
 with completed unit tests . PR [#512](https://github.com/legitaxes/ETITeam4/pull/512) by [@legitaxes](https://github.com/legitaxes).

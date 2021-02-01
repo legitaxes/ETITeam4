@@ -1066,6 +1066,7 @@ def test_fight_menu():
     output = get_display_output()
     assert output == ["1) Attack\n" "2) Run"]
 
+
 def test_outdoor_menu():
     """
     This test will test the print statement of the outdoor menu text once there are no encounter or if the enemy is slained
