@@ -5,6 +5,9 @@ from RatVenture_Function import *
 from tud_test_base import set_keyboard_input, get_display_output
 
 def main(choice1=None, choice2=None, movement=None):
+    # TODO Adjust the menu for Town if the town has Orb as well as for rat king
+    # assignees: legitaxes
+    # labels: tasks
     global current_day, hero, w_map, rat
     rat = theRat()
     if choice1 != None and movement == None: # if its running as a test function
