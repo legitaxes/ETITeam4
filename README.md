@@ -10,6 +10,7 @@ Team Roles:
 ---
 ### Latest Changes
 
+* assigning tasks to @laukwangwei for the new requirement changes. PR [#701](https://github.com/legitaxes/ETITeam4/pull/701) by [@legitaxes](https://github.com/legitaxes).
 * Update cheskalazo branch. PR [#697](https://github.com/legitaxes/ETITeam4/pull/697) by [@cheskalazo](https://github.com/cheskalazo).
 
 * added generate_orb() function which generates orb at random town locations. PR [#695](https://github.com/legitaxes/ETITeam4/pull/695) by [@legitaxes](https://github.com/legitaxes).
