@@ -1297,10 +1297,10 @@ def test_pickup_orb():
         "Your attack rose by 5!"
         "Your defence rose by 5!"
     """
-    # TODO Add a test function for pickup_orb()
-    # assignees: laukwangwei
-    # labels: tasks, unit-test
-    # milestone: 3
+    set_keyboard_input()
+    pickup_orb()
+    output = get_display_output()
+    assert output == ["You found the Orb of Power!\n" "Your attack rose by 5!\n" "Your defence rose by 5!"]
 
 def test_print_ratking_stats():
     """
@@ -1312,10 +1312,6 @@ def test_print_ratking_stats():
     
     Need to assert whether the printed statements are there
     """
-    # TODO Add a test function print rat king stats
-    # assignees: laukwangwei
-    # labels: tasks, unit-test
-    # milestone: 3
     set_keyboard_input([])
     print_rat_stats(get_ratking)
     output = get_display_output()
@@ -1338,6 +1334,10 @@ def test_win_game():
     # assignees: laukwangwei
     # labels: tasks, unit-test
     # milestone: 3
+    set_keyboard_input()
+    win_game()
+    output = get_display_output()
+    assert output == ["The Rat King is Dead! You are Victorious!\n" "Congratulations, you have defeated the Rat King!\n" "The world is saved! You win!"]
 
 def test_ratking_encounter():
     """
