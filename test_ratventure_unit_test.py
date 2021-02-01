@@ -1282,10 +1282,12 @@ def test_theRatKing():
         Defence: 5
         HP: 25
     """
-    # TODO Add a test function for theRatKing()
-    # assignees: laukwangwei
-    # labels: tasks, unit-test
-    # milestone: 3
+    value = theRatKing()
+    assert value['Name'] == "Rat King"
+    assert value['min_damage'] == 8
+    assert value['max_damage'] == 12
+    assert value['defence'] == 5
+    assert value['hp'] == 25
 
 def test_pickup_orb():
     """
@@ -1314,6 +1316,14 @@ def test_print_ratking_stats():
     # assignees: laukwangwei
     # labels: tasks, unit-test
     # milestone: 3
+    set_keyboard_input([])
+    print_rat_stats(get_ratking)
+    output = get_display_output()
+    ratkingname = "Encounter! - {}".format(get_ratking)["name"])
+    ratkingdamage = "Damage: {}-{}".format(get_ratking["min_damage"], get_ratking["max_damage"])
+    ratkingdefence = "Defence: {}".format(get_ratking["defence"])
+    ratkinghp = "HP: {}".format(get_ratking["hp"])
+    assert output == [ratkingname, ratkingdamage, ratkingdefence, ratkingdamage]
 
 def test_win_game():
     """
