@@ -1272,6 +1272,11 @@ def test_generate_orb():
         assert output == [6,4]
     #assert output == [1,3] or [2,5] or [3,1] or [6,4]
 
+@pytest.fixture
+def get_ratking() -> theRatKing():
+    ratking = theRatKing()
+    return ratking
+
 def test_theRatKing():
     """
     This test will test whether the variables for ratking has been initialize correctly
@@ -1283,7 +1288,7 @@ def test_theRatKing():
         HP: 25
     """
     value = theRatKing()
-    assert value['Name'] == "Rat King"
+    assert value['name'] == "Rat King"
     assert value['min_damage'] == 8
     assert value['max_damage'] == 12
     assert value['defence'] == 5
@@ -1302,7 +1307,7 @@ def test_pickup_orb():
     output = get_display_output()
     assert output == ["You found the Orb of Power!\n" "Your attack rose by 5!\n" "Your defence rose by 5!"]
 
-def test_print_ratking_stats():
+def test_print_ratking_stats(get_ratking):
     """
     The function prints the Rat King Stats as the following:
         "Encounter! - Rat King"
@@ -1313,13 +1318,13 @@ def test_print_ratking_stats():
     Need to assert whether the printed statements are there
     """
     set_keyboard_input([])
-    print_rat_stats(get_ratking)
+    print_ratking_stats(get_ratking)
     output = get_display_output()
-    ratkingname = "Encounter! - {}".format(get_ratking)["name"])
+    ratkingname = "Encounter! - {}".format(get_ratking["name"])
     ratkingdamage = "Damage: {}-{}".format(get_ratking["min_damage"], get_ratking["max_damage"])
     ratkingdefence = "Defence: {}".format(get_ratking["defence"])
     ratkinghp = "HP: {}".format(get_ratking["hp"])
-    assert output == [ratkingname, ratkingdamage, ratkingdefence, ratkingdamage]
+    assert output == [ratkingname, ratkingdamage, ratkingdefence, ratkinghp]
 
 def test_win_game():
     """
