@@ -1294,7 +1294,7 @@ def test_theRatKing():
     assert value['defence'] == 5
     assert value['hp'] == 25
 
-def test_pickup_orb():
+def test_pickup_orb(get_hero):
     """
     Print Orb Function will print the following lines when the orb is picked up
     This function should also set the hero's Orb to be True
@@ -1302,10 +1302,11 @@ def test_pickup_orb():
         "Your attack rose by 5!"
         "Your defence rose by 5!"
     """
-    set_keyboard_input()
-    pickup_orb()
-    output = get_display_output()
-    assert output == ["You found the Orb of Power!\n" "Your attack rose by 5!\n" "Your defence rose by 5!"]
+    if test_set_hero_position == test_generate_orb:
+        set_keyboard_input([])
+        pickup_orb(get_hero, test_generate_orb)
+        output = get_display_output()
+        assert output == ["You found the Orb of Power!\n" "Your attack rose by 5!\n" "Your defence rose by 5!"]
 
 def test_print_ratking_stats(get_ratking):
     """
@@ -1335,10 +1336,10 @@ def test_win_game():
 
     Those printed lines should be asserted
     """
-    set_keyboard_input()
+    set_keyboard_input([])
     win_game()
     output = get_display_output()
-    assert output == ["The Rat King is Dead! You are Victorious!\n" "Congratulations, you have defeated the Rat King!\n" "The world is saved! You win!"]
+    assert output == ["The Rat King is Dead! You are Victorious!\n" "Congratulations, you have defeated the Rat King\n" "The world is saved! You win!"]
 
 def test_ratking_encounter():
     """
