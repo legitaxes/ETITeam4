@@ -1424,8 +1424,8 @@ def test_ratking_attack_orb(get_hero, get_ratking):
     set_keyboard_input([])
     ratking_attack(get_hero, get_ratking)
     output = get_display_output()
-    hero_damage_done = (origin_ratkinghp - get_ratking["hp"]) #+ get_ratking["defence"]
-    ratking_damage_done = (origin_herohp - get_hero["hp"]) #+ get_hero["defence"]
+    hero_damage_done = (origin_ratkinghp - get_ratking["hp"])
+    ratking_damage_done = (origin_herohp - get_hero["hp"])
 
     if get_hero["hp"] <= 0:
         assert output == ["You deal " + f'{hero_damage_done}' + " damage to the " + get_ratking["name"],
@@ -1440,22 +1440,18 @@ def test_ratking_attack_orb(get_hero, get_ratking):
             assert output == ["You deal " + f'{hero_damage_done}' + " damage to the " + get_ratking["name"],
                               "Ouch! The " + get_ratking["name"] + " hit you for " + f'{ratking_damage_done}' + " damage",
                               "You have " + f'{get_hero["hp"]}' + " HP left",
-                              "The " + get_ratking["name"] + " is dead! You are victorious",
-                              "Congratulations, you have defeated the " + get_ratking["name"] + "!",
-                              "The world is saved! You win!"]
+                              "The Rat King is dead! You are victorious!\nCongratulations, you have defeated the Rat King\nThe world is saved! You win!"]
 
 def test_ratking_attack_no_orb(get_hero, get_ratking):
     """
     Essentially another attack() function but for RatKing
     This test function will check whether the player is holding the orb as well
     """
-    origin_ratkinghp = 25
     origin_herohp = 20
     set_keyboard_input([])
     ratking_attack(get_hero, get_ratking)
     output = get_display_output()
-    hero_damage_done = (origin_ratkinghp - get_ratking["hp"]) #+ get_ratking["defence"]
-    ratking_damage_done = (origin_herohp - get_hero["hp"]) #+ get_hero["defence"]
+    ratking_damage_done = (origin_herohp - get_hero["hp"])
 
     if get_hero["hp"] <= 0:
         assert output == ["You do not have the Orb of Power - the Rat King is immune!",
@@ -1475,19 +1471,18 @@ def test_ratking_attack_died(get_hero, get_ratking):
     This function tests when the rat king died and whether the display out is correct when the rat king dies
     """
     get_hero["orb"] = True
-    get_ratking["hp"] = 0
+    get_hero["min_damage"] = 30
+    get_hero["max_damage"] = 30
     origin_ratkinghp = 25
-    origin_herohp = 10
+    origin_herohp = 20
     set_keyboard_input([])
     ratking_attack(get_hero, get_ratking)
     output = get_display_output()
-    hero_damage_done = (origin_ratkinghp - get_ratking["hp"]) #+ get_ratking["defence"]
-    ratking_damage_done = (origin_herohp - get_hero["hp"]) #+ get_hero["defence"]
+    hero_damage_done = (origin_ratkinghp - get_ratking["hp"])
+    ratking_damage_done = (origin_herohp - get_hero["hp"])
 
     assert output == ["You deal " + f'{hero_damage_done}' + " damage to the " + get_ratking["name"],
                     "Ouch! The " + get_ratking["name"] + " hit you for " + f'{ratking_damage_done}' + " damage",
                     "You have " + f'{get_hero["hp"]}' + " HP left",
-                    "The " + get_ratking["name"] + " is dead! You are victorious",
-                    "Congratulations, you have defeated the " + get_ratking["name"] + "!",
-                    "The world is saved! You win!"]
+                    "The Rat King is dead! You are victorious!\nCongratulations, you have defeated the Rat King\nThe world is saved! You win!"]
 
