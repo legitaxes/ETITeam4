@@ -1066,6 +1066,7 @@ def test_fight_menu():
     output = get_display_output()
     assert output == ["1) Attack\n" "2) Run"]
 
+
 def test_outdoor_menu():
     """
     This test will test the print statement of the outdoor menu text once there are no encounter or if the enemy is slained
@@ -1271,6 +1272,11 @@ def test_generate_orb():
         assert output == [6,4]
     #assert output == [1,3] or [2,5] or [3,1] or [6,4]
 
+@pytest.fixture
+def get_ratking() -> theRatKing():
+    ratking = theRatKing()
+    return ratking
+
 def test_theRatKing():
     """
     This test will test whether the variables for ratking has been initialize correctly
@@ -1281,12 +1287,14 @@ def test_theRatKing():
         Defence: 5
         HP: 25
     """
-    # TODO Add a test function for theRatKing()
-    # assignees: laukwangwei
-    # labels: tasks, unit-test
-    # milestone: 3
+    value = theRatKing()
+    assert value['name'] == "Rat King"
+    assert value['min_damage'] == 8
+    assert value['max_damage'] == 12
+    assert value['defence'] == 5
+    assert value['hp'] == 25
 
-def test_pickup_orb():
+def test_pickup_orb(get_hero):
     """
     Print Orb Function will print the following lines when the orb is picked up
     This function should also set the hero's Orb to be True
@@ -1294,12 +1302,13 @@ def test_pickup_orb():
         "Your attack rose by 5!"
         "Your defence rose by 5!"
     """
-    # TODO Add a test function for pickup_orb()
-    # assignees: laukwangwei
-    # labels: tasks, unit-test
-    # milestone: 3
+    if test_set_hero_position == test_generate_orb:
+        set_keyboard_input([])
+        pickup_orb(get_hero, test_generate_orb)
+        output = get_display_output()
+        assert output == ["You found the Orb of Power!\n" "Your attack rose by 5!\n" "Your defence rose by 5!"]
 
-def test_print_ratking_stats():
+def test_print_ratking_stats(get_ratking):
     """
     The function prints the Rat King Stats as the following:
         "Encounter! - Rat King"
@@ -1309,10 +1318,14 @@ def test_print_ratking_stats():
     
     Need to assert whether the printed statements are there
     """
-    # TODO Add a test function print rat king stats
-    # assignees: laukwangwei
-    # labels: tasks, unit-test
-    # milestone: 3
+    set_keyboard_input([])
+    print_ratking_stats(get_ratking)
+    output = get_display_output()
+    ratkingname = "Encounter! - {}".format(get_ratking["name"])
+    ratkingdamage = "Damage: {}-{}".format(get_ratking["min_damage"], get_ratking["max_damage"])
+    ratkingdefence = "Defence: {}".format(get_ratking["defence"])
+    ratkinghp = "HP: {}".format(get_ratking["hp"])
+    assert output == [ratkingname, ratkingdamage, ratkingdefence, ratkinghp]
 
 def test_win_game():
     """
@@ -1323,10 +1336,10 @@ def test_win_game():
 
     Those printed lines should be asserted
     """
-    # TODO Add a test function that prints a couple of lines when the player beats the rat king
-    # assignees: laukwangwei
-    # labels: tasks, unit-test
-    # milestone: 3
+    set_keyboard_input([])
+    win_game()
+    output = get_display_output()
+    assert output == ["The Rat King is Dead! You are Victorious!\n" "Congratulations, you have defeated the Rat King\n" "The world is saved! You win!"]
 
 def test_ratking_encounter():
     """

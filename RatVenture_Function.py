@@ -17,10 +17,6 @@ def theHero():
         Position: [0, 0]
         Orb: False
     """
-    # TODO Add a new variable for hero to check whether the hero is holding an orb
-    # assignees: laukwangwei
-    # labels: tasks, changes-needed
-    # milestone: 3
     hero = {
     "name": "The Hero",
     "min_damage": 2,
@@ -28,8 +24,8 @@ def theHero():
     "hp": 20,
     "max_hp": 20,
     "defence": 1,
-    "position": [0, 0]
-    #"orb": False #remember to put comma above this line
+    "position": [0, 0],
+    "orb": False
     }
     #print(hero)
     return hero
@@ -521,7 +517,7 @@ def generate_orb(i=randint(1,4)):
     orb = orblocation
     return orblocation
 
-def pickup_orb():
+def pickup_orb(hero, generate_orb):
     """
     Print Orb Function will print the following lines when the orb is picked up
     This function should also set the hero's Orb to be True
@@ -529,21 +525,29 @@ def pickup_orb():
         "Your attack rose by 5!"
         "Your defence rose by 5!"
     """
-    # TODO Add a function to allow the user to pick up Orb
-    # assignees: laukwangwei
-    # labels: tasks
-    # milestone: 3
+    if set_hero_position == generate_orb:
+        hero = {
+            "min_damage": 7,
+            "max_damage": 9,
+            "defence": 6,
+            "orb": True
+        }
+        print("You found the Orb of Power!\n" "Your attack rose by 5!\n" "Your defence rose by 5!")
 
 def theRatKing():
     """
     This function initializes the rat king stats and the dictionary for rat king
     """
-    # TODO Add a function that initializes Rat King
-    # assignees: laukwangwei
-    # labels: tasks
-    # milestone: 3
+    ratking = {
+    "name": "Rat King",
+    "min_damage": 8,
+    "max_damage": 12,
+    "hp": 25,
+    "defence": 5
+    }
+    return ratking
 
-def print_ratking_stats():
+def print_ratking_stats(ratking):
     """
     The function prints the Rat King Stats as the following:
         "Encounter! - Rat King"
@@ -551,10 +555,10 @@ def print_ratking_stats():
         "Defence: DefenceLevel"
         "HP: HP"
     """
-    # TODO Add a function print rat king stats
-    # assignees: laukwangwei
-    # labels: tasks
-    # milestone: 3
+    print("Encounter! - {}".format(ratking["name"]))
+    print("Damage: {}-{}".format(ratking["min_damage"], ratking["max_damage"]))
+    print("Defence: {}".format(ratking["defence"]))
+    print("HP: {}".format(ratking["hp"]))
 
 def win_game():
     """
@@ -563,10 +567,7 @@ def win_game():
         "Congratulations, you have defeated the Rat King"
         "The world is saved! You win!"
     """
-    # TODO Add a function that prints a couple of lines when the player beats the rat king
-    # assignees: laukwangwei
-    # labels: tasks
-    # milestone: 3
+    print("The Rat King is Dead! You are Victorious!\n" "Congratulations, you have defeated the Rat King\n" "The world is saved! You win!")
 
 def ratking_encounter():
     """
@@ -586,3 +587,4 @@ def ratking_attack():
     # assignees: legitaxes
     # labels: tasks
     # milestone: 3
+
