@@ -133,7 +133,7 @@ def test_town_menu():
     assert value == "1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"
 
 
-def test_print_map(get_hero, get_w_map):
+def test_print_map(get_hero, get_w_map, get_orb):
     """
     Test function of print_map Function:
         Displays the Map of the game when called
@@ -142,13 +142,15 @@ def test_print_map(get_hero, get_w_map):
     # TODO Adjust test_print_map() function to cater to new changes
     # assignees: legitaxes
     # labels: tasks, unit-test 
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, get_orb, False)
     #theHero = print_hero_stats()
     w_map = world_map()
     pos = get_hero["position"]
     assert position == pos
     assert x_coor == pos[0]
     assert y_coor == pos[1]
+    orb_x_coor = get_orb[0]
+    orb_y_coor = get_orb[1]
     list_print_map = []
     for x in range(8):
         list_print_map.append("+---"*8 + "+")
@@ -158,6 +160,10 @@ def test_print_map(get_hero, get_w_map):
                 if x == x_coor and y == y_coor:
                     legend = "H/T"
                     #assert legend == "H/T"
+                elif orb_x_coor == x_coor and orb_y_coor == y_coor:
+                    legend = "H/O"
+                elif x == orb_x_coor and y == orb_y_coor:
+                    legend = "T/O"
                 else:
                     legend = " T "
                     #assert legend == " T "
@@ -247,7 +253,7 @@ def test_new_game(get_hero, get_current_day):
     # TODO Adjust test_new_game test function to cater for orb
     # assignees: legitaxes
     # labels: tasks, unit-test
-    current_day, hero, w_map = new_game()
+    current_day, hero, w_map, orb = new_game()
     assert current_day == get_current_day
     assert hero["name"] == get_hero["name"]
     assert hero["min_damage"] == get_hero["min_damage"]
@@ -266,21 +272,21 @@ def test_resume_game():
         else: 
             return "existing file does not exist"
     """
-    error, value, hero, w_map, current_day = resume_game()
+    error, value, hero, w_map, current_day, orb = resume_game()
     if(error == ""):
         assert value == "The game has been resumed to the previous save state." 
     else:
         assert error == FileNotFoundError
         assert value == "Existing file does not exist.\n"
 
-def test_save_game(get_hero, get_current_day, get_w_map):
+def test_save_game(get_hero, get_current_day, get_w_map, get_orb):
     """
     This test function will test whether the save_game() function works
     The save game function will write to the json file to store its global variable objects
     At the end of the operation, it will print "Game Saved."
     """
     set_keyboard_input([])
-    save_game(get_hero, get_w_map, get_current_day)
+    save_game(get_hero, get_w_map, get_current_day, get_orb)
     output = get_display_output()
     assert output == ["Game saved."]
 
@@ -390,19 +396,21 @@ def test_set_hero_position_out_of_bounds(get_hero, x, y):
     assert condition == True
 
 @pytest.mark.parametrize("move",[("W"), ("w")])
-def test_move_hero_up(get_hero, get_w_map, move):
+def test_move_hero_up(get_hero, get_w_map, move, get_orb):
     """
     Test should cover 'W' part of the movement
     If the movement is an invalid one, it should print: "Not able to move out of map (Up/Down)"
     Tested on the starting point of the map [0,0]. Test should be a failing test case with the error message of Not being able to move up
     """
     # Asserting print_map function 
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, get_orb, False)
     w_map = world_map()
     pos = get_hero["position"]
     assert position == pos
     assert x_coor == pos[0]
     assert y_coor == pos[1]
+    orb_x_coor = get_orb[0]
+    orb_y_coor = get_orb[1]
     list_print_map = []
     for x in range(8):
         list_print_map.append("+---"*8 + "+")
@@ -412,6 +420,10 @@ def test_move_hero_up(get_hero, get_w_map, move):
                 if x == x_coor and y == y_coor:
                     legend = "H/T"
                     #assert legend == "H/T"
+                elif orb_x_coor == x_coor and orb_y_coor == y_coor:
+                    legend = "H/O"
+                elif x == orb_x_coor and y == orb_y_coor:
+                    legend = "T/O"
                 else:
                     legend = " T "
                     #assert legend == " T "
@@ -433,7 +445,7 @@ def test_move_hero_up(get_hero, get_w_map, move):
     assert all([a == b for a, b in zip(list_print_map, list_map)]) #this checks python list against the expected value
 
     set_keyboard_input([move])
-    actual_status = move_hero(get_hero, get_w_map, False)
+    actual_status = move_hero(get_hero, get_w_map, get_orb, False)
     #test_status = set_hero_position(get_hero,x=-1)
     output = get_display_output()
     # testing the actual move function
@@ -446,19 +458,21 @@ def test_move_hero_up(get_hero, get_w_map, move):
                     "Your move: "]
 
 @pytest.mark.parametrize("move",[("D"), ("d")])
-def test_move_hero_down(get_hero, get_w_map, move):
+def test_move_hero_down(get_hero, get_w_map, move, get_orb):
     """
     Test should cover 'S' part of the movement
     If the movement is an invalid one, it should print: "Not able to move out of map (Up/Down)"
     Tested on the starting point of the map [0,0]. Test should be a passing test case without needing an error message
     """
     # Asserting print_map function 
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, get_orb, False)
     w_map = world_map()
     pos = get_hero["position"]
     assert position == pos
     assert x_coor == pos[0]
     assert y_coor == pos[1]
+    orb_x_coor = get_orb[0]
+    orb_y_coor = get_orb[1]
     list_print_map = []
     for x in range(8):
         list_print_map.append("+---"*8 + "+")
@@ -468,6 +482,10 @@ def test_move_hero_down(get_hero, get_w_map, move):
                 if x == x_coor and y == y_coor:
                     legend = "H/T"
                     #assert legend == "H/T"
+                elif orb_x_coor == x_coor and orb_y_coor == y_coor:
+                    legend = "H/O"
+                elif x == orb_x_coor and y == orb_y_coor:
+                    legend = "T/O"
                 else:
                     legend = " T "
                     #assert legend == " T "
@@ -490,7 +508,7 @@ def test_move_hero_down(get_hero, get_w_map, move):
     
     #test case of move hero down, getting the print output
     set_keyboard_input([move])
-    actual_status = move_hero(get_hero, get_w_map, False)
+    actual_status = move_hero(get_hero, get_w_map, get_orb, False)
     #test_status = set_hero_position(get_hero,x=1)
     output = get_display_output()
     # Testing the actual move function
@@ -502,19 +520,21 @@ def test_move_hero_down(get_hero, get_w_map, move):
                     "Your move: "]
 
 @pytest.mark.parametrize("move",[("A"), ("a")])
-def test_move_hero_left(get_hero, get_w_map, move):
+def test_move_hero_left(get_hero, get_w_map, move, get_orb):
     """
     Test should cover 'A' part of the movement
     If the movement is an invalid one, it should print: "Not able to move out of map (Left/Right)"
     Tested on the starting point of the map [0,0]. Test should be a failing test case with the error message of Not being able to move left
     """
     # Asserting print_map function 
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, get_orb, False)
     w_map = world_map()
     pos = get_hero["position"]
     assert position == pos
     assert x_coor == pos[0]
     assert y_coor == pos[1]
+    orb_x_coor = get_orb[0]
+    orb_y_coor = get_orb[1]
     list_print_map = []
     for x in range(8):
         list_print_map.append("+---"*8 + "+")
@@ -524,6 +544,10 @@ def test_move_hero_left(get_hero, get_w_map, move):
                 if x == x_coor and y == y_coor:
                     legend = "H/T"
                     #assert legend == "H/T"
+                elif orb_x_coor == x_coor and orb_y_coor == y_coor:
+                    legend = "H/O"
+                elif x == orb_x_coor and y == orb_y_coor:
+                    legend = "T/O"
                 else:
                     legend = " T "
                     #assert legend == " T "
@@ -546,7 +570,7 @@ def test_move_hero_left(get_hero, get_w_map, move):
 
     #test case of move hero left, getting the print output
     set_keyboard_input([move])
-    status = move_hero(get_hero, get_w_map, False)
+    status = move_hero(get_hero, get_w_map, get_orb, False)
     output = get_display_output()
     # Testing the actual move function
     if(status == False):
@@ -557,19 +581,21 @@ def test_move_hero_left(get_hero, get_w_map, move):
                     "Your move: "]
 
 @pytest.mark.parametrize("move",[("D"), ("d")])
-def test_move_hero_right(get_hero, get_w_map, move):
+def test_move_hero_right(get_hero, get_w_map, move, get_orb):
     """
     Test should cover 'D' part of the movement
     If the movement is an invalid one, it should print: "Not able to move out of map (Left/Right)"
     Tested on the starting point of the map [0,0]. Test should be a pass with no error message
     """
     # Asserting print_map function 
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, get_orb, False)
     w_map = world_map()
     pos = get_hero["position"]
     assert position == pos
     assert x_coor == pos[0]
     assert y_coor == pos[1]
+    orb_x_coor = get_orb[0]
+    orb_y_coor = get_orb[1]
     list_print_map = []
     for x in range(8):
         list_print_map.append("+---"*8 + "+")
@@ -579,6 +605,10 @@ def test_move_hero_right(get_hero, get_w_map, move):
                 if x == x_coor and y == y_coor:
                     legend = "H/T"
                     #assert legend == "H/T"
+                elif orb_x_coor == x_coor and orb_y_coor == y_coor:
+                    legend = "H/O"
+                elif x == orb_x_coor and y == orb_y_coor:
+                    legend = "T/O"
                 else:
                     legend = " T "
                     #assert legend == " T "
@@ -601,7 +631,7 @@ def test_move_hero_right(get_hero, get_w_map, move):
 
     #test case of move hero right, getting the print output
     set_keyboard_input([move])
-    status = move_hero(get_hero, get_w_map, False)
+    status = move_hero(get_hero, get_w_map, get_orb, False)
     output = get_display_output()
     # Testing the actual move function
     if(status == False):
@@ -612,19 +642,21 @@ def test_move_hero_right(get_hero, get_w_map, move):
                     "Your move: "]
 
 @pytest.mark.parametrize("oor_input",[("k"), ("z"), ("b"), ("g"),("q"),("y"),("p")])
-def test_move_hero_out_of_range(get_hero, get_w_map, oor_input):
+def test_move_hero_out_of_range(get_hero, get_w_map, oor_input, get_orb):
     """
     Test should cover anything else typed to the input of the movement
     This test case tests for out of range characters not accepted by the function
     It should print Index out of Range when any input other than W A S D is inputted
     """
     # Asserting print_map function 
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, get_orb, False)
     w_map = world_map()
     pos = get_hero["position"]
     assert position == pos
     assert x_coor == pos[0]
     assert y_coor == pos[1]
+    orb_x_coor = get_orb[0]
+    orb_y_coor = get_orb[1]
     list_print_map = []
     for x in range(8):
         list_print_map.append("+---"*8 + "+")
@@ -634,6 +666,10 @@ def test_move_hero_out_of_range(get_hero, get_w_map, oor_input):
                 if x == x_coor and y == y_coor:
                     legend = "H/T"
                     #assert legend == "H/T"
+                # elif orb_x_coor == x_coor and orb_y_coor == y_coor:
+                #     legend = "H/O"
+                elif x == orb_x_coor and y == orb_y_coor:
+                    legend = "T/O"
                 else:
                     legend = " T "
                     #assert legend == " T "
@@ -656,7 +692,7 @@ def test_move_hero_out_of_range(get_hero, get_w_map, oor_input):
     
     #test case with wrong user input, getting the print output
     set_keyboard_input([oor_input])
-    status = move_hero(get_hero, get_w_map, False)
+    status = move_hero(get_hero, get_w_map, get_orb, False)
     output = get_display_output()
     # Test case should always fail since other inputs are not accepted
     assert status == False
@@ -1591,3 +1627,5 @@ def test_ratking_attack_died(get_hero, get_ratking):
                     "You have " + f'{get_hero["hp"]}' + " HP left",
                     "The Rat King is dead! You are victorious!\nCongratulations, you have defeated the Rat King\nThe world is saved! You win!"]
 
+def test_orb_townmenu():
+    set_keyboard_input([])
