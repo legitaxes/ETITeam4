@@ -1306,7 +1306,7 @@ def test_pickup_orb(get_hero, get_orb):
         "Your attack rose by 5!"
         "Your defence rose by 5!"
     """
-    get_hero["position"] = get_orb
+    get_hero["position"] = get_orb #hardcode player's position to the same as the orb
     set_keyboard_input([])
     pickup_orb(get_hero, get_orb)
     output = get_display_output()
@@ -1316,7 +1316,6 @@ def test_pickup_orb(get_hero, get_orb):
     assert get_hero["defence"] == 6
     assert get_hero["orb"] == True
     
-
 def test_print_ratking_stats(get_ratking):
     """
     The function prints the Rat King Stats as the following:
@@ -1348,9 +1347,9 @@ def test_win_game():
     set_keyboard_input([])
     win_game()
     output = get_display_output()
-    assert output == ["The Rat King is Dead! You are Victorious!\n" "Congratulations, you have defeated the Rat King\n" "The world is saved! You win!"]
+    assert output == ["The Rat King is Dead! You are Victorious!\nCongratulations, you have defeated the Rat King\nThe world is saved! You win!"]
 
-def test_ratking_encounter():
+def test_ratking_encounter(get_hero, get_ratking):
     """
     Essentially the same as encounter() from before but this is for RatKing Test function
     """
@@ -1358,8 +1357,63 @@ def test_ratking_encounter():
     # assignees: legitaxes
     # labels: tasks, unit-test
     # milestone: 3
+    origin_hp = get_hero["hp"]
+    origin_hp_rat = get_ratking["hp"]
 
-def test_ratking_attack():
+    set_keyboard_input(["1","1"])
+    encounter(get_hero, get_rat, False)
+    output = get_display_output()
+
+    hero_total_damage_test = origin_hp_rat - get_ratking["hp"] 
+    enemy_total_damage_test = origin_hp - get_hero["hp"] 
+
+    if get_ratking["hp"] > 0:
+        # assert status == False
+        if get_hero["hp"]  <=0:
+            assert output == ["Encounter! - " + get_ratking["name"],
+                        "Damage: " + f'{get_ratking["min_damage"]}' + "-" + f'{get_ratking["max_damage"]}',
+                        "Defence: " + f'{get_ratking["defence"]}',
+                        "HP: 25",
+                        "1) Attack\n"
+                        "2) Run",
+                        "Enter choice: ",
+                        "You deal " + f'{hero_total_damage_test}' + " damage to the " + get_ratking["name"],
+                        "Ouch! The " + get_ratking["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
+                        "You ran out of HP! Game Over."]    
+        else:
+            assert output == ["Encounter! - " + get_ratking["name"],
+                        "Damage: " + f'{get_ratking["min_damage"]}' + "-" + f'{get_ratking["max_damage"]}',
+                        "Defence: " + f'{get_ratking["defence"]}',
+                        "HP: 25",
+                        "1) Attack\n"
+                        "2) Run",
+                        "Enter choice: ",
+                        "You deal " + f'{hero_total_damage_test}' + " damage to the " + get_ratking["name"],
+                        "Ouch! The " + get_ratking["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
+                        "You have " + f'{get_hero["hp"]}' + " HP left.",
+                        "Encounter! - " + get_ratking["name"],
+                        "Damage: " + f'{get_ratking["min_damage"]}' + "-" + f'{get_ratking["max_damage"]}',
+                        "Defence: " + f'{get_ratking["defence"]}',
+                        "HP: " + f'{get_ratking["hp"]}',
+                        "1) Attack\n"
+                        "2) Run"]                        
+            # self.assertTrue(mock.called)
+    
+    elif get_ratking["hp"] <=0:
+        assert output == ["Encounter! - " + get_ratking["name"],
+                    "Damage: " + f'{get_ratking["min_damage"]}' + "-" + f'{get_ratking["max_damage"]}',
+                    "Defence: " + f'{get_ratking["defence"]}',
+                    "HP: 25",
+                    "1) Attack\n"
+                    "2) Run",
+                    "Enter choice: ",
+                    "You deal " + f'{hero_total_damage_test}' + " damage to the " + get_ratking["name"],
+                    "Ouch! The " + get_ratking["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
+                    "You have " + f'{get_hero["hp"]}' + " HP left.",
+                    "The " + get_ratking["name"] + " is dead! You are victorious!"]
+
+
+def test_ratking_attack_orb(get_hero, get_ratking):
     """
     Essentially another attack() function but for RatKing
     This test function will check whether the player is holding the orb as well
@@ -1368,3 +1422,81 @@ def test_ratking_attack():
     # assignees: legitaxes
     # labels: tasks, unit-test
     # milestone: 3
+    get_hero["orb"] = True
+    origin_ratkinghp = 25
+    origin_herohp = 20
+    set_keyboard_input([])
+    boss_attack(get_hero, get_ratking)
+    output = get_display_output()
+    hero_damage_done = (origin_ratkinghp - get_ratking["hp"]) #+ get_ratking["defence"]
+    ratking_damage_done = (origin_herohp - get_hero["hp"]) #+ get_hero["defence"]
+
+    if get_hero["hp"] <= 0:
+        assert output == ["You deal " + f'{hero_damage_done}' + " damage to the " + get_ratking["name"],
+                          "Ouch! The " + get_ratking["name"] + " hit you for " + f'{ratking_damage_done}' + " damage",
+                          "You ran out of HP! Game over."]
+    else:
+        if get_ratking["hp"] > 0:
+            assert output == ["You deal " + f'{hero_damage_done}' + " damage to the " + get_ratking["name"],
+                              "Ouch! The " + get_ratking["name"] + " hit you for " + f'{ratking_damage_done}' + " damage",
+                              "You have " + f'{get_hero["hp"]}' + " HP left."]
+        else:
+            assert output == ["You deal " + f'{hero_damage_done}' + " damage to the " + get_ratking["name"],
+                              "Ouch! The " + get_ratking["name"] + " hit you for " + f'{ratking_damage_done}' + " damage",
+                              "You have " + f'{get_hero["hp"]}' + " HP left.",
+                              "The " + get_ratking["name"] + " is dead! You are victorious",
+                              "Congratulations, you have defeated the " + get_ratking["name"] + "!",
+                              "The world is saved! You win!"]
+
+def test_ratking_attack_no_orb(get_hero, get_ratking):
+    """
+    Essentially another attack() function but for RatKing
+    This test function will check whether the player is holding the orb as well
+    """
+    # TODO Add a function for attacking Rat King
+    # assignees: legitaxes
+    # labels: tasks, unit-test
+    # milestone: 3
+    #get_hero["orb"] = True
+    origin_ratkinghp = 25
+    origin_herohp = 20
+    set_keyboard_input([])
+    boss_attack(get_hero, get_ratking)
+    output = get_display_output()
+    hero_damage_done = (origin_ratkinghp - get_ratking["hp"]) #+ get_ratking["defence"]
+    ratking_damage_done = (origin_herohp - get_hero["hp"]) #+ get_hero["defence"]
+
+    if get_hero["hp"] <= 0:
+        assert output == ["You do not have the Orb of Power - the Rat King is immune!",
+                          "You deal 0 damage to the Rat King",
+                          "Ouch! The " + get_ratking["name"] + " hit you for " + f'{ratking_damage_done}' + " damage",
+                          "You ran out of HP! Game over."]
+    else:
+        if get_ratking["hp"] > 0:
+            assert output == ["You do not have the Orb of Power - the Rat King is immune!",
+                              "You deal 0 damage to the Rat King",
+                              "Ouch! The " + get_ratking["name"] + " hit you for " + f'{ratking_damage_done}' + " damage",
+                              "You have " + f'{get_hero["hp"]}' + " HP left."]
+    
+
+def test_ratking_attack_died(get_hero, get_ratking):
+    """
+    This function tests when the rat king died and whether the display out is correct when the rat king dies
+    """
+    get_hero["orb"] = True
+    get_ratking["hp"] = 0
+    origin_ratkinghp = 25
+    origin_herohp = 20
+    set_keyboard_input([])
+    boss_attack(get_hero, get_ratking)
+    output = get_display_output()
+    hero_damage_done = (origin_ratkinghp - get_ratking["hp"]) #+ get_ratking["defence"]
+    ratking_damage_done = (origin_herohp - get_hero["hp"]) #+ get_hero["defence"]
+
+    assert output == ["You deal " + f'{hero_damage_done}' + " damage to the " + get_ratking["name"],
+                    "Ouch! The " + get_ratking["name"] + " hit you for " + f'{ratking_damage_done}' + " damage",
+                    "You have " + f'{get_hero["hp"]}' + " HP left.",
+                    "The " + get_ratking["name"] + " is dead! You are victorious",
+                    "Congratulations, you have defeated the " + get_ratking["name"] + "!",
+                    "The world is saved! You win!"]
+
