@@ -533,6 +533,8 @@ def pickup_orb(hero, orb):
         hero["defence"] += 5
         hero["orb"] = True
         print("You found the Orb of Power!\n" "Your attack rose by 5!\n" "Your defence rose by 5!")
+    else:
+        print("You are not allowed to pick up the Orb!")
 
 def theRatKing():
     """

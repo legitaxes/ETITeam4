@@ -28,6 +28,11 @@ def get_ratking() -> theRatKing():
     ratking = theRatKing()
     return ratking
 
+@pytest.fixture
+def get_orb() -> generate_orb():
+    orb = generate_orb()
+    return orb
+
 def test_theHero(get_hero):
     """This test function initializes hero's stats
         OUTPUT:"name": "The Hero",
@@ -1275,7 +1280,6 @@ def test_generate_orb():
         assert output == [3,1]
     elif output == [6,4]:
         assert output == [6,4]
-    #assert output == [1,3] or [2,5] or [3,1] or [6,4]
 
 def test_theRatKing():
     """
@@ -1294,7 +1298,7 @@ def test_theRatKing():
     assert value['defence'] == 5
     assert value['hp'] == 25
 
-def test_pickup_orb(get_hero):
+def test_pickup_orb(get_hero, get_orb):
     """
     Print Orb Function will print the following lines when the orb is picked up
     This function should also set the hero's Orb to be True
@@ -1302,11 +1306,16 @@ def test_pickup_orb(get_hero):
         "Your attack rose by 5!"
         "Your defence rose by 5!"
     """
-    if test_set_hero_position == test_generate_orb:
-        set_keyboard_input([])
-        pickup_orb(get_hero, test_generate_orb)
-        output = get_display_output()
-        assert output == ["You found the Orb of Power!\nYour attack rose by 5!\nYour defence rose by 5!"]
+    get_hero["position"] = get_orb
+    set_keyboard_input([])
+    pickup_orb(get_hero, get_orb)
+    output = get_display_output()
+    assert output == ["You found the Orb of Power!\nYour attack rose by 5!\nYour defence rose by 5!"]
+    assert get_hero["min_damage"] == 7
+    assert get_hero["max_damage"] == 9
+    assert get_hero["defence"] == 6
+    assert get_hero["orb"] == True
+    
 
 def test_print_ratking_stats(get_ratking):
     """
