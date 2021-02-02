@@ -462,7 +462,7 @@ def encounter(hero, rat, flag=True):
         outdoor_menu()
         outdoor_choice = int(input("Enter choice: "))
 
-        if outdoor_choice == 1 or outdoor_choice == 2 or outdoor_choice == 4:
+        if outdoor_choice == 1 or outdoor_choice == 2:
             if flag == False:
                 encounter(hero, rat, None)
             else:
@@ -478,7 +478,7 @@ def encounter(hero, rat, flag=True):
                 rat["hp"] = 10
                 current_day += 1
 
-        elif outdoor_choice == 5:
+        elif outdoor_choice == 4:
             sys.exit(0)
 
 def outdoor_menu():
@@ -579,6 +579,8 @@ def ratking_attack(hero, ratking):
     if hero["orb"] == True:
         hero_damage = randint(hero["min_damage"], hero["max_damage"])
         hero_total_damage = hero_damage - ratking["defence"]
+        if hero_total_damage < 0:
+            hero_total_damage = 0
         ratking["hp"] = ratking["hp"] - hero_total_damage
         print("You deal {} damage to the {}".format(hero_total_damage, ratking["name"]))
     else: 
@@ -599,13 +601,44 @@ def ratking_attack(hero, ratking):
     if ratking["hp"] <= 0:
         win_game()
 
-def ratking_encounter():
+def ratking_encounter(hero, ratking, flag=True):
     """
     Essentially the same as encounter() from before but this is for RatKing
     """
-    # TODO Add a function for encountering against Rat King
-    # assignees: legitaxes
-    # labels: tasks
-    # milestone: 3
+    print_ratking_stats(ratking)
+    fight_menu()
+    if flag == None:
+        return
+    encounter_choice = int(input("Enter choice: "))
+    global current_day, w_map
+
+    if encounter_choice == 1:
+        ratking_attack(hero, ratking)
+        if flag == False:
+            ratking_encounter(hero, ratking, None)
+        else:
+            ratking_encounter(hero, ratking)
+
+    elif encounter_choice == 2:
+        print("You run and hide.")
+        ratking["hp"] = 25
+        outdoor_menu()
+        outdoor_choice = int(input("Enter choice: "))
+
+        if outdoor_choice == 1 or outdoor_choice == 2:
+            if flag == False:
+                ratking_encounter(hero, ratking, None)
+            else:
+                ratking_encounter(hero, ratking)
+        elif outdoor_choice == 3:
+            if flag == False:
+                move_hero(hero, w_map, None)
+                current_day += 1
+            else:
+                move_hero(hero, w_map)
+                current_day += 1
+
+        elif outdoor_choice == 4:
+            sys.exit(0)
 
 
