@@ -1216,7 +1216,7 @@ def test_encounter_1(get_rat, get_current_day, get_hero):
                     "The " + get_rat["name"] + " is dead! You are victorious!"]
 
 
-@pytest.mark.parametrize("open_choice", [(1),(2),(3),(4)])
+@pytest.mark.parametrize("open_choice", [(1),(2),(3)])
 def test_encounter_2(get_rat, get_current_day, get_hero, open_choice):
     """
     This test will assert the print statements that are supposed to be there such as 
@@ -1347,9 +1347,9 @@ def test_win_game():
     set_keyboard_input([])
     win_game()
     output = get_display_output()
-    assert output == ["The Rat King is Dead! You are Victorious!\nCongratulations, you have defeated the Rat King\nThe world is saved! You win!"]
+    assert output == ["The Rat King is dead! You are victorious!\nCongratulations, you have defeated the Rat King\nThe world is saved! You win!"]
 
-def test_ratking_encounter(get_hero, get_ratking):
+def test_ratking_encounter_1_no_orb(get_hero, get_ratking):
     """
     Essentially the same as encounter() from before but this is for RatKing Test function
     """
@@ -1357,10 +1357,74 @@ def test_ratking_encounter(get_hero, get_ratking):
     origin_hp_rat = get_ratking["hp"]
 
     set_keyboard_input(["1","1"])
-    encounter(get_hero, get_rat, False)
+    ratking_encounter(get_hero, get_ratking, False)
     output = get_display_output()
 
     hero_total_damage_test = origin_hp_rat - get_ratking["hp"] 
+    enemy_total_damage_test = origin_hp - get_hero["hp"] 
+
+    if get_ratking["hp"] > 0:
+        # assert status == False
+        if get_hero["hp"]  <=0:
+            assert output == ["Encounter! - " + get_ratking["name"],
+                        "Damage: " + f'{get_ratking["min_damage"]}' + "-" + f'{get_ratking["max_damage"]}',
+                        "Defence: " + f'{get_ratking["defence"]}',
+                        "HP: 25",
+                        "1) Attack\n"
+                        "2) Run",
+                        "Enter choice: ",
+                        "You do not have the Orb of Power - the Rat King is immune!",
+                        "You deal 0 damage to the Rat King",
+                        "Ouch! The " + get_ratking["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
+                        "You ran out of HP! Game Over."]    
+        else:
+            assert output == ["Encounter! - " + get_ratking["name"],
+                        "Damage: " + f'{get_ratking["min_damage"]}' + "-" + f'{get_ratking["max_damage"]}',
+                        "Defence: " + f'{get_ratking["defence"]}',
+                        "HP: 25",
+                        "1) Attack\n"
+                        "2) Run",
+                        "Enter choice: ",
+                        "You do not have the Orb of Power - the Rat King is immune!",
+                        "You deal 0 damage to the Rat King",
+                        "Ouch! The " + get_ratking["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
+                        "You have " + f'{get_hero["hp"]}' + " HP left",
+                        "Encounter! - " + get_ratking["name"],
+                        "Damage: " + f'{get_ratking["min_damage"]}' + "-" + f'{get_ratking["max_damage"]}',
+                        "Defence: " + f'{get_ratking["defence"]}',
+                        "HP: " + f'{get_ratking["hp"]}',
+                        "1) Attack\n"
+                        "2) Run"]                        
+            # self.assertTrue(mock.called)
+    
+    elif get_ratking["hp"] <=0:
+        assert output == ["Encounter! - " + get_ratking["name"],
+                    "Damage: " + f'{get_ratking["min_damage"]}' + "-" + f'{get_ratking["max_damage"]}',
+                    "Defence: " + f'{get_ratking["defence"]}',
+                    "HP: 25",
+                    "1) Attack\n"
+                    "2) Run",
+                    "Enter choice: ",
+                    "You do not have the Orb of Power - the Rat King is immune!",
+                    "You deal 0 damage to the Rat King",
+                    "Ouch! The " + get_ratking["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
+                    "You have " + f'{get_hero["hp"]}' + " HP left",
+                    "The " + get_ratking["name"] + " is dead! You are victorious!"]
+
+def test_ratking_encounter_1_orb(get_hero, get_ratking):
+    """
+    Essentially the same as encounter() from before but this is for RatKing Test function
+    """
+    origin_hp = get_hero["hp"]
+    origin_hp_rat = get_ratking["hp"]
+    get_hero["orb"] = True
+    set_keyboard_input(["1","1"])
+    ratking_encounter(get_hero, get_ratking, False)
+    output = get_display_output()
+
+    hero_total_damage_test = origin_hp_rat - get_ratking["hp"]
+    if hero_total_damage_test < 0:
+        hero_total_damage_test = 0
     enemy_total_damage_test = origin_hp - get_hero["hp"] 
 
     if get_ratking["hp"] > 0:
@@ -1386,7 +1450,7 @@ def test_ratking_encounter(get_hero, get_ratking):
                         "Enter choice: ",
                         "You deal " + f'{hero_total_damage_test}' + " damage to the " + get_ratking["name"],
                         "Ouch! The " + get_ratking["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
-                        "You have " + f'{get_hero["hp"]}' + " HP left.",
+                        "You have " + f'{get_hero["hp"]}' + " HP left",
                         "Encounter! - " + get_ratking["name"],
                         "Damage: " + f'{get_ratking["min_damage"]}' + "-" + f'{get_ratking["max_damage"]}',
                         "Defence: " + f'{get_ratking["defence"]}',
@@ -1405,8 +1469,53 @@ def test_ratking_encounter(get_hero, get_ratking):
                     "Enter choice: ",
                     "You deal " + f'{hero_total_damage_test}' + " damage to the " + get_ratking["name"],
                     "Ouch! The " + get_ratking["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
-                    "You have " + f'{get_hero["hp"]}' + " HP left.",
+                    "You have " + f'{get_hero["hp"]}' + " HP left",
                     "The " + get_ratking["name"] + " is dead! You are victorious!"]
+
+
+@pytest.mark.parametrize("open_choice", [(1),(2),(3)])
+def test_ratking_encounter_2(get_ratking, get_current_day, get_hero, open_choice):
+    """
+    This test will assert the print statements that are supposed to be there such as 
+        print_rat_stats(), combat menu and outdoor menu
+    It will also test for the choices made and what functions it should run after the selected choice
+    This test function will focus on the running part of the encounter where by an outdoor menu will be shown if the user decides to run away from battle
+    """
+    set_keyboard_input(['2', open_choice])
+    ratking_encounter(get_hero, get_ratking, False)
+    output = get_display_output()
+    
+    if open_choice == 1 or open_choice == 2 or open_choice == 4: # select anything other than move_hero()
+        assert output == ["Encounter! - " + get_ratking["name"],
+                        "Damage: " + f'{get_ratking["min_damage"]}' + "-" + f'{get_ratking["max_damage"]}',
+                        "Defence: " + f'{get_ratking["defence"]}',
+                        "HP: 25",
+                        "1) Attack\n"
+                        "2) Run",
+                        "Enter choice: ",
+                        "You run and hide.",
+                        "1) View Character\n2) View Map\n3) Move\n4) Exit Game",
+                        "Enter choice: ",
+                        "Encounter! - " + get_ratking["name"],
+                        "Damage: " + f'{get_ratking["min_damage"]}' + "-" + f'{get_ratking["max_damage"]}',
+                        "Defence: " + f'{get_ratking["defence"]}',
+                        "HP: " + f'{get_ratking["hp"]}',
+                        "1) Attack\n"
+                        "2) Run"] # ensure the encounter function is ran again            
+
+    elif open_choice == 3:
+        assert output == ["Encounter! - " + get_ratking["name"],
+                        "Damage: " + f'{get_ratking["min_damage"]}' + "-" + f'{get_ratking["max_damage"]}',
+                        "Defence: " + f'{get_ratking["defence"]}',
+                        "HP: 25",
+                        "1) Attack\n"
+                        "2) Run",
+                        "Enter choice: ",
+                        "You run and hide.",
+                        "1) View Character\n2) View Map\n3) Move\n4) Exit Game",
+                        "Enter choice: ",
+                        "W = up; A = left; S = down; D = right"]
+        assert get_ratking["hp"] == 25
 
 
 def test_ratking_attack_orb(get_hero, get_ratking):
