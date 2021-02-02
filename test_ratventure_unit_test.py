@@ -1627,5 +1627,11 @@ def test_ratking_attack_died(get_hero, get_ratking):
                     "You have " + f'{get_hero["hp"]}' + " HP left",
                     "The Rat King is dead! You are victorious!\nCongratulations, you have defeated the Rat King\nThe world is saved! You win!"]
 
-def test_orb_townmenu():
+def test_orb_town_menu():
+    """
+    This test function checks whether the printed string for town menu is correct
+    """
     set_keyboard_input([])
+    orb_town_menu()
+    output = get_display_output()
+    assert output == ["1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Pick up Orb of Power\n6) Save Game\n7) Exit Game"]
