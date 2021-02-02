@@ -517,7 +517,7 @@ def generate_orb(i=randint(1,4)):
     orb = orblocation
     return orblocation
 
-def pickup_orb(hero, generate_orb):
+def pickup_orb(hero, orb):
     """
     Print Orb Function will print the following lines when the orb is picked up
     This function should also set the hero's Orb to be True
@@ -525,13 +525,13 @@ def pickup_orb(hero, generate_orb):
         "Your attack rose by 5!"
         "Your defence rose by 5!"
     """
-    if set_hero_position == generate_orb:
-        hero = {
-            "min_damage": 7,
-            "max_damage": 9,
-            "defence": 6,
-            "orb": True
-        }
+    hero_pos = hero["position"]
+    orb_pos = orb
+    if hero_pos == orb_pos:
+        hero["min_damage"] += 5
+        hero["max_damage"] += 5
+        hero["defence"] += 5
+        hero["orb"] = True
         print("You found the Orb of Power!\n" "Your attack rose by 5!\n" "Your defence rose by 5!")
 
 def theRatKing():
@@ -567,7 +567,7 @@ def win_game():
         "Congratulations, you have defeated the Rat King"
         "The world is saved! You win!"
     """
-    print("The Rat King is Dead! You are Victorious!\n" "Congratulations, you have defeated the Rat King\n" "The world is saved! You win!")
+    print("The Rat King is Dead! You are Victorious!\nCongratulations, you have defeated the Rat King\nThe world is saved! You win!")
 
 def ratking_encounter():
     """
