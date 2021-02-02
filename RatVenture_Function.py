@@ -569,16 +569,7 @@ def win_game():
         "Congratulations, you have defeated the Rat King"
         "The world is saved! You win!"
     """
-    print("The Rat King is Dead! You are Victorious!\nCongratulations, you have defeated the Rat King\nThe world is saved! You win!")
-
-def ratking_encounter():
-    """
-    Essentially the same as encounter() from before but this is for RatKing
-    """
-    # TODO Add a function for encountering against Rat King
-    # assignees: legitaxes
-    # labels: tasks
-    # milestone: 3
+    print("The Rat King is dead! You are victorious!\nCongratulations, you have defeated the Rat King\nThe world is saved! You win!")
 
 def ratking_attack(hero, ratking):
     """
@@ -608,5 +599,13 @@ def ratking_attack(hero, ratking):
     if ratking["hp"] <= 0:
         win_game()
 
+def ratking_encounter():
+    """
+    Essentially the same as encounter() from before but this is for RatKing
+    """
+    # TODO Add a function for encountering against Rat King
+    # assignees: legitaxes
+    # labels: tasks
+    # milestone: 3
 
 
