@@ -8,8 +8,9 @@ def main(choice1=None, choice2=None, movement=None):
     # TODO Adjust the menu for Town if the town has Orb as well as for rat king
     # assignees: legitaxes
     # labels: tasks
-    global current_day, hero, w_map, rat
+    global current_day, hero, w_map, rat, ratking
     rat = theRat()
+    ratking = theRatKing()
     if choice1 != None and movement == None: # if its running as a test function
         set_keyboard_input([choice1, choice2])
         choice = main_menu()
@@ -104,6 +105,9 @@ def main(choice1=None, choice2=None, movement=None):
             else:
                 if rat["hp"] > 0:
                     encounter(hero, rat)
+
+        elif position == "K":
+            ratking_encounter(hero, ratking)
 
 if __name__ == "__main__":
     main()
