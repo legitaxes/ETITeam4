@@ -1353,10 +1353,6 @@ def test_ratking_encounter(get_hero, get_ratking):
     """
     Essentially the same as encounter() from before but this is for RatKing Test function
     """
-    # TODO Add a test function for encountering against Rat King
-    # assignees: legitaxes
-    # labels: tasks, unit-test
-    # milestone: 3
     origin_hp = get_hero["hp"]
     origin_hp_rat = get_ratking["hp"]
 
