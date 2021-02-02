@@ -23,6 +23,11 @@ def get_w_map() -> world_map():
     w_map = world_map()
     return w_map
 
+@pytest.fixture
+def get_ratking() -> theRatKing():
+    ratking = theRatKing()
+    return ratking
+
 def test_theHero(get_hero):
     """This test function initializes hero's stats
         OUTPUT:"name": "The Hero",
@@ -1272,11 +1277,6 @@ def test_generate_orb():
         assert output == [6,4]
     #assert output == [1,3] or [2,5] or [3,1] or [6,4]
 
-@pytest.fixture
-def get_ratking() -> theRatKing():
-    ratking = theRatKing()
-    return ratking
-
 def test_theRatKing():
     """
     This test will test whether the variables for ratking has been initialize correctly
@@ -1306,7 +1306,7 @@ def test_pickup_orb(get_hero):
         set_keyboard_input([])
         pickup_orb(get_hero, test_generate_orb)
         output = get_display_output()
-        assert output == ["You found the Orb of Power!\n" "Your attack rose by 5!\n" "Your defence rose by 5!"]
+        assert output == ["You found the Orb of Power!\nYour attack rose by 5!\nYour defence rose by 5!"]
 
 def test_print_ratking_stats(get_ratking):
     """
