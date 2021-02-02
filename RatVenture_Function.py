@@ -580,13 +580,33 @@ def ratking_encounter():
     # labels: tasks
     # milestone: 3
 
-def ratking_attack():
+def ratking_attack(hero, ratking):
     """
     Essentially another attack() function but for RatKing
     This function will check whether the player is holding the orb as well
     """
-    # TODO Add a function for attacking Rat King
-    # assignees: legitaxes
-    # labels: tasks
-    # milestone: 3
+    if hero["orb"] == True:
+        hero_damage = randint(hero["min_damage"], hero["max_damage"])
+        hero_total_damage = hero_damage - ratking["defence"]
+        ratking["hp"] = ratking["hp"] - hero_total_damage
+        print("You deal {} damage to the {}".format(hero_total_damage, ratking["name"]))
+    else: 
+        print("You do not have the Orb of Power - the {} is immune!".format(ratking["name"]))
+        print("You deal 0 damage to the {}".format(ratking["name"]))
+    
+    ratking_damage = randint(ratking["min_damage"], ratking["max_damage"])
+    ratking_total_damage = ratking_damage - hero["defence"]
+    hero["hp"] = hero["hp"] - ratking_total_damage
+    print("Ouch! The {} hit you for {} damage".format(ratking["name"], ratking_total_damage))
+
+    if hero["hp"] <= 0:
+        print("You ran out of HP! Game over.")
+        sys.exit(0)
+    
+    print("You have {} HP left".format(hero["hp"]))
+
+    if ratking["hp"] <= 0:
+        win_game()
+
+
 
