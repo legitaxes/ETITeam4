@@ -8,8 +8,9 @@ def main(choice1=None, choice2=None, movement=None):
     # TODO Adjust the menu for Town if the town has Orb as well as for rat king
     # assignees: legitaxes
     # labels: tasks
-    global current_day, hero, w_map, rat
+    global current_day, hero, w_map, rat, ratking, orb
     rat = theRat()
+    ratking = theRatKing()
     if choice1 != None and movement == None: # if its running as a test function
         set_keyboard_input([choice1, choice2])
         choice = main_menu()
@@ -20,9 +21,9 @@ def main(choice1=None, choice2=None, movement=None):
         choice = main_menu()
 
     if choice == 1:
-        current_day, hero, w_map = new_game()
+        current_day, hero, w_map, orb = new_game()
     elif choice == 2:
-        useless1, useless2, hero, w_map, current_day = resume_game()
+        useless1, useless2, hero, w_map, current_day, orb = resume_game()
     elif choice == 3:
         sys.exit(0)
     
@@ -31,7 +32,10 @@ def main(choice1=None, choice2=None, movement=None):
         position = get_hero_position(hero)
         # if the hero is in town
         if position == "T":
-            town_menu()
+            if hero["position"] == orb:
+                orb_town_menu()
+            else:
+                town_menu()
             choice = int(input("Enter choice: "))
 
             if choice == 1:
@@ -42,20 +46,20 @@ def main(choice1=None, choice2=None, movement=None):
             
             elif choice == 2:
                 if choice1 != None: # if running in test environment
-                    pos, x, y, legend, list_map = print_map(hero, w_map, False)
+                    pos, x, y, legend, list_map = print_map(hero, w_map, orb, False)
                     output = get_display_output()
                     return output
                 else:
-                    print_map(hero, w_map)
+                    print_map(hero, w_map, orb)
                 
             elif choice == 3:
                 if movement != None: # if running in test environment
-                    status = move_hero(hero, w_map, False)
+                    status = move_hero(hero, w_map, orb, False)
                     current_day += 1
                     output = get_display_output()
                     return output, status
                 else:
-                    move_hero(hero, w_map)
+                    move_hero(hero, w_map, orb)
                     current_day += 1
 
             elif choice == 4:
@@ -69,21 +73,46 @@ def main(choice1=None, choice2=None, movement=None):
                     current_day += 1
 
             elif choice == 5:
-                if choice1 != None: # if running in test environment
-                    save_game(hero, w_map, current_day)
-                    output = get_display_output()
-                    return output
+                if hero["position"] == orb:
+                    pickup_orb(hero, orb)
+                    orb = [1337,1337]
                 else:
-                    save_game(hero, w_map, current_day)
+                    if choice1 != None: # if running in test environment
+                        save_game(hero, w_map, current_day, orb)
+                        output = get_display_output()
+                        return output
+                    else:
+                        save_game(hero, w_map, current_day, orb)
 
             elif choice == 6:
-                if choice1 != None: # if running in test environment
-                    exit_game()
-                    output = get_display_output()
-                    return output
+                if hero["position"] == orb:
+                    if choice1 != None: # if running in test environment
+                        save_game(hero, w_map, current_day, orb)
+                        output = get_display_output()
+                        return output
+                    else:
+                        save_game(hero, w_map, current_day, orb)
                 else:
-                    exit_game()
-                    sys.exit(0)
+                    if choice1 != None: # if running in test environment
+                        exit_game()
+                        output = get_display_output()
+                        return output
+                    else:
+                        exit_game()
+                        sys.exit(0)
+            
+            elif choice == 7:
+                if hero["position"] == orb:
+                    if choice1 != None: # if running in test environment
+                        exit_game()
+                        output = get_display_output()
+                        return output
+                    else:
+                        exit_game()
+                        sys.exit(0)
+
+            elif choice == 1337: # for debugging on teleporting to orb location 
+                hero["position"] = orb
 
         # if the hero is not in town 
         # feature for combat not done yet
@@ -95,15 +124,18 @@ def main(choice1=None, choice2=None, movement=None):
                 if choice == 1:
                     print_hero_stats(hero)
                 elif choice == 2:
-                    print_map(hero, w_map)
+                    print_map(hero, w_map, orb)
                 elif choice == 3:
-                    move_hero(hero, w_map)
+                    move_hero(hero, w_map, orb)
                     rat["hp"] = 10
                 elif choice == 4:
                     sys.exit(0)
             else:
                 if rat["hp"] > 0:
                     encounter(hero, rat)
+
+        elif position == "K":
+            ratking_encounter(hero, ratking)
 
 if __name__ == "__main__":
     main()

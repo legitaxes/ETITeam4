@@ -79,7 +79,7 @@ def world_map():
     #print(w_map)
     return w_map
 
-def print_map(hero, w_map, flag=True):
+def print_map(hero, w_map, orb, flag=True):
     """
     Displays the Map of the game when called
     This function should print the full layout of the map
@@ -90,6 +90,9 @@ def print_map(hero, w_map, flag=True):
     position = hero["position"]
     x_coor = position[0]
     y_coor = position[1]
+    orb_x_coor = orb[0]
+    orb_y_coor = orb[1]
+
     list_map = []
     w_map = world_map()
     for x in range(8):
@@ -103,6 +106,12 @@ def print_map(hero, w_map, flag=True):
                 legend = " T "
                 if x == x_coor and y == y_coor:
                     legend = "H/T"
+                    if orb_x_coor == x_coor and orb_y_coor == y_coor:
+                        legend = "H/O"
+                # elif orb_x_coor == x_coor and orb_y_coor == y_coor:
+                #     legend = "H/O"
+                elif x == orb_x_coor and y == orb_y_coor:
+                    legend = "T/O"
             elif w_map[x][y] == "K":
                 legend = " K "
                 if x == x_coor and y == y_coor:
@@ -219,6 +228,21 @@ def town_menu():
     print("1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game")
     return "1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"
     
+def orb_town_menu():
+    """
+    This function should display the menu of Town when there is an orb in the town
+    Hence, the following values should be returned:
+        1) View Character
+        2) View Map
+        3) Move
+        4) Rest
+        5) Pick Up Orb
+        6) Save Game
+        7) Exit Game
+    """
+    print("1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Pick up Orb of Power\n6) Save Game\n7) Exit Game")
+    return "1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Pick up Orb of Power\n6) Save Game\n7) Exit Game"
+
 def new_game():
     """
     This function should display the Menu of Town since a new instance of the game is created
@@ -227,12 +251,12 @@ def new_game():
         -> Current_day as 1
         -> Initialize Hero using getHero() function
     """
-    global current_day, hero
+    global current_day, hero, orb
     current_day = ini_current_day()
     hero = theHero()
     w_map = world_map()
-    generate_orb()
-    return current_day, hero, w_map
+    orb = generate_orb()
+    return current_day, hero, w_map, orb
 
 def resume_game():
     """
@@ -244,19 +268,20 @@ def resume_game():
     # assignees: legitaxes
     # labels: tasks
     try:
-        global hero, w_map, current_day
+        global hero, w_map, current_day, orb
         file = open("./save.json", mode = "r")
         load_data = json.load(file)
         hero = load_data["hero"]
         w_map = load_data["w_map"]
         current_day = load_data["current_day"]
+        orb = load_data["orb"]
         file.close()
     except FileNotFoundError:
         print("Existing file does not exist.\n")
         return FileNotFoundError,"Existing file does not exist.\n"
         #main()
     #print("The game has been resumed to the previous save state.")
-    return "","The game has been resumed to the previous save state.", hero, w_map, current_day
+    return "","The game has been resumed to the previous save state.", hero, w_map, current_day, orb
 
 
 def exit_game():
@@ -281,7 +306,7 @@ def exit_game_prompt():
         print("Going back to the game...")
     return choice
 
-def save_game(hero, w_map, current_day):
+def save_game(hero, w_map, current_day, orb):
     """
     This function saves the current progress of the game onto an external json file named: 'save.json'
     """
@@ -289,7 +314,7 @@ def save_game(hero, w_map, current_day):
     # assignees: legitaxes
     # labels: tasks
     file = open("./save.json", mode = "w+")
-    file.write(json.dumps({"hero": hero, "w_map": w_map, "current_day": current_day}))
+    file.write(json.dumps({"hero": hero, "w_map": w_map, "current_day": current_day, "orb": orb}))
     file.close()
     print("Game saved.")
     return "Game saved."
@@ -320,7 +345,7 @@ def set_hero_position(hero, x=None, y=None):
     return True, hero["position"]
 
 
-def move_hero(hero, w_map, flag=True):
+def move_hero(hero, w_map, orb, flag=True):
     """
     This function moves the hero based on the hero's input
     Input being: W, A, S, D | Up, Left, Down, Right
@@ -328,7 +353,7 @@ def move_hero(hero, w_map, flag=True):
     Any Flag that is False is used for Unit Test Cases ONLY
     """
     if(flag == True):
-        print_map(hero, w_map)
+        print_map(hero, w_map, orb)
     print("W = up; A = left; S = down; D = right")
     if(flag == None): #ensure the function have ran
         return
@@ -382,7 +407,7 @@ def move_hero(hero, w_map, flag=True):
     if(flag == False):
         return True
     else:
-        print_map(hero, w_map)
+        print_map(hero, w_map, orb)
 
 
 # ==============================
@@ -462,7 +487,7 @@ def encounter(hero, rat, flag=True):
         outdoor_menu()
         outdoor_choice = int(input("Enter choice: "))
 
-        if outdoor_choice == 1 or outdoor_choice == 2 or outdoor_choice == 4:
+        if outdoor_choice == 1 or outdoor_choice == 2:
             if flag == False:
                 encounter(hero, rat, None)
             else:
@@ -470,15 +495,15 @@ def encounter(hero, rat, flag=True):
         
         elif outdoor_choice == 3:
             if flag == False:
-                move_hero(hero, w_map, None)
+                move_hero(hero, w_map, orb, None)
                 rat["hp"] = 10
                 current_day += 1
             else:
-                move_hero(hero, w_map)
+                move_hero(hero, w_map, orb)
                 rat["hp"] = 10
                 current_day += 1
 
-        elif outdoor_choice == 5:
+        elif outdoor_choice == 4:
             sys.exit(0)
 
 def outdoor_menu():
@@ -517,7 +542,7 @@ def generate_orb(i=randint(1,4)):
     orb = orblocation
     return orblocation
 
-def pickup_orb(hero, generate_orb):
+def pickup_orb(hero, orb):
     """
     Print Orb Function will print the following lines when the orb is picked up
     This function should also set the hero's Orb to be True
@@ -525,14 +550,16 @@ def pickup_orb(hero, generate_orb):
         "Your attack rose by 5!"
         "Your defence rose by 5!"
     """
-    if set_hero_position == generate_orb:
-        hero = {
-            "min_damage": 7,
-            "max_damage": 9,
-            "defence": 6,
-            "orb": True
-        }
+    hero_pos = hero["position"]
+    orb_pos = orb
+    if hero_pos == orb_pos:
+        hero["min_damage"] += 5
+        hero["max_damage"] += 5
+        hero["defence"] += 5
+        hero["orb"] = True
         print("You found the Orb of Power!\n" "Your attack rose by 5!\n" "Your defence rose by 5!")
+    else:
+        print("You are not allowed to pick up the Orb!")
 
 def theRatKing():
     """
@@ -567,24 +594,76 @@ def win_game():
         "Congratulations, you have defeated the Rat King"
         "The world is saved! You win!"
     """
-    print("The Rat King is Dead! You are Victorious!\n" "Congratulations, you have defeated the Rat King\n" "The world is saved! You win!")
+    print("The Rat King is dead! You are victorious!\nCongratulations, you have defeated the Rat King\nThe world is saved! You win!")
 
-def ratking_encounter():
-    """
-    Essentially the same as encounter() from before but this is for RatKing
-    """
-    # TODO Add a function for encountering against Rat King
-    # assignees: legitaxes
-    # labels: tasks
-    # milestone: 3
-
-def ratking_attack():
+def ratking_attack(hero, ratking):
     """
     Essentially another attack() function but for RatKing
     This function will check whether the player is holding the orb as well
     """
-    # TODO Add a function for attacking Rat King
-    # assignees: legitaxes
-    # labels: tasks
-    # milestone: 3
+    if hero["orb"] == True:
+        hero_damage = randint(hero["min_damage"], hero["max_damage"])
+        hero_total_damage = hero_damage - ratking["defence"]
+        if hero_total_damage < 0:
+            hero_total_damage = 0
+        ratking["hp"] = ratking["hp"] - hero_total_damage
+        print("You deal {} damage to the {}".format(hero_total_damage, ratking["name"]))
+    else: 
+        print("You do not have the Orb of Power - the {} is immune!".format(ratking["name"]))
+        print("You deal 0 damage to the {}".format(ratking["name"]))
+    
+    ratking_damage = randint(ratking["min_damage"], ratking["max_damage"])
+    ratking_total_damage = ratking_damage - hero["defence"]
+    hero["hp"] = hero["hp"] - ratking_total_damage
+    print("Ouch! The {} hit you for {} damage".format(ratking["name"], ratking_total_damage))
+
+    if hero["hp"] <= 0:
+        print("You ran out of HP! Game over.")
+        sys.exit(0)
+    
+    print("You have {} HP left".format(hero["hp"]))
+
+    if ratking["hp"] <= 0:
+        win_game()
+
+def ratking_encounter(hero, ratking, flag=True):
+    """
+    Essentially the same as encounter() from before but this is for RatKing
+    """
+    print_ratking_stats(ratking)
+    fight_menu()
+    if flag == None:
+        return
+    encounter_choice = int(input("Enter choice: "))
+    global current_day, w_map
+
+    if encounter_choice == 1:
+        ratking_attack(hero, ratking)
+        if flag == False:
+            ratking_encounter(hero, ratking, None)
+        else:
+            ratking_encounter(hero, ratking)
+
+    elif encounter_choice == 2:
+        print("You run and hide.")
+        ratking["hp"] = 25
+        outdoor_menu()
+        outdoor_choice = int(input("Enter choice: "))
+
+        if outdoor_choice == 1 or outdoor_choice == 2:
+            if flag == False:
+                ratking_encounter(hero, ratking, None)
+            else:
+                ratking_encounter(hero, ratking)
+        elif outdoor_choice == 3:
+            if flag == False:
+                move_hero(hero, w_map, orb, None)
+                current_day += 1
+            else:
+                move_hero(hero, w_map, orb)
+                current_day += 1
+
+        elif outdoor_choice == 4:
+            sys.exit(0)
+
 

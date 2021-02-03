@@ -23,6 +23,16 @@ def get_w_map() -> world_map():
     w_map = world_map()
     return w_map
 
+@pytest.fixture
+def get_ratking() -> theRatKing():
+    ratking = theRatKing()
+    return ratking
+
+@pytest.fixture
+def get_orb() -> generate_orb():
+    orb = generate_orb()
+    return orb
+
 def test_theHero(get_hero):
     """This test function initializes hero's stats
         OUTPUT:"name": "The Hero",
@@ -123,7 +133,7 @@ def test_town_menu():
     assert value == "1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Save Game\n6) Exit Game"
 
 
-def test_print_map(get_hero, get_w_map):
+def test_print_map(get_hero, get_w_map, get_orb):
     """
     Test function of print_map Function:
         Displays the Map of the game when called
@@ -132,13 +142,15 @@ def test_print_map(get_hero, get_w_map):
     # TODO Adjust test_print_map() function to cater to new changes
     # assignees: legitaxes
     # labels: tasks, unit-test 
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, get_orb, False)
     #theHero = print_hero_stats()
     w_map = world_map()
     pos = get_hero["position"]
     assert position == pos
     assert x_coor == pos[0]
     assert y_coor == pos[1]
+    orb_x_coor = get_orb[0]
+    orb_y_coor = get_orb[1]
     list_print_map = []
     for x in range(8):
         list_print_map.append("+---"*8 + "+")
@@ -148,6 +160,10 @@ def test_print_map(get_hero, get_w_map):
                 if x == x_coor and y == y_coor:
                     legend = "H/T"
                     #assert legend == "H/T"
+                elif orb_x_coor == x_coor and orb_y_coor == y_coor:
+                    legend = "H/O"
+                elif x == orb_x_coor and y == orb_y_coor:
+                    legend = "T/O"
                 else:
                     legend = " T "
                     #assert legend == " T "
@@ -237,7 +253,7 @@ def test_new_game(get_hero, get_current_day):
     # TODO Adjust test_new_game test function to cater for orb
     # assignees: legitaxes
     # labels: tasks, unit-test
-    current_day, hero, w_map = new_game()
+    current_day, hero, w_map, orb = new_game()
     assert current_day == get_current_day
     assert hero["name"] == get_hero["name"]
     assert hero["min_damage"] == get_hero["min_damage"]
@@ -256,21 +272,21 @@ def test_resume_game():
         else: 
             return "existing file does not exist"
     """
-    error, value, hero, w_map, current_day = resume_game()
+    error, value, hero, w_map, current_day, orb = resume_game()
     if(error == ""):
         assert value == "The game has been resumed to the previous save state." 
     else:
         assert error == FileNotFoundError
         assert value == "Existing file does not exist.\n"
 
-def test_save_game(get_hero, get_current_day, get_w_map):
+def test_save_game(get_hero, get_current_day, get_w_map, get_orb):
     """
     This test function will test whether the save_game() function works
     The save game function will write to the json file to store its global variable objects
     At the end of the operation, it will print "Game Saved."
     """
     set_keyboard_input([])
-    save_game(get_hero, get_w_map, get_current_day)
+    save_game(get_hero, get_w_map, get_current_day, get_orb)
     output = get_display_output()
     assert output == ["Game saved."]
 
@@ -380,19 +396,21 @@ def test_set_hero_position_out_of_bounds(get_hero, x, y):
     assert condition == True
 
 @pytest.mark.parametrize("move",[("W"), ("w")])
-def test_move_hero_up(get_hero, get_w_map, move):
+def test_move_hero_up(get_hero, get_w_map, move, get_orb):
     """
     Test should cover 'W' part of the movement
     If the movement is an invalid one, it should print: "Not able to move out of map (Up/Down)"
     Tested on the starting point of the map [0,0]. Test should be a failing test case with the error message of Not being able to move up
     """
     # Asserting print_map function 
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, get_orb, False)
     w_map = world_map()
     pos = get_hero["position"]
     assert position == pos
     assert x_coor == pos[0]
     assert y_coor == pos[1]
+    orb_x_coor = get_orb[0]
+    orb_y_coor = get_orb[1]
     list_print_map = []
     for x in range(8):
         list_print_map.append("+---"*8 + "+")
@@ -402,6 +420,10 @@ def test_move_hero_up(get_hero, get_w_map, move):
                 if x == x_coor and y == y_coor:
                     legend = "H/T"
                     #assert legend == "H/T"
+                elif orb_x_coor == x_coor and orb_y_coor == y_coor:
+                    legend = "H/O"
+                elif x == orb_x_coor and y == orb_y_coor:
+                    legend = "T/O"
                 else:
                     legend = " T "
                     #assert legend == " T "
@@ -423,7 +445,7 @@ def test_move_hero_up(get_hero, get_w_map, move):
     assert all([a == b for a, b in zip(list_print_map, list_map)]) #this checks python list against the expected value
 
     set_keyboard_input([move])
-    actual_status = move_hero(get_hero, get_w_map, False)
+    actual_status = move_hero(get_hero, get_w_map, get_orb, False)
     #test_status = set_hero_position(get_hero,x=-1)
     output = get_display_output()
     # testing the actual move function
@@ -436,19 +458,21 @@ def test_move_hero_up(get_hero, get_w_map, move):
                     "Your move: "]
 
 @pytest.mark.parametrize("move",[("D"), ("d")])
-def test_move_hero_down(get_hero, get_w_map, move):
+def test_move_hero_down(get_hero, get_w_map, move, get_orb):
     """
     Test should cover 'S' part of the movement
     If the movement is an invalid one, it should print: "Not able to move out of map (Up/Down)"
     Tested on the starting point of the map [0,0]. Test should be a passing test case without needing an error message
     """
     # Asserting print_map function 
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, get_orb, False)
     w_map = world_map()
     pos = get_hero["position"]
     assert position == pos
     assert x_coor == pos[0]
     assert y_coor == pos[1]
+    orb_x_coor = get_orb[0]
+    orb_y_coor = get_orb[1]
     list_print_map = []
     for x in range(8):
         list_print_map.append("+---"*8 + "+")
@@ -458,6 +482,10 @@ def test_move_hero_down(get_hero, get_w_map, move):
                 if x == x_coor and y == y_coor:
                     legend = "H/T"
                     #assert legend == "H/T"
+                elif orb_x_coor == x_coor and orb_y_coor == y_coor:
+                    legend = "H/O"
+                elif x == orb_x_coor and y == orb_y_coor:
+                    legend = "T/O"
                 else:
                     legend = " T "
                     #assert legend == " T "
@@ -480,7 +508,7 @@ def test_move_hero_down(get_hero, get_w_map, move):
     
     #test case of move hero down, getting the print output
     set_keyboard_input([move])
-    actual_status = move_hero(get_hero, get_w_map, False)
+    actual_status = move_hero(get_hero, get_w_map, get_orb, False)
     #test_status = set_hero_position(get_hero,x=1)
     output = get_display_output()
     # Testing the actual move function
@@ -492,19 +520,21 @@ def test_move_hero_down(get_hero, get_w_map, move):
                     "Your move: "]
 
 @pytest.mark.parametrize("move",[("A"), ("a")])
-def test_move_hero_left(get_hero, get_w_map, move):
+def test_move_hero_left(get_hero, get_w_map, move, get_orb):
     """
     Test should cover 'A' part of the movement
     If the movement is an invalid one, it should print: "Not able to move out of map (Left/Right)"
     Tested on the starting point of the map [0,0]. Test should be a failing test case with the error message of Not being able to move left
     """
     # Asserting print_map function 
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, get_orb, False)
     w_map = world_map()
     pos = get_hero["position"]
     assert position == pos
     assert x_coor == pos[0]
     assert y_coor == pos[1]
+    orb_x_coor = get_orb[0]
+    orb_y_coor = get_orb[1]
     list_print_map = []
     for x in range(8):
         list_print_map.append("+---"*8 + "+")
@@ -514,6 +544,10 @@ def test_move_hero_left(get_hero, get_w_map, move):
                 if x == x_coor and y == y_coor:
                     legend = "H/T"
                     #assert legend == "H/T"
+                elif orb_x_coor == x_coor and orb_y_coor == y_coor:
+                    legend = "H/O"
+                elif x == orb_x_coor and y == orb_y_coor:
+                    legend = "T/O"
                 else:
                     legend = " T "
                     #assert legend == " T "
@@ -536,7 +570,7 @@ def test_move_hero_left(get_hero, get_w_map, move):
 
     #test case of move hero left, getting the print output
     set_keyboard_input([move])
-    status = move_hero(get_hero, get_w_map, False)
+    status = move_hero(get_hero, get_w_map, get_orb, False)
     output = get_display_output()
     # Testing the actual move function
     if(status == False):
@@ -547,19 +581,21 @@ def test_move_hero_left(get_hero, get_w_map, move):
                     "Your move: "]
 
 @pytest.mark.parametrize("move",[("D"), ("d")])
-def test_move_hero_right(get_hero, get_w_map, move):
+def test_move_hero_right(get_hero, get_w_map, move, get_orb):
     """
     Test should cover 'D' part of the movement
     If the movement is an invalid one, it should print: "Not able to move out of map (Left/Right)"
     Tested on the starting point of the map [0,0]. Test should be a pass with no error message
     """
     # Asserting print_map function 
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, get_orb, False)
     w_map = world_map()
     pos = get_hero["position"]
     assert position == pos
     assert x_coor == pos[0]
     assert y_coor == pos[1]
+    orb_x_coor = get_orb[0]
+    orb_y_coor = get_orb[1]
     list_print_map = []
     for x in range(8):
         list_print_map.append("+---"*8 + "+")
@@ -569,6 +605,10 @@ def test_move_hero_right(get_hero, get_w_map, move):
                 if x == x_coor and y == y_coor:
                     legend = "H/T"
                     #assert legend == "H/T"
+                elif orb_x_coor == x_coor and orb_y_coor == y_coor:
+                    legend = "H/O"
+                elif x == orb_x_coor and y == orb_y_coor:
+                    legend = "T/O"
                 else:
                     legend = " T "
                     #assert legend == " T "
@@ -591,7 +631,7 @@ def test_move_hero_right(get_hero, get_w_map, move):
 
     #test case of move hero right, getting the print output
     set_keyboard_input([move])
-    status = move_hero(get_hero, get_w_map, False)
+    status = move_hero(get_hero, get_w_map, get_orb, False)
     output = get_display_output()
     # Testing the actual move function
     if(status == False):
@@ -602,19 +642,21 @@ def test_move_hero_right(get_hero, get_w_map, move):
                     "Your move: "]
 
 @pytest.mark.parametrize("oor_input",[("k"), ("z"), ("b"), ("g"),("q"),("y"),("p")])
-def test_move_hero_out_of_range(get_hero, get_w_map, oor_input):
+def test_move_hero_out_of_range(get_hero, get_w_map, oor_input, get_orb):
     """
     Test should cover anything else typed to the input of the movement
     This test case tests for out of range characters not accepted by the function
     It should print Index out of Range when any input other than W A S D is inputted
     """
     # Asserting print_map function 
-    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, False)
+    position, x_coor, y_coor, legend, list_map = print_map(get_hero, get_w_map, get_orb, False)
     w_map = world_map()
     pos = get_hero["position"]
     assert position == pos
     assert x_coor == pos[0]
     assert y_coor == pos[1]
+    orb_x_coor = get_orb[0]
+    orb_y_coor = get_orb[1]
     list_print_map = []
     for x in range(8):
         list_print_map.append("+---"*8 + "+")
@@ -624,6 +666,10 @@ def test_move_hero_out_of_range(get_hero, get_w_map, oor_input):
                 if x == x_coor and y == y_coor:
                     legend = "H/T"
                     #assert legend == "H/T"
+                # elif orb_x_coor == x_coor and orb_y_coor == y_coor:
+                #     legend = "H/O"
+                elif x == orb_x_coor and y == orb_y_coor:
+                    legend = "T/O"
                 else:
                     legend = " T "
                     #assert legend == " T "
@@ -646,7 +692,7 @@ def test_move_hero_out_of_range(get_hero, get_w_map, oor_input):
     
     #test case with wrong user input, getting the print output
     set_keyboard_input([oor_input])
-    status = move_hero(get_hero, get_w_map, False)
+    status = move_hero(get_hero, get_w_map, get_orb, False)
     output = get_display_output()
     # Test case should always fail since other inputs are not accepted
     assert status == False
@@ -1206,7 +1252,7 @@ def test_encounter_1(get_rat, get_current_day, get_hero):
                     "The " + get_rat["name"] + " is dead! You are victorious!"]
 
 
-@pytest.mark.parametrize("open_choice", [(1),(2),(3),(4)])
+@pytest.mark.parametrize("open_choice", [(1),(2),(3)])
 def test_encounter_2(get_rat, get_current_day, get_hero, open_choice):
     """
     This test will assert the print statements that are supposed to be there such as 
@@ -1270,12 +1316,6 @@ def test_generate_orb():
         assert output == [3,1]
     elif output == [6,4]:
         assert output == [6,4]
-    #assert output == [1,3] or [2,5] or [3,1] or [6,4]
-
-@pytest.fixture
-def get_ratking() -> theRatKing():
-    ratking = theRatKing()
-    return ratking
 
 def test_theRatKing():
     """
@@ -1294,7 +1334,7 @@ def test_theRatKing():
     assert value['defence'] == 5
     assert value['hp'] == 25
 
-def test_pickup_orb(get_hero):
+def test_pickup_orb(get_hero, get_orb):
     """
     Print Orb Function will print the following lines when the orb is picked up
     This function should also set the hero's Orb to be True
@@ -1302,12 +1342,16 @@ def test_pickup_orb(get_hero):
         "Your attack rose by 5!"
         "Your defence rose by 5!"
     """
-    if test_set_hero_position == test_generate_orb:
-        set_keyboard_input([])
-        pickup_orb(get_hero, test_generate_orb)
-        output = get_display_output()
-        assert output == ["You found the Orb of Power!\n" "Your attack rose by 5!\n" "Your defence rose by 5!"]
-
+    get_hero["position"] = get_orb #hardcode player's position to the same as the orb
+    set_keyboard_input([])
+    pickup_orb(get_hero, get_orb)
+    output = get_display_output()
+    assert output == ["You found the Orb of Power!\nYour attack rose by 5!\nYour defence rose by 5!"]
+    assert get_hero["min_damage"] == 7
+    assert get_hero["max_damage"] == 9
+    assert get_hero["defence"] == 6
+    assert get_hero["orb"] == True
+    
 def test_print_ratking_stats(get_ratking):
     """
     The function prints the Rat King Stats as the following:
@@ -1339,23 +1383,255 @@ def test_win_game():
     set_keyboard_input([])
     win_game()
     output = get_display_output()
-    assert output == ["The Rat King is Dead! You are Victorious!\n" "Congratulations, you have defeated the Rat King\n" "The world is saved! You win!"]
+    assert output == ["The Rat King is dead! You are victorious!\nCongratulations, you have defeated the Rat King\nThe world is saved! You win!"]
 
-def test_ratking_encounter():
+def test_ratking_encounter_1_no_orb(get_hero, get_ratking):
     """
     Essentially the same as encounter() from before but this is for RatKing Test function
     """
-    # TODO Add a test function for encountering against Rat King
-    # assignees: legitaxes
-    # labels: tasks, unit-test
-    # milestone: 3
+    origin_hp = get_hero["hp"]
+    origin_hp_rat = get_ratking["hp"]
 
-def test_ratking_attack():
+    set_keyboard_input(["1","1"])
+    ratking_encounter(get_hero, get_ratking, False)
+    output = get_display_output()
+
+    hero_total_damage_test = origin_hp_rat - get_ratking["hp"] 
+    enemy_total_damage_test = origin_hp - get_hero["hp"] 
+
+    if get_ratking["hp"] > 0:
+        # assert status == False
+        if get_hero["hp"]  <=0:
+            assert output == ["Encounter! - " + get_ratking["name"],
+                        "Damage: " + f'{get_ratking["min_damage"]}' + "-" + f'{get_ratking["max_damage"]}',
+                        "Defence: " + f'{get_ratking["defence"]}',
+                        "HP: 25",
+                        "1) Attack\n"
+                        "2) Run",
+                        "Enter choice: ",
+                        "You do not have the Orb of Power - the Rat King is immune!",
+                        "You deal 0 damage to the Rat King",
+                        "Ouch! The " + get_ratking["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
+                        "You ran out of HP! Game Over."]    
+        else:
+            assert output == ["Encounter! - " + get_ratking["name"],
+                        "Damage: " + f'{get_ratking["min_damage"]}' + "-" + f'{get_ratking["max_damage"]}',
+                        "Defence: " + f'{get_ratking["defence"]}',
+                        "HP: 25",
+                        "1) Attack\n"
+                        "2) Run",
+                        "Enter choice: ",
+                        "You do not have the Orb of Power - the Rat King is immune!",
+                        "You deal 0 damage to the Rat King",
+                        "Ouch! The " + get_ratking["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
+                        "You have " + f'{get_hero["hp"]}' + " HP left",
+                        "Encounter! - " + get_ratking["name"],
+                        "Damage: " + f'{get_ratking["min_damage"]}' + "-" + f'{get_ratking["max_damage"]}',
+                        "Defence: " + f'{get_ratking["defence"]}',
+                        "HP: " + f'{get_ratking["hp"]}',
+                        "1) Attack\n"
+                        "2) Run"]                        
+            # self.assertTrue(mock.called)
+    
+    elif get_ratking["hp"] <=0:
+        assert output == ["Encounter! - " + get_ratking["name"],
+                    "Damage: " + f'{get_ratking["min_damage"]}' + "-" + f'{get_ratking["max_damage"]}',
+                    "Defence: " + f'{get_ratking["defence"]}',
+                    "HP: 25",
+                    "1) Attack\n"
+                    "2) Run",
+                    "Enter choice: ",
+                    "You do not have the Orb of Power - the Rat King is immune!",
+                    "You deal 0 damage to the Rat King",
+                    "Ouch! The " + get_ratking["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
+                    "You have " + f'{get_hero["hp"]}' + " HP left",
+                    "The " + get_ratking["name"] + " is dead! You are victorious!"]
+
+def test_ratking_encounter_1_orb(get_hero, get_ratking):
+    """
+    Essentially the same as encounter() from before but this is for RatKing Test function
+    """
+    origin_hp = get_hero["hp"]
+    origin_hp_rat = get_ratking["hp"]
+    get_hero["orb"] = True
+    set_keyboard_input(["1","1"])
+    ratking_encounter(get_hero, get_ratking, False)
+    output = get_display_output()
+
+    hero_total_damage_test = origin_hp_rat - get_ratking["hp"]
+    if hero_total_damage_test < 0:
+        hero_total_damage_test = 0
+    enemy_total_damage_test = origin_hp - get_hero["hp"] 
+
+    if get_ratking["hp"] > 0:
+        # assert status == False
+        if get_hero["hp"]  <=0:
+            assert output == ["Encounter! - " + get_ratking["name"],
+                        "Damage: " + f'{get_ratking["min_damage"]}' + "-" + f'{get_ratking["max_damage"]}',
+                        "Defence: " + f'{get_ratking["defence"]}',
+                        "HP: 25",
+                        "1) Attack\n"
+                        "2) Run",
+                        "Enter choice: ",
+                        "You deal " + f'{hero_total_damage_test}' + " damage to the " + get_ratking["name"],
+                        "Ouch! The " + get_ratking["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
+                        "You ran out of HP! Game Over."]    
+        else:
+            assert output == ["Encounter! - " + get_ratking["name"],
+                        "Damage: " + f'{get_ratking["min_damage"]}' + "-" + f'{get_ratking["max_damage"]}',
+                        "Defence: " + f'{get_ratking["defence"]}',
+                        "HP: 25",
+                        "1) Attack\n"
+                        "2) Run",
+                        "Enter choice: ",
+                        "You deal " + f'{hero_total_damage_test}' + " damage to the " + get_ratking["name"],
+                        "Ouch! The " + get_ratking["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
+                        "You have " + f'{get_hero["hp"]}' + " HP left",
+                        "Encounter! - " + get_ratking["name"],
+                        "Damage: " + f'{get_ratking["min_damage"]}' + "-" + f'{get_ratking["max_damage"]}',
+                        "Defence: " + f'{get_ratking["defence"]}',
+                        "HP: " + f'{get_ratking["hp"]}',
+                        "1) Attack\n"
+                        "2) Run"]                        
+            # self.assertTrue(mock.called)
+    
+    elif get_ratking["hp"] <=0:
+        assert output == ["Encounter! - " + get_ratking["name"],
+                    "Damage: " + f'{get_ratking["min_damage"]}' + "-" + f'{get_ratking["max_damage"]}',
+                    "Defence: " + f'{get_ratking["defence"]}',
+                    "HP: 25",
+                    "1) Attack\n"
+                    "2) Run",
+                    "Enter choice: ",
+                    "You deal " + f'{hero_total_damage_test}' + " damage to the " + get_ratking["name"],
+                    "Ouch! The " + get_ratking["name"] + " hit you for " + f'{enemy_total_damage_test}' + " damage",
+                    "You have " + f'{get_hero["hp"]}' + " HP left",
+                    "The " + get_ratking["name"] + " is dead! You are victorious!"]
+
+
+@pytest.mark.parametrize("open_choice", [(1),(2),(3)])
+def test_ratking_encounter_2(get_ratking, get_current_day, get_hero, open_choice):
+    """
+    This test will assert the print statements that are supposed to be there such as 
+        print_rat_stats(), combat menu and outdoor menu
+    It will also test for the choices made and what functions it should run after the selected choice
+    This test function will focus on the running part of the encounter where by an outdoor menu will be shown if the user decides to run away from battle
+    """
+    set_keyboard_input(['2', open_choice])
+    ratking_encounter(get_hero, get_ratking, False)
+    output = get_display_output()
+    
+    if open_choice == 1 or open_choice == 2 or open_choice == 4: # select anything other than move_hero()
+        assert output == ["Encounter! - " + get_ratking["name"],
+                        "Damage: " + f'{get_ratking["min_damage"]}' + "-" + f'{get_ratking["max_damage"]}',
+                        "Defence: " + f'{get_ratking["defence"]}',
+                        "HP: 25",
+                        "1) Attack\n"
+                        "2) Run",
+                        "Enter choice: ",
+                        "You run and hide.",
+                        "1) View Character\n2) View Map\n3) Move\n4) Exit Game",
+                        "Enter choice: ",
+                        "Encounter! - " + get_ratking["name"],
+                        "Damage: " + f'{get_ratking["min_damage"]}' + "-" + f'{get_ratking["max_damage"]}',
+                        "Defence: " + f'{get_ratking["defence"]}',
+                        "HP: " + f'{get_ratking["hp"]}',
+                        "1) Attack\n"
+                        "2) Run"] # ensure the encounter function is ran again            
+
+    elif open_choice == 3:
+        assert output == ["Encounter! - " + get_ratking["name"],
+                        "Damage: " + f'{get_ratking["min_damage"]}' + "-" + f'{get_ratking["max_damage"]}',
+                        "Defence: " + f'{get_ratking["defence"]}',
+                        "HP: 25",
+                        "1) Attack\n"
+                        "2) Run",
+                        "Enter choice: ",
+                        "You run and hide.",
+                        "1) View Character\n2) View Map\n3) Move\n4) Exit Game",
+                        "Enter choice: ",
+                        "W = up; A = left; S = down; D = right"]
+        assert get_ratking["hp"] == 25
+
+
+def test_ratking_attack_orb(get_hero, get_ratking):
     """
     Essentially another attack() function but for RatKing
     This test function will check whether the player is holding the orb as well
     """
-    # TODO Add a function for attacking Rat King
-    # assignees: legitaxes
-    # labels: tasks, unit-test
-    # milestone: 3
+    get_hero["orb"] = True
+    origin_ratkinghp = 25
+    origin_herohp = 20
+    set_keyboard_input([])
+    ratking_attack(get_hero, get_ratking)
+    output = get_display_output()
+    hero_damage_done = (origin_ratkinghp - get_ratking["hp"])
+    ratking_damage_done = (origin_herohp - get_hero["hp"])
+
+    if get_hero["hp"] <= 0:
+        assert output == ["You deal " + f'{hero_damage_done}' + " damage to the " + get_ratking["name"],
+                          "Ouch! The " + get_ratking["name"] + " hit you for " + f'{ratking_damage_done}' + " damage",
+                          "You ran out of HP! Game over."]
+    else:
+        if get_ratking["hp"] > 0:
+            assert output == ["You deal " + f'{hero_damage_done}' + " damage to the " + get_ratking["name"],
+                              "Ouch! The " + get_ratking["name"] + " hit you for " + f'{ratking_damage_done}' + " damage",
+                              "You have " + f'{get_hero["hp"]}' + " HP left"]
+        else:
+            assert output == ["You deal " + f'{hero_damage_done}' + " damage to the " + get_ratking["name"],
+                              "Ouch! The " + get_ratking["name"] + " hit you for " + f'{ratking_damage_done}' + " damage",
+                              "You have " + f'{get_hero["hp"]}' + " HP left",
+                              "The Rat King is dead! You are victorious!\nCongratulations, you have defeated the Rat King\nThe world is saved! You win!"]
+
+def test_ratking_attack_no_orb(get_hero, get_ratking):
+    """
+    Essentially another attack() function but for RatKing
+    This test function will check whether the player is holding the orb as well
+    """
+    origin_herohp = 20
+    set_keyboard_input([])
+    ratking_attack(get_hero, get_ratking)
+    output = get_display_output()
+    ratking_damage_done = (origin_herohp - get_hero["hp"])
+
+    if get_hero["hp"] <= 0:
+        assert output == ["You do not have the Orb of Power - the Rat King is immune!",
+                          "You deal 0 damage to the Rat King",
+                          "Ouch! The " + get_ratking["name"] + " hit you for " + f'{ratking_damage_done}' + " damage",
+                          "You ran out of HP! Game over."]
+    else:
+        if get_ratking["hp"] > 0:
+            assert output == ["You do not have the Orb of Power - the Rat King is immune!",
+                              "You deal 0 damage to the Rat King",
+                              "Ouch! The " + get_ratking["name"] + " hit you for " + f'{ratking_damage_done}' + " damage",
+                              "You have " + f'{get_hero["hp"]}' + " HP left"]
+    
+
+def test_ratking_attack_died(get_hero, get_ratking):
+    """
+    This function tests when the rat king died and whether the display out is correct when the rat king dies
+    """
+    get_hero["orb"] = True
+    get_hero["min_damage"] = 30
+    get_hero["max_damage"] = 30
+    origin_ratkinghp = 25
+    origin_herohp = 20
+    set_keyboard_input([])
+    ratking_attack(get_hero, get_ratking)
+    output = get_display_output()
+    hero_damage_done = (origin_ratkinghp - get_ratking["hp"])
+    ratking_damage_done = (origin_herohp - get_hero["hp"])
+
+    assert output == ["You deal " + f'{hero_damage_done}' + " damage to the " + get_ratking["name"],
+                    "Ouch! The " + get_ratking["name"] + " hit you for " + f'{ratking_damage_done}' + " damage",
+                    "You have " + f'{get_hero["hp"]}' + " HP left",
+                    "The Rat King is dead! You are victorious!\nCongratulations, you have defeated the Rat King\nThe world is saved! You win!"]
+
+def test_orb_town_menu():
+    """
+    This test function checks whether the printed string for town menu is correct
+    """
+    set_keyboard_input([])
+    orb_town_menu()
+    output = get_display_output()
+    assert output == ["1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Pick up Orb of Power\n6) Save Game\n7) Exit Game"]
