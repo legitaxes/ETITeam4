@@ -1403,8 +1403,8 @@ def test_encounter_run_4(get_hero, get_rat):
     defence = "Defence: {}".format(get_rat["defence"])
     hp = "HP: {}".format(get_rat["hp"])
     assert output == [encounter1, damage, defence, hp, "1) Attack\n2) Run", "Enter choice: ", 
-                        "You run and hide.", "1) View Character\n2) View Map\n3) Move\n4) Exit Game", "Enter choice: ",
-                        encounter1, damage, defence, hp, "1) Attack\n2) Run"]
+                        "You run and hide.", "1) View Character\n2) View Map\n3) Move\n4) Exit Game", "Enter choice: "]
+                        #encounter1, damage, defence, hp, "1) Attack\n2) Run"]
 
 def test_encounter_run_5(get_hero, get_rat):
     """To test whether the hero can run and hide from the Rat.
@@ -1813,8 +1813,7 @@ def test_ratking_encounter_run_4(get_hero,get_RatKing):
                         #"You run and hide.", "1) View Character\n2) View Map\n3) Move\n4) Exit Game", "Enter choice: ",
                         #encounter1, damage, defence, hp, "1) Attack\n2) Run"]
     assert output == [encounter1, damage, defence, hp, "1) Attack\n2) Run", "Enter choice: ", 
-                        "You run and hide.", "1) View Character\n2) View Map\n3) Move\n4) Exit Game", "Enter choice: ",
-                        "Exiting from the game..."]
+                        "You run and hide.", "1) View Character\n2) View Map\n3) Move\n4) Exit Game", "Enter choice: "]
 
 def test_ratking_encounter_run_5(get_hero, get_RatKing):
     """To test whether the hero can run and hide from the Rat. Inputting a wrong

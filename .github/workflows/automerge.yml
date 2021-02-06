@@ -14,14 +14,7 @@ on:
     
 
 jobs: 
-  auto-label:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with: 
-          labels: automerge
-
-              
+             
   automerge:
     runs-on: ubuntu-latest
     steps:
@@ -30,14 +23,13 @@ jobs:
         id: "automerge"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          MERGE_LABEL_NAME: "automerge"
+          MERGE_LABELS: "automerge"
           MERGE_REMOVE_LABELS: "automerge"
           MERGE_METHOD: "squash"
           MERGE_COMMIT_MESSAGE: "pull-request-description"
-          UPDATE_LABELS: ""
           UPDATE_METHOD: "rebase"
         with:
-          pull-request: ${{ github.event.inputs.pull-request }}
+          args: "--trace"
           
   main:
     runs-on: ubuntu-latest
