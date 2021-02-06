@@ -34,7 +34,6 @@ jobs:
           MERGE_REMOVE_LABELS: "automerge"
           MERGE_METHOD: "squash"
           MERGE_COMMIT_MESSAGE: "pull-request-description"
-          UPDATE_LABELS: ""
           UPDATE_METHOD: "rebase"
         with:
           args: "--trace"
