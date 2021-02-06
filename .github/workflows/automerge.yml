@@ -14,14 +14,7 @@ on:
     
 
 jobs: 
-  auto-label:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-        with: 
-          labels: automerge
-
-              
+             
   automerge:
     runs-on: ubuntu-latest
     steps:
