@@ -30,7 +30,7 @@ jobs:
         id: "automerge"
         env:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
-          MERGE_LABEL_NAME: "automerge"
+          MERGE_LABEL: "automerge"
           MERGE_REMOVE_LABELS: "automerge"
           MERGE_METHOD: "rebase"
           MERGE_COMMIT_MESSAGE: "pull-request-description"
