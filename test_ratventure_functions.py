@@ -910,7 +910,7 @@ def test_mainmenu_specialcharacter():
     Please enter a valid choice
 
     """
-    set_keyboard_input(["@"])
+    set_keyboard_input(["="])
     main_menu()
     output = get_display_output()
     assert output == ["Welcome to Ratventure", "----------------------", "1) New Game","2) Resume Game",
