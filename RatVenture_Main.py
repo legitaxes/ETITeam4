@@ -36,7 +36,12 @@ def main(choice1=None, choice2=None, movement=None):
                 orb_town_menu()
             else:
                 town_menu()
-            choice = int(input("Enter choice: "))
+                
+            try:
+                choice = int(input("Enter choice: "))
+            except ValueError:
+                print("Please enter numbers only!")
+                continue
 
             if choice == 1:
                 print_hero_stats(hero)
@@ -113,6 +118,9 @@ def main(choice1=None, choice2=None, movement=None):
 
             elif choice == 1337: # for debugging on teleporting to orb location 
                 hero["position"] = orb
+
+            else:
+                print("Please enter a valid option!")
 
         # if the hero is not in town 
         # feature for combat not done yet
