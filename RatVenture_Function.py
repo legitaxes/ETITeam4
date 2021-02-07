@@ -25,7 +25,8 @@ def theHero():
     "max_hp": 20,
     "defence": 1,
     "position": [0, 0],
-    "orb": False
+    "orb": False,
+    "save": True
     }
     #print(hero)
     return hero
@@ -202,7 +203,12 @@ def main_menu():
     print("1) New Game")
     print("2) Resume Game")
     print("3) Exit Game")
-    choice = int(input("Enter Choice: "))
+    try:
+        choice = int(input("Enter Choice: "))
+    except ValueError:
+        print("Please input a number!")
+        choice = int(input("Enter Choice: "))
+
     if(choice < 1 or choice > 3):
         print("Please enter a valid choice")
     else:
@@ -212,7 +218,7 @@ def main_menu():
             print("Resuming from last save state...")
         elif(choice == 3):
             print("Exiting game...")
-    return choice
+        return choice
 
 def town_menu():
     """
@@ -466,7 +472,13 @@ def encounter(hero, rat, flag=True):
     fight_menu()
     if flag == None: #check if function is called
         return
-    encounter_choice = int(input("Enter choice: "))
+    #encounter_choice = int(input("Enter choice: "))
+    try:
+        encounter_choice = int(input("Enter choice: "))
+    except ValueError:
+        print("Please input a number!")
+        return
+
     global current_day, world_map
 
     if encounter_choice == 1:
@@ -504,7 +516,19 @@ def encounter(hero, rat, flag=True):
                 current_day += 1
 
         elif outdoor_choice == 4:
-            sys.exit(0)
+            if flag == False:
+                return
+            if hero["save"] == True:
+                exit_game()
+                sys.exit(0)
+            else:
+                saving = input("There are unsaved changes, do you want to continue? [Y/N] ")
+                if saving.upper() == "Y":
+                    exit_game()
+                    sys.exit(0)
+    else:
+        print("Please enter a valid option!")
+        return
 
 def outdoor_menu():
     """
@@ -596,7 +620,7 @@ def win_game():
     """
     print("The Rat King is dead! You are victorious!\nCongratulations, you have defeated the Rat King\nThe world is saved! You win!")
 
-def ratking_attack(hero, ratking):
+def ratking_attack(hero, ratking, flag=True):
     """
     Essentially another attack() function but for RatKing
     This function will check whether the player is holding the orb as well
@@ -616,15 +640,18 @@ def ratking_attack(hero, ratking):
     ratking_total_damage = ratking_damage - hero["defence"]
     hero["hp"] = hero["hp"] - ratking_total_damage
     print("Ouch! The {} hit you for {} damage".format(ratking["name"], ratking_total_damage))
-
+    
     if hero["hp"] <= 0:
         print("You ran out of HP! Game over.")
+        if flag == False:
+            return
         sys.exit(0)
     
     print("You have {} HP left".format(hero["hp"]))
 
     if ratking["hp"] <= 0:
         win_game()
+
 
 def ratking_encounter(hero, ratking, flag=True):
     """
@@ -638,10 +665,11 @@ def ratking_encounter(hero, ratking, flag=True):
     global current_day, w_map
 
     if encounter_choice == 1:
-        ratking_attack(hero, ratking)
         if flag == False:
+            ratking_attack(hero, ratking, False)
             ratking_encounter(hero, ratking, None)
         else:
+            ratking_attack(hero, ratking)
             ratking_encounter(hero, ratking)
 
     elif encounter_choice == 2:
@@ -664,6 +692,15 @@ def ratking_encounter(hero, ratking, flag=True):
                 current_day += 1
 
         elif outdoor_choice == 4:
-            sys.exit(0)
+            if flag == False:
+                return
+            if hero["save"] == True:
+                exit_game()
+                sys.exit(0)
+            else:
+                saving = input("There are unsaved changes, do you want to continue? [Y/N] ")
+                if saving.upper() == "Y":
+                    exit_game()
+                    sys.exit(0)
 
 
