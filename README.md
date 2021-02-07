@@ -10,6 +10,7 @@ Team Roles:
 ---
 ### Latest Changes
 
+* fixed minor bug on mainmenu(). PR [#769](https://github.com/legitaxes/ETITeam4/pull/769) by [@legitaxes](https://github.com/legitaxes).
 * update perlebranch from main. PR [#759](https://github.com/legitaxes/ETITeam4/pull/759) by [@perlechen](https://github.com/perlechen).
 
 * Added the ability to view orb on the map. if the hero is on the town with the orb, viewing the map will show 'H/O' instead of 'T/O'. Town with the orb will be displayed as 'T/O' added a debug feature by entering '1337' on town menu to teleport hero to orb location added a new function called orb_townmenu which display a diffferent set of town menu when the user is in a town with an orb PR [#745](https://github.com/legitaxes/ETITeam4/pull/745) by [@legitaxes](https://github.com/legitaxes)
