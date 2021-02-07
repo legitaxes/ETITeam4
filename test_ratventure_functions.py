@@ -907,14 +907,14 @@ def test_mainmenu_specialcharacter():
     3) Exit Game
     Enter choice:
 
-    Please enter a valid choice
+    Please enter a valid option!
 
     """
     set_keyboard_input(["="])
     main_menu()
     output = get_display_output()
     assert output == ["Welcome to Ratventure", "----------------------", "1) New Game","2) Resume Game",
-                        "3) Exit Game", "Enter Choice: ", "Please enter a valid choice"]
+                        "3) Exit Game", "Enter Choice: ", "Please enter a valid option!"]
 
 def test_mainmenu_newgame(): 
     """To test whether the option New Game will be triggered from the Main Menu.
@@ -1195,7 +1195,7 @@ def test_encounter_attack(get_hero, get_rat):
     ouch = "Ouch! The {} hit you for {} damage".format(get_rat["name"],rat_total_damage)
 
     assert output == [encounter1, damage, defence, hporiginal, "1) Attack\n2) Run", "Enter choice: ", 
-                        deal, ouch, hp1, encounter1, damage, defence, hp, "1) Attack\n2) Run"]
+                        deal, ouch, hp1, encounter1, damage, defence, hp, "1) Attack\n2) Run", "Please enter a valid option!"]
 
 def test_encounter_3(get_hero, get_rat):
     """To test whether combat menu will return an error message
@@ -1228,7 +1228,7 @@ def test_encounter_3(get_hero, get_rat):
     defence = "Defence: {}".format(get_rat["defence"])
     hporiginal = "HP: 10"
 
-    assert output == [encounter1, damage, defence, hporiginal, "1) Attack\n2) Run", "Enter choice: "]
+    assert output == [encounter1, damage, defence, hporiginal, "1) Attack\n2) Run", "Enter choice: ", "Please enter a valid option!"]
 
 
 def test_encounter_run_1(get_hero, get_rat):
@@ -1559,55 +1559,6 @@ def test_ratking_encounter_attack_yes(get_hero, get_RatKing):
     assert output == [encounter1, damage, defence, hporiginal, "1) Attack\n2) Run", "Enter choice: ",
                         deal, ouch, hp1, encounter1, damage, defence, hp, "1) Attack\n2) Run"]
 
-def test_ratking_encounter_herolose(get_hero, get_RatKing): 
-    """To test whether it can be shown that the hero loses when hp is equals or less than zero.
-    Failing Test Case. 
-    
-    Input
-    -----------------
-    1
-    
-    Output
-    -----------------
-    Encounter! - RatKing 
-    Damage: 1-3
-    Defence: 1
-    HP: 25 
-
-    1) Attack 
-    2) Run
-    Enter Choice: 
-
-    You do not have the Orb of Power - the Rat King is immune!
-
-    You deal {} damage to the Rat. 
-    Ouch! The Rat hit you for {} damage.
-    You ran out of HP! Game over.
-
-    """
-
-    set_keyboard_input([1])
-    origin_hp = get_hero["hp"]
-    origin_hp_ratking = get_RatKing["hp"]
-    get_hero["orb"] = True
-    get_hero["hp"] = 0
-    ratking_encounter(get_hero, get_RatKing, False)
-    output = get_display_output()
-
-    hero_total_damage = origin_hp_ratking - get_RatKing["hp"]
-    ratking_total_damage = origin_hp - get_hero["hp"]
-
-    encounter1 = "Encounter! - {}".format(get_RatKing["name"])
-    damage = "Damage: {}-{}".format(get_RatKing["min_damage"], get_RatKing["max_damage"])
-    defence = "Defence: {}".format(get_RatKing["defence"])
-    hporiginal = "HP: 25"
-    deal = "You deal {} damage to the {}".format(hero_total_damage, get_RatKing["name"])
-    ouch = "Ouch! The {} hit you for {} damage".format(get_RatKing["name"],ratking_total_damage)
-    lose = "You ran out of HP! Game over."
-
-    assert output == [encounter1, damage, defence, hporiginal, "1) Attack\n2) Run", "Enter choice: ",
-                        deal, ouch, lose]
-
 def test_ratking_encounter_3(get_hero, get_RatKing): 
     """To test whether combat menu will return an error message
     when an incorrect input is inputted.
@@ -1626,7 +1577,7 @@ def test_ratking_encounter_3(get_hero, get_RatKing):
     1) Attack 
     2) Run
     Enter Choice: 
-    Please enter a valid choice: 
+    Please enter a valid option! 
     """
     set_keyboard_input([3])
     #attack(get_hero, get_rat, False)
@@ -1639,7 +1590,7 @@ def test_ratking_encounter_3(get_hero, get_RatKing):
     hporiginal = "HP: 25"
     
 
-    assert output == [encounter1, damage, defence, hporiginal, "1) Attack\n2) Run", "Enter choice: ", "Please enter valid choice"]
+    assert output == [encounter1, damage, defence, hporiginal, "1) Attack\n2) Run", "Enter choice: ", "Please enter a valid option!"]
 
 
 def test_ratking_encounter_run_1(get_hero, get_RatKing):
@@ -1841,7 +1792,7 @@ def test_ratking_encounter_run_5(get_hero, get_RatKing):
     4) Exit Game
     Enter choice:
     
-    Please enter a valid choice
+    Please enter a valid option!
     """
     set_keyboard_input([2, 5])
     ratking_encounter(get_hero, get_RatKing, False)
@@ -1852,7 +1803,7 @@ def test_ratking_encounter_run_5(get_hero, get_RatKing):
     hp = "HP: {}".format(get_RatKing["hp"])
     assert output == [encounter1, damage, defence, hp, "1) Attack\n2) Run", "Enter choice: ", 
                         "You run and hide.", "1) View Character\n2) View Map\n3) Move\n4) Exit Game", "Enter choice: ",
-                        "Please enter a valid choice"]
+                        "Please enter a valid option!"]
 
 
 
