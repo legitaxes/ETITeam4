@@ -203,7 +203,12 @@ def main_menu():
     print("1) New Game")
     print("2) Resume Game")
     print("3) Exit Game")
-    choice = int(input("Enter Choice: "))
+    try:
+        choice = int(input("Enter Choice: "))
+    except ValueError:
+        print("Please input a number!")
+        choice = int(input("Enter Choice: "))
+
     if(choice < 1 or choice > 3):
         print("Please enter a valid choice")
     else:
@@ -213,7 +218,7 @@ def main_menu():
             print("Resuming from last save state...")
         elif(choice == 3):
             print("Exiting game...")
-    return choice
+        return choice
 
 def town_menu():
     """
