@@ -635,7 +635,7 @@ def ratking_attack(hero, ratking, flag=True):
     ratking_total_damage = ratking_damage - hero["defence"]
     hero["hp"] = hero["hp"] - ratking_total_damage
     print("Ouch! The {} hit you for {} damage".format(ratking["name"], ratking_total_damage))
-
+    
     if hero["hp"] <= 0:
         print("You ran out of HP! Game over.")
         if flag == False:
@@ -646,6 +646,7 @@ def ratking_attack(hero, ratking, flag=True):
 
     if ratking["hp"] <= 0:
         win_game()
+
 
 def ratking_encounter(hero, ratking, flag=True):
     """
@@ -659,7 +660,6 @@ def ratking_encounter(hero, ratking, flag=True):
     global current_day, w_map
 
     if encounter_choice == 1:
-        
         if flag == False:
             ratking_attack(hero, ratking, False)
             ratking_encounter(hero, ratking, None)
