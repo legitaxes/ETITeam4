@@ -25,7 +25,8 @@ def theHero():
     "max_hp": 20,
     "defence": 1,
     "position": [0, 0],
-    "orb": False
+    "orb": False,
+    "save": True
     }
     #print(hero)
     return hero
@@ -466,7 +467,13 @@ def encounter(hero, rat, flag=True):
     fight_menu()
     if flag == None: #check if function is called
         return
-    encounter_choice = int(input("Enter choice: "))
+    #encounter_choice = int(input("Enter choice: "))
+    try:
+        encounter_choice = int(input("Enter choice: "))
+    except ValueError:
+        print("Please input a number!")
+        return
+
     global current_day, world_map
 
     if encounter_choice == 1:
@@ -506,7 +513,17 @@ def encounter(hero, rat, flag=True):
         elif outdoor_choice == 4:
             if flag == False:
                 return
-            sys.exit(0)
+            if hero["save"] == True:
+                exit_game()
+                sys.exit(0)
+            else:
+                saving = input("There are unsaved changes, do you want to continue? [Y/N] ")
+                if saving.upper() == "Y":
+                    exit_game()
+                    sys.exit(0)
+    else:
+        print("Please enter a valid option!")
+        return
 
 def outdoor_menu():
     """
@@ -672,6 +689,13 @@ def ratking_encounter(hero, ratking, flag=True):
         elif outdoor_choice == 4:
             if flag == False:
                 return
-            sys.exit(0)
+            if hero["save"] == True:
+                exit_game()
+                sys.exit(0)
+            else:
+                saving = input("There are unsaved changes, do you want to continue? [Y/N] ")
+                if saving.upper() == "Y":
+                    exit_game()
+                    sys.exit(0)
 
 

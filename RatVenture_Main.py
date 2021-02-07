@@ -36,7 +36,12 @@ def main(choice1=None, choice2=None, movement=None):
                 orb_town_menu()
             else:
                 town_menu()
-            choice = int(input("Enter choice: "))
+
+            try:
+                choice = int(input("Enter choice: "))
+            except ValueError:
+                print("Please enter numbers only!")
+                continue
 
             if choice == 1:
                 print_hero_stats(hero)
@@ -53,6 +58,7 @@ def main(choice1=None, choice2=None, movement=None):
                     print_map(hero, w_map, orb)
                 
             elif choice == 3:
+                hero["save"] = False
                 if movement != None: # if running in test environment
                     status = move_hero(hero, w_map, orb, False)
                     current_day += 1
@@ -63,6 +69,7 @@ def main(choice1=None, choice2=None, movement=None):
                     current_day += 1
 
             elif choice == 4:
+                hero["save"] = False
                 if choice1 != None: # if running in test environment
                     rest(hero)
                     current_day += 1
@@ -74,6 +81,7 @@ def main(choice1=None, choice2=None, movement=None):
 
             elif choice == 5:
                 if hero["position"] == orb:
+                    hero["save"] = False
                     pickup_orb(hero, orb)
                     orb = [1337,1337]
                 else:
@@ -83,6 +91,7 @@ def main(choice1=None, choice2=None, movement=None):
                         return output
                     else:
                         save_game(hero, w_map, current_day, orb)
+                    hero["save"] = True
 
             elif choice == 6:
                 if hero["position"] == orb:
@@ -92,14 +101,21 @@ def main(choice1=None, choice2=None, movement=None):
                         return output
                     else:
                         save_game(hero, w_map, current_day, orb)
+                    hero["save"] = True
                 else:
                     if choice1 != None: # if running in test environment
                         exit_game()
                         output = get_display_output()
                         return output
                     else:
-                        exit_game()
-                        sys.exit(0)
+                        if hero["save"] == True:
+                            exit_game()
+                            sys.exit(0)
+                        else:
+                            saving = input("There are unsaved changes, do you want to continue? [Y/N] ")
+                            if saving.upper() == "Y":
+                                exit_game()
+                                sys.exit(0)
             
             elif choice == 7:
                 if hero["position"] == orb:
@@ -114,6 +130,9 @@ def main(choice1=None, choice2=None, movement=None):
             elif choice == 1337: # for debugging on teleporting to orb location 
                 hero["position"] = orb
 
+            else:
+                print("Please enter a valid option!")
+
         # if the hero is not in town 
         # feature for combat not done yet
         elif position == " ":
@@ -126,12 +145,21 @@ def main(choice1=None, choice2=None, movement=None):
                 elif choice == 2:
                     print_map(hero, w_map, orb)
                 elif choice == 3:
+                    hero["save"] = False
                     move_hero(hero, w_map, orb)
                     rat["hp"] = 10
                 elif choice == 4:
-                    sys.exit(0)
+                    if hero["save"] == True:
+                        exit_game()
+                        sys.exit(0)
+                    else:
+                        saving = input("There are unsaved changes, do you want to continue? [Y/N] ")
+                        if saving.upper() == "Y":
+                            exit_game()
+                            sys.exit(0)
             else:
                 if rat["hp"] > 0:
+                    hero["save"] = False
                     encounter(hero, rat)
 
         elif position == "K":
