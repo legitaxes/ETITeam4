@@ -466,7 +466,13 @@ def encounter(hero, rat, flag=True):
     fight_menu()
     if flag == None: #check if function is called
         return
-    encounter_choice = int(input("Enter choice: "))
+    #encounter_choice = int(input("Enter choice: "))
+    try:
+        encounter_choice = int(input("Enter choice: "))
+    except ValueError:
+        print("Please input a number!")
+        return
+
     global current_day, world_map
 
     if encounter_choice == 1:
@@ -507,6 +513,9 @@ def encounter(hero, rat, flag=True):
             if flag == False:
                 return
             sys.exit(0)
+    else:
+        print("Please enter a valid option!")
+        return
 
 def outdoor_menu():
     """
