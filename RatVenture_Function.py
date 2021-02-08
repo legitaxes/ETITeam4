@@ -207,10 +207,11 @@ def main_menu():
         choice = int(input("Enter Choice: "))
     except ValueError:
         print("Please input a number!")
-        choice = int(input("Enter Choice: "))
+        return
 
     if(choice < 1 or choice > 3):
         print("Please enter a valid choice")
+        return
     else:
         if(choice == 1):
             print("Starting a new game...")
