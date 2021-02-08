@@ -494,7 +494,7 @@ def encounter(hero, rat, flag=True):
         else:
             encounter(hero, rat)
     
-    if encounter_choice == 2:
+    elif encounter_choice == 2:
         print("You run and hide.")
         rat["hp"] = 10
         outdoor_menu()
