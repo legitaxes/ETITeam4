@@ -203,7 +203,12 @@ def main_menu():
     print("1) New Game")
     print("2) Resume Game")
     print("3) Exit Game")
-    choice = int(input("Enter Choice: "))
+    try:
+        choice = int(input("Enter Choice: "))
+    except ValueError:
+        print("Please input a number!")
+        choice = int(input("Enter Choice: "))
+
     if(choice < 1 or choice > 3):
         print("Please enter a valid choice")
     else:
@@ -213,7 +218,7 @@ def main_menu():
             print("Resuming from last save state...")
         elif(choice == 3):
             print("Exiting game...")
-    return choice
+        return choice
 
 def town_menu():
     """
@@ -656,7 +661,15 @@ def ratking_encounter(hero, ratking, flag=True):
     fight_menu()
     if flag == None:
         return
-    encounter_choice = int(input("Enter choice: "))
+    try:
+        encounter_choice = int(input("Enter choice: "))
+    except ValueError:
+        print("Please input a number!")
+        if flag == False:
+            ratking_encounter(hero, ratking,False)
+        else:
+            ratking_encounter(hero, ratking)
+
     global current_day, w_map
 
     if encounter_choice == 1:
@@ -671,8 +684,15 @@ def ratking_encounter(hero, ratking, flag=True):
         print("You run and hide.")
         ratking["hp"] = 25
         outdoor_menu()
-        outdoor_choice = int(input("Enter choice: "))
-
+        try:
+            outdoor_choice = int(input("Enter choice: "))
+        except ValueError:
+            print("Please input a number!")
+            if flag == False:
+                ratking_encounter(hero, ratking,False)
+            else:
+                ratking_encounter(hero, ratking)
+            
         if outdoor_choice == 1 or outdoor_choice == 2:
             if flag == False:
                 ratking_encounter(hero, ratking, None)
