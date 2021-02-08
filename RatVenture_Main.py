@@ -26,6 +26,8 @@ def main(choice1=None, choice2=None, movement=None):
         useless1, useless2, hero, w_map, current_day, orb = resume_game()
     elif choice == 3:
         sys.exit(0)
+    else:
+        main();
     
     while True:
         print_day(hero, current_day)
