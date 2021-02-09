@@ -1636,3 +1636,12 @@ def test_orb_town_menu():
     orb_town_menu()
     output = get_display_output()
     assert output == ["1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Pick up Orb of Power\n6) Save Game\n7) Exit Game"]
+
+def test_function():
+    """
+    Test function
+    """
+    # TODO Create a function....
+    # put more comments here if needed
+    # assignees: laukwangwei
+    # labels: unit-test, tasks
