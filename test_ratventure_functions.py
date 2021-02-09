@@ -137,7 +137,7 @@ def test_mainmenu_specialcharacter():
     main_menu()
     output = get_display_output()
     assert output == ["Welcome to Ratventure", "----------------------", "1) New Game","2) Resume Game",
-                        "3) Exit Game", "Enter Choice: ", "Please input a number!"]
+                        "3) Exit Game", "Enter Choice: ", "Please enter a valid option!"]
 
 def test_mainmenu_newgame(): 
     """To test whether the option New Game will be triggered from the Main Menu.
@@ -813,7 +813,7 @@ def test_ratking_encounter_3(get_hero, get_RatKing):
     hporiginal = "HP: 25"
     
 
-    assert output == [encounter1, damage, defence, hporiginal, "1) Attack\n2) Run", "Enter choice: ", "Please input a number!"]
+    assert output == [encounter1, damage, defence, hporiginal, "1) Attack\n2) Run", "Enter choice: ", "Please enter a valid option!"]
 
 
 def test_ratking_encounter_run_1(get_hero, get_RatKing):
@@ -1026,7 +1026,7 @@ def test_ratking_encounter_run_5(get_hero, get_RatKing):
     hp = "HP: {}".format(get_RatKing["hp"])
     assert output == [encounter1, damage, defence, hp, "1) Attack\n2) Run", "Enter choice: ", 
                         "You run and hide.", "1) View Character\n2) View Map\n3) Move\n4) Exit Game", "Enter choice: ",
-                        "Please input a number!"]
+                        "Please enter a valid option!"]
 
 
 
