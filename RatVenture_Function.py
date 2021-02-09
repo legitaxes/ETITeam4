@@ -206,11 +206,12 @@ def main_menu():
     try:
         choice = int(input("Enter Choice: "))
     except ValueError:
-        print("Please input a number!")
-        choice = int(input("Enter Choice: "))
+        print("Please enter a valid option!")
+        return
 
     if(choice < 1 or choice > 3):
         print("Please enter a valid choice")
+        return
     else:
         if(choice == 1):
             print("Starting a new game...")
@@ -493,7 +494,7 @@ def encounter(hero, rat, flag=True):
         else:
             encounter(hero, rat)
     
-    if encounter_choice == 2:
+    elif encounter_choice == 2:
         print("You run and hide.")
         rat["hp"] = 10
         outdoor_menu()
@@ -717,5 +718,9 @@ def ratking_encounter(hero, ratking, flag=True):
                 if saving.upper() == "Y":
                     exit_game()
                     sys.exit(0)
+        else:
+            print("Please enter a valid option!")
+    else:
+        print("Please enter a valid option!")
 
 

@@ -1235,8 +1235,7 @@ def test_encounter_1(get_rat, get_current_day, get_hero):
                         "Defence: " + f'{get_rat["defence"]}',
                         "HP: " + f'{get_rat["hp"]}',
                         "1) Attack\n"
-                        "2) Run",
-                        "Please enter a valid option!"]                        
+                        "2) Run"]                        
             # self.assertTrue(mock.called)
     
     elif get_rat["hp"] <=0:
@@ -1636,3 +1635,12 @@ def test_orb_town_menu():
     orb_town_menu()
     output = get_display_output()
     assert output == ["1) View Character\n2) View Map\n3) Move\n4) Rest\n5) Pick up Orb of Power\n6) Save Game\n7) Exit Game"]
+
+def test_function():
+    """
+    Test function
+    """
+    # TODO Create a function....
+    # put more comments here if needed
+    # assignees: laukwangwei
+    # labels: unit-test, tasks
