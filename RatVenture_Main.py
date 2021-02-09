@@ -159,6 +159,8 @@ def main(choice1=None, choice2=None, movement=None):
                         if saving.upper() == "Y":
                             exit_game()
                             sys.exit(0)
+                else:
+                    print("Please enter a valid option")
             else:
                 if rat["hp"] > 0:
                     hero["save"] = False
