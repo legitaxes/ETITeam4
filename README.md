@@ -10,6 +10,7 @@ Team Roles:
 ---
 ### Latest Changes
 
+* Cheskalazo branch with all Passed Test Scripts. PR [#787](https://github.com/legitaxes/ETITeam4/pull/787) by [@cheskalazo](https://github.com/cheskalazo).
 * fixed minor bug on mainmenu(). PR [#769](https://github.com/legitaxes/ETITeam4/pull/769) by [@legitaxes](https://github.com/legitaxes).
 * Added the ability to view orb on the map. if the hero is on the town with the orb, viewing the map will show 'H/O' instead of 'T/O'. Town with the orb will be displayed as 'T/O' added a debug feature by entering '1337' on town menu to teleport hero to orb location added a new function called orb_townmenu which display a diffferent set of town menu when the user is in a town with an orb PR [#745](https://github.com/legitaxes/ETITeam4/pull/745) by [@legitaxes](https://github.com/legitaxes)
 * assigning tasks to @laukwangwei for the new requirement changes. PR [#701](https://github.com/legitaxes/ETITeam4/pull/701) by [@legitaxes](https://github.com/legitaxes).
