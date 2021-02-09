@@ -1235,8 +1235,7 @@ def test_encounter_1(get_rat, get_current_day, get_hero):
                         "Defence: " + f'{get_rat["defence"]}',
                         "HP: " + f'{get_rat["hp"]}',
                         "1) Attack\n"
-                        "2) Run",
-                        "Please enter a valid option!"]                        
+                        "2) Run"]                        
             # self.assertTrue(mock.called)
     
     elif get_rat["hp"] <=0:

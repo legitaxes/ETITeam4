@@ -206,7 +206,7 @@ def main_menu():
     try:
         choice = int(input("Enter Choice: "))
     except ValueError:
-        print("Please input a number!")
+        print("Please enter a valid option!")
         return
 
     if(choice < 1 or choice > 3):
@@ -718,5 +718,9 @@ def ratking_encounter(hero, ratking, flag=True):
                 if saving.upper() == "Y":
                     exit_game()
                     sys.exit(0)
+        else:
+            print("Please enter a valid option!")
+    else:
+        print("Please enter a valid option!")
 
 
